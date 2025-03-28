@@ -5,7 +5,7 @@ import React from "react";
 // import { BiSupport } from "react-icons/bi";
 import DeliveryRed from "../../public/icons/deliveryRed.svg";
 import OfficialRed from "../../public/icons/officialRed.svg";
-import PartByPartRed from  "../../public/icons/PartByPartRed.svg"
+import PartByPartRed from  "../../public/icons/partByPartRed.svg"
 import OperatorRed from "../../public/icons/operatorsRed.svg"
 
 const HomePageStaticInfo = () => {
