@@ -9,14 +9,24 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@fancyapps/ui": "^5.0.36",
+    "@mui/material": "^6.4.8",
     "@splidejs/react-splide": "^0.7.12",
     "@splidejs/splide": "^4.1.4",
+    "@svgr/webpack": "^8.1.0",
+    "antd": "^5.24.5",
     "lucide-react": "^0.482.0",
     "next": "15.2.2",
     "react": "^19.0.0",
+    "react-countdown": "^2.3.6",
     "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0",
+    "react-lazy-load-image-component": "^1.6.3",
     "react-search-input": "^0.11.3",
-    "sass": "^1.85.1"
+    "sass": "^1.85.1",
+    "swiper": "^11.2.6"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
