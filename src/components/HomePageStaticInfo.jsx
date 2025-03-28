@@ -41,7 +41,7 @@ const HomePageStaticInfo = () => {
                 <div className="staticInfoImage">
                   {/* <IoCalendarOutline /> */}
                   {/* <PartByPartRed  className="deliveryIcon" /> */}
-                  <img src="icons/partByPart.svg" alt="2121" />
+                  <img src="/icons/partByPart.svg" alt="2121" />
                 </div>
                 <div className="staticInfoContent">
                   <span>Hissə-hissə ödəniş</span>
