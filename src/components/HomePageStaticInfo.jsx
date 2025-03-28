@@ -5,7 +5,7 @@ import React from "react";
 // import { BiSupport } from "react-icons/bi";
 import DeliveryRed from "../../public/icons/deliveryRed.svg";
 import OfficialRed from "../../public/icons/officialRed.svg";
-import PartByPartRed from  "../../public/icons/partByPartRed.svg"
+// import PartByPartRed from  "../../public/icons/partByPartRed.svg"
 import OperatorRed from "../../public/icons/operatorsRed.svg"
 
 const HomePageStaticInfo = () => {
@@ -40,7 +40,8 @@ const HomePageStaticInfo = () => {
               <div className="staticInfoCard">
                 <div className="staticInfoImage">
                   {/* <IoCalendarOutline /> */}
-                  <PartByPartRed  className="deliveryIcon" />
+                  {/* <PartByPartRed  className="deliveryIcon" /> */}
+                  <img src="icons/partByPart.svg" alt="2121" />
                 </div>
                 <div className="staticInfoContent">
                   <span>Hissə-hissə ödəniş</span>
