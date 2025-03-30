@@ -9,7 +9,7 @@ $MainColor: #ec1f27 !important;
 
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-thumb {
   background-color: #ec1f27;
@@ -1229,3 +1229,28 @@ ul {
 }
 // ? HomePageBrands.jsx
 // !     Pages
+
+
+
+.scrollButton {
+  position: fixed !important;
+  z-index: 999 !important;
+  bottom: 30px !important;
+  right: 30px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 3rem;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.3s;
+}
+
+.scrollButton:hover {
+  background: white;
+  color: #111;
+  border: 1px solid lightgray;
+}
+
+

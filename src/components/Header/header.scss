@@ -104,6 +104,10 @@ $MainColor: #ec1f27 !important;
           opacity: 1;
           transform: scale(1);
         }
+        span{
+          color: #ec1f27;
+          transition: all 0.3s ease-in-out;
+        }
       }
     }
     .headerSearching {

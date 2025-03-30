@@ -1,6 +1,7 @@
 import Footer from '@/components/Footer/Footer'
 import Header from '@/components/Header/Header'
 import HomePageStaticInfo from '@/components/HomePageStaticInfo'
+// import ScroolToTop from '@/components/ScroolToTop'
 import HeroSlider from "@/components/Slider/HeroSlider"
 import HomePageBrands from '@/components/Slider/HomePageBrands'
 import HomePageCountProduct from '@/components/Slider/HomePageCountProduct'
@@ -21,6 +22,7 @@ const HomePage = () => {
       <ProductsReview />
       <HomePageBrands />
       <Footer />
+      {/* <ScroolToTop /> */}
     </div>
   )
 }
