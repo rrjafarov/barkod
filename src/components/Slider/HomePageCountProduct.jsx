@@ -91,7 +91,7 @@ const HomePageCountProduct = () => {
         <Swiper
           slidesPerView={2}
           spaceBetween={20}
-          loop="true"
+          loop={true}
           pagination={{
             clickable: true,
             el: ".count-custom-pagination",
@@ -100,7 +100,7 @@ const HomePageCountProduct = () => {
             delay: 3000,
             disableOnInteraction: false,
           }}
-          speed={1000}
+          speed={3000}
           modules={[Pagination, Autoplay]}
           className="mySwiper"
         >

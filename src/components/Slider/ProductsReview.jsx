@@ -48,7 +48,7 @@ const HomePageProductsCard = () => {
             delay: 3000,
             disableOnInteraction: false,
           }}
-          speed={1000}
+          speed={3000}
           modules={[Pagination, Autoplay]}
           className="mySwiper"
         >
@@ -115,6 +115,31 @@ const HomePageProductsCard = () => {
                 <div className="productsReviewCard">
                   <Image
                     src="/images/homeBannerd.png"
+                    className="reviewCardImage"
+                    alt="review"
+                    width={800}
+                    height={800}
+                  />
+                  <div className="reviewPlayIcon">
+                    <FaPlay className="revPlayIcon" />
+                  </div>
+                </div>
+              </Link>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="productsReviewSlide">
+              <Link
+                href={
+                  "https://www.https://www.youtube.com/watch?v=_ZiAzlHF8nM.com/watch?v=93H-FqHYiEE"
+                }
+                target="_blank"
+                className="productsReviewLink"
+                data-fancybox="videos"
+              >
+                <div className="productsReviewCard">
+                  <Image
+                    src="/images/productsIcmal.png"
                     className="reviewCardImage"
                     alt="review"
                     width={800}

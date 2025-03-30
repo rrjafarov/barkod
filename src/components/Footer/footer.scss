@@ -1,0 +1,99 @@
+$MainColor: #ec1f27 !important;
+.footer {
+  padding: 5rem 0;
+  .footerLinks {
+    .footerHeadLink {
+      padding-bottom: 3rem;
+      font-size: 2.2rem;
+      font-weight: 600;
+    }
+    ul {
+      display: flex;
+      padding-top: 2rem;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      text-align: start;
+      gap: 2rem;
+      li {
+        a {
+          color: #777;
+          letter-spacing: 0.02rem;
+          font-size: 1.6rem;
+          font-weight: 500;
+          line-height: 20px;
+        }
+        .contactNumber {
+          font-size: 3rem;
+          font-weight: 500;
+          letter-spacing: -0.02em;
+          line-height: 16px;
+          color: $MainColor;
+          font-family: "Arial Black", sans-serif !important;
+          border-bottom: none;
+        }
+      }
+    }
+  }
+  .footerSocialLinks{
+    ul{
+      display: flex !important;
+      flex-direction: row;
+      gap: 2rem;
+      li{
+        button{
+          background: transparent;
+        }
+        .footSocialIcon{
+          width: 2rem;
+          height: 2rem;
+        }
+      }
+    }
+  }
+  .footerPaymentIcons{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 2rem;
+    padding: 3rem 0 2rem 0;
+    .footerPaymentIcon{
+      button{
+        background: transparent;
+      }
+      .visaIcon{
+        width: 5rem;
+        height: 5rem;
+      }
+      .masterkartIcon{
+        width: 5rem;
+        height: 5rem;
+      }
+    }
+  }
+}
+.footerBottom {
+  background-color: #f3f3f3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .footerBottomItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5rem 0;
+    gap: 1rem;
+    span {
+        padding-top: 0.7rem;
+      .copyright {
+        font-size: 2rem;
+      }
+    }
+    a {
+      font-size: 2.4rem;
+      font-weight: 600;
+      color: #1f1f1f;
+      font-family: "Arial Black", sans-serif !important;
+    }
+  }
+}

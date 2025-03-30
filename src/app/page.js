@@ -1,6 +1,8 @@
+import Footer from '@/components/Footer/Footer'
 import Header from '@/components/Header/Header'
 import HomePageStaticInfo from '@/components/HomePageStaticInfo'
 import HeroSlider from "@/components/Slider/HeroSlider"
+import HomePageBrands from '@/components/Slider/HomePageBrands'
 import HomePageCountProduct from '@/components/Slider/HomePageCountProduct'
 import HomePageProductsCard from '@/components/Slider/HomePageProductsCard'
 import HomePageSecondaryProducts from '@/components/Slider/HomePageSecondaryProducts'
@@ -17,9 +19,8 @@ const HomePage = () => {
       <HomePageCountProduct />
       <HomePageSecondaryProducts />
       <ProductsReview />
-
-
-
+      <HomePageBrands />
+      <Footer />
     </div>
   )
 }

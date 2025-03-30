@@ -3,6 +3,11 @@
 
 $MainColor: #ec1f27 !important;
 
+.cls-1 {
+  fill: #ec1f27 !important; /* Dolguyu kaldırır */
+}
+
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -620,16 +625,17 @@ ul {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    cursor: pointer;
     gap: 1.8rem;
     .staticInfoImage {
       font-size: 5rem;
       cursor: pointer;
       color: #ec1f27;
       padding-top: 1rem;
+      position: relative;
       .deliveryIcon {
         width: 7rem;
         height: 4.5rem;
-        flex-shrink: 0;
       }
       .officialIcon {
         width: 4.5rem;
@@ -642,22 +648,21 @@ ul {
         flex-shrink: 0;
       }
     }
+
     .staticInfoContent {
       display: flex;
       justify-content: flex-start;
-      cursor: pointer;
       align-items: flex-start;
       flex-direction: column;
+      cursor: pointer;
       text-align: start;
       gap: 0.5rem;
       span {
         font-size: 1.8rem;
         font-style: normal;
-        // font-style: italic;
         font-weight: 700;
         line-height: 1.1362rem;
         letter-spacing: 0.05rem;
-        // text-transform: uppercase;
       }
       strong {
         font-size: 1.3rem;
@@ -671,7 +676,7 @@ ul {
 
 // ? HomePageProductsCard.jsx
 .productsHeadTitle {
-  margin: 5rem 0;
+  margin: 5rem 0 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -847,9 +852,31 @@ ul {
           justify-content: center;
           align-items: center;
           color: #111;
-        }
-        &:hover {
-          color: #ec1f27;
+          .rightPagesIconBlackIcons,
+          .rightPagesIconRedIcons {
+            width: 2rem;
+            height: 2rem;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+          }
+          .rightPagesIconBlackIcons {
+            opacity: 1;
+            transform: scale(1);
+          }
+          .rightPagesIconRedIcons {
+            opacity: 0;
+            transform: scale(1);
+            position: absolute;
+          }
+          &:hover {
+            .rightPagesIconBlackIcons {
+              opacity: 0;
+              transform: scale(1);
+            }
+            .rightPagesIconRedIcons {
+              opacity: 1;
+              transform: scale(1);
+            }
+          }
         }
       }
     }
@@ -1072,12 +1099,13 @@ ul {
   }
 }
 // ? HomePageCountProduct.jsx
+
 // ? ProductsReview.jsx
 #homePageProductReview {
   background: #f3f7fc;
   margin-top: 1rem;
   .reviewRow {
-    padding: 2rem 0 5rem;
+    padding: 2rem 2rem 5rem;
   }
   .productReviewTitle {
     display: flex;
@@ -1156,4 +1184,48 @@ ul {
   }
 }
 // ? ProductsReview.jsx
+
+// ? HomePageBrands.jsx
+#homePageBrands {
+  .homePageBrands {
+    padding: 5rem 0;
+    .homePageBrandsTitle {
+      padding: 2rem 0;
+      span {
+        font-size: 2.2rem;
+        font-weight: 600;
+        transition: all 0.2s ease-in-out;
+        cursor: pointer;
+        &:hover {
+          border-bottom: 2px solid $MainColor;
+          transition: all 0.2s ease-in-out;
+        }
+      }
+    }
+    .homePageBrandCard {
+      width: 100%;
+      height: 100%;
+      border: 1px solid #dddfe1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 1rem;
+      .homePageBrandCardImage {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 1rem;
+        width: 15rem;
+        height: 6rem;
+        margin: 2rem;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}
+// ? HomePageBrands.jsx
 // !     Pages

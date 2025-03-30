@@ -21,6 +21,7 @@ export default function Home() {
             <Swiper
               slidesPerView={"1"}
               spaceBetween={20}
+              loop={true}
               pagination={{
                 clickable: true,
                 el: ".hero-custom-pagination",
@@ -29,7 +30,7 @@ export default function Home() {
                 delay: 3000,
                 disableOnInteraction: false,
               }}
-              speed={1500}
+              speed={3000}
               modules={[Pagination, Autoplay]}
               className="mySwiper heroSlider"
             >
