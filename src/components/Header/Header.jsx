@@ -116,6 +116,7 @@ import "@/components/Header/header.scss";
 import Link from "next/link";
 import { BiSolidCategoryAlt } from "react-icons/bi";
 import Image from "next/image";
+import { IoSearch } from "react-icons/io5";
 import RedCategory from "../../../public/icons/redCategory.svg";
 import BlackCategory from "../../../public/icons/blackCategory.svg";
 import BlackComparison from "../../../public/icons/blackComparison.svg";
@@ -231,7 +232,10 @@ const Header = () => {
             <div className="xl-8 lg-8 md-8 sm-8">
               <div className="headerSearching">
                 <div className="searchContainer">
-                  <input type="search"  placeholder="Axtar..."/>
+                  <input type="search" placeholder="Axtar..." />
+                  <div className="searchButtonIcon">
+                    <IoSearch />
+                  </div>
                 </div>
               </div>
             </div>

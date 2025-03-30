@@ -127,6 +127,16 @@ $MainColor: #ec1f27 !important;
           cursor: pointer;
           opacity: 0.8;
         }
+        .searchButtonIcon{
+          background: #111;
+          color: #fff;
+          display: flex;
+          cursor: pointer;
+          justify-content: center;
+          align-items: center;
+          padding: 1rem 3rem;
+          border-radius: 2rem;
+        }
       }
     }
     // .headerMiddleRight {
