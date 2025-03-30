@@ -2,7 +2,7 @@ import React from "react";
 import DeliveryRed from "../../public/icons/deliveryRed.svg";
 import DeliveryBlack from "../../public/icons/deliveryBlack.svg";
 import OfficialRed from "../../public/icons/officialRed.svg";
-import PartByPartRed from "../../public/icons/partByPartRed.svg";
+// import PartByPartRed from "../../public/icons/partByPartRed.svg";
 import OperatorRed from "../../public/icons/operatorsRed.svg";
 
 const HomePageStaticInfo = () => {
