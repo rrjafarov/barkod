@@ -104,7 +104,7 @@ $MainColor: #ec1f27 !important;
           opacity: 1;
           transform: scale(1);
         }
-        span{
+        span {
           color: #ec1f27;
           transition: all 0.3s ease-in-out;
         }
@@ -131,7 +131,7 @@ $MainColor: #ec1f27 !important;
           cursor: pointer;
           opacity: 0.8;
         }
-        .searchButtonIcon{
+        .searchButtonIcon {
           background: #111;
           color: #fff;
           display: flex;
@@ -210,3 +210,83 @@ $MainColor: #ec1f27 !important;
     }
   }
 }
+
+//! categoryMenu---------------------
+/* global.css veya ilgili CSS dosyasına ekleyin */
+.categoryMegaMenu {
+  display: flex;
+  width: 600px;
+  width: 100%;
+  background: lightgray;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 2rem;
+}
+
+.categoryMegaMenu .leftColumn {
+  width: 200px;
+  width: 25%;
+  padding: 2rem;
+  border-right: 1px solid #111;
+}
+.categoryMegaMenu .leftColumn ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.categoryMegaMenu .rightColumn {
+  flex: 1;
+  padding: 2rem;
+  min-height: 200px;
+}
+.categoryMegaMenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.categoryMegaMenu .leftColumn li {
+  cursor: pointer;
+  color: #555;
+  font-size: 1.6rem;
+  font-weight: 500;
+  width: 100%;
+  padding: 1rem;
+}
+.categoryMegaMenu .leftColumn li:hover {
+  color: $MainColor;
+  background-color: rgb(213, 193, 193);
+  border-radius: 1rem;
+}
+// .categoryMegaMenu .rightColumn li {
+//   padding: 5px 0;
+// }
+.categoryMegaMenu .rightColumn a {
+  color: gray;
+  text-decoration: none;
+}
+.categoryMegaMenu .rightColumn a:hover {
+  text-decoration: underline;
+}
+.rightColumnItems {
+  display: flex;
+  padding-left: 2rem;
+  gap: 10rem;
+  .rightColumnItem {
+    .catgorySubTitle {
+      font-size: 1.8rem !important;
+      font-weight: 700 !important;
+    }
+    ul {
+      padding-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      li {
+        font-size: 1.4rem;
+        font-weight: 600;
+        letter-spacing: 0.05rem;
+      }
+    }
+  }
+}
+//! categoryMenu---------------------

@@ -1,3 +1,4 @@
+import CategoryMenu from '@/components/CategoryMenu'
 import Footer from '@/components/Footer/Footer'
 import Header from '@/components/Header/Header'
 import HomePageStaticInfo from '@/components/HomePageStaticInfo'
@@ -22,7 +23,7 @@ const HomePage = () => {
       <ProductsReview />
       <HomePageBrands />
       <Footer />
-      {/* <ScroolToTop /> */}
+      <CategoryMenu />
     </div>
   )
 }
