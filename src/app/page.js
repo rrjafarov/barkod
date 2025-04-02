@@ -2,6 +2,7 @@ import CategoryMenu from '@/components/CategoryMenu'
 import Footer from '@/components/Footer/Footer'
 import Header from '@/components/Header/Header'
 import HomePageStaticInfo from '@/components/HomePageStaticInfo'
+import OneClickPayment from '@/components/OneClickPayment'
 // import ScroolToTop from '@/components/ScroolToTop'
 import HeroSlider from "@/components/Slider/HeroSlider"
 import HomePageBrands from '@/components/Slider/HomePageBrands'
@@ -23,7 +24,8 @@ const HomePage = () => {
       <ProductsReview />
       <HomePageBrands />
       <Footer />
-      <CategoryMenu />
+      {/* <OneClickPayment /> */}
+      {/* <CategoryMenu /> */}
     </div>
   )
 }

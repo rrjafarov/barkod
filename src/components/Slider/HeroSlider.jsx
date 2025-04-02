@@ -46,7 +46,7 @@ export default function Home() {
                   <div className="heroSliderContent">
                     <span>Heavy on features. Light on price.</span>
                     <strong>START FORM $399</strong>
-                    <Link href="/">
+                    <Link href="#">
                       <button>
                         Learn More <MdKeyboardArrowRight />
                       </button>
@@ -66,7 +66,7 @@ export default function Home() {
                   <div className="heroSliderContent">
                     <span>Heavy on features. Light on price.</span>
                     <strong>START FORM $399</strong>
-                    <Link href="/">
+                    <Link href="#">
                       <button>
                         Learn More <MdKeyboardArrowRight />
                       </button>
@@ -76,7 +76,6 @@ export default function Home() {
               </SwiperSlide>
             </Swiper>
             <div className="hero-custom-pagination"></div>
-
           </div>
 
           <div className="xl-4 lg-4 md-4 sm-12">
@@ -90,7 +89,9 @@ export default function Home() {
                 />
                 <div className="bannerStaticCardItem">
                   <strong className="bannerSale">Sale Up to 50%</strong>
-                  <span>Drone <br /> Photography</span>
+                  <span>
+                    Drone <br /> Photography
+                  </span>
                   <Link href="#">
                     <button>
                       Shop Now <MdKeyboardArrowRight className="shoopNowIcon" />
@@ -107,7 +108,9 @@ export default function Home() {
                 />
                 <div className="bannerStaticCardItemRight">
                   <strong className="bannerSale">Sale Up to 60%</strong>
-                  <span>Best <br /> Headphone</span>
+                  <span>
+                    Best <br /> Headphone
+                  </span>
                   <Link href="#">
                     <button>
                       Shop Now <MdKeyboardArrowRight className="shoopNowIcon" />

@@ -217,22 +217,22 @@ $MainColor: #ec1f27 !important;
   display: flex;
   width: 600px;
   width: 100%;
-  background: lightgray;
+  background: rgb(231, 231, 231);
   border: 1px solid #e0e0e0;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 2rem;
+  border-radius: 1rem;
 }
 
 .categoryMegaMenu .leftColumn {
   width: 200px;
-  width: 25%;
+  width: 30%;
   padding: 2rem;
   border-right: 1px solid #111;
 }
 .categoryMegaMenu .leftColumn ul {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
 }
 .categoryMegaMenu .rightColumn {
   flex: 1;
@@ -246,23 +246,65 @@ $MainColor: #ec1f27 !important;
 }
 .categoryMegaMenu .leftColumn li {
   cursor: pointer;
-  color: #555;
+  color: #111;
   font-size: 1.6rem;
-  font-weight: 500;
+  font-weight: 600;
   width: 100%;
   padding: 1rem;
+  display: flex;
+  // justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
 }
+
+.categoryLeftIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 1rem;
+  // max-width: 3rem;
+}
+.ee {
+  margin-right: 2.5rem;
+  // max-width: 3rem;
+}
+#categoryLeftIconTV {
+  width: 3rem;
+  height: 2rem;
+}
+#categoryLeftIconLaptop {
+  width: 3rem;
+  height: 2rem;
+}
+#categoryLeftIconMeiset {
+  width: 3rem;
+  height: 2rem;
+}
+#categoryLeftIconFan {
+  width: 3rem;
+  height: 2rem;
+}
+#categoryLeftIconMebel {
+  width: 3.7rem;
+  height: 2rem;
+  margin-right: 0.3rem;
+}
+
 .categoryMegaMenu .leftColumn li:hover {
-  color: $MainColor;
-  background-color: rgb(213, 193, 193);
+  background-color: rgb(187, 187, 187);
   border-radius: 1rem;
+  .categoryLeftIcon {
+    svg {
+      fill: $MainColor;
+    }
+  }
 }
-// .categoryMegaMenu .rightColumn li {
-//   padding: 5px 0;
-// }
 .categoryMegaMenu .rightColumn a {
-  color: gray;
+  color: rgb(122, 122, 122);
   text-decoration: none;
+  font-weight: 550;
 }
 .categoryMegaMenu .rightColumn a:hover {
   text-decoration: underline;

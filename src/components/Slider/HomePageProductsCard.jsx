@@ -15,13 +15,47 @@ import BlackComparison from "../../../public/icons/blackComparison.svg";
 import RedComparison from "../../../public/icons/redComparison.svg";
 import BlackWishlist from "../../../public/icons/blackWishlist.svg";
 import RedWishlist from "../../../public/icons/redWishlist.svg";
+import OneClickPayment from '@/components/OneClickPayment'
 
 
 
 const HomePageProductsCard = () => {
   const [value, setValue] = useState(4);
+  // const [showModal, setShowModal] = useState(false);
+  // const openModal = () => setShowModal(true);
+  // const closeModal = () => setShowModal(false);
+  const [showModal, setShowModal] = useState(false);
+  
+    const openModal = () => setShowModal(true);
+    const closeModal = () => setShowModal(false);
+  
+    const handleOverlayClick = (e) => {
+      if (e.target.className === "modal-overlay") {
+        closeModal();
+      }
+    };
+
   return (
     <div className="container">
+      {showModal && (
+        <div className="modal-overlay" onClick={handleOverlayClick}>
+          <div className="modal">
+            <button className="close-btn" onClick={closeModal}>
+              X
+            </button>
+            <span>Bir kliklə al</span>
+            <div>
+
+            </div>
+            <div className="numberModal">
+              <label htmlFor="phone">Nömrə: +994</label>
+              <input type="text" id="phone" name="phone" />
+            </div>
+            <button className="open-btn">Bir kliklə al</button>
+          </div>
+        </div>
+      )}
+
       <div className="productsHeadTitle">
         <span>Latest Products</span>
         <span>Top Raitings</span>
@@ -41,6 +75,30 @@ const HomePageProductsCard = () => {
         }}
         speed={3000}
         modules={[Pagination, Autoplay]}
+        breakpoints={{
+          340: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+            // centeredSlides: true,
+            loop: true,
+          },
+          640: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          991: {
+            slidesPerView: 3,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 20,
+          },
+          1440: {
+            slidesPerView: 4,
+            spaceBetween: 20,
+          },
+        }}
         className="mySwiper"
       >
         {/* <SwiperSlide>
@@ -142,12 +200,10 @@ const HomePageProductsCard = () => {
 
                 <div className="wishList">
                   <button>
-                    {/* <FaRegHeart /> */}
                     <BlackComparison className="rightPagesIconBlackIcons" />
                     <RedComparison className="rightPagesIconRedIcons" />
                   </button>
                   <button>
-                    {/* <RiScales3Fill /> */}
                     <BlackWishlist className="rightPagesIconBlackIcons" />
                     <RedWishlist className="rightPagesIconRedIcons" />
                   </button>
@@ -157,7 +213,7 @@ const HomePageProductsCard = () => {
             <div className="addToCartClick">
               <div className="addToCartClickItem">
                 <button className="cartBtn">Səbətə at</button>
-                <button className="clickBtn">Bir Klikle Al</button>
+                <button onClick={openModal} className="clickBtn">Bir Klikle Al</button>
               </div>
             </div>
           </div>
@@ -197,12 +253,10 @@ const HomePageProductsCard = () => {
 
                 <div className="wishList">
                   <button>
-                    {/* <FaRegHeart /> */}
                     <BlackComparison className="rightPagesIconBlackIcons" />
                     <RedComparison className="rightPagesIconRedIcons" />
                   </button>
                   <button>
-                    {/* <RiScales3Fill /> */}
                     <BlackWishlist className="rightPagesIconBlackIcons" />
                     <RedWishlist className="rightPagesIconRedIcons" />
                   </button>
@@ -212,7 +266,7 @@ const HomePageProductsCard = () => {
             <div className="addToCartClick">
               <div className="addToCartClickItem">
                 <button className="cartBtn">Səbətə at</button>
-                <button className="clickBtn">Bir Klikle Al</button>
+                <button onClick={openModal} className="clickBtn">Bir Klikle Al</button>
               </div>
             </div>
           </div>
@@ -252,12 +306,10 @@ const HomePageProductsCard = () => {
 
                 <div className="wishList">
                   <button>
-                    {/* <FaRegHeart /> */}
                     <BlackComparison className="rightPagesIconBlackIcons" />
                     <RedComparison className="rightPagesIconRedIcons" />
                   </button>
                   <button>
-                    {/* <RiScales3Fill /> */}
                     <BlackWishlist className="rightPagesIconBlackIcons" />
                     <RedWishlist className="rightPagesIconRedIcons" />
                   </button>
@@ -267,7 +319,7 @@ const HomePageProductsCard = () => {
             <div className="addToCartClick">
               <div className="addToCartClickItem">
                 <button className="cartBtn">Səbətə at</button>
-                <button className="clickBtn">Bir Klikle Al</button>
+                <button onClick={openModal} className="clickBtn">Bir Klikle Al</button>
               </div>
             </div>
           </div>
@@ -307,12 +359,10 @@ const HomePageProductsCard = () => {
 
                 <div className="wishList">
                   <button>
-                    {/* <FaRegHeart /> */}
                     <BlackComparison className="rightPagesIconBlackIcons" />
                     <RedComparison className="rightPagesIconRedIcons" />
                   </button>
                   <button>
-                    {/* <RiScales3Fill /> */}
                     <BlackWishlist className="rightPagesIconBlackIcons" />
                     <RedWishlist className="rightPagesIconRedIcons" />
                   </button>
@@ -322,7 +372,7 @@ const HomePageProductsCard = () => {
             <div className="addToCartClick">
               <div className="addToCartClickItem">
                 <button className="cartBtn">Səbətə at</button>
-                <button className="clickBtn">Bir Klikle Al</button>
+                <button onClick={openModal} className="clickBtn">Bir Klikle Al</button>
               </div>
             </div>
           </div>
@@ -362,12 +412,10 @@ const HomePageProductsCard = () => {
 
                 <div className="wishList">
                   <button>
-                    {/* <FaRegHeart /> */}
                     <BlackComparison className="rightPagesIconBlackIcons" />
                     <RedComparison className="rightPagesIconRedIcons" />
                   </button>
                   <button>
-                    {/* <RiScales3Fill /> */}
                     <BlackWishlist className="rightPagesIconBlackIcons" />
                     <RedWishlist className="rightPagesIconRedIcons" />
                   </button>
@@ -377,12 +425,13 @@ const HomePageProductsCard = () => {
             <div className="addToCartClick">
               <div className="addToCartClickItem">
                 <button className="cartBtn">Səbətə at</button>
-                <button className="clickBtn">Bir Klikle Al</button>
+                <button onClick={openModal} className="clickBtn">Bir Klikle Al</button>
               </div>
             </div>
           </div>
           {/* </Link> */}
         </SwiperSlide>
+
 
         <div className="my-custom-pagination"></div>
       </Swiper>

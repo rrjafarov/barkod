@@ -22,6 +22,30 @@ const HomePageBrands = () => {
             slidesPerView={6}
             spaceBetween={20}
             loop={true}
+            breakpoints={{
+              340: {
+                slidesPerView: 2.5,
+                spaceBetween: 10,
+                // centeredSlides: true,
+                loop: true,
+              },
+              640: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+              },
+              991: {
+                slidesPerView: 4,
+                spaceBetween: 20,
+              },
+              1024: {
+                slidesPerView: 5,
+                spaceBetween: 20,
+              },
+              1440: {
+                slidesPerView: 6,
+                spaceBetween: 20,
+              },
+            }}
             autoplay={{
               delay: 3000,
               disableOnInteraction: false,

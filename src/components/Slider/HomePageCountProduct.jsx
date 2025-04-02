@@ -17,8 +17,8 @@ const Circle = ({ value, label }) => (
   <div style={{ textAlign: "center" }}>
     <div
       style={{
-        width: 40,
-        height: 40,
+        width: "3.8rem",
+        height: "3.8rem",
         borderRadius: "50%",
         backgroundColor: "#ec1f27",
         color: "#fff",
@@ -29,7 +29,7 @@ const Circle = ({ value, label }) => (
     >
       <span style={{ fontSize: 14, fontWeight: "bold" }}>{value}</span>
     </div>
-    <span style={{ fontSize: 11, color:"black",fontWeight:"500" }}>{label}</span>
+    <span style={{ fontSize: 8, color:"black",fontWeight:"500" }}>{label}</span>
   </div>
 );
 
@@ -45,7 +45,7 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
         textAlign: "start",
         display: "flex",
         justifyContent: "space-between",
-        gap: "2rem",
+        gap: "1rem",
       }}
     >
       <div
@@ -57,13 +57,13 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
           textAlign: "start",
         }}
       >
-        <h2 style={{ fontSize: "13px", textAlign: "start" }}>HUNGRY UP!</h2>
-        <p style={{ fontSize: "12px", opacity: "0.7", textAlign: "start" }}>
+        <h2 style={{ fontSize: "1.2rem", textAlign: "start" }}>Count UP!</h2>
+        <p style={{ fontSize: "1.1rem", opacity: "0.7", textAlign: "start" }}>
           Offer end in:
         </p>
       </div>
 
-      <div style={{ display: "flex", gap: "8px", justifyContent: "center" }}>
+      <div style={{ display: "flex", gap: "0.5rem", justifyContent: "flex-end" }}>
         <Circle value={days} label="DAYS" />
         <Circle value={hours} label="HOURS" />
         <Circle value={minutes} label="MINS" />
@@ -81,7 +81,7 @@ const HomePageCountProduct = () => {
   const available = total - sold;
   const percent = (sold / total) * 100;
   const [value, setValue] = useState(4);
-  const targetDate = Date.now() + 248 * 24 * 60 * 60 * 1000;
+  const targetDate = Date.now() + 2 * 24 * 60 * 60 * 1000;
   return (
     <div id="homePageCountProduct">
       <div className="container">
@@ -99,6 +99,30 @@ const HomePageCountProduct = () => {
           autoplay={{
             delay: 3000,
             disableOnInteraction: false,
+          }}
+          breakpoints={{
+            340: {
+              slidesPerView: 1,
+              spaceBetween: 20,
+              // centeredSlides: true,
+              loop: true,
+            },
+            640: {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            991: {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            1024: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            1440: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
           }}
           speed={3000}
           modules={[Pagination, Autoplay]}

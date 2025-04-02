@@ -37,11 +37,6 @@ const HomePageStaticInfo = () => {
               <div className="staticInfoCard">
                 <div className="staticInfoImage">
                   <PartByPartRed className="deliveryIcon" />
-                  {/* <img
-                    className="deliveryIcon"
-                    src="/icons/partBypartRed.svg"
-                    alt="dee"
-                  /> */}
                 </div>
                 <div className="staticInfoContent">
                   <span>Hissə-hissə ödəniş</span>

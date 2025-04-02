@@ -1,26 +1,14 @@
-// import React from "react";
-// import Link from "next/link";
-
-// const CategoryMenu = () => {
-//   return (
-//     <>
-//       <div className="container">
-//         <div className="row">
-//             <div className="xl-3 lg-3 md-3 sm-3">
-//                 Salam
-//             </div>
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default CategoryMenu;
 
 // components/MegaMenu.jsx
 "use client";
 import Link from "next/link";
 import { useState } from "react";
+import Phone from "../../public/icons/blackPhone.svg";
+import TV from "../../public/icons/blackTV.svg";
+import Laptop from "../../public/icons/blackLaptop.svg";
+import MeisetTexnikasi from "../../public/icons/blackMeisetTexnikasi.svg";
+import Fan from "../../public/icons/blackFan.svg";
+import Mebel from "../../public/icons/blackMebel.svg";
 
 const MegaMenu = () => {
   const [activeTab, setActiveTab] = useState(null);
@@ -33,20 +21,40 @@ const MegaMenu = () => {
           {/* <h3>Ürünler</h3> */}
           <ul>
             <li onMouseEnter={() => setActiveTab("elektronika")}>
-              Telefonlar və aksesuarlar
+              <div className="categoryLeftIcon ee">
+                <Phone />
+              </div>
+              Telefonlar və aksesuarlar 
             </li>
             <li onMouseEnter={() => setActiveTab("tv")}>
+              <div className="categoryLeftIcon" id="categoryLeftIconTV">
+                <TV />
+              </div>
               TV, audio-video foto
             </li>
             <li onMouseEnter={() => setActiveTab("ev")}>
+              <div className="categoryLeftIcon" id="categoryLeftIconLaptop">
+                <Laptop />
+              </div>
               Nodbuklar və planşetlər
             </li>
-            <li onMouseEnter={() => setActiveTab("ev")}>Məişət texnikası</li>
             <li onMouseEnter={() => setActiveTab("ev")}>
+              <div className="categoryLeftIcon" id="categoryLeftIconMeiset">
+                <MeisetTexnikasi />
+              </div>
+              Məişət texnikası
+            </li>
+            <li onMouseEnter={() => setActiveTab("ev")}>
+              <div className="categoryLeftIcon" id="categoryLeftIconFan">
+                <Fan />
+              </div>
               Gözəllik və sağlamlıq
             </li>
             <li onMouseEnter={() => setActiveTab("ev")}>
-              Mebel, tekstil və dekor
+              <div className="categoryLeftIcon" id="categoryLeftIconMebel">
+                <Mebel />
+              </div>
+              <span>Mebel, tekstil və dekor</span>
             </li>
           </ul>
         </div>
