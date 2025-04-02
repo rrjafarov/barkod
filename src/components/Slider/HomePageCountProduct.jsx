@@ -43,13 +43,13 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
     <div
       className="countUpDown"
       style={{
-        maxWidth: "320px",
-        width: "300px",
+        maxWidth: "310px",
+        width: "100%",
         padding: "1.5rem 0 0 1rem",
         textAlign: "start",
         display: "flex",
         justifyContent: "space-between",
-        // gap: "1rem",
+        gap: "2rem",
       }}
     >
       <div
