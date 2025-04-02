@@ -4,7 +4,7 @@
 $MainColor: #ec1f27 !important;
 
 .cls-1 {
-  fill: #ec1f27 !important; /* Dolguyu kaldırır */
+  fill: #ec1f27 !important; 
 }
 
 ::-webkit-scrollbar {
@@ -1071,6 +1071,7 @@ ul {
     }
   }
 }
+
 // secondary
 .secondaryProductsHeadTitle {
   padding: 2rem 0;
@@ -1260,7 +1261,6 @@ ul {
     color: #fff;
   }
 }
-
 /* Overlay (arka plan) */
 .modal-overlay {
   position: fixed;
@@ -1274,7 +1274,6 @@ ul {
   justify-content: center;
   z-index: 12999999999999999;
 }
-
 /* Popup penceresi */
 .modal {
   background-color: #fff;
@@ -1312,7 +1311,6 @@ ul {
     }
   }
 }
-
 /* Popup kapatma butonu */
 .close-btn {
   position: absolute;

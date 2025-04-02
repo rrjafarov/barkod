@@ -29,7 +29,9 @@ const Circle = ({ value, label }) => (
     >
       <span style={{ fontSize: 14, fontWeight: "bold" }}>{value}</span>
     </div>
-    <span style={{ fontSize: 8, color:"black",fontWeight:"500" }}>{label}</span>
+    <span style={{ fontSize: 8, color: "black", fontWeight: "500" }}>
+      {label}
+    </span>
   </div>
 );
 
@@ -39,13 +41,15 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
   }
   return (
     <div
+      className="countUpDown"
       style={{
-        width: "100%",
-        padding: "1.5rem 0",
+        maxWidth: "320px",
+        width: "300px",
+        padding: "1.5rem 0 0 1rem",
         textAlign: "start",
         display: "flex",
         justifyContent: "space-between",
-        gap: "1rem",
+        // gap: "1rem",
       }}
     >
       <div
@@ -63,7 +67,9 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
         </p>
       </div>
 
-      <div style={{ display: "flex", gap: "0.5rem", justifyContent: "flex-end" }}>
+      <div
+        style={{ display: "flex", gap: "0.5rem", justifyContent: "flex-end" }}
+      >
         <Circle value={days} label="DAYS" />
         <Circle value={hours} label="HOURS" />
         <Circle value={minutes} label="MINS" />
@@ -72,6 +78,8 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
     </div>
   );
 };
+
+
 // countDown
 const { Text } = Typography;
 
