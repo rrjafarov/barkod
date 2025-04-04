@@ -1,6 +1,6 @@
 $MainColor: #ec1f27 !important;
 .footer {
-  padding: 5rem 0;
+  padding: 10rem 0 5rem 0;
   .footerLinks {
     .footerHeadLink {
       padding-bottom: 3rem;
@@ -73,7 +73,7 @@ $MainColor: #ec1f27 !important;
   }
 }
 .footerBottom {
-  background-color: #f3f3f3;
+  // background-color: #f3f3f3;
   display: flex;
   justify-content: center;
   align-items: center;

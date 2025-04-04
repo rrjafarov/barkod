@@ -117,7 +117,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import "@/components/Header/header.scss";
 import Link from "next/link";
-import { BiSolidCategoryAlt } from "react-icons/bi";
+// import { BiSolidCategoryAlt } from "react-icons/bi";
 import Image from "next/image";
 import { IoSearch } from "react-icons/io5";
 import RedCategory from "../../../public/icons/redCategory.svg";
@@ -128,8 +128,12 @@ import BlackBasket from "../../../public/icons/blackBasket.svg";
 import RedBasket from "../../../public/icons/redBasket.svg";
 import BlackWishlist from "../../../public/icons/blackWishlist.svg";
 import RedWishlist from "../../../public/icons/redWishlist.svg";
+import NewCategoryIcon from "../../../public/icons/newCategoryIcon.svg";
+import NewScale from "../../../public/icons/newScale.svg";
+import NewWishList from "../../../public/icons/newWishlist.svg";
 import Select from "react-select";
 import CatalogMenu from "@/components/CategoryMenu";
+
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -140,6 +144,7 @@ const Header = () => {
   const languageOptions = [
     { value: "AZ", label: "AZ" },
     { value: "EN", label: "EN" },
+    { value: "RU", label: "RU" },
   ];
   const handleChange = (selectedOption) => {
     setLanguage(selectedOption.value);
@@ -194,10 +199,10 @@ const Header = () => {
           <div className="logo">
             <Link href="/">
               <Image
-                src="/images/logo.png"
+                src="/images/barkodLogo.png"
                 alt="logo"
-                width={200}
-                height={40}
+                width={1000}
+                height={1000}
               />
             </Link>
           </div>
@@ -248,9 +253,11 @@ const Header = () => {
                 className="headerCatalog"
                 onClick={() => setShowComponent((prev) => !prev)}
               >
-                <RedCategory className="redCategoryIcon" />
-                <BlackCategory className="blackCategoryIcon" />
-                <span>Katalog</span>
+                {/* <RedCategory className="redCategoryIcon" />
+                <BlackCategory className="blackCategoryIcon" /> */}
+
+                <NewCategoryIcon className="newCategoryIcon" />
+                <span>Category</span>
               </div>
             </div>
             <div className="xl-8 lg-8 md-8 sm-8">
@@ -268,24 +275,26 @@ const Header = () => {
                 <div className="rightPagesIcon">
                   <Link href="#">
                     <button>
-                      <BlackComparison className="rightPagesIconBlackIcons" />
-                      <RedComparison className="rightPagesIconRedIcons" />
+                      {/* <BlackComparison className="rightPagesIconBlackIcons" />
+                      <RedComparison className="rightPagesIconRedIcons" /> */}
+                      <NewScale className="newScale" />
                     </button>
                   </Link>
                 </div>
                 <div className="rightPagesIcon">
                   <Link href="#">
                     <button>
-                      <BlackWishlist className="rightPagesIconBlackIcons" />
-                      <RedWishlist className="rightPagesIconRedIcons" />
+                      {/* <BlackWishlist className="rightPagesIconBlackIcons" />
+                      <RedWishlist className="rightPagesIconRedIcons" /> */}
+                      <NewWishList className="newWishlist" />
                     </button>
                   </Link>
                 </div>
                 <div className="rightPagesIcon">
                   <Link href="#">
                     <button>
-                      <BlackBasket className="rightPagesIconBlackIcons" />
-                      <RedBasket className="rightPagesIconRedIcons" />
+                      <BlackBasket className="rightPagesIconBlackIcons newCartIcon"  />
+                      {/* <RedBasket className="rightPagesIconRedIcons" /> */}
                     </button>
                   </Link>
                 </div>
