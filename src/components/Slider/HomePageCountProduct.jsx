@@ -120,7 +120,7 @@ const HomePageCountProduct = () => {
               spaceBetween: 20,
             },
             991: {
-              slidesPerView: 1,
+              slidesPerView: 2,
               spaceBetween: 20,
             },
             1024: {
@@ -240,59 +240,7 @@ const HomePageCountProduct = () => {
               </div>
             </div>
           </SwiperSlide>
-          <SwiperSlide>
-            <div className="homePageCountProducts">
-              <div className="homePageCountProductsImage">
-                <Image
-                  src="/images/macbookProIMG.png"
-                  alt="products"
-                  width={800}
-                  height={800}
-                />
-              </div>
-              <div className="homePageCountProductsContent">
-                <div className="countDownRating">
-                  <Box>
-                    <Rating
-                      name="star-rating"
-                      value={value}
-                      onChange={(event, newValue) => setValue(newValue)}
-                    />
-                  </Box>
-                  <p>({value})</p>
-                </div>
-
-                <span className="miniTitle">Mobile&Tablet</span>
-                <h5 className="productsMiniTitle">Galaxy Smart Phone</h5>
-                <span className="miniPrice">200.00$</span>
-
-                <div className="soldAviable">
-                  <Progress
-                    percent={Math.round(percent)}
-                    showInfo={false}
-                    strokeColor="#ec1f27"
-                  />
-                  <Row justify="space-between">
-                    <Col>
-                      <Text className="aviableText">
-                        Available:<strong>{available}</strong>
-                      </Text>
-                    </Col>
-                    <Col>
-                      <Text className="soldText">
-                        Sold: <strong>{sold}</strong>
-                      </Text>
-                    </Col>
-                  </Row>
-                  {/* <Text strong>{Math.round(percent)}% Sold</Text> */}
-                </div>
-                <div>
-                  <Countdown date={targetDate} renderer={renderer} />
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          <div className="count-custom-pagination"></div>
+          {/* <div className="count-custom-pagination"></div> */}
         </Swiper>
       </div>
     </div>

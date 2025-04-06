@@ -257,7 +257,7 @@ const Header = () => {
                 <BlackCategory className="blackCategoryIcon" /> */}
 
                 <NewCategoryIcon className="newCategoryIcon" />
-                <span>Category</span>
+                <span>Kataloq</span>
               </div>
             </div>
             <div className="xl-8 lg-8 md-8 sm-8">

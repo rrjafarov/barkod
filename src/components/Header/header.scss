@@ -4,7 +4,7 @@ $MainColor: #ec1f27 !important;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem 0 1rem;
+    padding: 1rem 0;
     border-bottom: 0.5px solid #cbcbcb;
     .logo {
       max-width: 20rem;
@@ -39,9 +39,9 @@ $MainColor: #ec1f27 !important;
           color: #323232 !important;
           transition: all 0.4s ease;
           &:hover {
-            transition: all 0.2s ease-in-out;
-            color: $MainColor !important;
+            transition: all 0.3s ease-in-out;
             text-decoration: underline;
+            text-decoration-color: $MainColor;
           }
         }
       }
@@ -75,7 +75,7 @@ $MainColor: #ec1f27 !important;
     }
   }
   .headerMiddle {
-    padding: 2rem 0;
+    padding: 1rem 0;
     .headerCatalog {
       display: flex;
       justify-content: flex-start;
@@ -191,8 +191,6 @@ $MainColor: #ec1f27 !important;
     //   }
     // }
 
-
-
     .headerMiddleRight {
       display: flex;
       justify-content: flex-end;
@@ -209,15 +207,15 @@ $MainColor: #ec1f27 !important;
           align-items: center;
           justify-content: center;
         }
-        .newScale{
+        .newScale {
           width: 2.5rem;
           height: 2.5rem;
         }
-        .newWishlist{
+        .newWishlist {
           width: 2.5rem;
           height: 2.5rem;
         }
-        .newCartIcon{
+        .newCartIcon {
           width: 2.5rem;
           height: 2.5rem;
         }

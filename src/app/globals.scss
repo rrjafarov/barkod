@@ -379,31 +379,30 @@ ul {
 // RESET CODE
 // !     Pages
 // ? HeroSlider.jsx
+
 #homePageBanner {
   padding: 2rem 0;
   .heroSlider {
-    border-radius: 1rem;
     width: 100% !important;
+    border-radius: 2rem !important;
     height: 100% !important;
-    // div {
-    //   // height: 100%;
-    // }
     .heroSliderItem {
-      border-radius: 1rem;
+      border-radius: 2rem !important;
       width: 100% !important;
-      height: 100% !important;
+      // height: 100% !important;
+      height: 53rem !important;
       position: relative !important;
       .homePageBanner {
         width: 100% !important;
         height: 100% !important;
-        border-radius: 1rem !important;
+        border-radius: 2rem !important;
         object-fit: cover;
       }
       .heroSliderContent {
         position: absolute !important;
         color: #fff;
         top: 50%;
-        left: 10%;
+        left: 50px;
         transform: translateY(-50%);
         display: flex;
         flex-direction: column;
@@ -455,11 +454,12 @@ ul {
       width: 100%;
       height: 100%;
       position: relative;
+      border-radius: 2rem !important;
       img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border-radius: 1rem;
+        border-radius: 2rem !important;
       }
       .bannerStaticCardItem {
         position: absolute;
@@ -679,7 +679,8 @@ ul {
     font-weight: 600;
     cursor: pointer;
     &:hover {
-      border-bottom: 2px solid $MainColor;
+      text-decoration: underline;
+      text-decoration-color: $MainColor;
       transition: all 0.05s ease-in-out;
     }
   }
@@ -815,7 +816,6 @@ ul {
         justify-content: flex-start;
         align-items: flex-start;
         flex-direction: column;
-        // gap: 1rem;
         .oldPrice {
           text-decoration: line-through;
           opacity: 0.7;
@@ -948,7 +948,7 @@ ul {
   position: absolute;
   top: 0;
   bottom: 50px !important;
-  left: 95px !important;
+  left: 50px !important;
   z-index: 1;
   .swiper-pagination-bullet {
     width: 7px !important;

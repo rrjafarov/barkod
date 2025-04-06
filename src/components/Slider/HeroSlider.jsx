@@ -35,44 +35,70 @@ export default function Home() {
               className="mySwiper heroSlider"
             >
               <SwiperSlide>
-                <div className="heroSliderItem">
-                  <Image
-                    className="homePageBanner"
-                    src="/images/homeBannerd.png"
-                    alt="banner"
-                    width={800}
-                    height={800}
-                  />
-                  <div className="heroSliderContent">
-                    <span>Heavy on features. Light on price.</span>
-                    <strong>START FORM $399</strong>
-                    <Link href="#">
-                      <button>
-                        Learn More <MdKeyboardArrowRight />
-                      </button>
-                    </Link>
+                <Link href="#">
+                  <div className="heroSliderItem">
+                    <Image
+                      className="homePageBanner"
+                      src="/images/homeBannerd.png"
+                      alt="banner"
+                      width={800}
+                      height={800}
+                    />
+                    <div className="heroSliderContent">
+                      <span>Heavy on features. Light on price.</span>
+                      <strong>START FORM $399</strong>
+                      <Link href="#">
+                        <button>
+                          Learn More <MdKeyboardArrowRight />
+                        </button>
+                      </Link>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </SwiperSlide>
               <SwiperSlide>
-                <div className="heroSliderItem">
-                  <Image
-                    className="homePageBanner"
-                    src="/images/homeBannerd.png"
-                    alt="banner"
-                    width={800}
-                    height={800}
-                  />
-                  <div className="heroSliderContent">
-                    <span>Heavy on features. Light on price.</span>
-                    <strong>START FORM $399</strong>
-                    <Link href="#">
-                      <button>
-                        Learn More <MdKeyboardArrowRight />
-                      </button>
-                    </Link>
+                <Link href="#">
+                  <div className="heroSliderItem">
+                    <Image
+                      className="homePageBanner"
+                      src="/images/homeBannerd.png"
+                      alt="banner"
+                      width={800}
+                      height={800}
+                    />
+                    <div className="heroSliderContent">
+                      <span>Heavy on features. Light on price.</span>
+                      <strong>START FORM $399</strong>
+                      <Link href="#">
+                        <button>
+                          Learn More <MdKeyboardArrowRight />
+                        </button>
+                      </Link>
+                    </div>
                   </div>
-                </div>
+                </Link>
+              </SwiperSlide>
+              <SwiperSlide>
+                <Link href="#">
+                  <div className="heroSliderItem">
+                    <Image
+                      className="homePageBanner"
+                      src="/images/homeBannerd.png"
+                      alt="banner"
+                      width={800}
+                      height={800}
+                    />
+                    <div className="heroSliderContent">
+                      <span>Heavy on features. Light on price.</span>
+                      <strong>START FORM $399</strong>
+                      <Link href="#">
+                        <button>
+                          Learn More <MdKeyboardArrowRight />
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
+                </Link>
               </SwiperSlide>
             </Swiper>
             <div className="hero-custom-pagination"></div>
