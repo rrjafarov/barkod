@@ -1087,8 +1087,11 @@ ul {
       font-weight: 600;
       cursor: pointer;
       &:hover {
-        border-bottom: 2px solid #ec1f27;
-        transition: all 0.2s ease-in-out;
+        // border-bottom: 2px solid #ec1f27;
+        // transition: all 0.2s ease-in-out;
+        text-decoration: underline;
+        text-decoration-color: $MainColor;
+        transition: all 0.05s ease-in-out;
       }
     }
   }
@@ -1109,8 +1112,11 @@ ul {
       font-weight: 600;
       cursor: pointer;
       &:hover {
-        border-bottom: 2px solid #ec1f27;
-        transition: all 0.2s ease-in-out;
+        // border-bottom: 2px solid #ec1f27;
+        // transition: all 0.2s ease-in-out;
+        text-decoration: underline;
+        text-decoration-color: $MainColor;
+        transition: all 0.05s ease-in-out;
       }
     }
   }
@@ -1137,8 +1143,11 @@ ul {
         transition: all 0.2s ease-in-out;
         cursor: pointer;
         &:hover {
-          border-bottom: 2px solid #ec1f27;
-          transition: all 0.2s ease-in-out;
+          // border-bottom: 2px solid #ec1f27;
+          // transition: all 0.2s ease-in-out;
+          text-decoration: underline;
+          text-decoration-color: $MainColor;
+          transition: all 0.05s ease-in-out;
         }
       }
     }
@@ -1206,7 +1215,7 @@ ul {
 #homePageBrands {
   border-bottom: 1px solid lightgray !important;
   .homePageBrands {
-    padding: 5rem 0;
+    padding: 5rem 0 8rem;
     .homePageBrandsTitle {
       padding: 2rem 0;
       span {
@@ -1215,8 +1224,11 @@ ul {
         transition: all 0.2s ease-in-out;
         cursor: pointer;
         &:hover {
-          border-bottom: 2px solid $MainColor;
-          transition: all 0.2s ease-in-out;
+          // border-bottom: 2px solid $MainColor;
+          // transition: all 0.2s ease-in-out;
+          text-decoration: underline;
+          text-decoration-color: $MainColor;
+          transition: all 0.05s ease-in-out;
         }
       }
     }
