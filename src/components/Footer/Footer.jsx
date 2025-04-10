@@ -29,7 +29,7 @@ const Footer = () => {
                 </ul>
               </div>
             </div>
-            <div className="xl-2 lg-2 md-3 sm-4">
+            <div className="xl-2 lg-2 md-4 sm-4">
               <div className="footerLinks">
                 <span className="footerHeadLink">Haqqımızda</span>
                 <ul>
@@ -42,7 +42,7 @@ const Footer = () => {
                 </ul>
               </div>
             </div>
-            <div className="xl-2 lg-2 md-3 sm-4">
+            <div className="xl-2 lg-2 md-4 sm-4">
               <div className="footerLinks">
                 <span className="footerHeadLink">Məlumat</span>
                 <ul>
@@ -64,7 +64,7 @@ const Footer = () => {
                 </ul>
               </div>
             </div>
-            <div className="xl-3 lg-3 md-6 sm-6">
+            <div className="xl-3 lg-3 md-4 sm-6">
               <div className="footerLinks">
                 <span className="footerHeadLink">Müştərilər üçün</span>
                 <ul>
@@ -80,56 +80,62 @@ const Footer = () => {
                 </ul>
               </div>
             </div>
-            <div className="xl-3 lg-3 md-6 sm-6">
-              <div className="footerLinks footerSocialLinks">
-                <span className="footerHeadLink">Bizimlə qal:</span>
-                <ul>
-                  <li>
-                    <Link href="#">
-                      <button>
-                        <Facebook className="footSocialIcon" />
-                      </button>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#">
-                      <button>
-                        <Instagram className="footSocialIcon" />
-                      </button>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#">
-                      <button>
-                        <Youtube className="footSocialIcon" />
-                      </button>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#">
-                      <button>
-                        <Telegram className="footSocialIcon" />
-                      </button>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#">
-                      <button>
-                        <Whatsapp className="footSocialIcon" />
-                      </button>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#">
-                      <button>
-                        <Tiktok className="footSocialIcon" />
-                      </button>
-                    </Link>
-                  </li>
-                </ul>
+            <div className="xl-3 lg-3 md-4 sm-6">
+              <div className="footerContact">
+                <div className="footerLinks footerSocialLinks">
+                  <span className="footerHeadLink">Bizimlə qal:</span>
+                  <ul>
+                    <li>
+                      <Link href="#">
+                        <button>
+                          <Facebook className="footSocialIcon" />
+                        </button>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#">
+                        <button>
+                          <Instagram className="footSocialIcon" />
+                        </button>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#">
+                        <button>
+                          <Youtube className="footSocialIcon" />
+                        </button>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#">
+                        <button>
+                          <Telegram className="footSocialIcon" />
+                        </button>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#">
+                        <button>
+                          <Whatsapp className="footSocialIcon" />
+                        </button>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="#">
+                        <button>
+                          <Tiktok className="footSocialIcon" />
+                        </button>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
+
+
+
+          
           <div className="footerPaymentIcons">
             <div className="footerPaymentIcon">
               <button>

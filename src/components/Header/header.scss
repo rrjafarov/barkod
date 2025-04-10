@@ -4,7 +4,7 @@ $MainColor: #ec1f27 !important;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
     border-bottom: 0.5px solid #cbcbcb;
     .logo {
       max-width: 20rem;
@@ -86,13 +86,13 @@ $MainColor: #ec1f27 !important;
       cursor: pointer;
       position: relative;
       span {
-        font-size: 2.2rem;
+        font-size: 2.1rem;
         font-weight: 600;
         flex-shrink: 0;
       }
       .newCategoryIcon {
-        width: 3rem;
-        height: 3rem;
+        width: 2.7rem;
+        height: 2.7rem;
       }
       &:hover {
         span {
@@ -137,7 +137,7 @@ $MainColor: #ec1f27 !important;
         justify-content: center;
         background: #f5f5f5;
         border-radius: 30px;
-        padding: 10px 15px;
+        padding: 5px 15px;
         width: 100%;
         font-size: 1.8rem;
         input {
@@ -249,7 +249,7 @@ $MainColor: #ec1f27 !important;
   }
 }
 
-//! categoryMenu---------------------
+//! categoryMenu
 .categoryMegaMenu {
   display: flex;
   width: 600px;
@@ -262,9 +262,10 @@ $MainColor: #ec1f27 !important;
 }
 .categoryMegaMenu .leftColumn {
   width: 200px;
+  border-right: 1px solid #111;
   width: 30%;
   padding: 2rem;
-  border-right: 1px solid #111;
+  margin: 1rem 0;
 }
 .categoryMegaMenu .leftColumn ul {
   display: flex;
@@ -273,6 +274,7 @@ $MainColor: #ec1f27 !important;
 }
 .categoryMegaMenu .rightColumn {
   flex: 1;
+  margin: 1rem 0;
   padding: 2rem;
   min-height: 200px;
 }
@@ -366,4 +368,4 @@ $MainColor: #ec1f27 !important;
     }
   }
 }
-//! categoryMenu---------------------
+//! categoryMenu

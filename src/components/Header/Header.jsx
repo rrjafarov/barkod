@@ -113,6 +113,11 @@
 
 
 
+
+
+
+
+
 "use client";
 import React, { useRef, useEffect, useState } from "react";
 import "@/components/Header/header.scss";
@@ -209,7 +214,7 @@ const Header = () => {
           <div className="storeAndCorporateSales">
             <div className="stores">
               <span>
-                <Link href="#">Mağazalar</Link>
+                <Link href="/products">Mağazalar</Link>
               </span>
             </div>
             <div className="corporateSales">

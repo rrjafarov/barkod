@@ -8,16 +8,16 @@ import "../../app/globals.scss";
 // import "../../app/[locale]/globals.scss"
 import { Pagination, Autoplay } from "swiper/modules";
 import Link from "next/link";
-import { Rating, Box } from "@mui/material";
 import Image from "next/image";
 import { TbCurrencyManat } from "react-icons/tb";
-import BlackComparison from "../../../public/icons/blackComparison.svg";
-import RedComparison from "../../../public/icons/redComparison.svg";
-import BlackWishlist from "../../../public/icons/blackWishlist.svg";
-import RedWishlist from "../../../public/icons/redWishlist.svg";
-import OneClickPayment from "@/components/OneClickPayment";
+// import BlackComparison from "../../../public/icons/blackComparison.svg";
+// import RedComparison from "../../../public/icons/redComparison.svg";
+// import BlackWishlist from "../../../public/icons/blackWishlist.svg";
+// import RedWishlist from "../../../public/icons/redWishlist.svg";
+// import OneClickPayment from "@/components/OneClickPayment";
 import NewScale from "../../../public/icons/newScale.svg";
 import NewWishList from "../../../public/icons/newWishlist.svg";
+import ProductCard from "../ProductCard";
 
 const HomePageProductsCard = () => {
   const [value, setValue] = useState(4);
@@ -165,8 +165,10 @@ const HomePageProductsCard = () => {
           </Link>
         </SwiperSlide> */}
 
+
+
+
         <SwiperSlide>
-          {/* <Link href="/products/id" className="blockCardLink"> */}
           <div className="secondHomePageProductsCard">
             <Link href="/products/id" className="blockCardLink">
               <div className="secondHomePageProductsCardImage">
@@ -199,13 +201,9 @@ const HomePageProductsCard = () => {
 
                 <div className="wishList">
                   <button>
-                    {/* <BlackComparison className="rightPagesIconBlackIcons" />
-                    <RedComparison className="rightPagesIconRedIcons" /> */}
                     <NewScale className="newScalePR" />
                   </button>
                   <button>
-                    {/* <BlackWishlist className="rightPagesIconBlackIcons" />
-                    <RedWishlist className="rightPagesIconRedIcons" /> */}
                     <NewWishList className="newWishlistPR" />
                   </button>
                 </div>
@@ -220,10 +218,8 @@ const HomePageProductsCard = () => {
               </div>
             </div>
           </div>
-          {/* </Link> */}
         </SwiperSlide>
         <SwiperSlide>
-          {/* <Link href="/products/id" className="blockCardLink"> */}
           <div className="secondHomePageProductsCard">
             <Link href="/products/id" className="blockCardLink">
               <div className="secondHomePageProductsCardImage">
@@ -256,13 +252,9 @@ const HomePageProductsCard = () => {
 
                 <div className="wishList">
                   <button>
-                    {/* <BlackComparison className="rightPagesIconBlackIcons" />
-                    <RedComparison className="rightPagesIconRedIcons" /> */}
                     <NewScale className="newScalePR" />
                   </button>
                   <button>
-                    {/* <BlackWishlist className="rightPagesIconBlackIcons" />
-                    <RedWishlist className="rightPagesIconRedIcons" /> */}
                     <NewWishList className="newWishlistPR" />
                   </button>
                 </div>
@@ -277,10 +269,8 @@ const HomePageProductsCard = () => {
               </div>
             </div>
           </div>
-          {/* </Link> */}
         </SwiperSlide>
         <SwiperSlide>
-          {/* <Link href="/products/id" className="blockCardLink"> */}
           <div className="secondHomePageProductsCard">
             <Link href="/products/id" className="blockCardLink">
               <div className="secondHomePageProductsCardImage">
@@ -313,13 +303,9 @@ const HomePageProductsCard = () => {
 
                 <div className="wishList">
                   <button>
-                    {/* <BlackComparison className="rightPagesIconBlackIcons" />
-                    <RedComparison className="rightPagesIconRedIcons" /> */}
                     <NewScale className="newScalePR" />
                   </button>
                   <button>
-                    {/* <BlackWishlist className="rightPagesIconBlackIcons" />
-                    <RedWishlist className="rightPagesIconRedIcons" /> */}
                     <NewWishList className="newWishlistPR" />
                   </button>
                 </div>
@@ -334,10 +320,8 @@ const HomePageProductsCard = () => {
               </div>
             </div>
           </div>
-          {/* </Link> */}
         </SwiperSlide>
         <SwiperSlide>
-          {/* <Link href="/products/id" className="blockCardLink"> */}
           <div className="secondHomePageProductsCard">
             <Link href="/products/id" className="blockCardLink">
               <div className="secondHomePageProductsCardImage">
@@ -370,13 +354,9 @@ const HomePageProductsCard = () => {
 
                 <div className="wishList">
                   <button>
-                    {/* <BlackComparison className="rightPagesIconBlackIcons" />
-                    <RedComparison className="rightPagesIconRedIcons" /> */}
                     <NewScale className="newScalePR" />
                   </button>
                   <button>
-                    {/* <BlackWishlist className="rightPagesIconBlackIcons" />
-                    <RedWishlist className="rightPagesIconRedIcons" /> */}
                     <NewWishList className="newWishlistPR" />
                   </button>
                 </div>
@@ -391,10 +371,8 @@ const HomePageProductsCard = () => {
               </div>
             </div>
           </div>
-          {/* </Link> */}
         </SwiperSlide>
         <SwiperSlide>
-          {/* <Link href="/products/id" className="blockCardLink"> */}
           <div className="secondHomePageProductsCard">
             <Link href="/products/id" className="blockCardLink">
               <div className="secondHomePageProductsCardImage">
@@ -427,13 +405,9 @@ const HomePageProductsCard = () => {
 
                 <div className="wishList">
                   <button>
-                    {/* <BlackComparison className="rightPagesIconBlackIcons" />
-                    <RedComparison className="rightPagesIconRedIcons" /> */}
                     <NewScale className="newScalePR" />
                   </button>
                   <button>
-                    {/* <BlackWishlist className="rightPagesIconBlackIcons" />
-                    <RedWishlist className="rightPagesIconRedIcons" /> */}
                     <NewWishList className="newWishlistPR" />
                   </button>
                 </div>
@@ -448,7 +422,6 @@ const HomePageProductsCard = () => {
               </div>
             </div>
           </div>
-          {/* </Link> */}
         </SwiperSlide>
 
         <div className="my-custom-pagination"></div>

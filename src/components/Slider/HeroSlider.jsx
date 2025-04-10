@@ -39,12 +39,12 @@ export default function Home() {
                   <div className="heroSliderItem">
                     <Image
                       className="homePageBanner"
-                      src="/images/homeBannerd.png"
+                      src="/images/slideBnnrBarkod.jpg"
                       alt="banner"
                       width={800}
                       height={800}
                     />
-                    <div className="heroSliderContent">
+                    {/* <div className="heroSliderContent">
                       <span>Heavy on features. Light on price.</span>
                       <strong>START FORM $399</strong>
                       <Link href="#">
@@ -52,11 +52,33 @@ export default function Home() {
                           Learn More <MdKeyboardArrowRight />
                         </button>
                       </Link>
-                    </div>
+                    </div> */}
                   </div>
                 </Link>
               </SwiperSlide>
               <SwiperSlide>
+                <Link href="#">
+                  <div className="heroSliderItem">
+                    <Image
+                      className="homePageBanner"
+                      src="/images/slideBnnrBarkod.jpg"
+                      alt="banner"
+                      width={800}
+                      height={800}
+                    />
+                    {/* <div className="heroSliderContent">
+                      <span>Heavy on features. Light on price.</span>
+                      <strong>START FORM $399</strong>
+                      <Link href="#">
+                        <button>
+                          Learn More <MdKeyboardArrowRight />
+                        </button>
+                      </Link>
+                    </div> */}
+                  </div>
+                </Link>
+              </SwiperSlide>
+              {/* <SwiperSlide>
                 <Link href="#">
                   <div className="heroSliderItem">
                     <Image
@@ -77,29 +99,7 @@ export default function Home() {
                     </div>
                   </div>
                 </Link>
-              </SwiperSlide>
-              <SwiperSlide>
-                <Link href="#">
-                  <div className="heroSliderItem">
-                    <Image
-                      className="homePageBanner"
-                      src="/images/homeBannerd.png"
-                      alt="banner"
-                      width={800}
-                      height={800}
-                    />
-                    <div className="heroSliderContent">
-                      <span>Heavy on features. Light on price.</span>
-                      <strong>START FORM $399</strong>
-                      <Link href="#">
-                        <button>
-                          Learn More <MdKeyboardArrowRight />
-                        </button>
-                      </Link>
-                    </div>
-                  </div>
-                </Link>
-              </SwiperSlide>
+              </SwiperSlide> */}
             </Swiper>
             <div className="hero-custom-pagination"></div>
           </div>
@@ -108,12 +108,13 @@ export default function Home() {
             <div className="bannerStaticCards">
               <div className="bannerStaticCard">
                 <Image
-                  src="/images/bannerStaticCard01.png"
+                  // src="/images/bannerStaticCard01.png"
+                  src="/images/staticBnnr01.jpg"
                   alt="banner"
                   width={200}
                   height={200}
                 />
-                <div className="bannerStaticCardItem">
+                {/* <div className="bannerStaticCardItem">
                   <strong className="bannerSale">Sale Up to 50%</strong>
                   <span>
                     Drone <br /> Photography
@@ -123,16 +124,16 @@ export default function Home() {
                       Shop Now <MdKeyboardArrowRight className="shoopNowIcon" />
                     </button>
                   </Link>
-                </div>
+                </div> */}
               </div>
               <div className="bannerStaticCard">
                 <Image
-                  src="/images/bannerStaticCard02.png"
+                  src="/images/staticBnnr02.jpg"
                   alt="banner"
                   width={200}
                   height={200}
                 />
-                <div className="bannerStaticCardItemRight">
+                {/* <div className="bannerStaticCardItemRight">
                   <strong className="bannerSale">Sale Up to 60%</strong>
                   <span>
                     Best <br /> Headphone
@@ -142,7 +143,7 @@ export default function Home() {
                       Shop Now <MdKeyboardArrowRight className="shoopNowIcon" />
                     </button>
                   </Link>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
