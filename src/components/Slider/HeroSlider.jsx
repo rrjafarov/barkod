@@ -35,14 +35,14 @@ export default function Home() {
               className="mySwiper heroSlider"
             >
               <SwiperSlide>
-                <Link href="#">
+                <Link href="#" className="heroSliderLink">
                   <div className="heroSliderItem">
                     <Image
                       className="homePageBanner"
                       src="/images/slideBnnrBarkod.jpg"
                       alt="banner"
-                      width={800}
-                      height={800}
+                      width={200}
+                      height={200}
                     />
                     {/* <div className="heroSliderContent">
                       <span>Heavy on features. Light on price.</span>
@@ -55,16 +55,16 @@ export default function Home() {
                     </div> */}
                   </div>
                 </Link>
-              </SwiperSlide>
+              </SwiperSlide> 
               <SwiperSlide>
-                <Link href="#">
+                <Link href="#" className="heroSliderLink">
                   <div className="heroSliderItem">
                     <Image
                       className="homePageBanner"
                       src="/images/slideBnnrBarkod.jpg"
                       alt="banner"
-                      width={800}
-                      height={800}
+                      width={200}
+                      height={200}
                     />
                     {/* <div className="heroSliderContent">
                       <span>Heavy on features. Light on price.</span>
@@ -78,6 +78,15 @@ export default function Home() {
                   </div>
                 </Link>
               </SwiperSlide>
+
+
+
+
+
+
+
+
+
               {/* <SwiperSlide>
                 <Link href="#">
                   <div className="heroSliderItem">

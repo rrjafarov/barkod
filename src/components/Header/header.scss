@@ -100,35 +100,6 @@ $MainColor: #ec1f27 !important;
           transition: all 0.3s ease-in-out;
         }
       }
-      // .blackCategoryIcon,
-      // .redCategoryIcon {
-      //   width: 3rem;
-      //   height: 3rem;
-      //   position: absolute;
-      //   transition: opacity 0.3s ease, transform 0.3s ease;
-      // }
-      // .blackCategoryIcon {
-      //   opacity: 1;
-      //   transform: scale(1);
-      // }
-      // .redCategoryIcon {
-      //   opacity: 0;
-      //   transform: scale(1);
-      // }
-      // &:hover {
-      //   .blackCategoryIcon {
-      //     opacity: 0;
-      //     transform: scale(1);
-      //   }
-      //   .redCategoryIcon {
-      //     opacity: 1;
-      //     transform: scale(1);
-      //   }
-      //   span {
-      //     color: #ec1f27;
-      //     transition: all 0.3s ease-in-out;
-      //   }
-      // }
     }
     .headerSearching {
       .searchContainer {
@@ -169,28 +140,6 @@ $MainColor: #ec1f27 !important;
         }
       }
     }
-    // .headerMiddleRight {
-    //   display: flex;
-    //   justify-content: flex-end;
-    //   align-items: center;
-    //   width: 100%;
-    //   height: 100%;
-    //   .comparisonPageIcon{
-    //     button{
-    //       background-color: transparent;
-    //     }
-    //     .blackComparisonIcon{
-    //       width: 3rem;
-    //       height: 3rem;
-    //     }
-    //     .redComparisonIcon{
-    //       display: none;
-    //       width: 3rem;
-    //       height: 3rem;
-    //     }
-    //   }
-    // }
-
     .headerMiddleRight {
       display: flex;
       justify-content: flex-end;
@@ -207,6 +156,10 @@ $MainColor: #ec1f27 !important;
           align-items: center;
           justify-content: center;
         }
+        .newScalet {
+          width: 2.5rem;
+          height: 2.2rem;
+        }
         .newScale {
           width: 2.5rem;
           height: 2.5rem;
@@ -219,36 +172,10 @@ $MainColor: #ec1f27 !important;
           width: 2.5rem;
           height: 2.5rem;
         }
-        // .rightPagesIconBlackIcons,
-        // .rightPagesIconRedIcons {
-        //   width: 2rem;
-        //   height: 2rem;
-        //   transition: opacity 0.3s ease, transform 0.3s ease;
-        // }
-        // .rightPagesIconBlackIcons {
-        //   opacity: 1;
-        //   transform: scale(1);
-        // }
-        // .rightPagesIconRedIcons {
-        //   opacity: 0;
-        //   transform: scale(1);
-        //   position: absolute;
-        // }
-        // &:hover {
-        //   .rightPagesIconBlackIcons {
-        //     opacity: 0;
-        //     transform: scale(1);
-        //   }
-        //   .rightPagesIconRedIcons {
-        //     opacity: 1;
-        //     transform: scale(1);
-        //   }
-        // }
       }
     }
   }
 }
-
 //! categoryMenu
 .categoryMegaMenu {
   display: flex;
@@ -329,7 +256,6 @@ $MainColor: #ec1f27 !important;
   margin-right: 0.3rem;
 }
 .categoryMegaMenu .leftColumn li:hover {
-  // background-color: rgb(187, 187, 187);
   background-color: lightgray;
   border-radius: 1rem;
   .categoryLeftIcon {

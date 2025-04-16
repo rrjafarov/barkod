@@ -35,7 +35,7 @@ const HomePageSecondaryProducts = () => {
       {showModal && (
         <div className="modal-overlay" onClick={handleOverlayClick}>
           <div className="modal">
-            <button className="close-btn" onClick={closeModal}>
+            <button className="close-btns" onClick={closeModal}>
               X
             </button>
             <span>Bir kliklə al</span>

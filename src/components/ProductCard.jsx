@@ -6,37 +6,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { TbCurrencyManat } from "react-icons/tb";
 
-
-const ProductCard = () => {
-  const [showModal, setShowModal] = useState(false);
-  const openModal = () => setShowModal(true);
-  const closeModal = () => setShowModal(false);
-
-  const handleOverlayClick = (e) => {
-    if (e.target.className === "modal-overlay") {
-      closeModal();
-    }
-  };
-
+const ProductCard = ({openModal}) => {
   return (
     <div className="container">
-      {showModal && (
-        <div className="modal-overlay" onClick={handleOverlayClick}>
-          <div className="modal">
-            <button className="close-btn" onClick={closeModal}>
-              X
-            </button>
-            <span>Bir kliklə al</span>
-            <div></div>
-            <div className="numberModal">
-              <label htmlFor="phone">Nömrə: +994</label>
-              <input type="text" id="phone" name="phone" />
-            </div>
-            <button className="open-btn">Bir kliklə al</button>
-          </div>
-        </div>
-      )}
-      
       <div className="secondHomePageProductsCard">
         <Link href="/products/id" className="blockCardLink">
           <div className="secondHomePageProductsCardImage">
@@ -69,13 +41,9 @@ const ProductCard = () => {
 
             <div className="wishList">
               <button>
-                {/* <BlackComparison className="rightPagesIconBlackIcons" />
-                    <RedComparison className="rightPagesIconRedIcons" /> */}
                 <NewScale className="newScalePR" />
               </button>
               <button>
-                {/* <BlackWishlist className="rightPagesIconBlackIcons" />
-                    <RedWishlist className="rightPagesIconRedIcons" /> */}
                 <NewWishList className="newWishlistPR" />
               </button>
             </div>
@@ -84,9 +52,7 @@ const ProductCard = () => {
         <div className="addToCartClick">
           <div className="addToCartClickItem">
             <button className="cartBtn">Səbətə at</button>
-            <button onClick={openModal} className="clickBtn">
-              Bir Klikle Al
-            </button>
+            <button onClick={openModal} className="clickBtn">Bir Klikle Al</button>
           </div>
         </div>
       </div>

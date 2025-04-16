@@ -10,22 +10,13 @@ import { Pagination, Autoplay } from "swiper/modules";
 import Link from "next/link";
 import Image from "next/image";
 import { TbCurrencyManat } from "react-icons/tb";
-// import BlackComparison from "../../../public/icons/blackComparison.svg";
-// import RedComparison from "../../../public/icons/redComparison.svg";
-// import BlackWishlist from "../../../public/icons/blackWishlist.svg";
-// import RedWishlist from "../../../public/icons/redWishlist.svg";
-// import OneClickPayment from "@/components/OneClickPayment";
 import NewScale from "../../../public/icons/newScale.svg";
 import NewWishList from "../../../public/icons/newWishlist.svg";
 import ProductCard from "../ProductCard";
 
 const HomePageProductsCard = () => {
   const [value, setValue] = useState(4);
-  // const [showModal, setShowModal] = useState(false);
-  // const openModal = () => setShowModal(true);
-  // const closeModal = () => setShowModal(false);
   const [showModal, setShowModal] = useState(false);
-
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
 
@@ -40,7 +31,7 @@ const HomePageProductsCard = () => {
       {showModal && (
         <div className="modal-overlay" onClick={handleOverlayClick}>
           <div className="modal">
-            <button className="close-btn" onClick={closeModal}>
+            <button className="close-btns" onClick={closeModal}>
               X
             </button>
             <span>Bir kliklə al</span>
@@ -98,76 +89,12 @@ const HomePageProductsCard = () => {
             spaceBetween: 20,
           },
         }}
-        className="mySwiper"
+        className="mySwiper "
       >
         {/* <SwiperSlide>
-          <Link href="/products/id">
-            <div className="homePageProductsCard">
-              <div className="homePageProductsCardImage">
-                <Image
-                  src="/images/sonySpeaker.png"
-                  alt="sony"
-                  width={100}
-                  height={100}
-                />
-              </div>
-              <div className="homePageProductsCardContent">
-                <div className="rating">
-                  <Box>
-                    <Rating
-                      name="star-rating"
-                      value={value}
-                      onChange={(event, newValue) => setValue(newValue)}
-                    />
-                  </Box>
-                  <p>({value})</p>
-                </div>
-                <strong>Audio&Video</strong>
-                <span className="productTitle">Bluetooth Headphones</span>
-                <div className="price">
-                  <span className="oldPrice">$300</span>
-                  <span className="newPrice">$400</span>
-                </div>
-              </div>
-            </div>
-          </Link>
-        </SwiperSlide>
-        <SwiperSlide>
-          <Link href="/products/id">
-            <div className="homePageProductsCard">
-              <div className="homePageProductsCardImage">
-                <Image
-                  src="/images/sonySpeaker.png"
-                  alt="sony"
-                  width={100}
-                  height={100}
-                />
-              </div>
-              <div className="homePageProductsCardContent">
-                <div className="rating">
-                  <Box>
-                    <Rating
-                      name="star-rating"
-                      value={value}
-                      onChange={(event, newValue) => setValue(newValue)}
-                    />
-                  </Box>
-                  <p>({value})</p>
-                </div>
-                <strong>Audio&Video</strong>
-                <span className="productTitle">Bluetooth Headphones</span>
-                <div className="price">
-                  <span className="oldPrice">$300</span>
-                  <span className="newPrice">$400</span>
-                </div>
-              </div>
-            </div>
-          </Link>
+          <ProductCard openModal={openModal} />
         </SwiperSlide> */}
 
-
-
-
         <SwiperSlide>
           <div className="secondHomePageProductsCard">
             <Link href="/products/id" className="blockCardLink">
@@ -423,7 +350,6 @@ const HomePageProductsCard = () => {
             </div>
           </div>
         </SwiperSlide>
-
         <div className="my-custom-pagination"></div>
       </Swiper>
     </div>

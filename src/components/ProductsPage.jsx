@@ -9,8 +9,6 @@ import NewWishList from "../../public/icons/newWishlist.svg";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
 
-
-
 const FilterAccordion = ({ title, children, defaultOpen = false }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
   return (
@@ -56,9 +54,9 @@ const ProductsPage = () => {
             <span>Məhsullar</span>
           </Link>
           <strong>
-            <MdKeyboardArrowRight className="breadCrumpIcon"  />
+            <MdKeyboardArrowRight className="breadCrumpIcon" />
           </strong>
-            <span className="lastChildBread" >Telefonlar</span>
+          <span className="lastChildBread">Telefonlar</span>
         </div>
         <div className="productsPageBanner">
           <div className="productsPageBannerImage">
@@ -66,14 +64,14 @@ const ProductsPage = () => {
               src="/images/productPageBanner.jpeg"
               alt="banner"
               width={1000}
-              height={400}
+              height={600}
             />
           </div>
         </div>
         {showModal && (
           <div className="modal-overlay" onClick={handleOverlayClick}>
             <div className="modal">
-              <button className="close-btn" onClick={closeModal}>
+              <button className="close-btns" onClick={closeModal}>
                 X
               </button>
               <span>Bir kliklə al</span>
@@ -96,7 +94,7 @@ const ProductsPage = () => {
                 onClick={() => setMobileFilterOpen(!isMobileFilterOpen)}
               >
                 <span>Filter</span>
-                <div>
+                <div className="filter-icon">
                   <Filter className="filIcon" />
                 </div>
               </button>
@@ -136,10 +134,9 @@ const ProductsPage = () => {
                   className="close-btn"
                   onClick={() => setMobileFilterOpen(false)}
                 >
-                  <img src="/icons/popupCloseIcon.svg" alt="close" />
+                  x
                 </button>
                 <div className="lineFiltered"></div>
-
                 <FilterAccordion title="Qiymət" defaultOpen={true}>
                   <ul>
                     <li>
@@ -237,7 +234,7 @@ const ProductsPage = () => {
             <div className="productPageCards">
               <div className="row">
                 <div className="xl-3 lg-4 md-6 sm-6">
-                  <div className="secondHomePageProductsCard">
+                  <div className="productSecondHomePageProductsCard">
                     <Link href="/products/id" className="blockCardLink">
                       <div className="secondHomePageProductsCardImage">
                         <Image
@@ -288,7 +285,7 @@ const ProductsPage = () => {
                   </div>
                 </div>
                 <div className="xl-3 lg-4 md-6 sm-6">
-                  <div className="secondHomePageProductsCard">
+                  <div className="productSecondHomePageProductsCard">
                     <Link href="/products/id" className="blockCardLink">
                       <div className="secondHomePageProductsCardImage">
                         <Image
@@ -339,7 +336,7 @@ const ProductsPage = () => {
                   </div>
                 </div>
                 <div className="xl-3 lg-4 md-6 sm-6">
-                  <div className="secondHomePageProductsCard">
+                  <div className="productSecondHomePageProductsCard">
                     <Link href="/products/id" className="blockCardLink">
                       <div className="secondHomePageProductsCardImage">
                         <Image
@@ -390,7 +387,211 @@ const ProductsPage = () => {
                   </div>
                 </div>
                 <div className="xl-3 lg-4 md-6 sm-6">
-                  <div className="secondHomePageProductsCard">
+                  <div className="productSecondHomePageProductsCard">
+                    <Link href="/products/id" className="blockCardLink">
+                      <div className="secondHomePageProductsCardImage">
+                        <Image
+                          src="/images/iphone16pro.png"
+                          alt="sony"
+                          width={200}
+                          height={200}
+                        />
+                      </div>
+                    </Link>
+                    <div className="secondHomePageProductsCardContent">
+                      <span>iPhone 16 Pro Max 256 GB Black Titanium</span>
+                      <div className="discount">
+                        <span>
+                          -350 <TbCurrencyManat />
+                        </span>
+                      </div>
+                      <div className="cardBottomContent">
+                        <div className="price">
+                          <span className="oldPrice">
+                            3000,00
+                            <TbCurrencyManat />
+                          </span>
+                          <span className="newPrice">
+                            2400,00
+                            <TbCurrencyManat />
+                          </span>
+                        </div>
+
+                        <div className="wishList">
+                          <button>
+                            <NewScale className="newScalePR" />
+                          </button>
+                          <button>
+                            <NewWishList className="newWishlistPR" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="addToCartClick">
+                      <div className="addToCartClickItem">
+                        <button className="cartBtn">Səbətə at</button>
+                        <button onClick={openModal} className="clickBtn">
+                          Bir Klikle Al
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="xl-3 lg-4 md-6 sm-6">
+                  <div className="productSecondHomePageProductsCard">
+                    <Link href="/products/id" className="blockCardLink">
+                      <div className="secondHomePageProductsCardImage">
+                        <Image
+                          src="/images/iphone16pro.png"
+                          alt="sony"
+                          width={200}
+                          height={200}
+                        />
+                      </div>
+                    </Link>
+                    <div className="secondHomePageProductsCardContent">
+                      <span>iPhone 16 Pro Max 256 GB Black Titanium</span>
+                      <div className="discount">
+                        <span>
+                          -350 <TbCurrencyManat />
+                        </span>
+                      </div>
+                      <div className="cardBottomContent">
+                        <div className="price">
+                          <span className="oldPrice">
+                            3000,00
+                            <TbCurrencyManat />
+                          </span>
+                          <span className="newPrice">
+                            2400,00
+                            <TbCurrencyManat />
+                          </span>
+                        </div>
+
+                        <div className="wishList">
+                          <button>
+                            <NewScale className="newScalePR" />
+                          </button>
+                          <button>
+                            <NewWishList className="newWishlistPR" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="addToCartClick">
+                      <div className="addToCartClickItem">
+                        <button className="cartBtn">Səbətə at</button>
+                        <button onClick={openModal} className="clickBtn">
+                          Bir Klikle Al
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="xl-3 lg-4 md-6 sm-6">
+                  <div className="productSecondHomePageProductsCard">
+                    <Link href="/products/id" className="blockCardLink">
+                      <div className="secondHomePageProductsCardImage">
+                        <Image
+                          src="/images/iphone16pro.png"
+                          alt="sony"
+                          width={200}
+                          height={200}
+                        />
+                      </div>
+                    </Link>
+                    <div className="secondHomePageProductsCardContent">
+                      <span>iPhone 16 Pro Max 256 GB Black Titanium</span>
+                      <div className="discount">
+                        <span>
+                          -350 <TbCurrencyManat />
+                        </span>
+                      </div>
+                      <div className="cardBottomContent">
+                        <div className="price">
+                          <span className="oldPrice">
+                            3000,00
+                            <TbCurrencyManat />
+                          </span>
+                          <span className="newPrice">
+                            2400,00
+                            <TbCurrencyManat />
+                          </span>
+                        </div>
+
+                        <div className="wishList">
+                          <button>
+                            <NewScale className="newScalePR" />
+                          </button>
+                          <button>
+                            <NewWishList className="newWishlistPR" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="addToCartClick">
+                      <div className="addToCartClickItem">
+                        <button className="cartBtn">Səbətə at</button>
+                        <button onClick={openModal} className="clickBtn">
+                          Bir Klikle Al
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="xl-3 lg-4 md-6 sm-6">
+                  <div className="productSecondHomePageProductsCard">
+                    <Link href="/products/id" className="blockCardLink">
+                      <div className="secondHomePageProductsCardImage">
+                        <Image
+                          src="/images/iphone16pro.png"
+                          alt="sony"
+                          width={200}
+                          height={200}
+                        />
+                      </div>
+                    </Link>
+                    <div className="secondHomePageProductsCardContent">
+                      <span>iPhone 16 Pro Max 256 GB Black Titanium</span>
+                      <div className="discount">
+                        <span>
+                          -350 <TbCurrencyManat />
+                        </span>
+                      </div>
+                      <div className="cardBottomContent">
+                        <div className="price">
+                          <span className="oldPrice">
+                            3000,00
+                            <TbCurrencyManat />
+                          </span>
+                          <span className="newPrice">
+                            2400,00
+                            <TbCurrencyManat />
+                          </span>
+                        </div>
+
+                        <div className="wishList">
+                          <button>
+                            <NewScale className="newScalePR" />
+                          </button>
+                          <button>
+                            <NewWishList className="newWishlistPR" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="addToCartClick">
+                      <div className="addToCartClickItem">
+                        <button className="cartBtn">Səbətə at</button>
+                        <button onClick={openModal} className="clickBtn">
+                          Bir Klikle Al
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="xl-3 lg-4 md-6 sm-6">
+                  <div className="productSecondHomePageProductsCard">
                     <Link href="/products/id" className="blockCardLink">
                       <div className="secondHomePageProductsCardImage">
                         <Image
