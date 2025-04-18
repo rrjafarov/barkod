@@ -291,7 +291,7 @@ const Header = () => {
                   </Link>
                 </div>
                 <div className="rightPagesIcon">
-                  <Link href="#">
+                  <Link href="/wishlist">
                     <button>
                       <NewWishList className="newWishlist" />
                     </button>

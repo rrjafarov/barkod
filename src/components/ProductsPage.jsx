@@ -8,6 +8,7 @@ import NewScale from "../../public/icons/newScale.svg";
 import NewWishList from "../../public/icons/newWishlist.svg";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { MdKeyboardArrowRight } from "react-icons/md";
+import ProductsPageBannerSlider from "./Slider/ProductsPageBannerSlider";
 
 const FilterAccordion = ({ title, children, defaultOpen = false }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
@@ -67,6 +68,9 @@ const ProductsPage = () => {
               height={600}
             />
           </div>
+        </div>
+        <div className="productsPageSliderBanner">
+          <ProductsPageBannerSlider />
         </div>
         {showModal && (
           <div className="modal-overlay" onClick={handleOverlayClick}>
