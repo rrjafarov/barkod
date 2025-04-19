@@ -1213,7 +1213,7 @@ ul {
   cursor: pointer;
 }
 
-// ?  PRODUCTPAGE start
+// !  ProductPage start
 // ?  ProductBanner
 .breadCrumb {
   padding: 2rem 0 1.5rem;
@@ -1781,9 +1781,9 @@ ul {
     }
   }
 }
-// ?  PRODUCTPAGE finish
+// !  ProductPage finish
 
-//! ProductsDetailPage
+//! ProductsDetailPage  start
 #productsDetailPage {
   .productDPTitle {
     font-size: 2.2rem;
@@ -1813,7 +1813,6 @@ ul {
     }
   }
 }
-
 .productsDPFancybox {
   width: 100%;
   height: 100%;
@@ -2024,7 +2023,6 @@ ul {
     }
   }
 }
-
 .productsDPTechnicalSection {
   padding: 7rem 0;
   .productsDPTechnicalSectionTitle {
@@ -2147,8 +2145,6 @@ ul {
     }
   }
 }
-//! ProductsDetailPage
-
 .fancybox__footer {
   padding: 0 !important;
   margin: 0 !important;
@@ -2183,44 +2179,7 @@ ul {
 .fancybox__backdrop {
   background: white !important;
 }
-
-// .fancybox__container {
-//   --fancybox-color: #dbdbdb;
-//   --fancybox-hover-color: #fff;
-//   --fancybox-bg: rgba(24, 24, 27, 0.98);
-//   --fancybox-slide-gap: 10px;
-//   --f-spinner-width: 50px;
-//   --f-spinner-height: 50px;
-//   --f-spinner-color-1: rgba(255, 255, 255, 0.1);
-//   --f-spinner-color-2: #bbb;
-//   --f-spinner-stroke: 3.65;
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   bottom: 0;
-//   right: 0;
-//   direction: ltr;
-//   display: flex;
-//   flex-direction: column;
-//   box-sizing: border-box;
-//   margin: 0;
-//   padding: 0;
-//   color: #f8f8f8;
-//   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-//   overflow: visible;
-//   z-index: var(--fancybox-zIndex, 1050);
-//   outline: none;
-//   transform-origin: top left;
-//   -webkit-text-size-adjust: 100%;
-//   -moz-text-size-adjust: none;
-//   -ms-text-size-adjust: 100%;
-//   text-size-adjust: 100%;
-//   overscroll-behavior-y: contain;
-//   background-color: #fff;
-// }
-
-
-
+// Gallery Important
 .productsDPFancybox {
   display: flex;
   align-items: flex-start;
@@ -2262,8 +2221,6 @@ ul {
 .thumbnail {
   border-radius: 1rem;
   border: 1px solid #f5f5f5;
-  // width: 7rem;
-  // height: 7rem;
 }
 .thumbnail img {
   padding: 1rem;
@@ -2322,3 +2279,20 @@ ul {
   flex-direction: column;
   z-index: 9999;
 }
+// Gallery Important
+//! ProductsDetailPage
+
+
+
+
+// ! WishlistPage start
+.wishlistPage{
+  padding: 2rem 0 3rem;
+  .wishTitle{
+    font-size: 2rem !important;
+  }
+}
+.ptop{
+  padding-top: 3rem;
+}
+// ! WishlistPage finsh

@@ -248,10 +248,34 @@ const ProductsDetailPage = () => {
   const [value, setValue] = useState(4.6);
   // "tech": Texniki Xüsusiyyətlər, "desc": Təsvir, "reviews": Rəylər
   const [activeTab, setActiveTab] = useState("tech");
+  const [showModal, setShowModal] = useState(false);
+  const openModal = () => setShowModal(true);
+  const closeModal = () => setShowModal(false);
 
+  const handleOverlayClick = (e) => {
+    if (e.target.className === "modal-overlay") {
+      closeModal();
+    }
+  };
   return (
     <div id="productsDetailPage">
       <div className="container">
+        {showModal && (
+          <div className="modal-overlay" onClick={handleOverlayClick}>
+            <div className="modal">
+              <button className="close-btns" onClick={closeModal}>
+                X
+              </button>
+              <span>Bir kliklə al</span>
+              <div></div>
+              <div className="numberModal">
+                <label htmlFor="phone">Nömrə: +994</label>
+                <input type="text" id="phone" name="phone" />
+              </div>
+              <button className="open-btn">Bir kliklə al</button>
+            </div>
+          </div>
+        )}
         <div className="breadCrumb">
           <Link href="/">
             <span>Ana Səhifə</span>
@@ -332,7 +356,9 @@ const ProductsDetailPage = () => {
                   </button>
                 </Link>
                 <Link href="#">
-                  <button className="productsDPbuyNow">Bir Kliklə al</button>
+                  <button onClick={openModal} className="productsDPbuyNow">
+                    Bir Kliklə al
+                  </button>
                 </Link>
                 <Link href="#">
                   <button className="productsDPwishlist">
