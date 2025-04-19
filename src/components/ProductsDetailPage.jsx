@@ -226,37 +226,16 @@
 
 // export default ProductsDetailPage;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // !
-
-
-
-
-
-
-
-
-
 
 "use client";
 import Link from "next/link";
 import Form from "next/form";
 import React, { useState } from "react";
-import { MdKeyboardDoubleArrowRight, MdKeyboardArrowRight } from "react-icons/md";
+import {
+  MdKeyboardDoubleArrowRight,
+  MdKeyboardArrowRight,
+} from "react-icons/md";
 import ProductsDPFancybox from "./ProductsDPFancybox";
 import { Rating, Box } from "@mui/material";
 import { Progress, Row, Col, Typography } from "antd";
@@ -292,7 +271,7 @@ const ProductsDetailPage = () => {
           </strong>
           <span className="lastChildBread">iPhone 16 Pro</span>
         </div>
-        <div className="productDPTitle">
+        {/* <div className="productDPTitle">
           <h2>Aeroqril PHILIPS HD04949</h2>
           <div className="productDPRating">
             <Box className="productDPRatingBox">
@@ -304,13 +283,40 @@ const ProductsDetailPage = () => {
             </Box>
             <p>({value})</p>
           </div>
-        </div>
+        </div> */}
         <div className="row">
-          <div className="xl-5 lg-5 md-6 sm-12">
+          <div className="xl-6 lg-6 md-6 sm-12">
             <ProductsDPFancybox />
           </div>
-          <div className="xl-7 lg-7 md-6 sm-12">
+
+          <div className="xl-6 lg-6 md-6 sm-12">
+            {/* <div className="productDPTitle">
+              <h2>Aeroqril PHILIPS HD04949</h2>
+              <div className="productDPRating">
+                <Box className="productDPRatingBox">
+                  <Rating
+                    name="star-rating"
+                    value={value}
+                    onChange={(event, newValue) => setValue(newValue)}
+                  />
+                </Box>
+                <p>({value})</p>
+              </div>
+            </div> */}
             <div className="productDPDetail">
+              <div className="productDPTitle">
+                <h2>Aeroqril PHILIPS HD04949</h2>
+                <div className="productDPRating">
+                  <Box className="productDPRatingBox">
+                    <Rating
+                      name="star-rating"
+                      value={value}
+                      onChange={(event, newValue) => setValue(newValue)}
+                    />
+                  </Box>
+                  <p>({value})</p>
+                </div>
+              </div>
               <span className="depo">Məhsul Mövcuddur: </span>
               <span className="productCode">
                 Məhsul kodu : <strong>00049</strong>
@@ -371,24 +377,21 @@ const ProductsDetailPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="productsDPBuyInInstallments">
+              {/* <div className="productsDPBuyInInstallments">
                 <button>Hissə-hissə ödənişlə al</button>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
+
         <section>
           <div className="productsDPTechnicalSection">
             <div className="productsDPTechnicalSectionTitle">
               <button onClick={() => setActiveTab("tech")}>
                 Texniki Xüsusiyyətlər
               </button>
-              <button onClick={() => setActiveTab("desc")}>
-                Təsvir
-              </button>
-              <button onClick={() => setActiveTab("reviews")}>
-                Rəylər
-              </button>
+              <button onClick={() => setActiveTab("desc")}>Təsvir</button>
+              <button onClick={() => setActiveTab("reviews")}>Rəylər</button>
             </div>
 
             {activeTab === "tech" && (
@@ -498,13 +501,3 @@ const ProductsDetailPage = () => {
 };
 
 export default ProductsDetailPage;
-
-
-
-
-
-
-
-
-
-

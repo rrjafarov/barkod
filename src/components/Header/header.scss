@@ -37,11 +37,12 @@ $MainColor: #ec1f27 !important;
           font-size: 1.8rem;
           font-weight: 500;
           color: #323232 !important;
-          transition: all 0.4s ease;
+          transition: all 0.2s ease-in-out;
           &:hover {
-            transition: all 0.3s ease-in-out;
+            transition: all 0.2s ease0-in-out;
             text-decoration: underline;
-            text-decoration-color: $MainColor;
+            text-decoration-color: #323232;
+            color: #ec1f27 !important;
           }
         }
       }
@@ -50,7 +51,7 @@ $MainColor: #ec1f27 !important;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 2.4rem;
+      gap: 2rem;
       .contactCall {
         font-size: 2.2rem;
         a {
@@ -66,11 +67,15 @@ $MainColor: #ec1f27 !important;
           font-weight: 400;
           font-size: 1.4rem;
           border-radius: 1rem;
+          height: 4rem;
         }
       }
       .changeLang {
-        font-size: 1.6rem;
-        color: $MainColor;
+        color: #111;
+        border: 1px solid $MainColor;
+        font-weight: 400;
+        font-size: 1.4rem;
+        border-radius: 1rem;
       }
     }
   }
@@ -82,17 +87,17 @@ $MainColor: #ec1f27 !important;
       align-items: center;
       width: 100%;
       height: 100%;
-      gap: 1.5rem;
+      gap: 1.2rem;
       cursor: pointer;
       position: relative;
       span {
-        font-size: 2.1rem;
-        font-weight: 600;
+        font-size: 2rem;
+        font-weight: 500;
         flex-shrink: 0;
       }
       .newCategoryIcon {
-        width: 2.7rem;
-        height: 2.7rem;
+        width: 2.5rem;
+        height: 2.5rem;
       }
       &:hover {
         span {
@@ -176,6 +181,9 @@ $MainColor: #ec1f27 !important;
     }
   }
 }
+
+
+
 //! categoryMenu
 .categoryMegaMenu {
   display: flex;
@@ -218,7 +226,6 @@ $MainColor: #ec1f27 !important;
   width: 100%;
   padding: 1rem;
   display: flex;
-  // justify-content: space-between;
   align-items: flex-start;
   gap: 2rem;
 }

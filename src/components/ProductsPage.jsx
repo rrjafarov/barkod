@@ -62,16 +62,16 @@ const ProductsPage = () => {
         <div className="productsPageBanner">
           <div className="productsPageBannerImage">
             <Image
-              src="/images/productPageBanner.jpeg"
+              src="/images/productPageBanner1.jpg"
               alt="banner"
               width={1000}
               height={600}
             />
           </div>
         </div>
-        <div className="productsPageSliderBanner">
+        {/* <div className="productsPageSliderBanner">
           <ProductsPageBannerSlider />
-        </div>
+        </div> */}
         {showModal && (
           <div className="modal-overlay" onClick={handleOverlayClick}>
             <div className="modal">

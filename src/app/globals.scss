@@ -617,6 +617,12 @@ ul {
 // ? StaticInfo.jsx
 #staticInfo {
   padding: 1rem 0 2rem;
+  .rowdurbu {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
   .staticInfoCard {
     display: flex;
     justify-content: flex-start;
@@ -1266,7 +1272,7 @@ ul {
   .productsBannerSlider {
     display: flex;
     justify-content: center;
-    align-items: center;  
+    align-items: center;
     flex-direction: column;
     width: 100%;
     height: 18rem;
@@ -1287,11 +1293,10 @@ ul {
       object-fit: contain;
     }
   }
-  span{
+  span {
     padding-top: 1rem;
   }
 }
-
 .filterTop {
   padding-top: 1.95rem;
   padding-left: 0.55rem;
@@ -1785,7 +1790,7 @@ ul {
     font-weight: 600;
     color: #111;
     text-align: start;
-    padding: 2rem 0;
+    padding: 0 0 1rem;
     .productDPRating {
       width: 100%;
       padding-top: 1rem;
@@ -1808,6 +1813,7 @@ ul {
     }
   }
 }
+
 .productsDPFancybox {
   width: 100%;
   height: 100%;
@@ -1822,11 +1828,11 @@ ul {
   }
 }
 .productDPDetail {
-  padding: 2rem;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
+  padding: 1rem;
   gap: 1rem;
   .depo {
     color: rgb(31, 217, 31);
@@ -2018,8 +2024,9 @@ ul {
     }
   }
 }
+
 .productsDPTechnicalSection {
-  padding: 2rem 0 5rem;
+  padding: 7rem 0;
   .productsDPTechnicalSectionTitle {
     display: flex;
     gap: 2rem;
@@ -2211,3 +2218,107 @@ ul {
 //   overscroll-behavior-y: contain;
 //   background-color: #fff;
 // }
+
+
+
+.productsDPFancybox {
+  display: flex;
+  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border-radius: 2rem;
+  border: 1.5px solid #f5f5f5;
+}
+/* Thumbnail-lərin yerləşdiyi oxlu slider wrapper */
+.thumbnail-wrapper {
+  position: relative;
+  width: 12rem;
+  // height: 600px;
+  max-height: 60rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // overflow: hidden;
+  overflow: visible;
+  // border: 1px solid black;
+  margin: 5rem 0 !important;
+}
+/* Scroll edilə bilən thumbnail sütunu */
+.thumbnail-column {
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  height: 100%;
+  max-height: 37rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0 1rem;
+  border-radius: 1rem;
+}
+.thumbnail-column::-webkit-scrollbar {
+  display: none; /* Chrome, Safari və Edge */
+}
+.thumbnail {
+  border-radius: 1rem;
+  border: 1px solid #f5f5f5;
+  // width: 7rem;
+  // height: 7rem;
+}
+.thumbnail img {
+  padding: 1rem;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+/* Ox düymələri */
+.arrow {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  z-index: 5 !important;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.2rem;
+  user-select: none;
+  // background-color: #f3f3f3;
+  border-radius: 0.5rem;
+}
+.arrow.up {
+  top: -2.6rem;
+}
+.arrow.down {
+  bottom: -2.6rem;
+}
+/* Əsas şəkil sahəsi */
+.main-image {
+  // max-width: 600px;
+  border-radius: 2rem;
+  width: 100%;
+  height: 100%;
+  max-height: 60rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2rem;
+}
+/* Fancybox overlay thumbnail-ləri */
+.thumbnails-container {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  flex-direction: column;
+  z-index: 9999;
+}

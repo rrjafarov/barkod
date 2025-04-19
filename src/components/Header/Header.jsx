@@ -124,20 +124,12 @@ import "@/components/Header/header.scss";
 import Link from "next/link";
 import Image from "next/image";
 import { IoSearch } from "react-icons/io5";
-// import { BiSolidCategoryAlt } from "react-icons/bi";
-// import RedCategory from "../../../public/icons/redCategory.svg";
-// import BlackCategory from "../../../public/icons/blackCategory.svg";
-// import BlackComparison from "../../../public/icons/blackComparison.svg";
-// import RedComparison from "../../../public/icons/redComparison.svg";
-// import RedBasket from "../../../public/icons/redBasket.svg";
-// import BlackWishlist from "../../../public/icons/blackWishlist.svg";
-// import RedWishlist from "../../../public/icons/redWishlist.svg";
-// import NewCategoryIcon from "../../../public/icons/newCategoryIcon.svg";
 import BlackBasket from "../../../public/icons/blackBasket.svg";
 import NewScale from "../../../public/icons/newScale.svg";
 import Login from "../../../public/icons/loginAdmin.svg";
 import NewWishList from "../../../public/icons/newWishlist.svg";
 import HamburgerMenu from "../../../public/icons/hamburgerMenu.svg";
+import CategoryIcon from "../../../public/icons/categoryMenuNewIcon.svg";
 import Select from "react-select";
 import CatalogMenu from "@/components/CategoryMenu";
 
@@ -160,14 +152,15 @@ const Header = () => {
     control: (provided) => ({
       ...provided,
       border: "none", // Borderi kaldır
+      borderRadius: "1rem", // Kenar yuvarlaklığını kaldır
       boxShadow: "none", // Focus olduğunda gölgeyi kaldır
       color: "red", // Metin rengini belirle
-      fontWeight: "500",
+      fontWeight: "#111",
       fontFamily: '"Poppins", sans-serif',
     }),
     singleValue: (provided) => ({
       ...provided,
-      color: "red", // Seçilen metnin rengini belirle
+      color: "#111", // Seçilen metnin rengini belirle
     }),
     menu: (provided) => ({
       ...provided,
@@ -198,6 +191,8 @@ const Header = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+
 
   return (
     <div className="container">
@@ -260,7 +255,8 @@ const Header = () => {
                 className="headerCatalog"
                 onClick={() => setShowComponent((prev) => !prev)}
               >
-                <HamburgerMenu className="newCategoryIcon" />
+                {/* <HamburgerMenu className="newCategoryIcon" /> */}
+                <CategoryIcon className="newCategoryIcon" />
                 <span>Kataloq</span>
               </div>
             </div>

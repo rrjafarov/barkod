@@ -10,50 +10,83 @@ const HomePageStaticInfo = () => {
     <div>
       <section id="staticInfo">
         <div className="container">
-          <div className="row">
-            <div className="xl-3 lg-3 md-6 sm-6">
-              <div className="staticInfoCard">
-                <div className="staticInfoImage">
-                  <DeliveryRed className="deliveryIcon" />
-                  {/* <DeliveryBlack className="deliveryIcon" /> */}
-                </div>
-                <div className="staticInfoContent">
-                  <span>Pulsuz Çatdırılma</span>
-                </div>
+          {/* <div className="row"> */}
+          <div className="rowdurbu">
+            <div className="staticInfoCard">
+              <div className="staticInfoImage">
+                <DeliveryRed className="deliveryIcon" />
+              </div>
+              <div className="staticInfoContent">
+                <span>Pulsuz Çatdırılma</span>
+              </div>
+            </div>
+            <div className="staticInfoCard">
+              <div className="staticInfoImage">
+                <OfficialRed className="officialIcon" />
+              </div>
+              <div className="staticInfoContent">
+                <span>Qapıda Rəsmiləşdirmə</span>
+              </div>
+            </div>
+            <div className="staticInfoCard">
+              <div className="staticInfoImage">
+                <PartByPartRed className="deliveryIcon" />
+              </div>
+              <div className="staticInfoContent">
+                <span>Hissə-hissə ödəniş</span>
+              </div>
+            </div>
+            <div className="staticInfoCard">
+              <div className="staticInfoImage">
+                <OperatorRed className="supportIcon" />
+              </div>
+              <div className="staticInfoContent">
+                <span>24/7 Dəstək</span>
               </div>
             </div>
 
-            <div className="xl-3 lg-3 md-6 sm-6">
-              <div className="staticInfoCard">
-                <div className="staticInfoImage">
-                  <OfficialRed className="officialIcon" />
-                </div>
-                <div className="staticInfoContent">
-                  <span>Qapıda Rəsmiləşdirmə</span>
-                </div>
-              </div>
-            </div>
-            <div className="xl-3 lg-3 md-6 sm-6">
-              <div className="staticInfoCard">
-                <div className="staticInfoImage">
-                  <PartByPartRed className="deliveryIcon" />
-                </div>
-                <div className="staticInfoContent">
-                  <span>Hissə-hissə ödəniş</span>
+            {/* <div className="xl-3 lg-3 md-6 sm-6">
+                <div className="staticInfoCard">
+                  <div className="staticInfoImage">
+                    <DeliveryRed className="deliveryIcon" />
+                  </div>
+                  <div className="staticInfoContent">
+                    <span>Pulsuz Çatdırılma</span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="xl-3 lg-3 md-6 sm-6">
-              <div className="staticInfoCard">
-                <div className="staticInfoImage">
-                  <OperatorRed className="supportIcon" />
-                </div>
-                <div className="staticInfoContent">
-                  <span>24/7 Dəstək</span>
+              <div className="xl-3 lg-3 md-6 sm-6">
+                <div className="staticInfoCard">
+                  <div className="staticInfoImage">
+                    <OfficialRed className="officialIcon" />
+                  </div>
+                  <div className="staticInfoContent">
+                    <span>Qapıda Rəsmiləşdirmə</span>
+                  </div>
                 </div>
               </div>
-            </div>
+              <div className="xl-3 lg-3 md-6 sm-6">
+                <div className="staticInfoCard">
+                  <div className="staticInfoImage">
+                    <PartByPartRed className="deliveryIcon" />
+                  </div>
+                  <div className="staticInfoContent">
+                    <span>Hissə-hissə ödəniş</span>
+                  </div>
+                </div>
+              </div>
+              <div className="xl-3 lg-3 md-6 sm-6">
+                <div className="staticInfoCard">
+                  <div className="staticInfoImage">
+                    <OperatorRed className="supportIcon" />
+                  </div>
+                  <div className="staticInfoContent">
+                    <span>24/7 Dəstək</span>
+                  </div>
+                </div>
+              </div> */}
           </div>
+          {/* </div> */}
         </div>
       </section>
     </div>
