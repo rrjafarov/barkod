@@ -1,9 +1,9 @@
 import React from "react";
 import DeliveryRed from "../../public/icons/deliveryRed.svg";
-import DeliveryBlack from "../../public/icons/deliveryBlack.svg";
 import OfficialRed from "../../public/icons/officialRed.svg";
 import PartByPartRed from "../../public/icons/partBypartRed.svg";
 import OperatorRed from "../../public/icons/operatorsRed.svg";
+import Image from "next/image";
 
 const HomePageStaticInfo = () => {
   return (
@@ -14,7 +14,14 @@ const HomePageStaticInfo = () => {
           <div className="rowdurbu">
             <div className="staticInfoCard">
               <div className="staticInfoImage">
-                <DeliveryRed className="deliveryIcon" />
+                {/* <DeliveryRed className="deliveryIcon" /> */}
+                <Image
+                  src="/icons/deliveryRed.svg"
+                  alt="delivery"
+                  width={800}
+                  height={800}
+                  className="deliveryIcon"
+                />
               </div>
               <div className="staticInfoContent">
                 <span>Pulsuz Çatdırılma</span>
@@ -22,7 +29,14 @@ const HomePageStaticInfo = () => {
             </div>
             <div className="staticInfoCard">
               <div className="staticInfoImage">
-                <OfficialRed className="officialIcon" />
+                {/* <OfficialRed className="officialIcon" /> */}
+                <Image
+                  src="/icons/officialRed.svg"
+                  alt="delivery"
+                  width={800}
+                  height={800}
+                  className="officialIcon"
+                />
               </div>
               <div className="staticInfoContent">
                 <span>Qapıda Rəsmiləşdirmə</span>
@@ -30,7 +44,14 @@ const HomePageStaticInfo = () => {
             </div>
             <div className="staticInfoCard">
               <div className="staticInfoImage">
-                <PartByPartRed className="deliveryIcon" />
+                {/* <PartByPartRed className="deliveryIcon" /> */}
+                <Image
+                  src="/icons/partBypartRed.svg"
+                  alt="delivery"
+                  width={800}
+                  height={800}
+                  className="deliveryIcon"
+                />
               </div>
               <div className="staticInfoContent">
                 <span>Hissə-hissə ödəniş</span>
@@ -38,7 +59,14 @@ const HomePageStaticInfo = () => {
             </div>
             <div className="staticInfoCard">
               <div className="staticInfoImage">
-                <OperatorRed className="supportIcon" />
+                {/* <OperatorRed className="supportIcon" /> */}
+                <Image
+                  src="/icons/operatorsRed.svg"
+                  alt="delivery"
+                  width={800}
+                  height={800}
+                  className="supportIcon"
+                />
               </div>
               <div className="staticInfoContent">
                 <span>24/7 Dəstək</span>

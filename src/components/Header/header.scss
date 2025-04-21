@@ -62,7 +62,9 @@ $MainColor: #ec1f27 !important;
       .payment {
         button {
           background-color: transparent;
-          border: 1px solid lightgreen;
+          // border: 1px solid lightgreen;
+          border: 1px solid $MainColor;
+
           padding: 1rem;
           font-weight: 400;
           font-size: 1.4rem;
@@ -182,14 +184,11 @@ $MainColor: #ec1f27 !important;
   }
 }
 
-
-
 //! categoryMenu
 .categoryMegaMenu {
   display: flex;
   width: 600px;
   width: 100%;
-  // background: rgb(231, 231, 231);
   background-color: #fff;
   border: 1px solid #e0e0e0;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);

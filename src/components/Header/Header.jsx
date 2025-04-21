@@ -156,7 +156,7 @@ const Header = () => {
       boxShadow: "none", // Focus olduğunda gölgeyi kaldır
       color: "red", // Metin rengini belirle
       fontWeight: "#111",
-      fontFamily: '"Poppins", sans-serif',
+      // fontFamily: '"Poppins", sans-serif',
     }),
     singleValue: (provided) => ({
       ...provided,
@@ -227,7 +227,7 @@ const Header = () => {
               </span>
             </div>
             <div className="payment">
-              <button>Aylıq Ödəniş</button>
+              <button>Online Ödəniş</button>
             </div>
 
             <div className="changeLang">

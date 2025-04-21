@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import "@/components/Footer/footer.scss";
 import { AiOutlineCopyright } from "react-icons/ai";
-import Whatsapp from "../../../public/icons/whatsapp.svg";
+import Whatsapp from "../../../public/icons/wp.svg";
 import Instagram from "../../../public/icons/instagram.svg";
 import Tiktok from "../../../public/icons/tiktok.svg";
 import Youtube from "../../../public/icons/youtube.svg";
@@ -10,6 +10,7 @@ import Facebook from "../../../public/icons/facebook.svg";
 import Telegram from "../../../public/icons/telegram.svg";
 import Masterkart from "../../../public/icons/masterkart.svg";
 import Visa from "../../../public/icons/visa.svg";
+import Image from "next/image";
 
 const Footer = () => {
   return (
@@ -116,14 +117,28 @@ const Footer = () => {
                     <li>
                       <Link href="#">
                         <button>
-                          <Whatsapp className="footSocialIcon" />
+                          {/* <Whatsapp className="footSocialIcon" /> */}
+                          <Image
+                            src="/icons/wp.svg"
+                            alt="wp"
+                            width={800}
+                            height={800}
+                            className="footSocialIcon"
+                          />
                         </button>
                       </Link>
                     </li>
                     <li>
                       <Link href="#">
                         <button>
-                          <Tiktok className="footSocialIcon" />
+                          {/* <Tiktok className="footSocialIcon" /> */}
+                          <Image
+                            src="/icons/tiktok.svg"
+                            alt="wp"
+                            width={800}
+                            height={800}
+                            className="footSocialIcon"
+                          />
                         </button>
                       </Link>
                     </li>
@@ -133,13 +148,17 @@ const Footer = () => {
             </div>
           </div>
 
-
-
-          
           <div className="footerPaymentIcons">
             <div className="footerPaymentIcon">
               <button>
-                <Visa className="visaIcon" />
+                {/* <Visa className="visaIcon" /> */}
+                <Image
+                  src="/icons/visa.svg"
+                  alt="wp"
+                  width={800}
+                  height={800}
+                  className="visaIcon"
+                />
               </button>
             </div>
             <div className="footerPaymentIcon">
