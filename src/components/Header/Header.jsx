@@ -216,7 +216,8 @@ const Header = () => {
             </div>
             <div className="corporateSales">
               <span>
-                <Link href="#">Korporativ satış</Link>
+                {/* <Link href="#">Korporativ satış</Link> */}
+                <Link href="#">Kорпоративные продажи</Link>
               </span>
             </div>
           </div>
