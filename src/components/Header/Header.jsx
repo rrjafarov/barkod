@@ -211,15 +211,15 @@ const Header = () => {
           <div className="storeAndCorporateSales">
             <div className="stores">
               <span>
-                <Link href="/products">Mağazalar</Link>
+                <Link href="/stores">Mağazalar</Link>
               </span>
             </div>
             <div className="corporateSales">
               <span>
                 {/* <Link href="#">Korporativ satış</Link> */}
-                <Link href="#">Kорпоративные продажи</Link>
+                <Link href="/products">Kорпоративные продажи</Link>
               </span>
-            </div>
+            </div>  
           </div>
           <div className="headerTopRight">
             <div className="contactCall">
@@ -295,7 +295,7 @@ const Header = () => {
                   </Link>
                 </div>
                 <div className="rightPagesIcon">
-                  <Link href="#">
+                  <Link href="/cart">
                     <button>
                       <BlackBasket className="rightPagesIconBlackIcons newCartIcon"  />
                     </button>

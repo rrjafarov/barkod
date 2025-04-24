@@ -5,6 +5,10 @@ import Image from "next/image";
 import { TbCurrencyManat } from "react-icons/tb";
 import NewScale from "../../../public/icons/newScale.svg";
 import NewWishList from "../../../public/icons/newWishlist.svg";
+import {
+  MdKeyboardDoubleArrowRight,
+  MdKeyboardArrowRight,
+} from "react-icons/md";
 
 const Wishlist = () => {
   const [showModal, setShowModal] = useState(false);
@@ -19,6 +23,17 @@ const Wishlist = () => {
 
   return (
     <div className="container">
+      <div className="breadCrumb">
+        <Link href="/">
+          <span>Ana Səhifə</span>
+        </Link>
+        <strong>
+          <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />
+        </strong>
+        <Link href="#">
+          <span>Seçilmişlər</span>
+        </Link>
+      </div>
       {showModal && (
         <div className="modal-overlay" onClick={handleOverlayClick}>
           <div className="modal">
