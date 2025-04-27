@@ -48,7 +48,7 @@ const Footer = () => {
                 <span className="footerHeadLink">Məlumat</span>
                 <ul>
                   <li>
-                    <Link href="#">Kampaniyalar</Link>
+                    <Link href="/campaign">Kampaniyalar</Link>
                   </li>
                   <li>
                     <Link href="#">Müstəri Kartı</Link>

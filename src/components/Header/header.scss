@@ -182,6 +182,47 @@ $MainColor: #ec1f27 !important;
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //! categoryMenu
 .categoryMegaMenu {
   display: flex;
@@ -202,7 +243,7 @@ $MainColor: #ec1f27 !important;
 .categoryMegaMenu .leftColumn ul {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 .categoryMegaMenu .rightColumn {
   flex: 1;
@@ -215,7 +256,7 @@ $MainColor: #ec1f27 !important;
   padding: 0;
   margin: 0;
 }
-.categoryMegaMenu .leftColumn li {
+.categoryMegaMenu .leftColumn li a {
   cursor: pointer;
   color: #111;
   font-size: 1.6rem;
@@ -232,32 +273,37 @@ $MainColor: #ec1f27 !important;
   align-items: center;
   width: 1.5rem;
   height: 1.5rem;
-  margin-right: 1rem;
-  // max-width: 3rem;
+  font-size: 4rem;
+  max-width: 3rem;
 }
+
 .ee {
-  margin-right: 2.5rem;
+  margin-right: 1rem;
 }
 #categoryLeftIconTV {
-  width: 3rem;
+  width: 2.7rem;
   height: 2rem;
 }
 #categoryLeftIconLaptop {
   width: 3rem;
+  width: 2.7rem;
   height: 2rem;
 }
 #categoryLeftIconMeiset {
   width: 3rem;
+  width: 2.7rem;
   height: 2rem;
 }
 #categoryLeftIconFan {
   width: 3rem;
+  width: 2.7rem;
   height: 2rem;
 }
 #categoryLeftIconMebel {
-  width: 3.7rem;
+  width: 3rem;
+  width: 2.7rem;
   height: 2rem;
-  margin-right: 0.3rem;
+  // margin-right: 0.3rem;
 }
 .categoryMegaMenu .leftColumn li:hover {
   background-color: lightgray;
@@ -281,9 +327,11 @@ $MainColor: #ec1f27 !important;
   padding-left: 2rem;
   gap: 10rem;
   .rightColumnItem {
-    .catgorySubTitle {
+    .catgorySubTitle a{
       font-size: 1.8rem !important;
       font-weight: 700 !important;
+      color: #111;
+      text-decoration: none;
     }
     ul {
       padding-top: 2rem;
@@ -291,7 +339,7 @@ $MainColor: #ec1f27 !important;
       flex-direction: column;
       gap: 1.5rem;
       li {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
         font-weight: 600;
         letter-spacing: 0.05rem;
       }
@@ -299,3 +347,12 @@ $MainColor: #ec1f27 !important;
   }
 }
 //! categoryMenu
+
+
+
+
+
+
+
+
+
