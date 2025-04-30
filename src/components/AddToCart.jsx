@@ -39,9 +39,9 @@ const AddToCart = () => {
           <div className="addToCartProductSection">
             <div className="cartProductSectionTop">
               <span className="cartTitle">Səbət</span>
-              <span>( 1 məhsul )</span>
+              {/* <span>( 1 məhsul )</span> */}
             </div>
-            <div className="cartProductSectionBottom">
+            {/* <div className="cartProductSectionBottom">
               <button>Hamısını seç</button>
               <button className="deleteCartItem">
                 <span>
@@ -49,7 +49,7 @@ const AddToCart = () => {
                 </span>{" "}
                 Seçilənləri sil{" "}
               </button>
-            </div>
+            </div> */}
           </div>
           <div className="cartProduct">
             <div className="cartProductLeft">
@@ -64,12 +64,12 @@ const AddToCart = () => {
               </div>
               <div className="cartProductTitle">
                 <h6>iPhone 16 Pro 256 GB Black</h6>
-                <button>
+                {/* <button>
                   <span>
                     <GoPlusCircle />
                   </span>
                   Zəmanət
-                </button>
+                </button> */}
               </div>
             </div>
             <div className="cartProductRight">
@@ -103,11 +103,12 @@ const AddToCart = () => {
             <div className="cartPaymentSectionTop">
               <div className="firstCartPaymentSectionTop">
                 <span>Məhsul:</span>
-                <span>{count} Məhsul</span>
+                {/* <span>{count} Məhsul</span> */}
               </div>
               <div className="secondCartPaymentSectionTop">
                 <span>
-                  iPhone 16 Pro 256 GB Black <strong>(1ədəd)</strong>
+                  iPhone 16 Pro 256 GB Black 
+                  {/* <strong>(1ədəd)</strong> */}
                 </span>
                 <div className="cartPrices">
                   <span className="cartNewPrice">

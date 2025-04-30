@@ -55,7 +55,7 @@ export default function Home() {
                     </div> */}
                   </div>
                 </Link>
-              </SwiperSlide> 
+              </SwiperSlide>
               <SwiperSlide>
                 <Link href="#" className="heroSliderLink">
                   <div className="heroSliderItem">
@@ -78,14 +78,6 @@ export default function Home() {
                   </div>
                 </Link>
               </SwiperSlide>
-
-
-
-
-
-
-
-
 
               {/* <SwiperSlide>
                 <Link href="#">
@@ -115,45 +107,46 @@ export default function Home() {
 
           <div className="xl-4 lg-4 md-4 sm-12">
             <div className="bannerStaticCards">
-              <div className="bannerStaticCard">
+              <div className="row">
+                <div className="xl-12 lg-12 md-6 sm-6">
+                  <div className="bannerStaticCard">
+                    <Image
+                      src="/images/staticBnnr01.jpg"
+                      alt="banner"
+                      width={200}
+                      height={200}
+                    />
+                  </div>
+                </div>
+                <div className="xl-12 lg-12 md-6 sm-6">
+                  <div className="bannerStaticCard">
+                    <Image
+                      src="/images/staticBnnr02.jpg"
+                      alt="banner"
+                      width={200}
+                      height={200}
+                    />
+                  </div>
+                </div>
+              </div>
+              {/* <div className="bannerStaticCard">
                 <Image
-                  // src="/images/bannerStaticCard01.png"
                   src="/images/staticBnnr01.jpg"
                   alt="banner"
                   width={200}
                   height={200}
                 />
-                {/* <div className="bannerStaticCardItem">
-                  <strong className="bannerSale">Sale Up to 50%</strong>
-                  <span>
-                    Drone <br /> Photography
-                  </span>
-                  <Link href="#">
-                    <button>
-                      Shop Now <MdKeyboardArrowRight className="shoopNowIcon" />
-                    </button>
-                  </Link>
-                </div> */}
-              </div>
-              <div className="bannerStaticCard">
+              </div> */}
+
+
+              {/* <div className="bannerStaticCard">
                 <Image
                   src="/images/staticBnnr02.jpg"
                   alt="banner"
                   width={200}
                   height={200}
                 />
-                {/* <div className="bannerStaticCardItemRight">
-                  <strong className="bannerSale">Sale Up to 60%</strong>
-                  <span>
-                    Best <br /> Headphone
-                  </span>
-                  <Link href="#">
-                    <button>
-                      Shop Now <MdKeyboardArrowRight className="shoopNowIcon" />
-                    </button>
-                  </Link>
-                </div> */}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

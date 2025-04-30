@@ -12,7 +12,7 @@ const HomePageStaticInfo = () => {
         <div className="container">
           {/* <div className="row"> */}
           <div className="rowdurbu">
-            <div className="staticInfoCard">
+            <div className="staticInfoCard staticFirstCard">
               <div className="staticInfoImage">
                 {/* <DeliveryRed className="deliveryIcon" /> */}
                 <Image
@@ -57,7 +57,7 @@ const HomePageStaticInfo = () => {
                 <span>Hissə-hissə ödəniş</span>
               </div>
             </div>
-            <div className="staticInfoCard">
+            <div className="staticInfoCard staticLastCard">
               <div className="staticInfoImage">
                 {/* <OperatorRed className="supportIcon" /> */}
                 <Image
@@ -69,7 +69,7 @@ const HomePageStaticInfo = () => {
                 />
               </div>
               <div className="staticInfoContent">
-                <span>24/7 Dəstək</span>
+                <span>24/7 Xidmətinizdəyik</span>
               </div>
             </div>
 

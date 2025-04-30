@@ -281,7 +281,7 @@ const Header = () => {
                   </Link>
                 </div>
                 <div className="rightPagesIcon">
-                  <Link href="#">
+                  <Link href="/compare">
                     <button>
                       <NewScale className="newScale" />
                     </button>
