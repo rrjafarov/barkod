@@ -90,6 +90,7 @@ const HomePageCountProduct = () => {
   const percent = (sold / total) * 100;
   const [value, setValue] = useState(4);
   const targetDate = Date.now() + 2 * 24 * 60 * 60 * 1000;
+  
   return (
     <div id="homePageCountProduct">
       <div className="container">

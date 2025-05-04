@@ -51,6 +51,7 @@ const AddToCart = () => {
               </button>
             </div> */}
           </div>
+
           <div className="cartProduct">
             <div className="cartProductLeft">
               <input type="checkbox" />
@@ -72,6 +73,7 @@ const AddToCart = () => {
                 </button> */}
               </div>
             </div>
+            
             <div className="cartProductRight">
               <div className="cartCount">
                 <HiOutlineMinusCircle
@@ -92,12 +94,15 @@ const AddToCart = () => {
                   3599.00 <TbCurrencyManat />
                 </span>
               </div>
+
               <button className="closeCartProduct">
                 <IoClose />
               </button>
             </div>
           </div>
         </div>
+
+
         <div className="xl-4 lg-4 md-4 sm-12">
           <div className="addToCartPaymentSection">
             <div className="cartPaymentSectionTop">

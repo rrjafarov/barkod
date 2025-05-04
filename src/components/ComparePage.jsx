@@ -61,7 +61,7 @@ const ComparePage = () => {
           <div className="row">
             <div className="xl-3 lg-3 md-3 sm-12">
               <div className="comparePageLeft">
-                <span>Göstər</span>
+                <span className="seeCompare" >Göstər</span>
                 <div className="compareAllParametrs">
                   <span>Telefonlar</span>
                   <span>Hamısını silin</span>

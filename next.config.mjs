@@ -3,45 +3,49 @@
 
 // export default nextConfig;
 
-
-
-
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    images: { 
-        unoptimized: true,
-    },
-    // output: "export",
-    
-    webpack(config) {
-        config.module.rules.push({
-            test: /\.svg$/,
-            use: [
-                {
-                    loader: "@svgr/webpack",
-                    options: {
-                        svgoConfig: {
-                            plugins: [
-                                {
-                                    name: "preset-default",
-                                    params: {
-                                        overrides: {
-                                            removeViewBox: false,
-                                        },
-                                    },
-                                },
-                            ],
-                        },
-                    },
-                },
-            ],
-        });
+  images: {
+    unoptimized: true,
+  },
+  //   images: {
+  //     remotePatterns: [
+  //       {
+  //         protocol: "https",
+  //         hostname: "//",
+  //         pathname: "/**",
+  //       },
+  //     ],
+  //   },
 
-        return config;
-    },
+  // output: "export",
+
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: [
+        {
+          loader: "@svgr/webpack",
+          options: {
+            svgoConfig: {
+              plugins: [
+                {
+                  name: "preset-default",
+                  params: {
+                    overrides: {
+                      removeViewBox: false,
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        },
+      ],
+    });
+
+    return config;
+  },
 };
 
 export default nextConfig;
-
-

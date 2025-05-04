@@ -238,7 +238,7 @@ const ProductsPage = () => {
             <div className="productPageCards">
               <div className="row">
                 <div className="xl-3 lg-4 md-6 sm-6">
-                  <div className="productSecondHomePageProductsCard">
+                  {/* <div className="productSecondHomePageProductsCard">
                     <Link href="/products/id" className="blockCardLink">
                       <div className="secondHomePageProductsCardImage">
                         <Image
@@ -278,6 +278,108 @@ const ProductsPage = () => {
                         </div>
                       </div>
                     </div>
+                    <div className="addToCartClick">
+                      <div className="addToCartClickItem">
+                        <button className="cartBtn">Səbətə at</button>
+                        <button onClick={openModal} className="clickBtn">
+                          Bir Klikle Al
+                        </button>
+                      </div>
+                    </div>
+                  </div> */}
+
+                  {/* <div className="secondHomePageProductsCard">
+                    <Link href="/products/id" className="blockCardLink">
+                      <div className="secondHomePageProductsCardImage">
+                        <Image
+                          src="/images/iphone16pro.png"
+                          alt="sony"
+                          width={200}
+                          height={200}
+                        />
+                      </div>
+                    </Link>
+                    <div className="secondHomePageProductsCardContent">
+                      <span>iPhone 16 Pro Max 256 GB Black Titanium</span>
+                      <div className="discount">
+                        <span>
+                          -350 <TbCurrencyManat />
+                        </span>
+                      </div>
+                      <div className="cardBottomContent">
+                        <div className="price">
+                          <span className="oldPrice">
+                            3000,00
+                            <TbCurrencyManat />
+                          </span>
+                          <span className="newPrice">
+                            2400,00
+                            <TbCurrencyManat />
+                          </span>
+                        </div>
+
+                        <div className="wishList">
+                          <button>
+                            <NewScale className="newScalePR" />
+                          </button>
+                          <button>
+                            <NewWishList className="newWishlistPR" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="addToCartClick">
+                      <div className="addToCartClickItem">
+                        <button className="cartBtn">Səbətə at</button>
+                        <button onClick={openModal} className="clickBtn">
+                          Bir Klikle Al
+                        </button>
+                      </div>
+                    </div>
+                  </div> */}
+                  <div className="secondHomePageProductsCard">
+                    <div className="secondHomePageProductsCardDiv">
+                      <Link href="/products/id" className="blockCardLink">
+                        <div className="secondHomePageProductsCardImage">
+                          <Image
+                            src="/images/iphone16pro.png"
+                            alt="sony"
+                            width={200}
+                            height={200}
+                          />
+                        </div>
+                      </Link>
+                      <div className="secondHomePageProductsCardContent">
+                        <span>iPhone 16 Pro Max 256 GB Black Titanium</span>
+                        <div className="discount">
+                          <span>
+                            -350 <TbCurrencyManat />
+                          </span>
+                        </div>
+                        <div className="cardBottomContent">
+                          <div className="price">
+                            <span className="oldPrice">
+                              3000,00
+                              <TbCurrencyManat />
+                            </span>
+                            <span className="newPrice">
+                              2400,00
+                              <TbCurrencyManat />
+                            </span>
+                          </div>
+
+                          <div className="wishList">
+                            <button>
+                              <NewScale className="newScalePR" />
+                            </button>
+                            <button>
+                              <NewWishList className="newWishlistPR" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                     <div className="addToCartClick">
                       <div className="addToCartClickItem">
                         <button className="cartBtn">Səbətə at</button>
@@ -289,7 +391,7 @@ const ProductsPage = () => {
                   </div>
                 </div>
                 <div className="xl-3 lg-4 md-6 sm-6">
-                  <div className="productSecondHomePageProductsCard">
+                  {/* <div className="productSecondHomePageProductsCard">
                     <Link href="/products/id" className="blockCardLink">
                       <div className="secondHomePageProductsCardImage">
                         <Image
@@ -329,6 +431,108 @@ const ProductsPage = () => {
                         </div>
                       </div>
                     </div>
+                    <div className="addToCartClick">
+                      <div className="addToCartClickItem">
+                        <button className="cartBtn">Səbətə at</button>
+                        <button onClick={openModal} className="clickBtn">
+                          Bir Klikle Al
+                        </button>
+                      </div>
+                    </div>
+                  </div> */}
+
+                  {/* <div className="secondHomePageProductsCard">
+                    <Link href="/products/id" className="blockCardLink">
+                      <div className="secondHomePageProductsCardImage">
+                        <Image
+                          src="/images/iphone16pro.png"
+                          alt="sony"
+                          width={200}
+                          height={200}
+                        />
+                      </div>
+                    </Link>
+                    <div className="secondHomePageProductsCardContent">
+                      <span>iPhone 16 Pro Max 256 GB Black Titanium</span>
+                      <div className="discount">
+                        <span>
+                          -350 <TbCurrencyManat />
+                        </span>
+                      </div>
+                      <div className="cardBottomContent">
+                        <div className="price">
+                          <span className="oldPrice">
+                            3000,00
+                            <TbCurrencyManat />
+                          </span>
+                          <span className="newPrice">
+                            2400,00
+                            <TbCurrencyManat />
+                          </span>
+                        </div>
+
+                        <div className="wishList">
+                          <button>
+                            <NewScale className="newScalePR" />
+                          </button>
+                          <button>
+                            <NewWishList className="newWishlistPR" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="addToCartClick">
+                      <div className="addToCartClickItem">
+                        <button className="cartBtn">Səbətə at</button>
+                        <button onClick={openModal} className="clickBtn">
+                          Bir Klikle Al
+                        </button>
+                      </div>
+                    </div>
+                  </div> */}
+                  <div className="secondHomePageProductsCard">
+                    <div className="secondHomePageProductsCardDiv">
+                      <Link href="/products/id" className="blockCardLink">
+                        <div className="secondHomePageProductsCardImage">
+                          <Image
+                            src="/images/iphone16pro.png"
+                            alt="sony"
+                            width={200}
+                            height={200}
+                          />
+                        </div>
+                      </Link>
+                      <div className="secondHomePageProductsCardContent">
+                        <span>iPhone 16 Pro Max 256 GB Black Titanium</span>
+                        <div className="discount">
+                          <span>
+                            -350 <TbCurrencyManat />
+                          </span>
+                        </div>
+                        <div className="cardBottomContent">
+                          <div className="price">
+                            <span className="oldPrice">
+                              3000,00
+                              <TbCurrencyManat />
+                            </span>
+                            <span className="newPrice">
+                              2400,00
+                              <TbCurrencyManat />
+                            </span>
+                          </div>
+
+                          <div className="wishList">
+                            <button>
+                              <NewScale className="newScalePR" />
+                            </button>
+                            <button>
+                              <NewWishList className="newWishlistPR" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                     <div className="addToCartClick">
                       <div className="addToCartClickItem">
                         <button className="cartBtn">Səbətə at</button>
@@ -340,7 +544,7 @@ const ProductsPage = () => {
                   </div>
                 </div>
                 <div className="xl-3 lg-4 md-6 sm-6">
-                  <div className="productSecondHomePageProductsCard">
+                  {/* <div className="productSecondHomePageProductsCard">
                     <Link href="/products/id" className="blockCardLink">
                       <div className="secondHomePageProductsCardImage">
                         <Image
@@ -380,6 +584,108 @@ const ProductsPage = () => {
                         </div>
                       </div>
                     </div>
+                    <div className="addToCartClick">
+                      <div className="addToCartClickItem">
+                        <button className="cartBtn">Səbətə at</button>
+                        <button onClick={openModal} className="clickBtn">
+                          Bir Klikle Al
+                        </button>
+                      </div>
+                    </div>
+                  </div> */}
+
+                  {/* <div className="secondHomePageProductsCard">
+                    <Link href="/products/id" className="blockCardLink">
+                      <div className="secondHomePageProductsCardImage">
+                        <Image
+                          src="/images/iphone16pro.png"
+                          alt="sony"
+                          width={200}
+                          height={200}
+                        />
+                      </div>
+                    </Link>
+                    <div className="secondHomePageProductsCardContent">
+                      <span>iPhone 16 Pro Max 256 GB Black Titanium</span>
+                      <div className="discount">
+                        <span>
+                          -350 <TbCurrencyManat />
+                        </span>
+                      </div>
+                      <div className="cardBottomContent">
+                        <div className="price">
+                          <span className="oldPrice">
+                            3000,00
+                            <TbCurrencyManat />
+                          </span>
+                          <span className="newPrice">
+                            2400,00
+                            <TbCurrencyManat />
+                          </span>
+                        </div>
+
+                        <div className="wishList">
+                          <button>
+                            <NewScale className="newScalePR" />
+                          </button>
+                          <button>
+                            <NewWishList className="newWishlistPR" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="addToCartClick">
+                      <div className="addToCartClickItem">
+                        <button className="cartBtn">Səbətə at</button>
+                        <button onClick={openModal} className="clickBtn">
+                          Bir Klikle Al
+                        </button>
+                      </div>
+                    </div>
+                  </div> */}
+                  <div className="secondHomePageProductsCard">
+                    <div className="secondHomePageProductsCardDiv">
+                      <Link href="/products/id" className="blockCardLink">
+                        <div className="secondHomePageProductsCardImage">
+                          <Image
+                            src="/images/iphone16pro.png"
+                            alt="sony"
+                            width={200}
+                            height={200}
+                          />
+                        </div>
+                      </Link>
+                      <div className="secondHomePageProductsCardContent">
+                        <span>iPhone 16 Pro Max 256 GB Black Titanium</span>
+                        <div className="discount">
+                          <span>
+                            -350 <TbCurrencyManat />
+                          </span>
+                        </div>
+                        <div className="cardBottomContent">
+                          <div className="price">
+                            <span className="oldPrice">
+                              3000,00
+                              <TbCurrencyManat />
+                            </span>
+                            <span className="newPrice">
+                              2400,00
+                              <TbCurrencyManat />
+                            </span>
+                          </div>
+
+                          <div className="wishList">
+                            <button>
+                              <NewScale className="newScalePR" />
+                            </button>
+                            <button>
+                              <NewWishList className="newWishlistPR" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                     <div className="addToCartClick">
                       <div className="addToCartClickItem">
                         <button className="cartBtn">Səbətə at</button>
@@ -391,7 +697,7 @@ const ProductsPage = () => {
                   </div>
                 </div>
                 <div className="xl-3 lg-4 md-6 sm-6">
-                  <div className="productSecondHomePageProductsCard">
+                  {/* <div className="productSecondHomePageProductsCard">
                     <Link href="/products/id" className="blockCardLink">
                       <div className="secondHomePageProductsCardImage">
                         <Image
@@ -431,6 +737,108 @@ const ProductsPage = () => {
                         </div>
                       </div>
                     </div>
+                    <div className="addToCartClick">
+                      <div className="addToCartClickItem">
+                        <button className="cartBtn">Səbətə at</button>
+                        <button onClick={openModal} className="clickBtn">
+                          Bir Klikle Al
+                        </button>
+                      </div>
+                    </div>
+                  </div> */}
+
+                  {/* <div className="secondHomePageProductsCard">
+                    <Link href="/products/id" className="blockCardLink">
+                      <div className="secondHomePageProductsCardImage">
+                        <Image
+                          src="/images/iphone16pro.png"
+                          alt="sony"
+                          width={200}
+                          height={200}
+                        />
+                      </div>
+                    </Link>
+                    <div className="secondHomePageProductsCardContent">
+                      <span>iPhone 16 Pro Max 256 GB Black Titanium</span>
+                      <div className="discount">
+                        <span>
+                          -350 <TbCurrencyManat />
+                        </span>
+                      </div>
+                      <div className="cardBottomContent">
+                        <div className="price">
+                          <span className="oldPrice">
+                            3000,00
+                            <TbCurrencyManat />
+                          </span>
+                          <span className="newPrice">
+                            2400,00
+                            <TbCurrencyManat />
+                          </span>
+                        </div>
+
+                        <div className="wishList">
+                          <button>
+                            <NewScale className="newScalePR" />
+                          </button>
+                          <button>
+                            <NewWishList className="newWishlistPR" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="addToCartClick">
+                      <div className="addToCartClickItem">
+                        <button className="cartBtn">Səbətə at</button>
+                        <button onClick={openModal} className="clickBtn">
+                          Bir Klikle Al
+                        </button>
+                      </div>
+                    </div>
+                  </div> */}
+                  <div className="secondHomePageProductsCard">
+                    <div className="secondHomePageProductsCardDiv">
+                      <Link href="/products/id" className="blockCardLink">
+                        <div className="secondHomePageProductsCardImage">
+                          <Image
+                            src="/images/iphone16pro.png"
+                            alt="sony"
+                            width={200}
+                            height={200}
+                          />
+                        </div>
+                      </Link>
+                      <div className="secondHomePageProductsCardContent">
+                        <span>iPhone 16 Pro Max 256 GB Black Titanium</span>
+                        <div className="discount">
+                          <span>
+                            -350 <TbCurrencyManat />
+                          </span>
+                        </div>
+                        <div className="cardBottomContent">
+                          <div className="price">
+                            <span className="oldPrice">
+                              3000,00
+                              <TbCurrencyManat />
+                            </span>
+                            <span className="newPrice">
+                              2400,00
+                              <TbCurrencyManat />
+                            </span>
+                          </div>
+
+                          <div className="wishList">
+                            <button>
+                              <NewScale className="newScalePR" />
+                            </button>
+                            <button>
+                              <NewWishList className="newWishlistPR" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                     <div className="addToCartClick">
                       <div className="addToCartClickItem">
                         <button className="cartBtn">Səbətə at</button>
@@ -442,7 +850,7 @@ const ProductsPage = () => {
                   </div>
                 </div>
                 <div className="xl-3 lg-4 md-6 sm-6">
-                  <div className="productSecondHomePageProductsCard">
+                  {/* <div className="productSecondHomePageProductsCard">
                     <Link href="/products/id" className="blockCardLink">
                       <div className="secondHomePageProductsCardImage">
                         <Image
@@ -490,10 +898,9 @@ const ProductsPage = () => {
                         </button>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div className="xl-3 lg-4 md-6 sm-6">
-                  <div className="productSecondHomePageProductsCard">
+                  </div> */}
+
+                  {/* <div className="secondHomePageProductsCard">
                     <Link href="/products/id" className="blockCardLink">
                       <div className="secondHomePageProductsCardImage">
                         <Image
@@ -541,49 +948,50 @@ const ProductsPage = () => {
                         </button>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div className="xl-3 lg-4 md-6 sm-6">
-                  <div className="productSecondHomePageProductsCard">
-                    <Link href="/products/id" className="blockCardLink">
-                      <div className="secondHomePageProductsCardImage">
-                        <Image
-                          src="/images/iphone16pro.png"
-                          alt="sony"
-                          width={200}
-                          height={200}
-                        />
-                      </div>
-                    </Link>
-                    <div className="secondHomePageProductsCardContent">
-                      <span>iPhone 16 Pro Max 256 GB Black Titanium</span>
-                      <div className="discount">
-                        <span>
-                          -350 <TbCurrencyManat />
-                        </span>
-                      </div>
-                      <div className="cardBottomContent">
-                        <div className="price">
-                          <span className="oldPrice">
-                            3000,00
-                            <TbCurrencyManat />
-                          </span>
-                          <span className="newPrice">
-                            2400,00
-                            <TbCurrencyManat />
+                  </div> */}
+                  <div className="secondHomePageProductsCard">
+                    <div className="secondHomePageProductsCardDiv">
+                      <Link href="/products/id" className="blockCardLink">
+                        <div className="secondHomePageProductsCardImage">
+                          <Image
+                            src="/images/iphone16pro.png"
+                            alt="sony"
+                            width={200}
+                            height={200}
+                          />
+                        </div>
+                      </Link>
+                      <div className="secondHomePageProductsCardContent">
+                        <span>iPhone 16 Pro Max 256 GB Black Titanium</span>
+                        <div className="discount">
+                          <span>
+                            -350 <TbCurrencyManat />
                           </span>
                         </div>
+                        <div className="cardBottomContent">
+                          <div className="price">
+                            <span className="oldPrice">
+                              3000,00
+                              <TbCurrencyManat />
+                            </span>
+                            <span className="newPrice">
+                              2400,00
+                              <TbCurrencyManat />
+                            </span>
+                          </div>
 
-                        <div className="wishList">
-                          <button>
-                            <NewScale className="newScalePR" />
-                          </button>
-                          <button>
-                            <NewWishList className="newWishlistPR" />
-                          </button>
+                          <div className="wishList">
+                            <button>
+                              <NewScale className="newScalePR" />
+                            </button>
+                            <button>
+                              <NewWishList className="newWishlistPR" />
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
+
                     <div className="addToCartClick">
                       <div className="addToCartClickItem">
                         <button className="cartBtn">Səbətə at</button>
@@ -594,57 +1002,7 @@ const ProductsPage = () => {
                     </div>
                   </div>
                 </div>
-                <div className="xl-3 lg-4 md-6 sm-6">
-                  <div className="productSecondHomePageProductsCard">
-                    <Link href="/products/id" className="blockCardLink">
-                      <div className="secondHomePageProductsCardImage">
-                        <Image
-                          src="/images/iphone16pro.png"
-                          alt="sony"
-                          width={200}
-                          height={200}
-                        />
-                      </div>
-                    </Link>
-                    <div className="secondHomePageProductsCardContent">
-                      <span>iPhone 16 Pro Max 256 GB Black Titanium</span>
-                      <div className="discount">
-                        <span>
-                          -350 <TbCurrencyManat />
-                        </span>
-                      </div>
-                      <div className="cardBottomContent">
-                        <div className="price">
-                          <span className="oldPrice">
-                            3000,00
-                            <TbCurrencyManat />
-                          </span>
-                          <span className="newPrice">
-                            2400,00
-                            <TbCurrencyManat />
-                          </span>
-                        </div>
-
-                        <div className="wishList">
-                          <button>
-                            <NewScale className="newScalePR" />
-                          </button>
-                          <button>
-                            <NewWishList className="newWishlistPR" />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="addToCartClick">
-                      <div className="addToCartClickItem">
-                        <button className="cartBtn">Səbətə at</button>
-                        <button onClick={openModal} className="clickBtn">
-                          Bir Klikle Al
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                
               </div>
             </div>
           </div>

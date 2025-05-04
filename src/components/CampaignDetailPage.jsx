@@ -35,7 +35,7 @@ const CompaignDetailPage = () => {
               <span>Кешбек 5% при оплаті карткою monobank</span>
             </div>
             <div className="row">
-              <div className="xl-9 lg-9 md-9 sm-9">
+              <div className="xl-9 lg-9 md-6 sm-12">
                 <div className="campaignDetailPageLeft">
                   <Image
                     src="/images/campaignDPImg.png"
@@ -45,7 +45,7 @@ const CompaignDetailPage = () => {
                   />
                 </div>
               </div>
-              <div className="xl-3 lg-3 md-3 sm-3">
+              <div className="xl-3 lg-3 md-6 sm-12">
                 <div className="campaignDetailPageRight">
                   <Link className="blockDPCardLink" href="#">
                     <div className="campaignDetailPageCard">
