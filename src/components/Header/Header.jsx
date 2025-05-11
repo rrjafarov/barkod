@@ -131,7 +131,7 @@ import NewWishList from "../../../public/icons/newWishlist.svg";
 import HamburgerMenu from "../../../public/icons/hamburgerMenu.svg";
 import CategoryIcon from "../../../public/icons/categoryMenuNewIcon.svg";
 import Select from "react-select";
-import CatalogMenu from "@/components/CategoryMenu";
+import CategoryMenu from "@/components/CategoryMenu";
 
 
 const Header = () => {
@@ -156,7 +156,6 @@ const Header = () => {
       boxShadow: "none", // Focus olduğunda gölgeyi kaldır
       color: "red", // Metin rengini belirle
       fontWeight: "#111",
-      // fontFamily: '"Poppins", sans-serif',
     }),
     singleValue: (provided) => ({
       ...provided,
@@ -216,7 +215,6 @@ const Header = () => {
             </div>
             <div className="corporateSales">
               <span>
-                {/* <Link href="#">Korporativ satış</Link> */}
                 <Link href="/products">Kорпоративные продажи</Link>
               </span>
             </div>  
@@ -232,7 +230,6 @@ const Header = () => {
             </div>
 
             <div className="changeLang">
-              {/* <span>AZ</span> */}
               <Select
                 options={languageOptions}
                 onChange={handleChange}
@@ -261,6 +258,7 @@ const Header = () => {
                 <span>Kataloq</span>
               </div>
             </div>
+
             <div className="xl-8 lg-8 md-8 sm-8">
               <div className="headerSearching">
                 <div className="searchContainer">
@@ -318,7 +316,7 @@ const Header = () => {
                   padding: "1rem 0",
                 }}
               >
-                <CatalogMenu />
+                <CategoryMenu />
               </div>
             )}
           </div>

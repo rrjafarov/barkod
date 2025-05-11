@@ -182,91 +182,549 @@ $MainColor: #ec1f27 !important;
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //! categoryMenu
+// .categoryMegaMenu {
+//   display: flex;
+//   width: 600px;
+//   width: 100%;
+//   background-color: #fff;
+//   border: 1px solid #e0e0e0;
+//   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+//   border-radius: 1rem;
+// }
+// .categoryMegaMenu .leftColumn {
+//   width: 200px;
+//   border-right: 1px solid #111;
+//   width: 30%;
+//   padding: 2rem;
+//   margin: 1rem 0;
+// }
+// .categoryMegaMenu .leftColumn ul {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 1.5rem;
+// }
+// .categoryMegaMenu .rightColumn {
+//   flex: 1;
+//   margin: 1rem 0;
+//   padding: 2rem;
+//   min-height: 200px;
+// }
+// .categoryMegaMenu ul {
+//   list-style: none;
+//   padding: 0;
+//   margin: 0;
+// }
+// .categoryMegaMenu .leftColumn li a {
+//   cursor: pointer;
+//   color: #111;
+//   font-size: 1.6rem;
+//   font-weight: 600;
+//   width: 100%;
+//   padding: 1rem;
+//   display: flex;
+//   align-items: flex-start;
+//   gap: 2rem;
+// }
+// .categoryLeftIcon {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: 1.5rem;
+//   height: 1.5rem;
+//   font-size: 4rem;
+//   max-width: 3rem;
+// }
+
+// .ee {
+//   margin-right: 1rem;
+// }
+// #categoryLeftIconTV {
+//   width: 2.7rem;
+//   height: 2rem;
+// }
+// #categoryLeftIconLaptop {
+//   width: 3rem;
+//   width: 2.7rem;
+//   height: 2rem;
+// }
+// #categoryLeftIconMeiset {
+//   width: 3rem;
+//   width: 2.7rem;
+//   height: 2rem;
+// }
+// #categoryLeftIconFan {
+//   width: 3rem;
+//   width: 2.7rem;
+//   height: 2rem;
+// }
+// #categoryLeftIconMebel {
+//   width: 3rem;
+//   width: 2.7rem;
+//   height: 2rem;
+//   // margin-right: 0.3rem;
+// }
+// .categoryMegaMenu .leftColumn li:hover {
+//   background-color: lightgray;
+//   border-radius: 1rem;
+//   .categoryLeftIcon {
+//     svg {
+//       fill: $MainColor;
+//     }
+//   }
+// }
+// .categoryMegaMenu .rightColumn a {
+//   color: rgb(122, 122, 122);
+//   text-decoration: none;
+//   font-weight: 550;
+// }
+// .categoryMegaMenu .rightColumn a:hover {
+//   text-decoration: underline;
+// }
+// .rightColumnItems {
+//   display: flex;
+//   padding-left: 2rem;
+//   gap: 10rem;
+//   .rightColumnItem {
+//     .catgorySubTitle a{
+//       font-size: 1.8rem !important;
+//       font-weight: 700 !important;
+//       color: #111;
+//       text-decoration: none;
+//     }
+//     ul {
+//       padding-top: 2rem;
+//       display: flex;
+//       flex-direction: column;
+//       gap: 1.5rem;
+//       li {
+//         font-size: 1.5rem;
+//         font-weight: 600;
+//         letter-spacing: 0.05rem;
+//       }
+//     }
+//   }
+// }
+//! categoryMenu
+
+//* son versiya -==-=-=--=-==-
+// styles/_mega-menu.scss
+
 .categoryMegaMenu {
   display: flex;
-  width: 600px;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+
+  .leftColumn {
+    width: 30%;
+    border-right: 1px solid #111;
+    padding: 2rem;
+    margin: 1rem 0;
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li a {
+      cursor: pointer;
+      color: #111;
+      font-size: 1.7rem;
+      font-weight: 600;
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+      padding: 1rem;
+      width: 100%;
+    }
+
+    li:hover {
+      background-color: lightgray;
+      border-radius: 1rem;
+      .categoryLeftIcon svg {
+        fill: $MainColor;
+      }
+    }
+  }
+
+  .categoryLeftIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 4rem;
+    max-width: 3rem;
+  }
+  .ee {
+    margin-right: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    .phoneIcon {
+      width: 2.7rem;
+      height: 2.7rem;
+      position: absolute;
+      left: 0.01rem;
+    }
+  }
+  #categoryLeftIconTV,
+  #categoryLeftIconLaptop,
+  #categoryLeftIconMeiset,
+  #categoryLeftIconFan,
+  #categoryLeftIconMebel {
+    width: 2.7rem !important;
+    height: 2rem !important;
+  }
+
+  .rightColumn {
+    flex: 1;
+    margin: 1rem 0;
+    padding: 2rem;
+    min-height: 200px;
+
+    a {
+      color: rgb(122, 122, 122);
+      font-weight: 550;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .rightColumnItems {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10rem;
+      padding-left: 2rem;
+
+      .rightColumnItem {
+        .catgorySubTitle a {
+          font-size: 1.8rem !important;
+          font-weight: 700 !important;
+          color: #111;
+          text-decoration: none;
+        }
+        ul {
+          padding-top: 2rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1.5rem;
+          li {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.05rem;
+          }
+        }
+      }
+    }
+  }
+
+  // Mobil uyumlu
+  @media (max-width: 767.9px) {
+    flex-direction: column;
+    .leftColumn,
+    .rightColumn {
+      width: 100%;
+      padding: 1rem;
+      margin: 0;
+    }
+
+    // Başlangıçta yalnız sol görünsün
+    .rightColumn {
+      display: none;
+    }
+    // active sinifi varsa sağa keç, sola gizlət
+    &.active {
+      .rightColumn {
+        display: block;
+      }
+      .leftColumn {
+        display: none;
+      }
+    }
+  }
+  .categoryLeftIcon svg {
+    width: 2.7rem; /* Mobil üçün icon ölçüsünü artırır */
+    height: 2.7rem;
+    fill: #000; /* Rəngi görünən edir */
+  }
+}
+
+//* son versiya -==-=-=--=-==-2
+/* Ümumi Stil */
+// .categoryMegaMenu {
+//   display: flex;
+//   width: 100%;
+//   background-color: #fff;
+//   border: 1px solid #e0e0e0;
+//   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+//   border-radius: 1rem;
+// }
+
+// /* Sol Tərəf (Kateqoriyalar) */
+// .leftColumn {
+//   width: 30%;
+//   border-right: 1px solid #111;
+//   padding: 2rem;
+//   margin: 1rem 0;
+// }
+
+// .leftColumn ul {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 2rem;
+//   list-style: none;
+//   padding: 0;
+//   margin: 0;
+// }
+
+// .leftColumn li a {
+//   cursor: pointer;
+//   color: #111;
+//   font-size: 1.7rem;
+//   font-weight: 600;
+//   display: flex;
+//   align-items: flex-start;
+//   gap: 2rem;
+//   padding: 1rem;
+//   width: 100%;
+// }
+
+// .leftColumn li:hover {
+//   background-color: lightgray;
+//   border-radius: 1rem;
+// }
+
+// .leftColumn li:hover .categoryLeftIcon svg {
+//   fill: #007bff; /* Əgər öz rənginiz varsa, buranı dəyişin */
+// }
+
+// .categoryLeftIcon {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: 1.5rem;
+//   height: 1.5rem;
+//   font-size: 4rem;
+//   max-width: 3rem;
+// }
+
+// .ee {
+//   margin-right: 1rem;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   position: relative;
+// }
+
+// .ee .phoneIcon {
+//   width: 2.7rem;
+//   height: 2.7rem;
+//   position: absolute;
+//   left: 0.01rem;
+// }
+
+// #categoryLeftIconTV,
+// #categoryLeftIconLaptop,
+// #categoryLeftIconMeiset,
+// #categoryLeftIconFan,
+// #categoryLeftIconMebel {
+//   width: 2.7rem !important;
+//   height: 2rem !important;
+// }
+
+// /* Sağ Tərəf (Alt Kateqoriyalar) */
+// .rightColumn {
+//   flex: 1;
+//   margin: 1rem 0;
+//   padding: 2rem;
+//   min-height: 200px;
+// }
+
+// .rightColumn a {
+//   color: rgb(122, 122, 122);
+//   font-weight: 550;
+//   text-decoration: none;
+// }
+
+// .rightColumn a:hover {
+//   text-decoration: underline;
+// }
+
+// .rightColumnItems {
+//   display: flex;
+//   flex-wrap: wrap;
+//   gap: 10rem;
+//   padding-left: 2rem;
+// }
+
+// .rightColumnItem .catgorySubTitle a {
+//   font-size: 1.8rem !important;
+//   font-weight: 700 !important;
+//   color: #111;
+//   text-decoration: none;
+// }
+
+// .rightColumnItem ul {
+//   padding-top: 2rem;
+//   display: flex;
+//   flex-direction: column;
+//   gap: 1.5rem;
+// }
+
+// .rightColumnItem ul li {
+//   font-size: 1.5rem;
+//   font-weight: 600;
+//   letter-spacing: 0.05rem;
+// }
+
+// /* Mobil Uyğunlaşdırma */
+// @media (max-width: 767.9px) {
+//   .categoryMegaMenu {
+//     position: fixed;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     overflow-y: auto;
+//     background-color: #fff;
+//     z-index: 1000;
+//     border-radius: 0; /* Mobil versiyada radiusu ləğv edirik */
+//     flex-direction: column; /* Şaquli düzülüş */
+//   }
+
+//   .leftColumn {
+//     width: 100%;
+//     padding: 2rem;
+//     border-right: none; /* Mobil versiyada sərhədi ləğv edirik */
+//   }
+
+//   .leftColumn ul {
+//     gap: 3rem; /* Kateqoriyalar arasında daha çox boşluq */
+//   }
+
+//   .leftColumn li a {
+//     font-size: 2rem; /* Daha böyük mətn */
+//     padding: 1.5rem; /* Daha böyük toxunuş sahəsi */
+//     display: flex;
+//     align-items: center;
+//     gap: 2rem;
+//   }
+
+//   .categoryLeftIcon svg {
+//     width: 3.5rem; /* Daha böyük ikon */
+//     height: 3.5rem;
+//   }
+
+//   .rightColumn {
+//     position: fixed;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     overflow-y: auto;
+//     background-color: #fff;
+//     z-index: 1001;
+//     padding: 2rem;
+//     display: none; /* Başlanğıcda gizli */
+//   }
+
+//   .categoryMegaMenu.active .rightColumn {
+//     display: block; /* Aktiv olduqda görünsün */
+//   }
+
+//   .categoryMegaMenu.active .leftColumn {
+//     display: none; /* Aktiv olduqda sol tərəf gizlənsin */
+//   }
+
+//   .rightColumn p {
+//     font-size: 2rem; /* Geri düyməsi mətni */
+//     padding: 1.5rem;
+//     background-color: #f0f0f0;
+//     border-radius: 0.5rem;
+//     margin-bottom: 2rem;
+//     cursor: pointer;
+//     text-align: center; /* Mərkəzləşdirilmiş mətn */
+//   }
+
+//   .rightColumnItems {
+//     padding: 2rem;
+//   }
+
+//   .rightColumnItem ul li {
+//     font-size: 1.8rem; /* Alt kateqoriyalar üçün mətn ölçüsü */
+//     padding: 1rem 0;
+//   }
+
+//   .catgorySubTitle a {
+//     font-size: 2.2rem !important; /* Başlıqlar üçün mətn ölçüsü */
+//   }
+// }
+//* son versiya -==-=-=--=-==-2
+
+// ! EN SON VERSIYA
+/* Ümumi Stil */
+.categoryMegaMenu {
+  display: flex;
   width: 100%;
   background-color: #fff;
   border: 1px solid #e0e0e0;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
 }
-.categoryMegaMenu .leftColumn {
-  width: 200px;
-  border-right: 1px solid #111;
+
+/* Sol Tərəf (Kateqoriyalar) */
+.leftColumn {
   width: 30%;
+  border-right: 1px solid #111;
   padding: 2rem;
   margin: 1rem 0;
 }
-.categoryMegaMenu .leftColumn ul {
+
+.leftColumn ul {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-}
-.categoryMegaMenu .rightColumn {
-  flex: 1;
-  margin: 1rem 0;
-  padding: 2rem;
-  min-height: 200px;
-}
-.categoryMegaMenu ul {
+  gap: 2rem;
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.categoryMegaMenu .leftColumn li a {
+.leftColumn ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.leftColumn li a {
   cursor: pointer;
   color: #111;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   font-weight: 600;
-  width: 100%;
-  padding: 1rem;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: flex-start;
   gap: 2rem;
+  padding: 1rem;
+  width: 100%;
 }
+
+.leftColumn li:hover {
+  background-color: lightgray;
+  border-radius: 1rem;
+}
+
+.leftColumn li:hover .categoryLeftIcon svg {
+  fill: #007bff; /* Əgər öz rənginiz varsa, buranı dəyişin */
+}
+
 .categoryLeftIcon {
   display: flex;
   justify-content: center;
@@ -279,80 +737,236 @@ $MainColor: #ec1f27 !important;
 
 .ee {
   margin-right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
-#categoryLeftIconTV {
+
+.ee .phoneIcon {
   width: 2.7rem;
-  height: 2rem;
+  height: 2.7rem;
+  position: absolute;
+  left: 0.01rem;
 }
-#categoryLeftIconLaptop {
-  width: 3rem;
-  width: 2.7rem;
-  height: 2rem;
-}
-#categoryLeftIconMeiset {
-  width: 3rem;
-  width: 2.7rem;
-  height: 2rem;
-}
-#categoryLeftIconFan {
-  width: 3rem;
-  width: 2.7rem;
-  height: 2rem;
-}
+
+#categoryLeftIconTV,
+#categoryLeftIconLaptop,
+#categoryLeftIconMeiset,
+#categoryLeftIconFan,
 #categoryLeftIconMebel {
-  width: 3rem;
-  width: 2.7rem;
-  height: 2rem;
-  // margin-right: 0.3rem;
+  width: 2.7rem !important;
+  height: 2rem !important;
 }
-.categoryMegaMenu .leftColumn li:hover {
-  background-color: lightgray;
-  border-radius: 1rem;
-  .categoryLeftIcon {
-    svg {
-      fill: $MainColor;
-    }
-  }
+
+/* Sağ Tərəf (Alt Kateqoriyalar) */
+.rightColumn {
+  flex: 1;
+  margin: 1rem 0;
+  padding: 2rem;
+  min-height: 200px;
 }
-.categoryMegaMenu .rightColumn a {
+
+.rightColumn a {
   color: rgb(122, 122, 122);
-  text-decoration: none;
   font-weight: 550;
+  text-decoration: none;
 }
-.categoryMegaMenu .rightColumn a:hover {
+
+.rightColumn a:hover {
   text-decoration: underline;
 }
+
 .rightColumnItems {
   display: flex;
-  padding-left: 2rem;
+  flex-wrap: wrap;
   gap: 10rem;
-  .rightColumnItem {
-    .catgorySubTitle a{
-      font-size: 1.8rem !important;
-      font-weight: 700 !important;
+  padding-left: 2rem;
+}
+
+.rightColumnItem .catgorySubTitle a {
+  font-size: 1.8rem !important;
+  font-weight: 600 !important;
+  color: #111;
+  text-decoration: none;
+}
+
+.rightColumnItem ul {
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.rightColumnItem ul li {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.05rem;
+}
+
+/* Mobil */
+@media (max-width: 767.9px) {
+  .categoryMegaMenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #fff;
+    z-index: 1000;
+    border-radius: 0; /* Mobil versiyada radiusu ləğv edirik */
+    flex-direction: column; /* Şaquli düzülüş */
+  }
+  .leftColumn {
+    width: 100%;
+    padding: 2rem;
+    border-right: none; /* Mobil versiyada sərhədi ləğv edirik */
+  }
+  .leftColumn ul {
+    gap: 3rem; /* Kateqoriyalar arasında daha çox boşluq */
+  }
+  .leftColumn li a {
+    font-size: 2.1rem !important; /* Daha böyük mətn */
+    padding: 1.5rem; /* Daha böyük toxunuş sahəsi */
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .categoryLeftIcon svg {
+    width: 3.5rem; /* Daha böyük ikon */
+    height: 3.5rem;
+  }
+  .rightColumn {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #fff;
+    z-index: 1001;
+    padding: 2rem;
+    display: none; /* Başlanğıcda gizli */
+  }
+  .categoryMegaMenu.active .rightColumn {
+    display: block; /* Aktiv olduqda görünsün */
+  }
+  .categoryMegaMenu.active .leftColumn {
+    display: none; /* Aktiv olduqda sol tərəf gizlənsin */
+  }
+  .rightColumn p {
+    font-size: 2.1rem !important; 
+    padding: 0rem 0 2.5rem 1rem;
+    // background-color: #f0f0f0;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+    cursor: pointer;
+    width: 20rem;
+    text-align: start; 
+  }
+  .rightColumnItems {
+    padding: 2rem;
+  }
+  .rightColumnItem ul li {
+    font-size: 2rem !important;  /* Alt kateqoriyalar üçün mətn ölçüsü */
+    padding: 1rem 0;
+  }
+  .catgorySubTitle a {
+    font-size: 2.2rem !important; /* Başlıqlar üçün mətn ölçüsü */
+  }
+}
+.arrowIcon {
+  font-size: 2rem;
+  margin-left: auto;
+  cursor: pointer;
+}
+@media (max-width: 767.9px) {
+  .leftColumn li a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .leftColumn li:hover {
+    background-color: white !important;
+  }
+  .arrowIcon {
+    font-size: 2.5rem;
+  }
+}
+.arrowIcon {
+  display: none; /* Desktopda gizlət */
+}
+@media (max-width: 767.9px) {
+  .arrowIcon {
+    display: inline; /* Mobil versiyada göstər */
+  }
+}
+
+.menuHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 3rem;
+  span {
+    font-size: 2rem;
+  }
+}
+@media (max-width: 767.9px) {
+  .menuHeader {
+    display: block; /* Mobil versiyada göstər */
+  }
+}
+.mobileMenuHeader {
+  display: none;
+}
+@media (max-width: 767.9px) {
+  .mobileMenuHeader {
+    width: 100%;
+    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 1.5rem 3rem;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 3rem;
+    span {
+      font-size: 2rem;
+      font-weight: 600;
       color: #111;
       text-decoration: none;
     }
+  }
+  // Mobile
+  .rightColumnItems {
+    padding: 1rem !important;
+    display: flex;
+    gap: 3rem !important;
     ul {
-      padding-top: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
+      padding: 0 !important;
       li {
-        font-size: 1.5rem;
-        font-weight: 600;
-        letter-spacing: 0.05rem;
+        color: #111 !important;
+        font-size: 2rem !important;
+        font-weight: 600 !important;
       }
     }
   }
+  .categoryMegaMenu .rightColumn a {
+    color: #111 !important;
+  }
+
+  .categoryMegaMenu .rightColumn .rightColumnItems .rightColumnItem .catgorySubTitle a{
+    font-size: 2.2rem !important;
+    font-weight: 600 !important;
+  }
+  .categoryMegaMenu .rightColumn a{
+    font-size: 2rem !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+  }
 }
-//! categoryMenu
-
-
-
-
-
-
-
-
-
+// ! EN SON VERSIYA

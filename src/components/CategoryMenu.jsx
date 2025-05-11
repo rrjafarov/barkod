@@ -1,172 +1,1144 @@
-// components/MegaMenu.jsx
+// "use client";
+// import Link from "next/link";
+// import { useState } from "react";
+// import Phone from "../../public/icons/blackPhone.svg";
+// import TV from "../../public/icons/blackTV.svg";
+// import Laptop from "../../public/icons/blackLaptop.svg";
+// import MeisetTexnikasi from "../../public/icons/blackMeisetTexnikasi.svg";
+// import Fan from "../../public/icons/blackFan.svg";
+// import Mebel from "../../public/icons/blackMebel.svg";
+// import { SlScreenSmartphone } from "react-icons/sl";
+// const MegaMenu = () => {
+//   const [activeTab, setActiveTab] = useState(null);
+
+//   return (
+//     <div className="containera">
+//       <div className="categoryMegaMenu">
+//         {/* Sol Kısım - Kategoriler */}
+//         <div className="leftColumn">
+//           <ul>
+//             <li onMouseEnter={() => setActiveTab("elektronika")}>
+//               <Link href="/category">
+//                 <div className="categoryLeftIcon ee">
+//                   <Phone  />
+//                 </div>
+//                 <span>Telefonlar və aksesuarlar</span>
+//               </Link>
+//             </li>
+//             <li onMouseEnter={() => setActiveTab("tv")}>
+//               <Link href="/">
+//                 <div className="categoryLeftIcon" id="categoryLeftIconTV">
+//                   <TV />
+//                 </div>
+//                 <span>TV, audio-video foto</span>
+//               </Link>
+//             </li>
+//             <li onMouseEnter={() => setActiveTab("ev")}>
+//               <Link href="/">
+//                 <div className="categoryLeftIcon" id="categoryLeftIconLaptop">
+//                   <Laptop />
+//                 </div>
+//                 <span>Nodbuklar və planşetlər</span>
+//               </Link>
+//             </li>
+//             <li onMouseEnter={() => setActiveTab("ev")}>
+//               <Link href="/">
+//                 <div className="categoryLeftIcon" id="categoryLeftIconMeiset">
+//                   <MeisetTexnikasi />
+//                 </div>
+//                 <span>Məişət texnikası</span>
+//               </Link>
+//             </li>
+//             <li onMouseEnter={() => setActiveTab("ev")}>
+//               <Link href="/">
+//                 <div className="categoryLeftIcon" id="categoryLeftIconFan">
+//                   <Fan />
+//                 </div>
+//                 <span>Gözəllik və sağlamlıq</span>
+//               </Link>
+//             </li>
+//             <li onMouseEnter={() => setActiveTab("ev")}>
+//               <Link href="/">
+//                 <div className="categoryLeftIcon" id="categoryLeftIconMebel">
+//                   <Mebel />
+//                 </div>
+//                 <span>Mebel, tekstil və dekor</span>
+//               </Link>
+//             </li>
+//           </ul>
+//         </div>
+
+//         {/* Sağ Kısım - Alt Kategoriler */}
+//         <div className="rightColumn">
+//           {activeTab === "elektronika" && (
+//             <>
+//               <div className="rightColumnItems">
+//                 <div className="rightColumnItem">
+//                   <span className="catgorySubTitle"><Link href="/">Aksesuarlar</Link></span>
+//                   <ul>
+//                     <li>
+//                       <Link href="#">Qulaqlıq</Link>
+//                     </li>
+//                     <li>
+//                       <Link href="#">Naqil</Link>
+//                     </li>
+//                     <li>
+//                       <Link href="#">Adapter</Link>
+//                     </li>
+//                   </ul>
+//                 </div>
+//                 <div className="rightColumnItem">
+//                   <span className="catgorySubTitle"><Link href="/">Aksesuarlar</Link></span>
+//                   <ul>
+//                     <li>
+//                       <Link href="#">Machinecs</Link>
+//                     </li>
+//                     <li>
+//                       <Link href="#">Phones</Link>
+//                     </li>
+//                     <li>
+//                       <Link href="#">Tablets</Link>
+//                     </li>
+//                   </ul>
+//                 </div>
+//               </div>
+//             </>
+//           )}
+//           {activeTab === "tv" && (
+//             <>
+//               <div className="rightColumnItems">
+//                 <div className="rightColumnItem">
+//                   <span className="catgorySubTitle"><Link href="/">Aksesuarlar</Link></span>
+//                   <ul>
+//                     <li>
+//                       <Link href="#">Toshiba</Link>
+//                     </li>
+//                     <li>
+//                       <Link href="#">LG</Link>
+//                     </li>
+//                     <li>
+//                       <Link href="#">Samsung</Link>
+//                     </li>
+//                   </ul>
+//                 </div>
+//                 <div className="rightColumnItem">
+//                   <span className="catgorySubTitle"><Link href="/">Aksesuarlar</Link></span>
+//                   <ul>
+//                     <li>
+//                       <Link href="#">Toshiba</Link>
+//                     </li>
+//                     <li>
+//                       <Link href="#">LG</Link>
+//                     </li>
+//                     <li>
+//                       <Link href="#">Samsung</Link>
+//                     </li>
+//                   </ul>
+//                 </div>
+//               </div>
+//             </>
+//           )}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default MegaMenu;
+
+// !son versiya
+
+// "use client";
+// import Link from "next/link";
+// import { useState, useEffect } from "react";
+// import Phone from "../../public/icons/blackPhone.svg";
+// import TV from "../../public/icons/blackTV.svg";
+// import Laptop from "../../public/icons/blackLaptop.svg";
+// import MeisetTexnikasi from "../../public/icons/blackMeisetTexnikasi.svg";
+// import Fan from "../../public/icons/blackFan.svg";
+// import Mebel from "../../public/icons/blackMebel.svg";
+
+// const MegaMenu = () => {
+//   const [activeTab, setActiveTab] = useState(null);
+//   const [isMobile, setIsMobile] = useState(false);
+
+//   useEffect(() => {
+//     const handleResize = () => {
+//       setIsMobile(window.innerWidth <= 768);
+//     };
+//     handleResize(); // Set initial value
+//     window.addEventListener("resize", handleResize);
+//     return () => {
+//       window.removeEventListener("resize", handleResize);
+//     };
+//   }, []);
+
+//   const containerClass = activeTab
+//     ? "containera categoryMegaMenu active"
+//     : "containera categoryMegaMenu";
+
+//   const handleMouseEnter = (tabKey) => {
+//     if (window.innerWidth > 768) {
+//       setActiveTab(tabKey);
+//     }
+//   };
+
+//   const handleCategoryClick = (e, tabKey) => {
+//     if (window.innerWidth <= 768) {
+//       e.preventDefault();
+//       setActiveTab(tabKey);
+//     }
+//   };
+
+//   return (
+//     <div className={containerClass}>
+//       <div className="leftColumn">
+//         <ul>
+//           <li
+//             onMouseEnter={() => handleMouseEnter("elektronika")}
+//             onClick={(e) => handleCategoryClick(e, "elektronika")}
+//           >
+//             <Link href="/category">
+//               <div className="categoryLeftIcon ee">
+//                 <Phone className="phoneIcon" />
+//               </div>
+//               <span>Telefonlar və aksesuarlar</span>
+//             </Link>
+//           </li>
+//           <li
+//             onMouseEnter={() => handleMouseEnter("tv")}
+//             onClick={(e) => handleCategoryClick(e, "tv")}
+//           >
+//             <Link href="/">
+//               <div className="categoryLeftIcon" id="categoryLeftIconTV">
+//                 <TV />
+//               </div>
+//               <span>TV, audio-video foto</span>
+//             </Link>
+//           </li>
+//           <li
+//             onMouseEnter={() => handleMouseEnter("laptop")}
+//             onClick={(e) => handleCategoryClick(e, "laptop")}
+//           >
+//             <Link href="/">
+//               <div className="categoryLeftIcon" id="categoryLeftIconLaptop">
+//                 <Laptop />
+//               </div>
+//               <span>Nodbuklar və planşetlər</span>
+//             </Link>
+//           </li>
+//           <li
+//             onMouseEnter={() => handleMouseEnter("meiset")}
+//             onClick={(e) => handleCategoryClick(e, "meiset")}
+//           >
+//             <Link href="/">
+//               <div className="categoryLeftIcon" id="categoryLeftIconMeiset">
+//                 <MeisetTexnikasi />
+//               </div>
+//               <span>Məişət texnikası</span>
+//             </Link>
+//           </li>
+//           <li
+//             onMouseEnter={() => handleMouseEnter("fan")}
+//             onClick={(e) => handleCategoryClick(e, "fan")}
+//           >
+//             <Link href="/">
+//               <div className="categoryLeftIcon" id="categoryLeftIconFan">
+//                 <Fan />
+//               </div>
+//               <span>Gözəllik və sağlamlıq</span>
+//             </Link>
+//           </li>
+//           <li
+//             onMouseEnter={() => handleMouseEnter("mebel")}
+//             onClick={(e) => handleCategoryClick(e, "mebel")}
+//           >
+//             <Link href="/">
+//               <div className="categoryLeftIcon" id="categoryLeftIconMebel">
+//                 <Mebel />
+//               </div>
+//               <span>Mebel, tekstil və dekor</span>
+//             </Link>
+//           </li>
+//         </ul>
+//       </div>
+
+//       <div className="rightColumn">
+//         {isMobile && activeTab && (
+//           <p
+//             onClick={() => setActiveTab(null)}
+//             style={{
+//               cursor: "pointer",
+//               marginBottom: "1rem",
+//               fontSize: "1.6rem",
+//               fontWeight: 600,
+//             }}
+//           >
+//             ← Geri
+//           </p>
+//         )}
+
+//         {activeTab === "elektronika" && (
+//           <div className="rightColumnItems">
+//             <div className="rightColumnItem">
+//               <span className="catgorySubTitle">
+//                 <Link href="/">Aksesuarlar</Link>
+//               </span>
+//               <ul>
+//                 <li>
+//                   <Link href="#">Qulaqlıq</Link>
+//                 </li>
+//                 <li>
+//                   <Link href="#">Naqil</Link>
+//                 </li>
+//                 <li>
+//                   <Link href="#">Adapter</Link>
+//                 </li>
+//               </ul>
+//             </div>
+//             <div className="rightColumnItem">
+//               <span className="catgorySubTitle">
+//                 <Link href="/">Aksesuarlar</Link>
+//               </span>
+//               <ul>
+//                 <li>
+//                   <Link href="#">Machinecs</Link>
+//                 </li>
+//                 <li>
+//                   <Link href="#">Phones</Link>
+//                 </li>
+//                 <li>
+//                   <Link href="#">Tablets</Link>
+//                 </li>
+//               </ul>
+//             </div>
+//           </div>
+//         )}
+//         {activeTab === "tv" && (
+//           <div className="rightColumnItems">
+//             <div className="rightColumnItem">
+//               <span className="catgorySubTitle">
+//                 <Link href="/">Aksesuarlar</Link>
+//               </span>
+//               <ul>
+//                 <li>
+//                   <Link href="#">Qulaqlıq</Link>
+//                 </li>
+//                 <li>
+//                   <Link href="#">Naqil</Link>
+//                 </li>
+//                 <li>
+//                   <Link href="#">Adapter</Link>
+//                 </li>
+//               </ul>
+//             </div>
+//             <div className="rightColumnItem">
+//               <span className="catgorySubTitle">
+//                 <Link href="/">Aksesuarlar</Link>
+//               </span>
+//               <ul>
+//                 <li>
+//                   <Link href="#">Machinecs</Link>
+//                 </li>
+//                 <li>
+//                   <Link href="#">Phones</Link>
+//                 </li>
+//                 <li>
+//                   <Link href="#">Tablets</Link>
+//                 </li>
+//               </ul>
+//             </div>
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default MegaMenu;
+
+// !son versiya
+
+// "use client";
+// import Link from "next/link";
+// import { useState, useEffect } from "react";
+// import Phone from "../../public/icons/blackPhone.svg";
+// import TV from "../../public/icons/blackTV.svg";
+// import Laptop from "../../public/icons/blackLaptop.svg";
+// import MeisetTexnikasi from "../../public/icons/blackMeisetTexnikasi.svg";
+// import Fan from "../../public/icons/blackFan.svg";
+// import Mebel from "../../public/icons/blackMebel.svg";
+// import { IoIosArrowForward } from "react-icons/io";
+// import { IoClose } from "react-icons/io5";
+
+// const MegaMenu = () => {
+//   const [activeTab, setActiveTab] = useState(null);
+//   const [isMobile, setIsMobile] = useState(false);
+//   const [isMenuOpen, setIsMenuOpen] = useState(true); // Menü açık mı?
+
+//   useEffect(() => {
+//     const handleResize = () => {
+//       setIsMobile(window.innerWidth <= 768);
+//     };
+//     handleResize(); // Set initial value
+//     window.addEventListener("resize", handleResize);
+//     return () => {
+//       window.removeEventListener("resize", handleResize);
+//     };
+//   }, []);
+
+//   const containerClass = activeTab
+//     ? "containera categoryMegaMenu active"
+//     : "containera categoryMegaMenu";
+
+//   const handleMouseEnter = (tabKey) => {
+//     if (window.innerWidth > 768) {
+//       setActiveTab(tabKey);
+//     }
+//   };
+
+//   const handleCategoryClick = (e, tabKey) => {
+//     if (window.innerWidth <= 768) {
+//       e.preventDefault();
+//       setActiveTab(tabKey);
+//     }
+//   };
+
+//   const handleArrowClick = (e, tabKey) => {
+//     e.preventDefault();
+//     setActiveTab(tabKey);
+//   };
+
+//   const handleMenuClose = () => {
+//     setIsMenuOpen(false); // Menü kapanacak
+//   };
+
+//   const handleMenuOpen = () => {
+//     setIsMenuOpen(true); // Menü açılacak
+//   };
+
+//   return (
+//     isMenuOpen && ( // Menü sadece isMenuOpen true olduğunda gösterilecek
+//       <div className={containerClass}>
+//         <div className="leftColumn">
+//           <div className="mobileMenuHeader">
+//             <span>Kateqoriyalar</span>
+//             <span onClick={handleMenuClose} style={{ cursor: "pointer" }}>
+//               <IoClose />
+//             </span>
+//           </div>
+//           <ul>
+//             <li
+//               onMouseEnter={() => handleMouseEnter("elektronika")}
+//               onClick={(e) => handleCategoryClick(e, "elektronika")}
+//             >
+//               <Link href="/category">
+//                 <div className="categoryLeftIcon ee">
+//                   <Phone className="phoneIcon" />
+//                 </div>
+//                 <span>Telefonlar və aksesuarlar</span>
+//                 <span
+//                   className="arrowIcon"
+//                   onClick={(e) => handleArrowClick(e, "elektronika")}
+//                 >
+//                   <IoIosArrowForward />
+//                 </span>
+//               </Link>
+//             </li>
+//             <li
+//               onMouseEnter={() => handleMouseEnter("tv")}
+//               onClick={(e) => handleCategoryClick(e, "tv")}
+//             >
+//               <Link href="/">
+//                 <div className="categoryLeftIcon" id="categoryLeftIconTV">
+//                   <TV />
+//                 </div>
+//                 <span>TV, audio-video foto</span>
+//                 <span
+//                   className="arrowIcon"
+//                   onClick={(e) => handleArrowClick(e, "tv")}
+//                 >
+//                   <IoIosArrowForward />
+//                 </span>
+//               </Link>
+//             </li>
+//             <li
+//               onMouseEnter={() => handleMouseEnter("laptop")}
+//               onClick={(e) => handleCategoryClick(e, "laptop")}
+//             >
+//               <Link href="/">
+//                 <div className="categoryLeftIcon" id="categoryLeftIconLaptop">
+//                   <Laptop />
+//                 </div>
+//                 <span>Nodbuklar və planşetlər</span>
+//                 <span
+//                   className="arrowIcon"
+//                   onClick={(e) => handleArrowClick(e, "laptop")}
+//                 >
+//                   <IoIosArrowForward />
+//                 </span>
+//               </Link>
+//             </li>
+//             <li
+//               onMouseEnter={() => handleMouseEnter("meiset")}
+//               onClick={(e) => handleCategoryClick(e, "meiset")}
+//             >
+//               <Link href="/">
+//                 <div className="categoryLeftIcon" id="categoryLeftIconMeiset">
+//                   <MeisetTexnikasi />
+//                 </div>
+//                 <span>Məişət texnikası</span>
+//                 <span
+//                   className="arrowIcon"
+//                   onClick={(e) => handleArrowClick(e, "meiset")}
+//                 >
+//                   <IoIosArrowForward />
+//                 </span>
+//               </Link>
+//             </li>
+//             <li
+//               onMouseEnter={() => handleMouseEnter("fan")}
+//               onClick={(e) => handleCategoryClick(e, "fan")}
+//             >
+//               <Link href="/">
+//                 <div className="categoryLeftIcon" id="categoryLeftIconFan">
+//                   <Fan />
+//                 </div>
+//                 <span>Gözəllik və sağlamlıq</span>
+//                 <span
+//                   className="arrowIcon"
+//                   onClick={(e) => handleArrowClick(e, "fan")}
+//                 >
+//                   <IoIosArrowForward />
+//                 </span>
+//               </Link>
+//             </li>
+//             <li
+//               onMouseEnter={() => handleMouseEnter("mebel")}
+//               onClick={(e) => handleCategoryClick(e, "mebel")}
+//             >
+//               <Link href="/">
+//                 <div className="categoryLeftIcon" id="categoryLeftIconMebel">
+//                   <Mebel />
+//                 </div>
+//                 <span>Mebel, tekstil və dekor</span>
+//                 <span
+//                   className="arrowIcon"
+//                   onClick={(e) => handleArrowClick(e, "mebel")}
+//                 >
+//                   <IoIosArrowForward />
+//                 </span>
+//               </Link>
+//             </li>
+//           </ul>
+//         </div>
+//         <div className="rightColumn">
+//           <div className="mobileMenuHeader">
+//             <span>Kateqoriyalar</span>
+//             <span onClick={handleMenuClose} style={{ cursor: "pointer" }}>
+//               <IoClose />
+//             </span>
+//           </div>
+
+//           {isMobile && activeTab && (
+//             <p
+//               onClick={() => setActiveTab(null)}
+//               style={{
+//                 cursor: "pointer",
+//                 marginBottom: "1rem",
+//                 fontSize: "1.6rem",
+//                 fontWeight: 600,
+//               }}
+//             >
+//               ← Geri
+//             </p>
+//           )}
+
+//           {activeTab === "elektronika" && (
+//             <div className="rightColumnItems">
+//               <div className="rightColumnItem">
+//                 <span className="catgorySubTitle">
+//                   <Link href="/">Aksesuarlar</Link>
+//                 </span>
+//                 <ul>
+//                   <li>
+//                     <Link href="#">Qulaqlıq</Link>
+//                   </li>
+//                   <li>
+//                     <Link href="#">Naqil</Link>
+//                   </li>
+//                   <li>
+//                     <Link href="#">Adapter</Link>
+//                   </li>
+//                 </ul>
+//               </div>
+//               <div className="rightColumnItem">
+//                 <span className="catgorySubTitle">
+//                   <Link href="/">Aksesuarlar</Link>
+//                 </span>
+//                 <ul>
+//                   <li>
+//                     <Link href="#">Machinecs</Link>
+//                   </li>
+//                   <li>
+//                     <Link href="#">Phones</Link>
+//                   </li>
+//                   <li>
+//                     <Link href="#">Tablets</Link>
+//                   </li>
+//                 </ul>
+//               </div>
+//             </div>
+//           )}
+//           {activeTab === "tv" && (
+//             <div className="rightColumnItems">
+//               <div className="rightColumnItem">
+//                 <span className="catgorySubTitle">
+//                   <Link href="/">Aksesuarlar</Link>
+//                 </span>
+//                 <ul>
+//                   <li>
+//                     <Link href="#">Qulaqlıq</Link>
+//                   </li>
+//                   <li>
+//                     <Link href="#">Naqil</Link>
+//                   </li>
+//                   <li>
+//                     <Link href="#">Adapter</Link>
+//                   </li>
+//                 </ul>
+//               </div>
+//               <div className="rightColumnItem">
+//                 <span className="catgorySubTitle">
+//                   <Link href="/">Aksesuarlar</Link>
+//                 </span>
+//                 <ul>
+//                   <li>
+//                     <Link href="#">Machinecs</Link>
+//                   </li>
+//                   <li>
+//                     <Link href="#">Phones</Link>
+//                   </li>
+//                   <li>
+//                     <Link href="#">Tablets</Link>
+//                   </li>
+//                 </ul>
+//               </div>
+//             </div>
+//           )}
+//         </div>
+//       </div>
+//     )
+//   );
+// };
+
+// export default MegaMenu;
+
+//? EN SON VERSIAYA
+
+// !OPOPOPOP
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Phone from "../../public/icons/blackPhone.svg";
 import TV from "../../public/icons/blackTV.svg";
 import Laptop from "../../public/icons/blackLaptop.svg";
 import MeisetTexnikasi from "../../public/icons/blackMeisetTexnikasi.svg";
 import Fan from "../../public/icons/blackFan.svg";
 import Mebel from "../../public/icons/blackMebel.svg";
-import { SlScreenSmartphone } from "react-icons/sl";
+import { IoIosArrowForward } from "react-icons/io";
+import { IoClose } from "react-icons/io5";
+import { IoMdArrowRoundBack } from "react-icons/io";
+
 const MegaMenu = () => {
   const [activeTab, setActiveTab] = useState(null);
+  const [activeSubcategory, setActiveSubcategory] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(true);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const containerClass = activeTab
+    ? "containera categoryMegaMenu active"
+    : "containera categoryMegaMenu";
+
+  const handleMouseEnter = (tabKey) => {
+    if (!isMobile) setActiveTab(tabKey);
+  };
+  const handleCategoryClick = (e, tabKey) => {
+    if (isMobile) {
+      e.preventDefault();
+      setActiveTab(tabKey);
+      setActiveSubcategory(null);
+    }
+  };
+  const handleArrowClick = (e, tabKey) => {
+    e.preventDefault();
+    setActiveTab(tabKey);
+    setActiveSubcategory(null);
+  };
+  const handleMenuClose = () => setIsMenuOpen(false);
 
   return (
-    <div className="containera">
-      <div className="categoryMegaMenu">
-        {/* Sol Kısım - Kategoriler */}
+    isMenuOpen && (
+      <div className={containerClass}>
         <div className="leftColumn">
-          {/* <h3>Ürünler</h3> */}
+          <div className="mobileMenuHeader">
+            <span>Kateqoriyalar</span>
+            <span onClick={handleMenuClose} style={{ cursor: "pointer" }}>
+              <IoClose />
+            </span>
+          </div>
           <ul>
-            <li onMouseEnter={() => setActiveTab("elektronika")}>
+            <li
+              onMouseEnter={() => handleMouseEnter("elektronika")}
+              onClick={(e) => handleCategoryClick(e, "elektronika")}
+            >
               <Link href="/category">
                 <div className="categoryLeftIcon ee">
-                  <Phone  />
-                  {/* <SlScreenSmartphone  /> */}
+                  <Phone className="phoneIcon" />
                 </div>
                 <span>Telefonlar və aksesuarlar</span>
+                <span
+                  className="arrowIcon"
+                  onClick={(e) => handleArrowClick(e, "elektronika")}
+                >
+                  <IoIosArrowForward />
+                </span>
               </Link>
             </li>
-            <li onMouseEnter={() => setActiveTab("tv")}>
+            <li
+              onMouseEnter={() => handleMouseEnter("tv")}
+              onClick={(e) => handleCategoryClick(e, "tv")}
+            >
               <Link href="/">
                 <div className="categoryLeftIcon" id="categoryLeftIconTV">
                   <TV />
                 </div>
                 <span>TV, audio-video foto</span>
+                <span
+                  className="arrowIcon"
+                  onClick={(e) => handleArrowClick(e, "tv")}
+                >
+                  <IoIosArrowForward />
+                </span>
               </Link>
             </li>
-            <li onMouseEnter={() => setActiveTab("ev")}>
+            <li
+              onMouseEnter={() => handleMouseEnter("laptop")}
+              onClick={(e) => handleCategoryClick(e, "laptop")}
+            >
               <Link href="/">
                 <div className="categoryLeftIcon" id="categoryLeftIconLaptop">
                   <Laptop />
                 </div>
-                <span>Nodbuklar və planşetlər</span>
+                <span>Növbuklar və planşetlər</span>
+                <span
+                  className="arrowIcon"
+                  onClick={(e) => handleArrowClick(e, "laptop")}
+                >
+                  <IoIosArrowForward />
+                </span>
               </Link>
             </li>
-            <li onMouseEnter={() => setActiveTab("ev")}>
+            <li
+              onMouseEnter={() => handleMouseEnter("meiset")}
+              onClick={(e) => handleCategoryClick(e, "meiset")}
+            >
               <Link href="/">
                 <div className="categoryLeftIcon" id="categoryLeftIconMeiset">
                   <MeisetTexnikasi />
                 </div>
                 <span>Məişət texnikası</span>
+                <span
+                  className="arrowIcon"
+                  onClick={(e) => handleArrowClick(e, "meiset")}
+                >
+                  <IoIosArrowForward />
+                </span>
               </Link>
             </li>
-            <li onMouseEnter={() => setActiveTab("ev")}>
+            <li
+              onMouseEnter={() => handleMouseEnter("fan")}
+              onClick={(e) => handleCategoryClick(e, "fan")}
+            >
               <Link href="/">
                 <div className="categoryLeftIcon" id="categoryLeftIconFan">
                   <Fan />
                 </div>
                 <span>Gözəllik və sağlamlıq</span>
+                <span
+                  className="arrowIcon"
+                  onClick={(e) => handleArrowClick(e, "fan")}
+                >
+                  <IoIosArrowForward />
+                </span>
               </Link>
             </li>
-            <li onMouseEnter={() => setActiveTab("ev")}>
+            <li
+              onMouseEnter={() => handleMouseEnter("mebel")}
+              onClick={(e) => handleCategoryClick(e, "mebel")}
+            >
               <Link href="/">
                 <div className="categoryLeftIcon" id="categoryLeftIconMebel">
                   <Mebel />
                 </div>
                 <span>Mebel, tekstil və dekor</span>
+                <span
+                  className="arrowIcon"
+                  onClick={(e) => handleArrowClick(e, "mebel")}
+                >
+                  <IoIosArrowForward />
+                </span>
               </Link>
             </li>
           </ul>
         </div>
-
-        {/* Sağ Kısım - Alt Kategoriler */}
         <div className="rightColumn">
-          {activeTab === "elektronika" && (
+          <div className="mobileMenuHeader">
+            <span>Kateqoriyalar</span>
+            <span onClick={handleMenuClose} style={{ cursor: "pointer" }}>
+              <IoClose />
+            </span>
+          </div>
+
+          {/* Mobil: Alt kategori başlıkları dikey liste */}
+          {isMobile && activeTab && !activeSubcategory && (
             <>
-              <div className="rightColumnItems">
-                <div className="rightColumnItem">
-                  <span className="catgorySubTitle"><Link href="/">Aksesuarlar</Link></span>
-                  <ul>
-                    <li>
-                      <Link href="#">Qulaqlıq</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Naqil</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Adapter</Link>
-                    </li>
-                  </ul>
-                </div>
-                <div className="rightColumnItem">
-                  {/* <span className="catgorySubTitle">Electronics Home</span> */}
-                  <span className="catgorySubTitle"><Link href="/">Aksesuarlar</Link></span>
-                  <ul>
-                    <li>
-                      <Link href="#">Machinecs</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Phones</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Tablets</Link>
-                    </li>
-                  </ul>
-                </div>
+              <p
+                onClick={() => setActiveTab(null)}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "flex-start",
+                  gap: "1rem",
+                  cursor: "pointer",
+                  marginBottom: "1rem",
+                  fontSize: "1.6rem",
+                  fontWeight: 600,
+                }}
+              >
+                <IoMdArrowRoundBack />
+                Geri
+              </p>
+              <div
+                className="rightColumnItems"
+                style={{ display: "flex", flexDirection: "column" }}
+              >
+                {activeTab === "elektronika" && (
+                  <>
+                    <div className="rightColumnItem">
+                      <span className="catgorySubTitle">
+                        <Link
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setActiveSubcategory("elek1");
+                          }}
+                        >
+                          Aksesuarlar
+                        </Link>
+                      </span>
+                    </div>
+                    <div className="rightColumnItem">
+                      <span className="catgorySubTitle">
+                        <Link
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setActiveSubcategory("elek2");
+                          }}
+                        >
+                          Elekton
+                        </Link>
+                      </span>
+                    </div>
+                  </>
+                )}
+
+                {activeTab === "tv" && (
+                  <>
+                    <div className="rightColumnItem">
+                      <span className="catgorySubTitle">
+                        <Link
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setActiveSubcategory("tv1");
+                          }}
+                        >
+                          Aksesuarlar
+                        </Link>
+                      </span>
+                    </div>
+                    <div className="rightColumnItem">
+                      <span className="catgorySubTitle">
+                        <Link
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setActiveSubcategory("tv2");
+                          }}
+                        >
+                          Aksesuarlar
+                        </Link>
+                      </span>
+                    </div>
+                  </>
+                )}
+
+                {activeTab === "laptop" && (
+                  <>
+                    <div className="rightColumnItem">
+                      <span className="catgorySubTitle">
+                        <Link
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setActiveSubcategory("lap1");
+                          }}
+                        >
+                          Aksesuarlar
+                        </Link>
+                      </span>
+                    </div>
+                    <div className="rightColumnItem">
+                      <span className="catgorySubTitle">
+                        <Link
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setActiveSubcategory("lap2");
+                          }}
+                        >
+                          Aksesuarlar
+                        </Link>
+                      </span>
+                    </div>
+                  </>
+                )}
+
+                {activeTab === "meiset" && (
+                  <>
+                    <div className="rightColumnItem">
+                      <span className="catgorySubTitle">
+                        <Link
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setActiveSubcategory("mei1");
+                          }}
+                        >
+                          Aksesuarlar
+                        </Link>
+                      </span>
+                    </div>
+                    <div className="rightColumnItem">
+                      <span className="catgorySubTitle">
+                        <Link
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setActiveSubcategory("mei2");
+                          }}
+                        >
+                          Aksesuarlar
+                        </Link>
+                      </span>
+                    </div>
+                  </>
+                )}
+
+                {activeTab === "fan" && (
+                  <>
+                    <div className="rightColumnItem">
+                      <span className="catgorySubTitle">
+                        <Link
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setActiveSubcategory("fan1");
+                          }}
+                        >
+                          Gözəllik
+                        </Link>
+                      </span>
+                    </div>
+                    <div className="rightColumnItem">
+                      <span className="catgorySubTitle">
+                        <Link
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setActiveSubcategory("fan2");
+                          }}
+                        >
+                          Sağlamlıq
+                        </Link>
+                      </span>
+                    </div>
+                  </>
+                )}
+
+                {activeTab === "mebel" && (
+                  <>
+                    <div className="rightColumnItem">
+                      <span className="catgorySubTitle">
+                        <Link
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setActiveSubcategory("meb1");
+                          }}
+                        >
+                          Mebel
+                        </Link>
+                      </span>
+                    </div>
+                    <div className="rightColumnItem">
+                      <span className="catgorySubTitle">
+                        <Link
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setActiveSubcategory("meb2");
+                          }}
+                        >
+                          Dekor
+                        </Link>
+                      </span>
+                    </div>
+                  </>
+                )}
               </div>
             </>
           )}
 
-          {activeTab === "tv" && (
-            <>
-              <div className="rightColumnItems">
-                <div className="rightColumnItem">
-                  {/* <span className="catgorySubTitle">Brendlər</span> */}
-                  <span className="catgorySubTitle"><Link href="/">Aksesuarlar</Link></span>
-                  <ul>
-                    <li>
-                      <Link href="#">Toshiba</Link>
-                    </li>
-                    <li>
-                      <Link href="#">LG</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Samsung</Link>
-                    </li>
-                  </ul>
+          {/* Mobil: Alt kategori ürün listesi */}
+          {isMobile &&
+            activeTab === "elektronika" &&
+            activeSubcategory === "elek1" && (
+              <>
+                <p
+                  onClick={() => setActiveSubcategory(null)}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "flex-start",
+                    gap: "1rem",
+                    cursor: "pointer",
+                    marginBottom: "1rem",
+                    fontSize: "1.6rem",
+                    fontWeight: 600,
+                  }}
+                >
+                  <IoMdArrowRoundBack />
+                  Geri
+                </p>
+                <div className="rightColumnItems">
+                  <div className="rightColumnItem">
+                    <ul>
+                      <li>
+                        <Link href="#">Qulaqlıq</Link>
+                      </li>
+                      <li>
+                        <Link href="#">Naqil</Link>
+                      </li>
+                      <li>
+                        <Link href="#">Adapter</Link>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-                <div className="rightColumnItem">
-                  {/* <span className="catgorySubTitle">Brendlər</span> */}
-                  <span className="catgorySubTitle"><Link href="/">Aksesuarlar</Link></span>
-                  <ul>
-                    <li>
-                      <Link href="#">Toshiba</Link>
-                    </li>
-                    <li>
-                      <Link href="#">LG</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Samsung</Link>
-                    </li>
-                  </ul>
+              </>
+            )}
+          {isMobile &&
+            activeTab === "elektronika" &&
+            activeSubcategory === "elek2" && (
+              <>
+                <p
+                  onClick={() => setActiveSubcategory(null)}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "flex-start",
+                    gap: "1rem",
+                    cursor: "pointer",
+                    marginBottom: "1rem",
+                    fontSize: "1.6rem",
+                    fontWeight: 600,
+                  }}
+                >
+                  <IoMdArrowRoundBack />
+                  Geri
+                </p>
+                <div className="rightColumnItems">
+                  <div className="rightColumnItem">
+                    <ul>
+                      <li>
+                        <Link href="#">Machinecs</Link>
+                      </li>
+                      <li>
+                        <Link href="#">Phones</Link>
+                      </li>
+                      <li>
+                        <Link href="#">Tablets</Link>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-                <div className="rightColumnItem">
-                  <span className="catgorySubTitle">Brendlər</span>
-                  <ul>
-                    <li>
-                      <Link href="#">Toshiba</Link>
-                    </li>
-                    <li>
-                      <Link href="#">LG</Link>
-                    </li>
-                    <li>
-                      <Link href="#">Samsung</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </>
-          )}
+              </>
+            )}
 
-          {/* {!activeTab && <p>Kategoriya seçin</p>} */}
+          {/* Desktop orijinal yapı */}
+          {!isMobile && activeTab === "elektronika" && (
+            <div className="rightColumnItems">
+              <div className="rightColumnItem">
+                <span className="catgorySubTitle">
+                  <Link href="/">Aksesuarlar</Link>
+                </span>
+                <ul>
+                  <li>
+                    <Link href="#">Qulaqlıq</Link>
+                  </li>
+                  <li>
+                    <Link href="#">Naqil</Link>
+                  </li>
+                  <li>
+                    <Link href="#">Adapter</Link>
+                  </li>
+                </ul>
+              </div>
+              <div className="rightColumnItem">
+                <span className="catgorySubTitle">
+                  <Link href="/">Elekronika</Link>
+                </span>
+                <ul>
+                  <li>
+                    <Link href="#">Machinecs</Link>
+                  </li>
+                  <li>
+                    <Link href="#">Phones</Link>
+                  </li>
+                  <li>
+                    <Link href="#">Tablets</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          )}
+          {/* ... diğer desktop blokları */}
         </div>
       </div>
-    </div>
+    )
   );
 };
 
 export default MegaMenu;
 
-// ***********
+// !OPOPOPOP
