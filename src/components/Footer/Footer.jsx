@@ -35,7 +35,7 @@ const Footer = () => {
                 <span className="footerHeadLink">Haqqımızda</span>
                 <ul>
                   <li>
-                    <Link href="#">Şirkət Haqqında</Link>
+                    <Link href="/about">Şirkət Haqqında</Link>
                   </li>
                   <li>
                     <Link href="#">Karyera</Link>

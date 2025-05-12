@@ -41,8 +41,8 @@ export default function Home() {
                       className="homePageBanner"
                       src="/images/slideBnnrBarkod.jpg"
                       alt="banner"
-                      width={200}
-                      height={200}
+                      width={1000}
+                      height={800}
                     />
                     {/* <div className="heroSliderContent">
                       <span>Heavy on features. Light on price.</span>
@@ -63,8 +63,8 @@ export default function Home() {
                       className="homePageBanner"
                       src="/images/slideBnnrBarkod.jpg"
                       alt="banner"
-                      width={200}
-                      height={200}
+                      width={1000}
+                      height={800}
                     />
                     {/* <div className="heroSliderContent">
                       <span>Heavy on features. Light on price.</span>
@@ -113,8 +113,8 @@ export default function Home() {
                     <Image
                       src="/images/staticBnnr01.jpg"
                       alt="banner"
-                      width={200}
-                      height={200}
+                      width={400}
+                      height={400}
                     />
                   </div>
                 </div>
@@ -123,8 +123,8 @@ export default function Home() {
                     <Image
                       src="/images/staticBnnr02.jpg"
                       alt="banner"
-                      width={200}
-                      height={200}
+                      width={400}
+                      height={400}
                     />
                   </div>
                 </div>

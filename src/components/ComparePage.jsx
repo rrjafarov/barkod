@@ -13,7 +13,6 @@ import Image from "next/image";
 import { useState } from "react";
 import { Switch } from "antd";
 
-
 const ComparePage = () => {
   const [showModal, setShowModal] = useState(false);
   const openModal = () => setShowModal(true);
@@ -61,19 +60,19 @@ const ComparePage = () => {
           <div className="row">
             <div className="xl-3 lg-3 md-3 sm-12">
               <div className="comparePageLeft">
-                <span className="seeCompare" >Göstər</span>
+                <span className="seeCompare">Göstər</span>
                 <div className="compareAllParametrs">
                   <span>Telefonlar</span>
                   <span>Hamısını silin</span>
                 </div>
-                <div className="allParametrAndDifference">
+                {/* <div className="allParametrAndDifference">
                   <span>Bütün Parametrər</span>
                   <Switch
                     defaultChecked
                     // onChange={onChange}
                   />
                   <span>Fərqlər</span>
-                </div>
+                </div> */}
               </div>
               <div className="comparePageLeftAttribute">
                 <span className="attr">Xüsusiyyətlər</span>
@@ -112,7 +111,63 @@ const ComparePage = () => {
               <div className="comparePageRight">
                 <div className="row">
                   <div className="xl-4 lg-4 md-6 sm-6">
-                    <div className="productSecondHomePageProductsCard">
+                    <div className="secondHomePageProductsCard">
+                      <div className="secondHomePageProductsCardDiv AAA">
+                        <div className="compareCloseIcon">
+                          <IoCloseSharp id="compareCloseIcon" />
+                        </div>
+                        <Link href="/products/id" className="blockCardLink">
+                          <div className="secondHomePageProductsCardImage">
+                            <Image
+                              src="/images/iphone16pro.png"
+                              alt="sony"
+                              width={200}
+                              height={200}
+                            />
+                          </div>
+                        </Link>
+                        <div className="secondHomePageProductsCardContent">
+                          <span>iPhone 16 Pro Max 256 GB Black Titanium</span>
+                          <div className="discount">
+                            <span>
+                              -350 <TbCurrencyManat />
+                            </span>
+                          </div>
+                          <div className="cardBottomContent">
+                            <div className="price">
+                              <span className="oldPrice">
+                                3000,00
+                                <TbCurrencyManat />
+                              </span>
+                              <span className="newPrice">
+                                2400,00
+                                <TbCurrencyManat />
+                              </span>
+                            </div>
+
+                            <div className="wishList">
+                              <button>
+                                <NewScale className="newScalePR" />
+                              </button>
+                              <button>
+                                <NewWishList className="newWishlistPR" />
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="addToCartClick">
+                        <div className="addToCartClickItem">
+                          <button className="cartBtn">Səbətə at</button>
+                          <button onClick={openModal} className="clickBtn">
+                            Bir Klikle Al
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* <div className="productSecondHomePageProductsCard">
                       <div className="compareCloseIcon">
                         <IoCloseSharp id="compareCloseIcon" />
                       </div>
@@ -163,7 +218,7 @@ const ComparePage = () => {
                           </button>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
