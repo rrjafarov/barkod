@@ -51,7 +51,7 @@ const Footer = () => {
                     <Link href="/campaign">Kampaniyalar</Link>
                   </li>
                   <li>
-                    <Link href="#">Müstəri Kartı</Link>
+                    <Link href="/stores">Mağazalar</Link>
                   </li>
                   <li>
                     <Link href="#">Brendlər</Link>
@@ -60,7 +60,7 @@ const Footer = () => {
                     <Link href="#">Bloq və xəbərlər</Link>
                   </li>
                   <li>
-                    <Link href="#">Zəmanət</Link>
+                    <Link href="#">Korporativ satış</Link>
                   </li>
                 </ul>
               </div>
@@ -151,7 +151,6 @@ const Footer = () => {
           <div className="footerPaymentIcons">
             <div className="footerPaymentIcon">
               <button>
-                {/* <Visa className="visaIcon" /> */}
                 <Image
                   src="/icons/visa.svg"
                   alt="wp"

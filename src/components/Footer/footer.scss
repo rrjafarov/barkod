@@ -2,7 +2,7 @@ $MainColor: #ec1f27 !important;
 .footer {
   padding: 7rem 0 3rem 0;
   background-color: #f5f5f5;
-  .footerContact{
+  .footerContact {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -43,37 +43,37 @@ $MainColor: #ec1f27 !important;
       }
     }
   }
-  .footerSocialLinks{
-    ul{
+  .footerSocialLinks {
+    ul {
       display: flex !important;
       flex-direction: row;
       gap: 2rem;
-      li{
-        button{
+      li {
+        button {
           background: transparent;
         }
-        .footSocialIcon{
+        .footSocialIcon {
           width: 2rem;
           height: 2rem;
         }
       }
     }
   }
-  .footerPaymentIcons{
+  .footerPaymentIcons {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
     gap: 2rem;
     padding: 3rem 0 2rem 0;
-    .footerPaymentIcon{
-      button{
+    .footerPaymentIcon {
+      button {
         background: transparent;
       }
-      .visaIcon{
+      .visaIcon {
         width: 5rem;
         height: 5rem;
       }
-      .masterkartIcon{
+      .masterkartIcon {
         width: 5rem;
         height: 5rem;
       }
@@ -92,16 +92,21 @@ $MainColor: #ec1f27 !important;
     padding: 2.5rem 0;
     gap: 1rem;
     span {
-        padding-top: 0.7rem;
+      padding-top: 0.7rem;
       .copyright {
         font-size: 2rem;
       }
     }
     a {
-      font-size: 2.4rem;
-      font-weight: 600;
+      font-size: 2.3rem;
+      font-weight: 500;
       color: #1f1f1f;
-      font-family: "Arial Black", sans-serif !important;
     }
+  }
+}
+
+@media (max-width: 767.9px) {
+  .footerBottom {
+    padding-bottom: 10rem !important;
   }
 }
