@@ -167,6 +167,7 @@ html.active2 {
   grid-template-columns: repeat(12, 1fr);
   grid-gap: 2rem 2rem;
 }
+
 @media only screen and (min-width: 1199.9px) {
   .xl-1 {
     grid-column: span 1;
@@ -318,6 +319,9 @@ html.active2 {
   .sm-0 {
     display: none;
   }
+  .sm-2 {
+    grid-column: span 2;
+  }
 
   .sm-3 {
     grid-column: span 3;
@@ -330,7 +334,12 @@ html.active2 {
   .sm-6 {
     grid-column: span 6;
   }
-
+  .sm-8 {
+    grid-column: span 8;
+  }
+  .sm-10 {
+    grid-column: span 10;
+  }
   .sm-12 {
     grid-column: span 12;
   }
