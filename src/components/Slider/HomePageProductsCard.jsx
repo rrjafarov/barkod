@@ -12,18 +12,24 @@ import Image from "next/image";
 import { TbCurrencyManat } from "react-icons/tb";
 import NewScale from "../../../public/icons/newScale.svg";
 import NewWishList from "../../../public/icons/newWishlist.svg";
-import ProductCard from "../ProductCard";
+// import NewWishList from "../../../public/icons/baharIcon.svg";
+
 
 const HomePageProductsCard = () => {
   const [value, setValue] = useState(4);
   const [showModal, setShowModal] = useState(false);
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
+  const [isWishlisted, setIsWishlisted] = useState(false);
 
   const handleOverlayClick = (e) => {
     if (e.target.className === "modal-overlay") {
       closeModal();
     }
+  };
+
+  const toggleWishlist = () => {
+    setIsWishlisted((prev) => !prev);
   };
 
   return (
@@ -68,7 +74,6 @@ const HomePageProductsCard = () => {
           340: {
             slidesPerView: 2,
             spaceBetween: 20,
-            // centeredSlides: true,
             loop: true,
           },
           640: {
@@ -126,333 +131,19 @@ const HomePageProductsCard = () => {
                     <button>
                       <NewScale className="newScalePR" />
                     </button>
-                    <button>
+                    {/* <button>
                       <NewWishList className="newWishlistPR" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+                    </button> */}
 
-            <div className="addToCartClick">
-              <div className="addToCartClickItem">
-                <button className="cartBtn">Səbətə at</button>
-                <button onClick={openModal} className="clickBtn">
-                  Bir Klikle Al
-                </button>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className="productCardSlide">
-          <div className="secondHomePageProductsCard">
-            <div className="secondHomePageProductsCardDiv">
-              <Link href="/products/id" className="blockCardLink">
-                <div className="secondHomePageProductsCardImage">
-                  <Image
-                    src="/images/iphone16pro.png"
-                    alt="sony"
-                    width={200}
-                    height={200}
-                  />
-                </div>
-              </Link>
-              <div className="secondHomePageProductsCardContent">
-                <span>iPhone 16 Pro Max 256 GB Black Titanium</span>
-                <div className="discount">
-                  <span>
-                    -350 <TbCurrencyManat />
-                  </span>
-                </div>
-                <div className="cardBottomContent">
-                  <div className="price">
-                    <span className="oldPrice">
-                      3000,00
-                      <TbCurrencyManat />
-                    </span>
-                    <span className="newPrice">
-                      2400,00
-                      <TbCurrencyManat />
-                    </span>
-                  </div>
-
-                  <div className="wishList">
-                    <button>
-                      <NewScale className="newScalePR" />
+                    {/*  */}
+                    <button onClick={toggleWishlist} className="wishlist-btn">
+                      <NewWishList
+                        className={`newWishlistPR ${
+                          isWishlisted ? "active" : ""
+                        }`}
+                      />
                     </button>
-                    <button>
-                      <NewWishList className="newWishlistPR" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="addToCartClick">
-              <div className="addToCartClickItem">
-                <button className="cartBtn">Səbətə at</button>
-                <button onClick={openModal} className="clickBtn">
-                  Bir Klikle Al
-                </button>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className="productCardSlide">
-          <div className="secondHomePageProductsCard">
-            <div className="secondHomePageProductsCardDiv">
-              <Link href="/products/id" className="blockCardLink">
-                <div className="secondHomePageProductsCardImage">
-                  <Image
-                    src="/images/iphone16pro.png"
-                    alt="sony"
-                    width={200}
-                    height={200}
-                  />
-                </div>
-              </Link>
-              <div className="secondHomePageProductsCardContent">
-                <span>iPhone 16 Pro Max 256 GB Black Titanium</span>
-                <div className="discount">
-                  <span>
-                    -350 <TbCurrencyManat />
-                  </span>
-                </div>
-                <div className="cardBottomContent">
-                  <div className="price">
-                    <span className="oldPrice">
-                      3000,00
-                      <TbCurrencyManat />
-                    </span>
-                    <span className="newPrice">
-                      2400,00
-                      <TbCurrencyManat />
-                    </span>
-                  </div>
-
-                  <div className="wishList">
-                    <button>
-                      <NewScale className="newScalePR" />
-                    </button>
-                    <button>
-                      <NewWishList className="newWishlistPR" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="addToCartClick">
-              <div className="addToCartClickItem">
-                <button className="cartBtn">Səbətə at</button>
-                <button onClick={openModal} className="clickBtn">
-                  Bir Klikle Al
-                </button>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className="productCardSlide">
-          <div className="secondHomePageProductsCard">
-            <div className="secondHomePageProductsCardDiv">
-              <Link href="/products/id" className="blockCardLink">
-                <div className="secondHomePageProductsCardImage">
-                  <Image
-                    src="/images/iphone16pro.png"
-                    alt="sony"
-                    width={200}
-                    height={200}
-                  />
-                </div>
-              </Link>
-              <div className="secondHomePageProductsCardContent">
-                <span>iPhone 16 Pro Max 256 GB Black Titanium</span>
-                <div className="discount">
-                  <span>
-                    -350 <TbCurrencyManat />
-                  </span>
-                </div>
-                <div className="cardBottomContent">
-                  <div className="price">
-                    <span className="oldPrice">
-                      3000,00
-                      <TbCurrencyManat />
-                    </span>
-                    <span className="newPrice">
-                      2400,00
-                      <TbCurrencyManat />
-                    </span>
-                  </div>
-
-                  <div className="wishList">
-                    <button>
-                      <NewScale className="newScalePR" />
-                    </button>
-                    <button>
-                      <NewWishList className="newWishlistPR" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="addToCartClick">
-              <div className="addToCartClickItem">
-                <button className="cartBtn">Səbətə at</button>
-                <button onClick={openModal} className="clickBtn">
-                  Bir Klikle Al
-                </button>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className="productCardSlide">
-          <div className="secondHomePageProductsCard">
-            <div className="secondHomePageProductsCardDiv">
-              <Link href="/products/id" className="blockCardLink">
-                <div className="secondHomePageProductsCardImage">
-                  <Image
-                    src="/images/iphone16pro.png"
-                    alt="sony"
-                    width={200}
-                    height={200}
-                  />
-                </div>
-              </Link>
-              <div className="secondHomePageProductsCardContent">
-                <span>iPhone 16 Pro Max 256 GB Black Titanium</span>
-                <div className="discount">
-                  <span>
-                    -350 <TbCurrencyManat />
-                  </span>
-                </div>
-                <div className="cardBottomContent">
-                  <div className="price">
-                    <span className="oldPrice">
-                      3000,00
-                      <TbCurrencyManat />
-                    </span>
-                    <span className="newPrice">
-                      2400,00
-                      <TbCurrencyManat />
-                    </span>
-                  </div>
-
-                  <div className="wishList">
-                    <button>
-                      <NewScale className="newScalePR" />
-                    </button>
-                    <button>
-                      <NewWishList className="newWishlistPR" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="addToCartClick">
-              <div className="addToCartClickItem">
-                <button className="cartBtn">Səbətə at</button>
-                <button onClick={openModal} className="clickBtn">
-                  Bir Klikle Al
-                </button>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className="productCardSlide">
-          <div className="secondHomePageProductsCard">
-            <div className="secondHomePageProductsCardDiv">
-              <Link href="/products/id" className="blockCardLink">
-                <div className="secondHomePageProductsCardImage">
-                  <Image
-                    src="/images/iphone16pro.png"
-                    alt="sony"
-                    width={200}
-                    height={200}
-                  />
-                </div>
-              </Link>
-              <div className="secondHomePageProductsCardContent">
-                <span>iPhone 16 Pro Max 256 GB Black Titanium</span>
-                <div className="discount">
-                  <span>
-                    -350 <TbCurrencyManat />
-                  </span>
-                </div>
-                <div className="cardBottomContent">
-                  <div className="price">
-                    <span className="oldPrice">
-                      3000,00
-                      <TbCurrencyManat />
-                    </span>
-                    <span className="newPrice">
-                      2400,00
-                      <TbCurrencyManat />
-                    </span>
-                  </div>
-
-                  <div className="wishList">
-                    <button>
-                      <NewScale className="newScalePR" />
-                    </button>
-                    <button>
-                      <NewWishList className="newWishlistPR" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="addToCartClick">
-              <div className="addToCartClickItem">
-                <button className="cartBtn">Səbətə at</button>
-                <button onClick={openModal} className="clickBtn">
-                  Bir Klikle Al
-                </button>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide className="productCardSlide">
-          <div className="secondHomePageProductsCard">
-            <div className="secondHomePageProductsCardDiv">
-              <Link href="/products/id" className="blockCardLink">
-                <div className="secondHomePageProductsCardImage">
-                  <Image
-                    src="/images/iphone16pro.png"
-                    alt="sony"
-                    width={200}
-                    height={200}
-                  />
-                </div>
-              </Link>
-              <div className="secondHomePageProductsCardContent">
-                <span>iPhone 16 Pro Max 256 GB Black Titanium</span>
-                <div className="discount">
-                  <span>
-                    -350 <TbCurrencyManat />
-                  </span>
-                </div>
-                <div className="cardBottomContent">
-                  <div className="price">
-                    <span className="oldPrice">
-                      3000,00
-                      <TbCurrencyManat />
-                    </span>
-                    <span className="newPrice">
-                      2400,00
-                      <TbCurrencyManat />
-                    </span>
-                  </div>
-
-                  <div className="wishList">
-                    <button>
-                      <NewScale className="newScalePR" />
-                    </button>
-                    <button>
-                      <NewWishList className="newWishlistPR" />
-                    </button>
+                    {/*  */}
                   </div>
                 </div>
               </div>
@@ -469,57 +160,6 @@ const HomePageProductsCard = () => {
           </div>
         </SwiperSlide>
 
-        {/* <SwiperSlide className="productCardSlide">
-          <div className="secondHomePageProductsCard">
-            <Link href="/products/id" className="blockCardLink">
-              <div className="secondHomePageProductsCardImage">
-                <Image
-                  src="/images/iphone16pro.png"
-                  alt="sony"
-                  width={200}
-                  height={200}
-                />
-              </div>
-            </Link>
-            <div className="secondHomePageProductsCardContent">
-              <span>iPhone 16 Pro Max 256 GB Black Titanium</span>
-              <div className="discount">
-                <span>
-                  -350 <TbCurrencyManat />
-                </span>
-              </div>
-              <div className="cardBottomContent">
-                <div className="price">
-                  <span className="oldPrice">
-                    3000,00
-                    <TbCurrencyManat />
-                  </span>
-                  <span className="newPrice">
-                    2400,00
-                    <TbCurrencyManat />
-                  </span>
-                </div>
-
-                <div className="wishList">
-                  <button>
-                    <NewScale className="newScalePR" />
-                  </button>
-                  <button>
-                    <NewWishList className="newWishlistPR" />
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div className="addToCartClick">
-              <div className="addToCartClickItem">
-                <button className="cartBtn">Səbətə at</button>
-                <button onClick={openModal} className="clickBtn">
-                  Bir Klikle Al
-                </button>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide> */}
         <div className="my-custom-pagination"></div>
       </Swiper>
     </div>

@@ -742,6 +742,8 @@ ul {
 }
 // ? StaticInfo.jsx
 
+
+
 // ? HomePageProductsCard.jsx
 .productsHeadTitle {
   margin: 5rem 0 3rem;
@@ -774,7 +776,7 @@ ul {
   }
 }
 
-//! son versiya2
+//! son versiya
 .custom-overflow-container,
 .custom-overflow-container .swiper-wrapper,
 .custom-overflow-container .swiper-slide {
@@ -973,7 +975,21 @@ ul {
   }
 }
 
-//! son versiya2
+.wishlist-btn .newWishlistPR {
+  // fill: none;
+  transition: fill 0.3s;
+}
+.wishlist-btn .newWishlistPR.active svg {
+  fill: red !important;
+  stroke: red !important;
+}
+
+.wishlist-btn .newWishlistPR.active path {
+  fill: red !important;
+  stroke: red !important;
+}
+
+//! son versiya
 
 // ? HomePageProductsCard.jsx
 
