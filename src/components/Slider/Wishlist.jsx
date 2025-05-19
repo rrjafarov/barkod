@@ -31,9 +31,9 @@ const Wishlist = () => {
         <strong>
           <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />
         </strong>
-        <Link href="#">
-          <span>Seçilmişlər</span>
-        </Link>
+        {/* <Link href="#"> */}
+          <span className="lastChildBread" >Seçilmişlər</span>
+        {/* </Link> */}
       </div>
       {showModal && (
         <div className="modal-overlay" onClick={handleOverlayClick}>

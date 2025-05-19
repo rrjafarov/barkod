@@ -17,14 +17,14 @@ const CompaignDetailPage = () => {
           <strong>
             <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />
           </strong>
-          <Link href="campaign">
+          <Link href="/campaign">
             <span>Kampaniyalar</span>
           </Link>
           <strong>
             <MdKeyboardArrowRight className="breadCrumpIcon" />
           </strong>
           <Link href="#">
-            <span>Bahar kampaniyası</span>
+            <span className="lastChildBread" >Bahar kampaniyası</span>
           </Link>
         </div>
       </div>

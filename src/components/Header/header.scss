@@ -1,4 +1,5 @@
 $MainColor: #ec1f27 !important;
+
 #header {
   .headerTop {
     display: flex;
@@ -6,6 +7,7 @@ $MainColor: #ec1f27 !important;
     align-items: center;
     padding: 0.5rem 0;
     border-bottom: 0.5px solid #cbcbcb;
+
     .logo {
       max-width: 22rem;
       width: 22rem;
@@ -13,11 +15,13 @@ $MainColor: #ec1f27 !important;
       display: flex;
       justify-content: flex-start;
       align-items: flex-start;
+
       a {
         width: 100%;
         height: 100%;
         position: relative;
       }
+
       img {
         object-fit: cover;
         width: 100%;
@@ -27,17 +31,20 @@ $MainColor: #ec1f27 !important;
         left: -1.7rem;
       }
     }
+
     .storeAndCorporateSales {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 2rem;
+
       span {
         a {
           font-size: 1.8rem;
           font-weight: 500;
           color: #323232 !important;
           transition: all 0.2s ease-in-out;
+
           &:hover {
             transition: all 0.2s ease0-in-out;
             // text-decoration: underline;
@@ -47,18 +54,22 @@ $MainColor: #ec1f27 !important;
         }
       }
     }
+
     .headerTopRight {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 2rem;
+
       .contactCall {
         font-size: 2.2rem;
+
         a {
           color: #323232 !important;
           font-weight: 600;
         }
       }
+
       .payment {
         button {
           background-color: transparent;
@@ -70,6 +81,7 @@ $MainColor: #ec1f27 !important;
           height: 4rem;
         }
       }
+
       .changeLang {
         color: #111;
         border: 1px solid $MainColor;
@@ -79,6 +91,7 @@ $MainColor: #ec1f27 !important;
       }
     }
   }
+
   .headerMiddle {
     // display: flex;
     // justify-content: space-between;
@@ -92,6 +105,7 @@ $MainColor: #ec1f27 !important;
     //   align-items: center;
     // }
     padding: 1rem 0;
+
     .headerCatalog {
       display: flex;
       justify-content: flex-start;
@@ -101,15 +115,18 @@ $MainColor: #ec1f27 !important;
       gap: 1.2rem;
       cursor: pointer;
       position: relative;
+
       span {
         font-size: 2rem;
         font-weight: 500;
         flex-shrink: 0;
       }
+
       .newCategoryIcon {
         width: 2.5rem;
         height: 2.5rem;
       }
+
       &:hover {
         span {
           color: #ec1f27;
@@ -117,11 +134,13 @@ $MainColor: #ec1f27 !important;
         }
       }
     }
+
     .headerSearching {
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
+
       // width: 80rem;
       .searchContainer {
         display: flex;
@@ -132,6 +151,7 @@ $MainColor: #ec1f27 !important;
         padding: 5px;
         width: 95%;
         font-size: 1.8rem;
+
         input {
           border: none;
           color: red;
@@ -143,14 +163,16 @@ $MainColor: #ec1f27 !important;
           padding: 0 1rem;
           cursor: pointer;
           opacity: 0.8;
+
           &::placeholder {
-            color: #777; 
-            opacity: 1; 
-            font-size: 1.8rem; 
-            font-weight: 300; 
+            color: #777;
+            opacity: 1;
+            font-size: 1.8rem;
+            font-weight: 300;
             letter-spacing: -.02em;
           }
         }
+
         .searchButtonIcon {
           background: #111;
           color: #fff;
@@ -161,6 +183,7 @@ $MainColor: #ec1f27 !important;
           padding: 1rem 3rem;
           border-radius: 2rem;
         }
+
         &:hover {
           .searchButtonIcon {
             color: $MainColor;
@@ -169,6 +192,7 @@ $MainColor: #ec1f27 !important;
         }
       }
     }
+
     .headerMiddleRight {
       display: flex;
       justify-content: flex-end;
@@ -176,6 +200,7 @@ $MainColor: #ec1f27 !important;
       gap: 3rem;
       width: 100%;
       height: 100%;
+
       .rightPagesIcon {
         button {
           background-color: transparent;
@@ -185,21 +210,42 @@ $MainColor: #ec1f27 !important;
           align-items: center;
           justify-content: center;
         }
+
         .newScalet {
           width: 2.5rem;
           height: 2.2rem;
+          .cls-1 {
+            fill: black !important;
+            stroke: black !important;
+          }
         }
+
         .newScale {
           width: 2.5rem;
           height: 2.5rem;
+          .cls-1 {
+            fill: black !important;
+            stroke: black !important;
+          }
         }
+
         .newWishlist {
           width: 2.5rem;
           height: 2.5rem;
+          .cls-1 {
+            fill: black !important;
+            stroke: black !important;
+          }
         }
+
         .newCartIcon {
           width: 2.5rem;
           height: 2.5rem;
+          .cls-1 {
+            fill: black !important;
+            stroke: black !important;
+          }
+
         }
       }
     }
@@ -210,6 +256,7 @@ $MainColor: #ec1f27 !important;
   .headerTop {
     padding: 0.5rem 0;
     border-bottom: 0.5px solid #cbcbcb;
+
     .logo {
       max-width: 20rem;
       width: 20rem;
@@ -217,11 +264,13 @@ $MainColor: #ec1f27 !important;
       display: flex;
       justify-content: flex-start;
       align-items: flex-start;
+
       a {
         width: 100%;
         height: 100%;
         position: relative;
       }
+
       img {
         object-fit: cover;
         width: 100%;
@@ -231,16 +280,20 @@ $MainColor: #ec1f27 !important;
         left: -1.7rem;
       }
     }
+
     .storeAndCorporateSales {
       display: none !important;
     }
+
     .headerTopRight {
       .contactCall {
         font-size: 2.5rem;
       }
+
       .payment {
         display: none !important;
       }
+
       .changeLang {
         color: #111;
         border: 1px solid $MainColor;
@@ -250,12 +303,15 @@ $MainColor: #ec1f27 !important;
       }
     }
   }
+
   .headerSearching {
     display: flex !important;
   }
+
   .searchContainer {
     width: 100% !important;
   }
+
   #header {
     .headerMiddle {
       #headerMiddleRightNotMobile {
@@ -263,17 +319,19 @@ $MainColor: #ec1f27 !important;
       }
     }
   }
+
   .headerCatalog {
     .newCategoryIcon {
       width: 4.5rem !important;
       height: 4.5rem !important;
       padding: 0.5rem !important;
     }
+
     span {
       display: none !important;
     }
   }
-  
+
 
 }
 
@@ -286,6 +344,7 @@ $MainColor: #ec1f27 !important;
 .mobileFixedButtons {
   display: none;
 }
+
 @media (max-width: 767.9px) {
   .mobileFixedButtons {
     display: flex;
@@ -293,7 +352,7 @@ $MainColor: #ec1f27 !important;
     justify-content: space-around;
     position: fixed;
     // bottom: 1.6rem;
-    bottom: 0.1rem;
+    bottom: 1rem;
     left: 1.6rem;
     right: 1.6rem;
     z-index: 3;
@@ -302,11 +361,14 @@ $MainColor: #ec1f27 !important;
     border-radius: 2rem;
     overflow: hidden;
     margin: auto;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    // box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.1);
+
     .mobileFixedButton {
       a {
         button {
           background: transparent;
+
           svg {
             width: 3.5rem !important;
             height: 3.5rem !important;
@@ -468,6 +530,7 @@ $MainColor: #ec1f27 !important;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
 }
+
 /* Sol  (Kateqoriyalar) */
 .leftColumn {
   width: 30%;
@@ -484,6 +547,7 @@ $MainColor: #ec1f27 !important;
   padding: 0;
   margin: 0;
 }
+
 .leftColumn ul li {
   display: flex;
   justify-content: center;
@@ -605,14 +669,17 @@ $MainColor: #ec1f27 !important;
     border-radius: 0;
     flex-direction: column;
   }
+
   .leftColumn {
     width: 100%;
     padding: 2rem;
     border-right: none;
   }
+
   .leftColumn ul {
     gap: 2rem !important;
   }
+
   .leftColumn li a {
     font-size: 2.1rem !important;
     padding: 1.5rem;
@@ -620,6 +687,7 @@ $MainColor: #ec1f27 !important;
     align-items: center;
     gap: 2rem;
   }
+
   #categoryLeftIconTV,
   #categoryLeftIconLaptop,
   #categoryLeftIconMeiset,
@@ -628,10 +696,12 @@ $MainColor: #ec1f27 !important;
     width: 3rem !important;
     height: 3rem !important;
   }
+
   .categoryLeftIcon svg {
     width: 3rem !important;
     height: 3rem !important;
   }
+
   .rightColumn {
     position: fixed;
     top: 0;
@@ -644,12 +714,15 @@ $MainColor: #ec1f27 !important;
     padding: 2rem;
     display: none;
   }
+
   .categoryMegaMenu.active .rightColumn {
     display: block;
   }
+
   .categoryMegaMenu.active .leftColumn {
     display: none;
   }
+
   .rightColumn p {
     font-size: 2.1rem !important;
     padding: 0rem 0 2.5rem 1rem;
@@ -659,43 +732,55 @@ $MainColor: #ec1f27 !important;
     width: 20rem;
     text-align: start;
   }
+
   .rightColumnItems {
     padding: 2rem;
   }
+
   .rightColumnItem ul li {
     font-size: 2rem !important;
     padding: 1rem 0;
   }
+
   .catgorySubTitle a {
     font-size: 2.2rem !important;
   }
 }
+
 .arrowIcon {
   font-size: 2rem;
   margin-left: auto;
   cursor: pointer;
 }
+
 @media (max-width: 767.9px) {
   .leftColumn li a {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
+
   .leftColumn li:hover {
     background-color: white !important;
   }
+
   .arrowIcon {
     font-size: 2.5rem;
   }
 }
+
 .arrowIcon {
-  display: none; /* Desktopda gizlət */
+  display: none;
+  /* Desktopda gizlət */
 }
+
 @media (max-width: 767.9px) {
   .arrowIcon {
-    display: inline; /* Mobil versiyada göstər */
+    display: inline;
+    /* Mobil versiyada göstər */
   }
 }
+
 .menuHeader {
   display: flex;
   justify-content: space-between;
@@ -704,18 +789,23 @@ $MainColor: #ec1f27 !important;
   background-color: #f5f5f5;
   border-bottom: 1px solid #e0e0e0;
   padding-bottom: 3rem;
+
   span {
     font-size: 2rem;
   }
 }
+
 @media (max-width: 767.9px) {
   .menuHeader {
-    display: block; /* Mobil versiyada göstər */
+    display: block;
+    /* Mobil versiyada göstər */
   }
 }
+
 .mobileMenuHeader {
   display: none;
 }
+
 @media (max-width: 767.9px) {
   .mobileMenuHeader {
     width: 100%;
@@ -726,6 +816,7 @@ $MainColor: #ec1f27 !important;
     padding: 2rem 1.5rem 3rem;
     border-bottom: 1px solid #e0e0e0;
     margin-bottom: 3rem;
+
     span {
       font-size: 2rem;
       font-weight: 600;
@@ -733,13 +824,16 @@ $MainColor: #ec1f27 !important;
       text-decoration: none;
     }
   }
+
   // Mobile
   .rightColumnItems {
     padding: 1rem !important;
     display: flex;
     gap: 3rem !important;
+
     ul {
       padding: 0 !important;
+
       li {
         color: #111 !important;
         font-size: 2rem !important;
@@ -747,22 +841,21 @@ $MainColor: #ec1f27 !important;
       }
     }
   }
+
   .categoryMegaMenu .rightColumn a {
     color: #111 !important;
   }
-  .categoryMegaMenu
-    .rightColumn
-    .rightColumnItems
-    .rightColumnItem
-    .catgorySubTitle
-    a {
+
+  .categoryMegaMenu .rightColumn .rightColumnItems .rightColumnItem .catgorySubTitle a {
     font-size: 2.2rem !important;
     font-weight: 600 !important;
   }
+
   .categoryMegaMenu .rightColumn a {
     font-size: 2rem !important;
     font-weight: 600 !important;
     text-decoration: none !important;
   }
 }
+
 // ! EN SON VERSIYA

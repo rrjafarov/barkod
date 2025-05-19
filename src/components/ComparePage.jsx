@@ -34,9 +34,9 @@ const ComparePage = () => {
           <strong>
             <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />
           </strong>
-          <Link href="#">
-            <span>Müqaisə</span>
-          </Link>
+          {/* <Link href="#"> */}
+            <span className="lastChildBread" >Müqaisə</span>
+          {/* </Link> */}
         </div>
       </div>
       <section id="comparePageSection">

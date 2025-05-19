@@ -30,9 +30,9 @@ const AddToCart = () => {
         <strong>
           <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />
         </strong>
-        <Link href="#">
-          <span>Səbət</span>
-        </Link>
+        {/* <Link href="#"> */}
+        <span className="lastChildBread">Səbət</span>
+        {/* </Link> */}
       </div>
       <div className="row">
         <div className="xl-8 lg-8 md-8 sm-12">
@@ -73,7 +73,7 @@ const AddToCart = () => {
                 </button> */}
               </div>
             </div>
-            
+
             <div className="cartProductRight">
               <div className="cartCount">
                 <HiOutlineMinusCircle
@@ -102,7 +102,6 @@ const AddToCart = () => {
           </div>
         </div>
 
-
         <div className="xl-4 lg-4 md-4 sm-12">
           <div className="addToCartPaymentSection">
             <div className="cartPaymentSectionTop">
@@ -112,7 +111,7 @@ const AddToCart = () => {
               </div>
               <div className="secondCartPaymentSectionTop">
                 <span>
-                  iPhone 16 Pro 256 GB Black 
+                  iPhone 16 Pro 256 GB Black
                   {/* <strong>(1ədəd)</strong> */}
                 </span>
                 <div className="cartPrices">
@@ -149,7 +148,11 @@ const AddToCart = () => {
             </div>
           </div>
           <div className="addToCartPaymentButtons">
-            <button className="officialPaymentBtn">Sifarişi Rəsmiləşdir</button>
+            <Link href="/checkout">
+              <button className="officialPaymentBtn">
+                Sifarişi Rəsmiləşdir
+              </button>
+            </Link>
             <button>Bir kliklə al</button>
           </div>
         </div>

@@ -13,6 +13,8 @@ import { TbCurrencyManat } from "react-icons/tb";
 import NewScale from "../../../public/icons/newScale.svg";
 import NewWishList from "../../../public/icons/newWishlist.svg";
 // import NewWishList from "../../../public/icons/baharIcon.svg";
+import { FiHeart } from "react-icons/fi";
+import { FaHeart } from "react-icons/fa";
 
 
 const HomePageProductsCard = () => {
@@ -28,9 +30,9 @@ const HomePageProductsCard = () => {
     }
   };
 
-  const toggleWishlist = () => {
-    setIsWishlisted((prev) => !prev);
-  };
+    const toggleWishlist = () => {
+      setIsWishlisted((prev) => !prev);
+    };
 
   return (
     <div className="container">
@@ -131,19 +133,17 @@ const HomePageProductsCard = () => {
                     <button>
                       <NewScale className="newScalePR" />
                     </button>
-                    {/* <button>
-                      <NewWishList className="newWishlistPR" />
-                    </button> */}
 
-                    {/*  */}
+
+
+
                     <button onClick={toggleWishlist} className="wishlist-btn">
-                      <NewWishList
-                        className={`newWishlistPR ${
-                          isWishlisted ? "active" : ""
-                        }`}
-                      />
+                      {isWishlisted ? (
+                        <FaHeart  className="newWishlistPR active" />
+                      ) : (
+                        <FiHeart className="newWishlistPR" />
+                      )}
                     </button>
-                    {/*  */}
                   </div>
                 </div>
               </div>

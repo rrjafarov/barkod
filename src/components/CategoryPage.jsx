@@ -17,9 +17,9 @@ const CategoryPage = () => {
           <strong>
             <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />
           </strong>
-          <Link href="#">
-            <span>Kategoriya</span>
-          </Link>
+          {/* <Link href="#"> */}
+            <span className="lastChildBread" >Kategoriya</span>
+          {/* </Link> */}
         </div>
       </div>
 

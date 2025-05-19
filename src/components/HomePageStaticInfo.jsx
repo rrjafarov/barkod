@@ -4,6 +4,9 @@ import OfficialRed from "../../public/icons/officialRed.svg";
 import PartByPartRed from "../../public/icons/partBypartRed.svg";
 import OperatorRed from "../../public/icons/operatorsRed.svg";
 import Image from "next/image";
+import LastDelivery from "../../public/icons/lastDelivery.svg";
+import LastOffical from "../../public/icons/lastOffical.svg";
+import LastPartByPart from "../../public/icons/lastPartByPart.svg";
 
 const HomePageStaticInfo = () => {
   return (
@@ -16,6 +19,7 @@ const HomePageStaticInfo = () => {
               <div className="staticInfoImage">
                 <Image
                   src="/icons/deliveryRed.svg"
+                  // src="/icons/lastDelivery.svg"
                   alt="delivery"
                   width={800}
                   height={800}

@@ -8,6 +8,11 @@ import BlackBasket from "../../../public/icons/blackBasket.svg";
 import NewScale from "../../../public/icons/newScale.svg";
 import Login from "../../../public/icons/loginAdmin.svg";
 import NewWishList from "../../../public/icons/newWishlist.svg";
+import LastLogin from "../../../public/icons/lastLogin.svg";
+import LastScale from "../../../public/icons/lastScale.svg";
+import LastWishList from "../../../public/icons/lastWishlist.svg";
+import LastBasket from "../../../public/icons/lastBasket.svg";
+
 // import HamburgerMenu from "../../../public/icons/hamburgerMenu.svg";
 import CategoryIcon from "../../../public/icons/categoryMenuNewIcon.svg";
 import Select from "react-select";
@@ -199,28 +204,32 @@ const Header = () => {
                 <div className="rightPagesIcon">
                   <Link href="#">
                     <button>
-                      <Login className="newScalet" />
+                      {/* <Login className="newScalet" /> */}
+                      <LastLogin className="newScalet" />
                     </button>
                   </Link>
                 </div>
                 <div className="rightPagesIcon">
                   <Link href="/compare">
                     <button>
-                      <NewScale className="newScale" />
-                    </button>
+                      {/* <NewScale className="newScale" /> */}
+                      <LastScale className="newScale" />
+                    </button> 
                   </Link>
                 </div>
                 <div className="rightPagesIcon">
                   <Link href="/wishlist">
                     <button>
-                      <NewWishList className="newWishlist" />
+                      {/* <NewWishList className="newWishlist" /> */}
+                      <LastWishList className="newWishlist" />
                     </button>
                   </Link>
                 </div>
                 <div className="rightPagesIcon">
                   <Link href="/cart">
                     <button>
-                      <BlackBasket className="newCartIcon" />
+                      {/* <BlackBasket className="newCartIcon" /> */}
+                      <LastBasket className="newCartIcon" />
                     </button>
                   </Link>
                 </div>

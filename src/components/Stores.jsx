@@ -1,4 +1,5 @@
-import React from "react";
+"use client"
+import React, { useState, useEffect } from "react";
 import { FaLocationDot } from "react-icons/fa6";
 import {
   MdKeyboardDoubleArrowRight,
@@ -7,6 +8,20 @@ import {
 import Link from "next/link";
 
 const Stores = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    const cards = document.querySelectorAll(".storesCardItemTitle h5");
+    cards.forEach((h5) => {
+      const parentCard = h5.closest(".storesCard");
+      if (!parentCard) return;
+      const match = h5.textContent
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
+      parentCard.style.display = match ? "block" : "none";
+    });
+  }, [searchTerm]);
+
   return (
     <div className="container">
       <div className="breadCrumb">
@@ -17,7 +32,7 @@ const Stores = () => {
           <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />
         </strong>
         <Link href="#">
-          <span>Mağazalarımız</span>
+          <span className="lastChildBread">Mağazalarımız</span>
         </Link>
       </div>
       <div className="row">
@@ -26,7 +41,12 @@ const Stores = () => {
             <div className="row">
               <div className="xl-12 lg-12 md-12 sm-12">
                 <div className="storeSearch">
-                  <input type="search" placeholder="Mağaza axtar..." />
+                  <input
+                    type="search"
+                    placeholder="Mağaza axtar..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
                 </div>
                 <div className="storesCard">
                   <div className="storesCardItem">
@@ -48,41 +68,7 @@ const Stores = () => {
                 <div className="storesCard">
                   <div className="storesCardItem">
                     <div className="storesCardItemTitle">
-                      <h5>Baş ofis</h5>
-                      <FaLocationDot className="storeLocationIcon" />
-                    </div>
-                    <p className="storesCardItemSubTitle">
-                      208 Ahmad Rajabli, Baku 1052
-                    </p>
-                    <div className="storesCardItemFooterTitle">
-                      <strong>
-                        Əlaqə: <span>+994777773344</span>
-                      </strong>
-                      <span>10:00-19:00</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="storesCard">
-                  <div className="storesCardItem">
-                    <div className="storesCardItemTitle">
-                      <h5>Baş ofis</h5>
-                      <FaLocationDot className="storeLocationIcon" />
-                    </div>
-                    <p className="storesCardItemSubTitle">
-                      208 Ahmad Rajabli, Baku 1052
-                    </p>
-                    <div className="storesCardItemFooterTitle">
-                      <strong>
-                        Əlaqə: <span>+994777773344</span>
-                      </strong>
-                      <span>10:00-19:00</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="storesCard">
-                  <div className="storesCardItem">
-                    <div className="storesCardItemTitle">
-                      <h5>Baş ofis</h5>
+                      <h5>Xaçmaz Filialımız</h5>
                       <FaLocationDot className="storeLocationIcon" />
                     </div>
                     <p className="storesCardItemSubTitle">
@@ -100,6 +86,7 @@ const Stores = () => {
             </div>
           </div>
         </div>
+
         <div className="xl-9 lg-9 md-9 sm-12">
           <div className="storesMap">
             <iframe

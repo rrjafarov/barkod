@@ -18,7 +18,7 @@ const CampaignPage = () => {
             <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />
           </strong>
           <Link href="#">
-            <span>Kampaniyalar</span>
+            <span className="lastChildBread" >Kampaniyalar</span>
           </Link>
         </div>
       </div>
