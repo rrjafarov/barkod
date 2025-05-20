@@ -1,22 +1,21 @@
-// /** @type {import('next').NextConfig} */
-// const nextConfig = {};
+import createNextIntlPlugin from "next-intl/plugin";
 
-// export default nextConfig;
+const withNextIntl = createNextIntlPlugin({
+  locales: ["az", "en", "ru"],
+  defaultLocale: "az",
+});
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // images: {
-  //   unoptimized: true,
-  // },
-    images: {
-      remotePatterns: [
-        {
-          protocol: "https",
-          hostname: "//",
-          pathname: "/**",
-        },
-      ],
-    },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "//",
+        pathname: "/**",
+      },
+    ],
+  },
 
   // output: "export",
 
@@ -48,4 +47,5 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);
+

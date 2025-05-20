@@ -10,8 +10,6 @@ import { FreeMode, Navigation, Thumbs, Pagination } from "swiper/modules";
 import "../../app/globals.scss";
 import Link from "next/link";
 import Image from "next/image";
-// import { Fancybox } from "@fancyapps/ui";
-// import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
 const Thumbnail = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);

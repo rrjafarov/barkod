@@ -9,7 +9,7 @@ import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import "../../app/globals.scss";
+import "../../app/[locale]/globals.scss";
 import { Pagination, Autoplay } from "swiper/modules";
 
 export default function Home() {

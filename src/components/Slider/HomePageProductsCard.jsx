@@ -4,7 +4,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
-import "../../app/globals.scss";
+import "../../app/[locale]/globals.scss";
+
 // import "../../app/[locale]/globals.scss"
 import { Pagination, Autoplay } from "swiper/modules";
 import Link from "next/link";

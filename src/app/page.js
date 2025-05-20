@@ -1,28 +1,5 @@
-import Footer from "@/components/Footer/Footer";
-import Header from "@/components/Header/Header";
-import HomePageStaticInfo from "@/components/HomePageStaticInfo";
-import HeroSlider from "@/components/Slider/HeroSlider";
-import HomePageBrands from "@/components/Slider/HomePageBrands";
-import HomePageCountProduct from "@/components/Slider/HomePageCountProduct";
-import HomePageProductsCard from "@/components/Slider/HomePageProductsCard";
-import HomePageSecondaryProducts from "@/components/Slider/HomePageSecondaryProducts";
-import ProductsReview from "@/components/Slider/ProductsReview";
-import React from "react";
+import { redirect } from "next/navigation";
 
-const HomePage = () => {
-  return (
-    <div>
-      <Header />
-      <HeroSlider />
-      <HomePageStaticInfo />
-      <HomePageProductsCard />
-      <HomePageCountProduct />
-      <HomePageSecondaryProducts />
-      <ProductsReview />
-      <HomePageBrands />
-      <Footer />
-    </div>
-  );
-};
-
-export default HomePage;
+export default function RootPage({ children }) {
+  return <div>{children}</div>;
+}
