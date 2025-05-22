@@ -4055,3 +4055,192 @@ select:focus {
 
 // Checkout Form popup
 // ! CheckoutPage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// LOign
+/* container */
+.login-container {
+  max-width: 50rem;
+  margin: 5rem auto;
+  padding: 2rem;
+  border: 1px solid #f0eae8;
+  border-radius: 1rem;
+  background: #fff;
+}
+
+/* başlıq */
+.login-title {
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
+  padding: 2rem 0;
+}
+
+/* tablar */
+.login-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.login-tab {
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #888;
+}
+.login-tab.active {
+  color: #e00;
+  font-weight: bold;
+}
+
+/* form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* label */
+.login-label {
+  font-size: 1.2rem;
+  color: #888;
+}
+
+/* input qrupları */
+.login-group {
+  display: flex;
+  align-items: center;
+  background: #f8f8f8;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/* prefiks (+994) */
+.login-prefix {
+  padding: 0 1rem;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+/* input sahələri */
+.login-input {
+  flex: 1;
+  padding: 1.5rem;
+  border: none;
+  outline: none;
+  font-size: 1.4rem;
+  background: transparent;
+}
+
+/* kilid ikonu */
+.login-icon {
+  padding: 0 1rem;
+  font-size: 2rem;
+}
+
+/* göz ikonlu toggle */
+.login-toggle {
+  background: transparent;
+  border: none;
+  padding: 0 1rem;
+  cursor: pointer;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* submit düyməsi */
+.login-submit {
+  width: 100%;
+  padding: 1.2rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: #111;
+  color: #fff;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+/* şifrəmi unutdum linki */
+.login-forgot {
+  display: block;
+  margin-top: 0.5rem;
+  text-decoration: underline;
+  font-size: 1.4rem;
+  color: #555;
+}
+
+// LOign
+
+/* eyni ölçülər, login ilə eyni container */
+
+.register-terms {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.4rem;
+  color: #555;
+  margin-top: -0.5rem;
+}
+
+.register-terms input[type="checkbox"] {
+  width: 1.6rem;
+  height: 1.6rem;
+  cursor: pointer;
+}
+
+.register-terms a {
+  margin-left: auto;
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #111;
+}
+
+.register-submit {
+  width: 100%;
+  padding: 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: #777;
+  color: #fff;
+  font-size: 1.8rem;
+  cursor: not-allowed;
+  margin-top: 1rem;
+}
+
+.register-submit.enabled {
+  background: #e00;
+  cursor: pointer;
+}
+.register-submit:disabled {
+  cursor: pointer;
+}
+
+
+.register-back {
+  display: block;
+  margin: 1rem auto 0;
+  text-decoration: underline;
+  font-size: 1.4rem;
+  color: #888;
+  background: none;
+  border: none;
+  cursor: pointer;
+}

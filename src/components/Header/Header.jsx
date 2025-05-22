@@ -12,6 +12,8 @@ import LastLogin from "../../../public/icons/lastLogin.svg";
 import LastScale from "../../../public/icons/lastScale.svg";
 import LastWishList from "../../../public/icons/lastWishlist.svg";
 import LastBasket from "../../../public/icons/lastBasket.svg";
+import LikeChange from "../../../public/icons/likeChange.svg";
+import LoginChange from "../../../public/icons/loginChange.svg";
 
 // import HamburgerMenu from "../../../public/icons/hamburgerMenu.svg";
 import CategoryIcon from "../../../public/icons/categoryMenuNewIcon.svg";
@@ -25,7 +27,14 @@ const Header = () => {
   const [language, setLanguage] = useState("AZ");
   const [showComponent, setShowComponent] = useState(false);
   const menuRef = useRef(null);
-  const placeholders = ["Mebel", "Telefon", "Televizor", "Kondisoner", "Gözəllik sağlamlıq", "Oyun konsolu"];
+  const placeholders = [
+    "Mebel",
+    "Telefon",
+    "Televizor",
+    "Kondisoner",
+    "Gözəllik sağlamlıq",
+    "Oyun konsolu",
+  ];
   const [text, setText] = useState("");
   const [mode, setMode] = useState("typing"); // typing | pausing | deleting
   const [idx, setIdx] = useState(0);
@@ -58,7 +67,6 @@ const Header = () => {
     return () => clearTimeout(timeout);
   }, [text, mode, idx]);
   // Placeholder animation V2
-
 
   const languageOptions = [
     { value: "AZ", label: "AZ" },
@@ -202,7 +210,7 @@ const Header = () => {
             >
               <div className="headerMiddleRight">
                 <div className="rightPagesIcon">
-                  <Link href="#">
+                  <Link href="/login">
                     <button>
                       {/* <Login className="newScalet" /> */}
                       <LastLogin className="newScalet" />
@@ -212,9 +220,9 @@ const Header = () => {
                 <div className="rightPagesIcon">
                   <Link href="/compare">
                     <button>
-                      {/* <NewScale className="newScale" /> */}
-                      <LastScale className="newScale" />
-                    </button> 
+                      <NewScale className="newScale" />
+                      {/* <LastScale className="newScale" /> */}
+                    </button>
                   </Link>
                 </div>
                 <div className="rightPagesIcon">
@@ -228,8 +236,8 @@ const Header = () => {
                 <div className="rightPagesIcon">
                   <Link href="/cart">
                     <button>
-                      {/* <BlackBasket className="newCartIcon" /> */}
-                      <LastBasket className="newCartIcon" />
+                      <BlackBasket className="newCartIcon" />
+                      {/* <LastBasket className="newCartIcon" /> */}
                     </button>
                   </Link>
                 </div>
@@ -257,9 +265,10 @@ const Header = () => {
 
       <div className="mobileFixedButtons">
         <div className="mobileFixedButton">
-          <Link href="#">
+          <Link href="/login">
             <button>
               <Login />
+              {/* <LoginChange className="newScalet" /> */}
             </button>
           </Link>
         </div>
@@ -273,7 +282,8 @@ const Header = () => {
         <div className="mobileFixedButton">
           <Link href="/wishlist">
             <button>
-              <NewWishList />
+              {/* <NewWishList /> */}
+              <LastWishList />
             </button>
           </Link>
         </div>

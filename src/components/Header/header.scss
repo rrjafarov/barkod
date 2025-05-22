@@ -214,6 +214,7 @@ $MainColor: #ec1f27 !important;
         .newScalet {
           width: 2.5rem;
           height: 2.2rem;
+
           .cls-1 {
             fill: black !important;
             stroke: black !important;
@@ -223,6 +224,7 @@ $MainColor: #ec1f27 !important;
         .newScale {
           width: 2.5rem;
           height: 2.5rem;
+
           .cls-1 {
             fill: black !important;
             stroke: black !important;
@@ -232,6 +234,7 @@ $MainColor: #ec1f27 !important;
         .newWishlist {
           width: 2.5rem;
           height: 2.5rem;
+
           .cls-1 {
             fill: black !important;
             stroke: black !important;
@@ -241,6 +244,7 @@ $MainColor: #ec1f27 !important;
         .newCartIcon {
           width: 2.5rem;
           height: 2.5rem;
+
           .cls-1 {
             fill: black !important;
             stroke: black !important;
@@ -830,6 +834,7 @@ $MainColor: #ec1f27 !important;
     padding: 1rem !important;
     display: flex;
     gap: 3rem !important;
+    width: 100% !important;
 
     ul {
       padding: 0 !important;
@@ -848,14 +853,21 @@ $MainColor: #ec1f27 !important;
 
   .categoryMegaMenu .rightColumn .rightColumnItems .rightColumnItem .catgorySubTitle a {
     font-size: 2.2rem !important;
+    border-bottom: 1px solid rgb(76, 79, 76);
     font-weight: 600 !important;
   }
+
+
+
 
   .categoryMegaMenu .rightColumn a {
     font-size: 2rem !important;
     font-weight: 600 !important;
+    width: 100% !important;
     text-decoration: none !important;
+    padding: 1rem 0 2rem 0;
   }
+
 }
 
 // ! EN SON VERSIYA
