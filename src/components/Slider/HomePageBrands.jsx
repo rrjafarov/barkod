@@ -10,7 +10,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import Link from "next/link";
 import Image from "next/image";
 
-const HomePageBrands = () => {
+const HomePageBrands = ({ homePageDataBrands }) => {
   return (
     <section id="homePageBrands">
       <div className="container">
@@ -54,104 +54,23 @@ const HomePageBrands = () => {
             modules={[Pagination, Autoplay]}
             className="mySwiper"
           >
-            <SwiperSlide>
-              <Link href="#">
-                <div className="homePageBrandCard">
-                  <div className="homePageBrandCardImage">
-                    <Image
-                      src="/images/boschBrand.png"
-                      alt="bosch"
-                      width={800}
-                      height={800}
-                    />
+            {homePageDataBrands.map((brands) => (
+              <SwiperSlide key={brands.id}>
+                <Link href="#">
+                  <div className="homePageBrandCard">
+                    <div className="homePageBrandCardImage">
+                      <Image
+                        // src="/images/boschBrand.png"
+                        src={brands.img_url}
+                        alt={brands.brand_name}
+                        width={800}
+                        height={800}
+                      />
+                    </div>
                   </div>
-                </div>
-              </Link>
-            </SwiperSlide>
-            <SwiperSlide>
-              <Link href="#">
-                <div className="homePageBrandCard">
-                  <div className="homePageBrandCardImage">
-                    <Image
-                      src="/images/braunBrand.png"
-                      alt="braun"
-                      width={800}
-                      height={800}
-                    />
-                  </div>
-                </div>
-              </Link>
-            </SwiperSlide>
-            <SwiperSlide>
-              <Link href="#">
-                <div className="homePageBrandCard">
-                  <div className="homePageBrandCardImage">
-                    <Image
-                      src="/images/appleBrand.png"
-                      alt="apple"
-                      width={800}
-                      height={800}
-                    />
-                  </div>
-                </div>
-              </Link>
-            </SwiperSlide>
-            <SwiperSlide>
-              <Link href="#">
-                <div className="homePageBrandCard">
-                  <div className="homePageBrandCardImage">
-                    <Image
-                      src="/images/lgBrand.png"
-                      alt="LG"
-                      width={800}
-                      height={800}
-                    />
-                  </div>
-                </div>
-              </Link>
-            </SwiperSlide>
-            <SwiperSlide>
-              <Link href="#">
-                <div className="homePageBrandCard">
-                  <div className="homePageBrandCardImage">
-                    <Image
-                      src="/images/boschBrand.png"
-                      alt="bosch"
-                      width={800}
-                      height={800}
-                    />
-                  </div>
-                </div>
-              </Link>
-            </SwiperSlide>
-            <SwiperSlide>
-              <Link href="#">
-                <div className="homePageBrandCard">
-                  <div className="homePageBrandCardImage">
-                    <Image
-                      src="/images/lgBrand.png"
-                      alt="LG"
-                      width={800}
-                      height={800}
-                    />
-                  </div>
-                </div>
-              </Link>
-            </SwiperSlide>
-            <SwiperSlide>
-              <Link href="#">
-                <div className="homePageBrandCard">
-                  <div className="homePageBrandCardImage">
-                    <Image
-                      src="/images/braunBrand.png"
-                      alt="braun"
-                      width={800}
-                      height={800}
-                    />
-                  </div>
-                </div>
-              </Link>
-            </SwiperSlide>
+                </Link>
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
       </div>

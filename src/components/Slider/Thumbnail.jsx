@@ -7,7 +7,7 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import "swiper/css/pagination";
 import { FreeMode, Navigation, Thumbs, Pagination } from "swiper/modules";
-import "../../app/globals.scss";
+import "../../app/[locale]/globals.scss";
 import Link from "next/link";
 import Image from "next/image";
 

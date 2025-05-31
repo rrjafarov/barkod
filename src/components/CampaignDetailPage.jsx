@@ -6,7 +6,7 @@ import {
   MdKeyboardArrowRight,
 } from "react-icons/md";
 
-const CompaignDetailPage = () => {
+const CompaignDetailPage = ({campaign}) => {
   return (
     <>
       <div className="container">
@@ -28,17 +28,19 @@ const CompaignDetailPage = () => {
           </Link>
         </div>
       </div>
+
       <section id="campaignDetailPage">
         <div className="container">
           <div className="campaignDetailPage">
             <div className="campaignDetailPageTitle">
-              <span>Кешбек 5% при оплаті карткою monobank</span>
+              <span>{campaign.title}</span>
             </div>
             <div className="row">
               <div className="xl-9 lg-9 md-6 sm-12">
                 <div className="campaignDetailPageLeft">
                   <Image
-                    src="/images/campaignDPImg.png"
+                    // src="/images/campaignDPImg.png"
+                    src={campaign.img_url}
                     alt="campaign"
                     width={800}
                     height={800}
@@ -74,8 +76,10 @@ const CompaignDetailPage = () => {
               </div>
             </div>
             <div className="campaignDetailPageContent">
-              <span>Bahar Kampaniyası</span>
-              <p>
+              <span>{campaign.title}</span>
+            <div dangerouslySetInnerHTML={{ __html: campaign.content }}></div>
+
+              {/* <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
                 dolorum corrupti explicabo ex, hic excepturi expedita vel eius,
                 ducimus reiciendis est reprehenderit qui maiores unde
@@ -113,7 +117,7 @@ const CompaignDetailPage = () => {
                 minima explicabo nam blanditiis atque, quidem alias tempora
                 quod, possimus, quam dolore quas illo perferendis libero vel
                 facere. Minima id possimus adipisci exercitationem.
-              </p>
+              </p> */}
             </div>
           </div>
         </div>

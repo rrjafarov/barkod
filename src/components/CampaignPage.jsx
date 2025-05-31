@@ -6,7 +6,7 @@ import {
   MdKeyboardArrowRight,
 } from "react-icons/md";
 
-const CampaignPage = () => {
+const CampaignPage = ({ campaignPageDataSlider }) => {
   return (
     <>
       <div className="container">
@@ -18,47 +18,50 @@ const CampaignPage = () => {
             <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />
           </strong>
           <Link href="#">
-            <span className="lastChildBread" >Kampaniyalar</span>
+            <span className="lastChildBread">Kampaniyalar</span>
           </Link>
         </div>
       </div>
       <section id="campaignPageCard">
         <div className="container">
           <div className="row">
-            <div className="xl-3 lg-3 md-6 sm-12">
-              <Link className="blockCardLink" href="#">
-                <div className="campaignPageCard">
-                  <div className="campaignPageCardItem">
-                    <div className="campaignPageCardImage">
-                      <Image
-                        src="/images/campaignImage.png"
-                        alt="campaign"
-                        width={800}
-                        height={800}
-                      />
+            {campaignPageDataSlider.map((campaign) => (
+              <div className="xl-3 lg-3 md-6 sm-12" key={campaign.id}>
+                <Link className="blockCardLink" href="#">
+                  <div className="campaignPageCard">
+                    <div className="campaignPageCardItem">
+                      <div className="campaignPageCardImage">
+                        <Image
+                          // src="/images/campaignImage.png"
+                          src={campaign.img_url}
+                          alt="campaign"
+                          width={800}
+                          height={800}
+                        />
+                      </div>
+                      <div className="campaignPageCardTitle">
+                        <span>{campaign.title}</span>
+                      </div>
                     </div>
-                    <div className="campaignPageCardTitle">
-                      <span>Кешбек 5% при оплаті карткою monobank</span>
+                    <div className="circleLine">
+                      <span className="leftCircle"></span>
+                      <span className="rightCircle"></span>
+                    </div>
+                    <div className="campaignPageCardBottom">
+                      <div className="campaignPageCardBottomText">
+                        <span>Son</span>
+                        <span>99 gün</span>
+                      </div>
+                      <div className="campaignPageCardDetailButton">
+                        <Link href={`/campaign/${campaign.slug}`}>
+                          <button>Ətraflı</button>
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                  <div className="circleLine">
-                    <span className="leftCircle"></span>
-                    <span className="rightCircle"></span>
-                  </div>
-                  <div className="campaignPageCardBottom">
-                    <div className="campaignPageCardBottomText">
-                      <span>Son</span>
-                      <span>99 gün</span>
-                    </div>
-                    <div className="campaignPageCardDetailButton">
-                      <Link href="/campaign/id">
-                        <button>Ətraflı</button>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </div>
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </section>

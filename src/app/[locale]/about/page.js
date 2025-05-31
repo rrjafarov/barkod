@@ -8,24 +8,26 @@ import axiosInstance from "@/lib/axios";
 async function getAboutPageData() {
   const cookieStore = await cookies();
   const lang = cookieStore.get("NEXT_LOCALE");
-
   try {
-    const { data: about } = await axiosInstance.get(`/page-data/about`, {
+    const { data: about } = await axiosInstance.get(`/about`, {
       // headers: { Lang: lang.value },
       cache: "no-store",
     });
     return about;
   } catch (error) {
-    console.error("Failed to fetch about page data", error);
+    console.error("Failed to about page data", error);
     throw error;
   }
 }
 
-const page = () => {
+const page = async () => {
+  const aboutResponse = await getAboutPageData();
+  const aboutPageDataSlider = aboutResponse?.data || [];
+  
   return (
     <div>
         <Header />
-        <AboutPage />
+        <AboutPage aboutPageDataSlider={aboutPageDataSlider} />
         <Footer />
     </div>
   )

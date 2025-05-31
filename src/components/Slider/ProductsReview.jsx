@@ -5,8 +5,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import "../../app/[locale]/globals.scss";
-
-// import "../../app/[locale]/globals.scss"
 import { Pagination, Autoplay } from "swiper/modules";
 import Link from "next/link";
 import Image from "next/image";
@@ -23,7 +21,11 @@ Fancybox.bind("[data-fancybox]", {
   },
 });
 
-const HomePageProductsCard = () => {
+
+
+
+
+const HomePageProductsCard = ({ homePageDataVideo }) => {
   return (
     <section id="homePageProductReview">
       <div className="container reviewRow">
@@ -77,108 +79,32 @@ const HomePageProductsCard = () => {
           modules={[Pagination, Autoplay]}
           className="mySwiper"
         >
-          <SwiperSlide>
-            <div className="productsReviewSlide">
-              <Link
-                href={
-                  "https://www.https://www.youtube.com/watch?v=_ZiAzlHF8nM.com/watch?v=93H-FqHYiEE"
-                }
-                target="_blank"
-                className="productsReviewLink"
-                data-fancybox="videos"
-              >
-                <div className="productsReviewCard">
-                  <Image
-                    src="/images/homeBannerd.png"
-                    className="reviewCardImage"
-                    alt="review"
-                    width={800}
-                    height={800}
-                  />
-                  <div className="reviewPlayIcon">
-                    <FaPlay className="revPlayIcon" />
+          {homePageDataVideo.map((video) => (
+            <SwiperSlide key={video.id}>
+              <div className="productsReviewSlide">
+                <Link
+                  href={video.src}
+                  target="_blank"
+                  className="productsReviewLink"
+                  data-fancybox="videos"
+                >
+                  <div className="productsReviewCard">
+                    <Image
+                      src="/images/homeBanner.png"
+                      // src={video.video_thumbnail}
+                      className="reviewCardImage"
+                      alt="review"
+                      width={800}
+                      height={800}
+                    />
+                    <div className="reviewPlayIcon">
+                      <FaPlay className="revPlayIcon" />
+                    </div>
                   </div>
-                </div>
-              </Link>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="productsReviewSlide">
-              <Link
-                href={
-                  "https://www.https://www.youtube.com/watch?v=_ZiAzlHF8nM.com/watch?v=93H-FqHYiEE"
-                }
-                target="_blank"
-                className="productsReviewLink"
-                data-fancybox="videos"
-              >
-                <div className="productsReviewCard">
-                  <Image
-                    src="/images/productsIcmal.png"
-                    className="reviewCardImage"
-                    alt="review"
-                    width={800}
-                    height={800}
-                  />
-                  <div className="reviewPlayIcon">
-                    <FaPlay className="revPlayIcon" />
-                  </div>
-                </div>
-              </Link>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="productsReviewSlide">
-              <Link
-                href={
-                  "https://www.https://www.youtube.com/watch?v=_ZiAzlHF8nM.com/watch?v=93H-FqHYiEE"
-                }
-                target="_blank"
-                className="productsReviewLink"
-                data-fancybox="videos"
-              >
-                <div className="productsReviewCard">
-                  <Image
-                    src="/images/homeBannerd.png"
-                    className="reviewCardImage"
-                    alt="review"
-                    width={800}
-                    height={800}
-                  />
-                  <div className="reviewPlayIcon">
-                    <FaPlay className="revPlayIcon" />
-                  </div>
-                </div>
-              </Link>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="productsReviewSlide">
-              <Link
-                href={
-                  "https://www.https://www.youtube.com/watch?v=_ZiAzlHF8nM.com/watch?v=93H-FqHYiEE"
-                }
-                target="_blank"
-                className="productsReviewLink"
-                data-fancybox="videos"
-              >
-                <div className="productsReviewCard">
-                  <Image
-                    src="/images/productsIcmal.png"
-                    className="reviewCardImage"
-                    alt="review"
-                    width={800}
-                    height={800}
-                  />
-                  <div className="reviewPlayIcon">
-                    <FaPlay className="revPlayIcon" />
-                  </div>
-                </div>
-              </Link>
-            </div>
-          </SwiperSlide>
-
-          {/* <div className="review-custom-pagination"></div> */}
+                </Link>
+              </div>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </section>

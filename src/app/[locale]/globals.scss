@@ -445,6 +445,11 @@ ul {
   height: 100%;
 }
 
+.sldr {
+  width: 100% !important;
+  height: 55rem !important;
+}
+
 #homePageBanner {
   padding: 2rem 0;
 
@@ -523,7 +528,11 @@ ul {
     gap: 2rem;
     width: 100%;
     height: 100%;
-
+    height: 55rem !important;
+    #rowFill {
+      width: 100%;
+      height: 100%;
+    }
     .bannerStaticCard {
       border: 1px solid rgb(235, 235, 235) !important;
       text-align: center;
@@ -651,6 +660,18 @@ ul {
     }
   }
 }
+
+@media (max-width: 767.9px) {
+  .sldr {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .bannerStaticCards {
+    display: none !important;
+  }
+}
+
 
 #bannerLeft {
   position: relative;
@@ -853,11 +874,6 @@ ul {
     transition: all 0.05s ease-in-out;
     cursor: pointer;
 
-    &:hover {
-      text-decoration: underline;
-      text-decoration-color: $MainColor;
-      transition: all 0.05s ease-in-out;
-    }
   }
 }
 
@@ -1236,6 +1252,7 @@ ul {
 
 // secondary
 .secondaryProductsHeadTitle {
+  margin-top: 10rem;
   padding: 2rem 0;
   display: flex;
   justify-content: space-between;
@@ -2851,6 +2868,7 @@ ul {
     border: 1px solid #acabab;
     border-radius: 1rem;
     cursor: pointer;
+
     .storesCardItem {
       padding: 2rem 1rem;
       display: flex;
@@ -3958,16 +3976,19 @@ ul {
   transition: all 0.2s;
   background-color: white;
 }
-.form-group input[type="checkbox"]:checked{
+
+.form-group input[type="checkbox"]:checked {
   background-color: $MainColor;
   border: 1px solid #f3f3f3;
 }
-.contitionCheck{
+
+.contitionCheck {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 1rem;
-  label{
+
+  label {
     padding-top: 0.5rem;
   }
 }
@@ -4096,6 +4117,7 @@ select:focus {
   gap: 1rem;
   margin-bottom: 2rem;
 }
+
 .login-tab {
   background: transparent;
   border: none;
@@ -4103,6 +4125,7 @@ select:focus {
   cursor: pointer;
   color: #888;
 }
+
 .login-tab.active {
   color: #e00;
   font-weight: bold;
@@ -4229,6 +4252,7 @@ select:focus {
   background: #e00;
   cursor: pointer;
 }
+
 .register-submit:disabled {
   cursor: pointer;
 }
