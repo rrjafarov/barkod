@@ -191,12 +191,6 @@
 
 // !
 
-
-
-
-
-
-
 // "use client";
 // import React, { useState } from "react";
 // import { Swiper, SwiperSlide } from "swiper/react";
@@ -421,26 +415,6 @@
 
 // export default HomePageProductsCard;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 "use client";
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -470,12 +444,14 @@ const HomePageProductsCard = ({
 
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
+
   const toggleWishlist = (productId) => {
-    setWishlistedMap(prev => ({
+    setWishlistedMap((prev) => ({
       ...prev,
       [productId]: !prev[productId],
     }));
   };
+
   const handleOverlayClick = (e) => {
     if (e.target.className === "modal-overlay") closeModal();
   };
@@ -487,7 +463,7 @@ const HomePageProductsCard = ({
     setTimeout(() => {
       setSelectedTab(tab);
       setLoading(false);
-    }, 500);
+    }, 300);
   };
 
   // Hansı datanı göstərək
@@ -576,7 +552,10 @@ const HomePageProductsCard = ({
               <SwiperSlide key={product.id} className="productCardSlide">
                 <div className="secondHomePageProductsCard">
                   <div className="secondHomePageProductsCardDiv">
-                    <Link href={product.slug} className="blockCardLink">
+                    <Link
+                      href={`/products/${product.slug}`}
+                      className="blockCardLink"
+                    >
                       <div className="secondHomePageProductsCardImage">
                         <Image
                           src={product.image}

@@ -26,7 +26,6 @@ async function getHomePageData() {
   }
 }
 
-
 async function getCategoryeData() {
   const cookieStore = await cookies();
   const lang = cookieStore.get("NEXT_LOCALE");
@@ -42,14 +41,14 @@ async function getCategoryeData() {
   }
 }
 
-
 const HomePage = async () => {
   const homeResponse = await getHomePageData();
   const categoryResponse = await getCategoryeData();
   const categoryData = categoryResponse?.categories || [];
   const homePageDataSlider = homeResponse?.slider || [];
   const homePageDataNewProducts = homeResponse?.new_products || [];
-  const homePageDataDiscountedProducts = homeResponse?.discounted_products || [];
+  const homePageDataDiscountedProducts =
+    homeResponse?.discounted_products || [];
   const homePageDataBestSellingProducts = homeResponse?.best_seller || [];
   const homePageDataBrands = homeResponse?.brands || [];
   const homePageDataVideo = homeResponse?.video || [];
@@ -65,7 +64,9 @@ const HomePage = async () => {
         homePageDataBestSellingProducts={homePageDataBestSellingProducts}
       />
       {/* <HomePageCountProduct /> */}
-      <HomePageSecondaryProducts />
+      <HomePageSecondaryProducts
+        homePageDataBestSellingProducts={homePageDataBestSellingProducts}
+      />
       <ProductsReview homePageDataVideo={homePageDataVideo} />
       <HomePageBrands homePageDataBrands={homePageDataBrands} />
       <Footer />

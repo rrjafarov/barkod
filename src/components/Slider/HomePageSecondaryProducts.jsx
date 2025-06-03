@@ -5,8 +5,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import "../../app/[locale]/globals.scss";
-
-// import "../../app/[locale]/globals.scss"
 import { Pagination, Autoplay } from "swiper/modules";
 import Link from "next/link";
 import { Rating, Box } from "@mui/material";
@@ -16,21 +14,27 @@ import NewScale from "../../../public/icons/newScale.svg";
 import { FiHeart } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
 
-const HomePageSecondaryProducts = () => {
+const HomePageSecondaryProducts = ({ homePageDataBestSellingProducts }) => {
   const [value, setValue] = useState(4);
   const [showModal, setShowModal] = useState(false);
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
-  const [isWishlisted, setIsWishlisted] = useState(false);
+  // const [isWishlisted, setIsWishlisted] = useState(false);
+  const [wishlistedMap, setWishlistedMap] = useState({});
 
   const handleOverlayClick = (e) => {
     if (e.target.className === "modal-overlay") {
       closeModal();
     }
   };
-  const toggleWishlist = () => {
-    setIsWishlisted((prev) => !prev);
+
+  const toggleWishlist = (productId) => {
+    setWishlistedMap((prev) => ({
+      ...prev,
+      [productId]: !prev[productId],
+    }));
   };
+
   return (
     <div className="container">
       {showModal && (
@@ -100,65 +104,76 @@ const HomePageSecondaryProducts = () => {
         }}
         className="mySwiper custom-overflow-container"
       >
-        <SwiperSlide className="productCardSlide">
-          <div className="secondHomePageProductsCard">
-            <div className="secondHomePageProductsCardDiv">
-              <Link href="/products/id" className="blockCardLink">
-                <div className="secondHomePageProductsCardImage">
-                  <Image
-                    src="/images/iphone16pro.png"
-                    alt="sony"
-                    width={200}
-                    height={200}
-                  />
-                </div>
-              </Link>
-              <div className="secondHomePageProductsCardContent">
-                <span>iPhone 16 Pro Max 256 GB Black Titanium</span>
-                <div className="discount">
-                  <span>
-                    -350 <TbCurrencyManat />
-                  </span>
-                </div>
-                <div className="cardBottomContent">
-                  <div className="price">
-                    <span className="oldPrice">
-                      3000,00
-                      <TbCurrencyManat />
-                    </span>
-                    <span className="newPrice">
-                      2400,00
-                      <TbCurrencyManat />
-                    </span>
+        {homePageDataBestSellingProducts.map((product) => {
+          const isWishlisted = wishlistedMap[product.id] === true;
+          return (
+            <SwiperSlide key={product.id} className="productCardSlide">
+              <div className="secondHomePageProductsCard">
+                <div className="secondHomePageProductsCardDiv">
+                  <Link
+                    href={`/products/${product.slug}`}
+                    className="blockCardLink"
+                  >
+                    <div className="secondHomePageProductsCardImage">
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        width={200}
+                        height={200}
+                      />
+                    </div>
+                  </Link>
+                  <div className="secondHomePageProductsCardContent">
+                    <span>{product.name}</span>
+                    {product.disc_percent != null && (
+                      <div className="discount">
+                        <span>{product.disc_percent} %</span>
+                      </div>
+                    )}
+                    <div className="cardBottomContent">
+                      <div className="price">
+                        {product.old_price && (
+                          <span className="oldPrice">
+                            {product.old_price}
+                            <TbCurrencyManat />
+                          </span>
+                        )}
+                        <span className="newPrice">
+                          {product.price}
+                          <TbCurrencyManat />
+                        </span>
+                      </div>
+                      <div className="wishList">
+                        <button>
+                          <NewScale className="newScalePR" />
+                        </button>
+                        <button
+                          onClick={() => toggleWishlist(product.id)}
+                          className="wishlist-btn"
+                        >
+                          {isWishlisted ? (
+                            <FaHeart className="newWishlistPR active" />
+                          ) : (
+                            <FiHeart className="newWishlistPR" />
+                          )}
+                        </button>
+                      </div>
+                    </div>
                   </div>
+                </div>
 
-                  <div className="wishList">
-                    <button>
-                      <NewScale className="newScalePR" />
-                    </button>
-
-                    <button onClick={toggleWishlist} className="wishlist-btn">
-                      {isWishlisted ? (
-                        <FaHeart className="newWishlistPR active" />
-                      ) : (
-                        <FiHeart className="newWishlistPR" />
-                      )}
+                <div className="addToCartClick">
+                  <div className="addToCartClickItem">
+                    <button className="cartBtn">Səbətə at</button>
+                    <button onClick={openModal} className="clickBtn">
+                      Bir Kliklə Al
                     </button>
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div className="addToCartClick">
-              <div className="addToCartClickItem">
-                <button className="cartBtn">Səbətə at</button>
-                <button onClick={openModal} className="clickBtn">
-                  Bir Klikle Al
-                </button>
-              </div>
-            </div>
-          </div>
-        </SwiperSlide>
+            </SwiperSlide>
+          );
+        })}
         <div className="my-custom-pagination"></div>
       </Swiper>
     </div>

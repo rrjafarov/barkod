@@ -11,7 +11,6 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { FiHeart } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
 
-
 const FilterAccordion = ({ title, children, defaultOpen = false }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
   return (
@@ -29,7 +28,7 @@ const FilterAccordion = ({ title, children, defaultOpen = false }) => {
   );
 };
 
-const ProductsPage = () => {
+const ProductsPage = ({ slug, productsCard, productsFilterGroupsTitle }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [isMobileFilterOpen, setMobileFilterOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -107,7 +106,7 @@ const ProductsPage = () => {
               </button>
 
               {/* Desktop için seçili filtreler (filter-title altında) */}
-              {/* <div className="selectedFilter desktop-only">
+              <div className="selectedFilter desktop-only">
                 <div className="selectedFilterInner">
                   <span>x</span>
                   <p>siemens</p>
@@ -116,7 +115,7 @@ const ProductsPage = () => {
                   <span>x</span>
                   <p>borsch</p>
                 </div>
-              </div> */}
+              </div>
 
               {/* Filtre paneli: mobilde açıldığında tüm ekranı kaplar */}
               <div
@@ -144,7 +143,8 @@ const ProductsPage = () => {
                   x
                 </button>
                 <div className="lineFiltered"></div>
-                <FilterAccordion title="Qiymət" defaultOpen={true}>
+
+                {/* <FilterAccordion title="Qiymət" defaultOpen={true}>
                   <ul>
                     <li>
                       X-ray Equipment<p>(22)</p>
@@ -157,83 +157,30 @@ const ProductsPage = () => {
                       Surgical Equipment <p>(22)</p>
                     </li>
                   </ul>
-                </FilterAccordion>
-                <FilterAccordion title="İstehsalçı">
-                  <ul>
-                    <li>
-                      X-ray Equipment<p>(22)</p>
-                    </li>
-                    <li>
-                      Medical Devices <p>(54)</p>
-                    </li>
-                    <li>
-                      Dental Equipment <p>(23)</p>
-                    </li>
-                    <li>
-                      Surgical Equipment <p>(22)</p>
-                    </li>
-                  </ul>
-                </FilterAccordion>
-                <FilterAccordion title="Qiymət">
-                  <ul>
-                    <li>
-                      X-ray Equipment<p>(22)</p>
-                    </li>
-                    <li>Medical Devices</li>
-                    <li>
-                      Dental Equipment <p>(23)</p>
-                    </li>
-                    <li>
-                      Surgical Equipment <p>(22)</p>
-                    </li>
-                  </ul>
-                </FilterAccordion>
-                <FilterAccordion title="İstehsalçı">
-                  <ul>
-                    <li>
-                      X-ray Equipment<p>(22)</p>
-                    </li>
-                    <li>
-                      Medical Devices <p>(54)</p>
-                    </li>
-                    <li>
-                      Dental Equipment <p>(23)</p>
-                    </li>
-                    <li>
-                      Surgical Equipment <p>(22)</p>
-                    </li>
-                  </ul>
-                </FilterAccordion>
-                <FilterAccordion title="Qiymət">
-                  <ul>
-                    <li>
-                      X-ray Equipment<p>(22)</p>
-                    </li>
-                    <li>Medical Devices</li>
-                    <li>
-                      Dental Equipment <p>(23)</p>
-                    </li>
-                    <li>
-                      Surgical Equipment <p>(22)</p>
-                    </li>
-                  </ul>
-                </FilterAccordion>
-                <FilterAccordion title="İstehsalçı">
-                  <ul>
-                    <li>
-                      X-ray Equipment<p>(22)</p>
-                    </li>
-                    <li>
-                      Medical Devices <p>(54)</p>
-                    </li>
-                    <li>
-                      Dental Equipment <p>(23)</p>
-                    </li>
-                    <li>
-                      Surgical Equipment <p>(22)</p>
-                    </li>
-                  </ul>
-                </FilterAccordion>
+                </FilterAccordion> */}
+
+                {productsFilterGroupsTitle?.map((group) => (
+                  <FilterAccordion
+                    key={group.value}
+                    title={group.name}
+                    defaultOpen={true}
+                  >
+                    <ul className="filterList">
+                      {group.child.map((childItem) => (
+                        <li key={childItem.value} className="filterListItem">
+                          <Link
+                            href={`/products?cat_slug=${slug}&filter[]=${childItem.value}`}
+                          >
+                            {childItem.name}
+                          </Link>
+                        </li>
+                      ))}
+                      {group.child.length === 0 && (
+                        <li className="noFilterChild">Alt öğe bulunamadı.</li>
+                      )}
+                    </ul>
+                  </FilterAccordion>
+                ))}
               </div>
             </div>
           </div>
@@ -241,7 +188,81 @@ const ProductsPage = () => {
           <div className="xl-10 lg-10 md-10 sm-12">
             <div className="productPageCards">
               <div className="row">
-                <div className="xl-3 lg-4 md-6 sm-6">
+                {productsCard && productsCard.length > 0 ? (
+                  <>
+                    {productsCard.map((product) => (
+                      <div className="xl-3 lg-4 md-6 sm-6" key={product.id}>
+                        <div className="secondHomePageProductsCard">
+                          <div className="secondHomePageProductsCardDiv">
+                            <Link
+                              href={`/products/${product.id}`}
+                              className="blockCardLink"
+                            >
+                              <div className="secondHomePageProductsCardImage">
+                                <Image
+                                  src={
+                                    product.photo || "/images/iphone16pro.png"
+                                  }
+                                  alt={product.name}
+                                  width={200}
+                                  height={200}
+                                />
+                              </div>
+                            </Link>
+                            <div className="secondHomePageProductsCardContent">
+                              <span>{product.name}</span>
+                              <div className="discount">
+                                <span>
+                                  -{product.discount} <TbCurrencyManat />
+                                </span>
+                              </div>
+                              <div className="cardBottomContent">
+                                <div className="price">
+                                  <span className="oldPrice">
+                                    {product.oldPrice}
+                                    <TbCurrencyManat />
+                                  </span>
+                                  <span className="newPrice">
+                                    {product.price}
+                                    <TbCurrencyManat />
+                                  </span>
+                                </div>
+
+                                <div className="wishList">
+                                  <button>
+                                    <NewScale className="newScalePR" />
+                                  </button>
+                                  <button
+                                    onClick={toggleWishlist}
+                                    className="wishlist-btn"
+                                  >
+                                    {isWishlisted ? (
+                                      <FaHeart className="newWishlistPR active" />
+                                    ) : (
+                                      <FiHeart className="newWishlistPR" />
+                                    )}
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="addToCartClick">
+                            <div className="addToCartClickItem">
+                              <button className="cartBtn">Səbətə at</button>
+                              <button onClick={openModal} className="clickBtn">
+                                Bir Klikle Al
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </>
+                ) : (
+                  <p className="noProductsMessage">product not foundddeec</p>
+                )}
+
+                {/* <div className="xl-3 lg-4 md-6 sm-6">
                   <div className="secondHomePageProductsCard">
                     <div className="secondHomePageProductsCardDiv">
                       <Link href="/products/id" className="blockCardLink">
@@ -292,7 +313,6 @@ const ProductsPage = () => {
                         </div>
                       </div>
                     </div>
-
                     <div className="addToCartClick">
                       <div className="addToCartClickItem">
                         <button className="cartBtn">Səbətə at</button>
@@ -302,7 +322,7 @@ const ProductsPage = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

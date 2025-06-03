@@ -891,6 +891,216 @@
 
 
 
+// "use client"
+// import Link from "next/link";
+// import { useState, useEffect } from "react";
+// import { IoIosArrowForward } from "react-icons/io";
+// import { IoClose } from "react-icons/io5";
+// import { IoMdArrowRoundBack } from "react-icons/io";
+
+// const MegaMenu = ({ categoryData }) => {
+//   const [activeTab, setActiveTab] = useState(null);
+//   const [activeSubcategory, setActiveSubcategory] = useState(null);
+//   const [isMobile, setIsMobile] = useState(false);
+//   const [isMenuOpen, setIsMenuOpen] = useState(true);
+
+//   useEffect(() => {
+//     const handleResize = () => setIsMobile(window.innerWidth <= 768);
+//     handleResize();
+//     window.addEventListener("resize", handleResize);
+//     return () => window.removeEventListener("resize", handleResize);
+//   }, []);
+
+//   const containerClass = activeTab
+//     ? "containera categoryMegaMenu active"
+//     : "containera categoryMegaMenu";
+
+//   const handleMouseEnter = (tabKey) => {
+//     if (!isMobile) setActiveTab(tabKey);
+//   };
+
+//   const handleArrowClick = (e, tabKey) => {
+//     e.preventDefault();
+//     if (isMobile) {
+//       setActiveTab(tabKey);
+//       setActiveSubcategory(null);
+//     }
+//   };
+
+//   const handleMenuClose = () => setIsMenuOpen(false);
+
+//   return (
+//     isMenuOpen && (
+//       <div className={containerClass}>
+//         <div className="leftColumn">
+//           <div className="mobileMenuHeader">
+//             <span>Kateqoriyalar</span>
+//             <span onClick={handleMenuClose} style={{ cursor: "pointer" }}>
+//               <IoClose />
+//             </span>
+//           </div>
+//           <ul>
+//             {categoryData.map((cat) => (
+//               <li
+//                 key={cat.id}
+//                 onMouseEnter={() => handleMouseEnter(cat.slug)}
+//               >
+//                 <Link href={`/products?slug=${cat.slug}`}>
+//                   <div className="categoryLeftIcon">
+//                     <img src={cat.img_url} alt="" />
+//                   </div>
+//                   <span>{cat.name}</span>
+//                 </Link>
+//                 <span
+//                   className="arrowIcon"
+//                   onClick={(e) => handleArrowClick(e, cat.slug)}
+//                   style={{ cursor: "pointer" }}
+//                 >
+//                   <IoIosArrowForward />
+//                 </span>
+//               </li>
+//             ))}
+//           </ul>
+//         </div>
+
+//         <div className="rightColumn">
+//           <div className="mobileMenuHeader">
+//             <span>Kateqoriyalar</span>
+//             <span onClick={handleMenuClose} style={{ cursor: "pointer" }}>
+//               <IoClose />
+//             </span>
+//           </div>
+
+//           {/* Mobil: İkinci dərəcəli kateqoriyalar */}
+//           {isMobile && activeTab && !activeSubcategory && (
+//             <>
+//               <p
+//                 onClick={() => setActiveTab(null)}
+//                 style={{
+//                   display: "flex",
+//                   alignItems: "center",
+//                   justifyContent: "flex-start",
+//                   gap: "1rem",
+//                   cursor: "pointer",
+//                   marginBottom: "1rem",
+//                   fontSize: "1.6rem",
+//                   fontWeight: 600,
+//                 }}
+//               >
+//                 <IoMdArrowRoundBack />
+//                 Geri
+//               </p>
+//               <div
+//                 className="rightColumnItems"
+//                 style={{ display: "flex", flexDirection: "column" }}
+//               >
+//                 {categoryData
+//                   .find((c) => c.slug === activeTab)
+//                   ?.sub_categories.map((sub) => (
+//                     <div className="rightColumnItem" key={sub.id}>
+//                       <Link href={`/products?slug=${sub.slug}`}>
+//                         <span className="catgorySubTitle">{sub.name}</span>
+//                       </Link>
+//                       {sub.sub_categories.length > 0 && (
+//                         <span
+//                           className="arrowIcon"
+//                           onClick={() => setActiveSubcategory(sub.slug)}
+//                           style={{ cursor: "pointer" }}
+//                         >
+//                           <IoIosArrowForward />
+//                         </span>
+//                       )}
+//                     </div>
+//                   ))}
+//               </div>
+//             </>
+//           )}
+
+//           {/* Mobil: Üçüncü dərəcəli kateqoriyalar */}
+//           {isMobile && activeTab && activeSubcategory && (
+//             <>
+//               <p
+//                 onClick={() => setActiveSubcategory(null)}
+//                 style={{
+//                   display: "flex",
+//                   alignItems: "center",
+//                   justifyContent: "flex-start",
+//                   gap: "1rem",
+//                   cursor: "pointer",
+//                   marginBottom: "1rem",
+//                   fontSize: "1.6rem",
+//                   fontWeight: 600,
+//                 }}
+//               >
+//                 <IoMdArrowRoundBack />
+//                 Geri
+//               </p>
+//               <div className="rightColumnItems">
+//                 <div className="rightColumnItem">
+//                   <ul>
+//                     {categoryData
+//                       .find((c) => c.slug === activeTab)
+//                       ?.sub_categories.find((s) => s.slug === activeSubcategory)
+//                       ?.sub_categories.map((deep) => (
+//                         <li key={deep.id}>
+//                           <Link href={`/products?slug=${deep.slug}`}>
+//                             {deep.name}
+//                           </Link>
+//                         </li>
+//                       ))}
+//                   </ul>
+//                 </div>
+//               </div>
+//             </>
+//           )}
+
+//           {/* Desktop: Orijinal struktur */}
+//           {!isMobile && activeTab && (
+//             <div className="rightColumnItems">
+//               {categoryData
+//                 .find((c) => c.slug === activeTab)
+//                 ?.sub_categories.map((sub) => (
+//                   <div className="rightColumnItem" key={sub.id}>
+//                     <span className="catgorySubTitle">
+//                       <Link href={`/products?slug=${sub.slug}`}>
+//                         {sub.name}
+//                       </Link>
+//                     </span>
+//                     {sub.sub_categories.length > 0 && (
+//                       <ul>
+//                         {sub.sub_categories.map((deep) => (
+//                           <li key={deep.id}>
+//                             <Link href={`/products?slug=${deep.slug}`}>
+//                               {deep.name}
+//                             </Link>
+//                           </li>
+//                         ))}
+//                       </ul>
+//                     )}
+//                   </div>
+//                 ))}
+//             </div>
+//           )}
+//         </div>
+//       </div>
+//     )
+//   );
+// };
+
+// export default MegaMenu;
+
+
+
+
+
+
+
+
+
+
+
+
+// MegaMenu.js
 "use client"
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -945,7 +1155,8 @@ const MegaMenu = ({ categoryData }) => {
                 key={cat.id}
                 onMouseEnter={() => handleMouseEnter(cat.slug)}
               >
-                <Link href={`/products?slug=${cat.slug}`}>
+                {/* QIRMIZI: "slug" əvəzinə "cat_slug" parametri istifadə olunacaq */}
+                <Link href={`/products?cat_slug=${cat.slug}`}>
                   <div className="categoryLeftIcon">
                     <img src={cat.img_url} alt="" />
                   </div>
@@ -998,7 +1209,8 @@ const MegaMenu = ({ categoryData }) => {
                   .find((c) => c.slug === activeTab)
                   ?.sub_categories.map((sub) => (
                     <div className="rightColumnItem" key={sub.id}>
-                      <Link href={`/products?slug=${sub.slug}`}>
+                      {/* QIRMIZI: Burada da "cat_slug" istifadə olunur */}
+                      <Link href={`/products?cat_slug=${sub.slug}`}>
                         <span className="catgorySubTitle">{sub.name}</span>
                       </Link>
                       {sub.sub_categories.length > 0 && (
@@ -1043,7 +1255,8 @@ const MegaMenu = ({ categoryData }) => {
                       ?.sub_categories.find((s) => s.slug === activeSubcategory)
                       ?.sub_categories.map((deep) => (
                         <li key={deep.id}>
-                          <Link href={`/products?slug=${deep.slug}`}>
+                          {/* QIRMIZI: Yenə “cat_slug” */}
+                          <Link href={`/products?cat_slug=${deep.slug}`}>
                             {deep.name}
                           </Link>
                         </li>
@@ -1062,7 +1275,8 @@ const MegaMenu = ({ categoryData }) => {
                 ?.sub_categories.map((sub) => (
                   <div className="rightColumnItem" key={sub.id}>
                     <span className="catgorySubTitle">
-                      <Link href={`/products?slug=${sub.slug}`}>
+                      {/* QIRMIZI: Burada da “cat_slug” */}
+                      <Link href={`/products?cat_slug=${sub.slug}`}>
                         {sub.name}
                       </Link>
                     </span>
@@ -1070,7 +1284,8 @@ const MegaMenu = ({ categoryData }) => {
                       <ul>
                         {sub.sub_categories.map((deep) => (
                           <li key={deep.id}>
-                            <Link href={`/products?slug=${deep.slug}`}>
+                            {/* QIRMIZI: Və burada da “cat_slug” */}
+                            <Link href={`/products?cat_slug=${deep.slug}`}>
                               {deep.name}
                             </Link>
                           </li>
