@@ -1155,7 +1155,6 @@ const MegaMenu = ({ categoryData }) => {
                 key={cat.id}
                 onMouseEnter={() => handleMouseEnter(cat.slug)}
               >
-                {/* QIRMIZI: "slug" əvəzinə "cat_slug" parametri istifadə olunacaq */}
                 <Link href={`/products?cat_slug=${cat.slug}`}>
                   <div className="categoryLeftIcon">
                     <img src={cat.img_url} alt="" />
