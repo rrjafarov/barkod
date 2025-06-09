@@ -558,6 +558,7 @@ const HomePageProductsCard = ({
                     >
                       <div className="secondHomePageProductsCardImage">
                         <Image
+                          // src={`https://dev-admin.barkodelectronics.az/storage${product.image}`}
                           src={product.image}
                           alt={product.name}
                           width={200}

@@ -11,9 +11,11 @@ const nextConfig = {
     remotePatterns: [
       {
         // protocol: "https",
-        protocol: "http",
-        // hostname: "//",
-        hostname: "192.168.0.104",
+        protocol: "https",
+        hostname: "//",
+        // hostname: "192.168.0.104",
+        hostname: "dev-admin.barkodelectronics.az",
+        // pathname: "/storage/uploads/images/**",
         pathname: "/**",
       },
     ],
