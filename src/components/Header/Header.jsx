@@ -503,7 +503,7 @@ const Header = ({ categoryData }) => {
           <div className="headerTopRight">
             <div className="contactCall">
               <span>
-                <Link href="#">*0092</Link>
+                <Link href="tel:*0092">*0092</Link>
               </span>
             </div>
             <div className="payment">

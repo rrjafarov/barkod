@@ -23,7 +23,7 @@ const Footer = () => {
                 <span className="footerHeadLink">Əlaqə</span>
                 <ul>
                   <li>
-                    <Link className="contactNumber" href="#">
+                    <Link className="contactNumber" href="tel:*0092">
                       *0092
                     </Link>
                   </li>
@@ -87,21 +87,30 @@ const Footer = () => {
                   <span className="footerHeadLink">Bizimlə qal:</span>
                   <ul>
                     <li>
-                      <Link href="#">
+                      <Link
+                        href="https://www.facebook.com/BarkodElectronics/"
+                        target="_blank"
+                      >
                         <button>
                           <Facebook className="footSocialIcon" />
                         </button>
                       </Link>
                     </li>
                     <li>
-                      <Link href="#">
+                      <Link
+                        href="https://www.instagram.com/barkod_az/"
+                        target="_blank"
+                      >
                         <button>
                           <Instagram className="footSocialIcon" />
                         </button>
                       </Link>
                     </li>
                     <li>
-                      <Link href="#">
+                      <Link
+                        href="https://www.youtube.com/@Barkod_az"
+                        target="_blank"
+                      >
                         <button>
                           <Youtube className="footSocialIcon" />
                         </button>
@@ -115,9 +124,12 @@ const Footer = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link href="#">
+                      <Link
+                        href="https://wa.me/994552700092"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <button>
-                          {/* <Whatsapp className="footSocialIcon" /> */}
                           <Image
                             src="/icons/wp.svg"
                             alt="wp"
@@ -129,9 +141,11 @@ const Footer = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link href="#">
+                      <Link
+                        href="https://www.tiktok.com/@barkod_az"
+                        target="_blank"
+                      >
                         <button>
-                          {/* <Tiktok className="footSocialIcon" /> */}
                           <Image
                             src="/icons/tiktok.svg"
                             alt="wp"

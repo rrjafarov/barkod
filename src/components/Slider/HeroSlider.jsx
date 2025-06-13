@@ -38,8 +38,8 @@ export default function Home({ homePageDataSlider }) {
                       {/* <img src={slider.src} alt="de" /> */}
                       <Image
                         className="homePageBanner"
-                        src="/images/slideBnnrBarkod.jpg"
-                        // src={slider.src}
+                        // src="/images/slideBnnrBarkod.jpg"
+                        src={slider.src}
                         alt={slider.alt}
                         width={1000}
                         height={800}
@@ -58,7 +58,8 @@ export default function Home({ homePageDataSlider }) {
                 <div className="xl-12 lg-12 md-12 sm-6">
                   <div className="bannerStaticCard">
                     <Image
-                      src="/images/staticBnnr01.jpg"
+                      // src="/images/staticBnnr01.jpg"
+                      src={homePageDataSlider[0]?.src || "/images/staticBnnr01.jpg"}
                       alt="banner"
                       width={400}
                       height={400}
@@ -68,7 +69,8 @@ export default function Home({ homePageDataSlider }) {
                 <div className="xl-12 lg-12 md-12 sm-6">
                   <div className="bannerStaticCard">
                     <Image
-                      src="/images/staticBnnr02.jpg"
+                      // src="/images/staticBnnr02.jpg"
+                      src={homePageDataSlider[1]?.src || "/images/staticBnnr01.jpg"}
                       alt="banner"
                       width={400}
                       height={400}
