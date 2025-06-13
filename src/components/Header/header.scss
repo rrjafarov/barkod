@@ -411,7 +411,12 @@ $MainColor: #ec1f27 !important;
   max-height: 50rem !important;
    overflow: hidden;
 }
-
+@media (max-width: 767.9px) {
+  .categoryMegaMenu {
+    max-height: 100vh !important;
+    overflow-y: auto !important;
+  }
+}
 /* Sol  (Kateqoriyalar) */
 .leftColumn {
   width: 30%;
