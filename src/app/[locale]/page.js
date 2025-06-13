@@ -45,13 +45,15 @@ const HomePage = async () => {
   const homeResponse = await getHomePageData();
   const categoryResponse = await getCategoryeData();
   const categoryData = categoryResponse?.categories || [];
+
   const homePageDataSlider = homeResponse?.slider || [];
   const homePageDataNewProducts = homeResponse?.new_products || [];
   const homePageDataDiscountedProducts =
     homeResponse?.discounted_products || [];
   const homePageDataBestSellingProducts = homeResponse?.best_seller || [];
-  const homePageDataBrands = homeResponse?.brands || [];
+  const homePageDataBrands = homeResponse?.brands || [];  
   const homePageDataVideo = homeResponse?.video || [];
+
 
   return (
     <div>

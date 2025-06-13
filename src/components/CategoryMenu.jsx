@@ -1157,7 +1157,7 @@ const MegaMenu = ({ categoryData }) => {
               >
                 <Link href={`/products?cat_slug=${cat.slug}`}>
                   <div className="categoryLeftIcon">
-                    <img src={cat.img_url} alt="" />
+                    <img src={cat.img_url} alt="Icon" />
                   </div>
                   <span>{cat.name}</span>
                 </Link>

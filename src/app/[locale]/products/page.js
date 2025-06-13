@@ -41,14 +41,6 @@
 // };
 // export default page;
 
-
-
-
-
-
-
-
-
 // !esas versiya
 // "use client";
 // import React, { useEffect, useState } from "react";
@@ -71,10 +63,10 @@
 //   const fetchProducts = async () => {
 //     setLoading(true);
 //     try {
-//       const filterQuery = filter.length > 0 
+//       const filterQuery = filter.length > 0
 //         ? filter.map(f => `filter[]=${f}`).join('&') + '&'
 //         : '';
-      
+
 //       const lang = document.cookie
 //         .split('; ')
 //         .find(row => row.startsWith('NEXT_LOCALE='))
@@ -88,7 +80,7 @@
 //           },
 //         }
 //       );
-      
+
 //       setProducts(res.data?.products?.data || []);
 //       setFilterGroups(res.data?.filter_groups || []);
 //     } catch (error) {
@@ -145,25 +137,113 @@
 
 
 
+// // !son versiya
+// "use client";
+// import React, { useEffect, useState } from "react";
+// import { useRouter, useSearchParams } from "next/navigation";
+// import axiosInstance from "@/lib/axios";
+// import Header from "@/components/Header/Header";
+// import Footer from "@/components/Footer/Footer";
+// import ProductsPage from "@/components/ProductsPage";
+
+// // async function getCategoryeData() {
+// //   const cookieStore = await cookies();
+// //   const lang = cookieStore.get("NEXT_LOCALE");
+// //   try {
+// //     const { data: home } = await axiosInstance.get(`/layouts`, {
+// //       // headers: { Lang: lang.value },
+// //       cache: "no-store",
+// //     });
+// //     return home;
+// //   } catch (error) {
+// //     console.error("Failed to home page data", error);
+// //     throw error;
+// //   }
+// // }
+
+// const Page = () => {
+
+//   // const categoryResponse = await getCategoryeData();
+//   // const categoryData = categoryResponse?.categories || [];
+//   const router = useRouter();
+//   const searchParams = useSearchParams();
+//   const [products, setProducts] = useState([]);
+//   const [filterGroups, setFilterGroups] = useState([]);
+//   const [loading, setLoading] = useState(true);
+
+//   const slug = searchParams.get("cat_slug") || "";
+//   const filter = searchParams.getAll("filter") || [];
+
+//   const fetchProducts = async () => {
+//     setLoading(true);
+//     try {
+//       const filterQuery = filter.length > 0
+//         ? filter.map(f => `filter[]=${encodeURIComponent(f)}`).join('&') + '&'
+//         : '';
+
+//       const lang = document.cookie
+//         .split('; ')
+//         .find(row => row.startsWith('NEXT_LOCALE='))
+//         ?.split('=')[1] || 'az';
+
+//       const fullUrl = `/product-list?${filterQuery}cat_slug=${slug}`;
+//       console.log('API URL:', fullUrl);
+
+//       const res = await axiosInstance.get(fullUrl, {
+//         headers: {
+//           Lang: lang,
+//         },
+//       });
+
+//       setProducts(res.data?.products?.data || []);
+//       setFilterGroups(res.data?.filter_groups || []);
+//     } catch (error) {
+//       console.error("Məhsullar alınarkən xəta baş verdi:", error);
+//       setProducts([]);
+//       setFilterGroups([]);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   useEffect(() => {
+//     fetchProducts();
+//   }, [slug, filter.join(',')]); // slug və ya filter dəyişəndə yenidən fetch et
+
+//   // if (loading) {
+//   //   return (
+//   //     <div>
+//   //       <Header />
+//   //       <div className="container">
+//   //         <div style={{ textAlign: 'center', padding: '50px' }}>
+//   //           loading...
+//   //         </div>
+//   //       </div>
+//   //       <Footer />
+//   //     </div>
+//   //   );
+//   // }
+
+//   return (
+//     <div>
+//       <Header />
+//       <ProductsPage
+//         slug={slug}
+//         productsCard={products}
+//         productsFilterGroupsTitle={filterGroups}
+//       />
+//       <Footer />
+//     </div>
+//   );
+// };
+
+// export default Page;
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// !son versiya
+// *Son versiya
 "use client";
 import React, { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -172,78 +252,93 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import ProductsPage from "@/components/ProductsPage";
 
-const Page = () => {
+export default function Page() {
   const router = useRouter();
   const searchParams = useSearchParams();
+
+  // Kategori ve ürün/filter grubu state'leri
+  const [categoryData, setCategoryData] = useState([]);
   const [products, setProducts] = useState([]);
   const [filterGroups, setFilterGroups] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   const slug = searchParams.get("cat_slug") || "";
   const filter = searchParams.getAll("filter") || [];
 
-  const fetchProducts = async () => {
-    setLoading(true);
+  // Kategori verisini client-side fetch eden fonksiyon
+  const fetchCategoryData = async () => {
     try {
-      // Filter parametrlərini düzgün formatda hazırla
-      const filterQuery = filter.length > 0 
-        ? filter.map(f => `filter[]=${encodeURIComponent(f)}`).join('&') + '&'
-        : '';
-      
-      const lang = document.cookie
-        .split('; ')
-        .find(row => row.startsWith('NEXT_LOCALE='))
-        ?.split('=')[1] || 'az';
+      const lang =
+        document.cookie
+          .split("; ")
+          .find((row) => row.startsWith("NEXT_LOCALE="))
+          ?.split("=")[1] || "az";
+
+      const res = await axiosInstance.get(`/layouts`, {
+        headers: { Lang: lang },
+      });
+      const home = res.data;
+      setCategoryData(home?.categories || []);
+    } catch (error) {
+      console.error("Kategori verisi alınırken hata:", error);
+      setCategoryData([]);
+    }
+  };
+
+  // Ürünleri fetch eden fonksiyon
+  const fetchProducts = async () => {
+    try {
+      const filterQuery =
+        filter.length > 0
+          ? filter.map((f) => `filter[]=${encodeURIComponent(f)}`).join("&") +
+            "&"
+          : "";
+
+      const lang =
+        document.cookie
+          .split("; ")
+          .find((row) => row.startsWith("NEXT_LOCALE="))
+          ?.split("=")[1] || "az";
 
       const fullUrl = `/product-list?${filterQuery}cat_slug=${slug}`;
-      console.log('API URL:', fullUrl); 
+      
+      // console.log("API URL:", fullUrl);
 
       const res = await axiosInstance.get(fullUrl, {
         headers: {
           Lang: lang,
         },
       });
-      
+
       setProducts(res.data?.products?.data || []);
       setFilterGroups(res.data?.filter_groups || []);
     } catch (error) {
       console.error("Məhsullar alınarkən xəta baş verdi:", error);
       setProducts([]);
       setFilterGroups([]);
-    } finally {
-      setLoading(false);
     }
   };
 
+  // Sayfa yüklendiğinde kategori verisini al
+  useEffect(() => {
+    fetchCategoryData();
+  }, []);
+
+  // slug veya filter değiştiğinde ürünleri yeniden fetch et
   useEffect(() => {
     fetchProducts();
-  }, [slug, filter.join(',')]); // slug və ya filter dəyişəndə yenidən fetch et
-
-  if (loading) {
-    return (
-      <div>
-        <Header />
-        <div className="container">
-          <div style={{ textAlign: 'center', padding: '50px' }}>
-            loading...
-          </div>
-        </div>
-        <Footer />
-      </div>
-    );
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [slug, filter.join(",")]);
 
   return (
     <div>
-      <Header />
+      <Header categoryData={categoryData} />
       <ProductsPage
         slug={slug}
         productsCard={products}
         productsFilterGroupsTitle={filterGroups}
+        categoryData={categoryData} 
       />
       <Footer />
     </div>
   );
-};
-
-export default Page;  
+}

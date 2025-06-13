@@ -60,9 +60,8 @@ const HomePageBrands = ({ homePageDataBrands }) => {
                   <div className="homePageBrandCard">
                     <div className="homePageBrandCardImage">
                       <Image
-                        // src="/images/boschBrand.png"
-                        src={brands.img_url}
-                        alt={brands.brand_name}
+                        src={brands?.img_url}
+                        alt={brands?.brand_name}
                         width={800}
                         height={800}
                       />

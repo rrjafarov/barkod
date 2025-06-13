@@ -2250,7 +2250,7 @@ ul {
 //! ProductsDetailPage  start
 #productsDetailPage {
   .productDPTitle {
-    font-size: 2.2rem;
+    font-size: 1.9rem;
     font-weight: 600;
     color: #111;
     text-align: start;
@@ -2280,7 +2280,6 @@ ul {
     }
   }
 }
-
 .productsDPFancybox {
   width: 100%;
   height: 100%;
@@ -2354,14 +2353,14 @@ ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
 
     .productsDPaddToCart {
       display: flex;
       justify-content: center;
       gap: 0.5rem;
       align-items: center;
-      width: 18rem;
+      width: 16rem;
       height: 5.5rem;
       background-color: $MainColor;
       color: #fff;
@@ -2380,7 +2379,7 @@ ul {
     }
 
     .productsDPbuyNow {
-      width: 18rem;
+      width: 16rem;
       height: 5.5rem;
       border-radius: 1rem;
       font-size: 2rem;

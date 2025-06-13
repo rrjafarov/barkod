@@ -1,4 +1,3 @@
-// !
 "use client";
 import Link from "next/link";
 import Form from "next/form";
@@ -16,8 +15,12 @@ import BlackBasket from "../../public/icons/blackBasket.svg";
 import { IoCartOutline } from "react-icons/io5";
 import { FiHeart } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
+import { TbCurrencyManat } from "react-icons/tb";
 
-const ProductsDetailPage = () => {
+const ProductsDetailPage = ({ product }) => {
+  const productDetail = product?.product_detail || [];
+  const attributes = product?.product_detail?.attributes || [];
+  const ratingValue = productDetail.raiting ?? 0;
   const [value, setValue] = useState(2);
   const [activeTab, setActiveTab] = useState("tech");
   const [showModal, setShowModal] = useState(false);
@@ -72,61 +75,39 @@ const ProductsDetailPage = () => {
           <strong>
             <MdKeyboardArrowRight className="breadCrumpIcon" />
           </strong>
-          <span className="lastChildBread">iPhone 16 Pro</span>
+          <span className="lastChildBread">{productDetail?.name}</span>
         </div>
-        {/* <div className="productDPTitle">
-          <h2>Aeroqril PHILIPS HD04949</h2>
-          <div className="productDPRating">
-            <Box className="productDPRatingBox">
-              <Rating
-                name="star-rating"
-                value={value}
-                onChange={(event, newValue) => setValue(newValue)}
-              />
-            </Box>
-            <p>({value})</p>
-          </div>
-        </div> */}
         <div className="row">
           <div className="xl-6 lg-6 md-6 sm-12">
-            <ProductsDPFancybox />
+            <ProductsDPFancybox productDetail={productDetail} />
           </div>
 
           <div className="xl-6 lg-6 md-6 sm-12">
-            {/* <div className="productDPTitle">
-              <h2>Aeroqril PHILIPS HD04949</h2>
-              <div className="productDPRating">
-                <Box className="productDPRatingBox">
-                  <Rating
-                    name="star-rating"
-                    value={value}
-                    onChange={(event, newValue) => setValue(newValue)}
-                  />
-                </Box>
-                <p>({value})</p>
-              </div>
-            </div> */}
             <div className="productDPDetail">
               <div className="productDPTitle">
-                <h2>Aeroqril PHILIPS HD04949</h2>
+                <h2>{productDetail.name}</h2>
                 <div className="productDPRating">
                   <Box className="productDPRatingBox">
                     <Rating
                       name="star-rating"
-                      value={value}
+                      value={ratingValue}
                       onChange={(event, newValue) => setValue(newValue)}
                     />
                   </Box>
-                  <p>({value})</p>
+                  <p>({ratingValue})</p>
                 </div>
               </div>
               <span className="depo">Məhsul Mövcuddur: </span>
               <span className="productCode">
-                Məhsul kodu : <strong>00049</strong>
+                Məhsul kodu : <strong>{productDetail.product_code}</strong>
               </span>
               <div className="productDPPrices">
-                <span className="productDPOldPrice">200.00$</span>
-                <span className="productDPNewPrice">250.00$</span>
+                <span className="productDPOldPrice">
+                  {productDetail.old_price} <TbCurrencyManat />
+                </span>
+                <span className="productDPNewPrice">
+                  {productDetail.price} <TbCurrencyManat />
+                </span>
               </div>
               <div className="productsDPButtons">
                 <Link href="#">
@@ -188,13 +169,12 @@ const ProductsDetailPage = () => {
                   </div>
                   <div className="monthPayment">
                     <span>Aylıq Ödəniş</span>
-                    <strong>50.00$</strong>
+                    <strong>
+                      50.00 <TbCurrencyManat />
+                    </strong>
                   </div>
                 </div>
               </div>
-              {/* <div className="productsDPBuyInInstallments">
-                <button>Hissə-hissə ödənişlə al</button>
-              </div> */}
             </div>
           </div>
         </div>
@@ -212,11 +192,14 @@ const ProductsDetailPage = () => {
             {activeTab === "tech" && (
               <div className="technicalDetailsContent">
                 <div className="technicalContentAll">
-                  <div className="technicalContent">
-                    <span className="techContentLeft">Marka</span>
-                    <span className="techContentRight">Apple</span>
-                  </div>
-                  <div className="technicalContent">
+                  {attributes.map((attribute) => (
+                    <div className="technicalContent">
+                      <span className="techContentLeft">{attribute.name}</span>
+                      <span className="techContentRight">{attribute.value}</span>
+                    </div>
+                  ))}
+
+                  {/* <div className="technicalContent">
                     <span className="techContentLeft">
                       Prosessor tipi (Chipset)
                     </span>
@@ -267,7 +250,7 @@ const ProductsDetailPage = () => {
                   <div className="technicalContent">
                     <span className="techContentLeft">Ekran</span>
                     <span className="techContentRight">Oled</span>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             )}
