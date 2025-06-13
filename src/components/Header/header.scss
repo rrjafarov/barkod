@@ -577,7 +577,7 @@ $MainColor: #ec1f27 !important;
   border-radius: 1rem;
 }
 
-.leftColumn li:hover .categoryLeftIcon svg {
+.leftColumn li:hover .categoryLeftIcon img {
   fill: $MainColor;
 }
 
@@ -585,11 +585,17 @@ $MainColor: #ec1f27 !important;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 2.7rem;
+  height: 2.7rem;
   font-size: 4rem;
   max-width: 3rem;
+  img{
+    width: 100%;
+    height: 100%;
+  }
 }
+
+
 .ee {
   margin-right: 1rem;
   display: flex;
@@ -604,7 +610,6 @@ $MainColor: #ec1f27 !important;
   position: absolute;
   left: 0.01rem;
 }
-
 #categoryLeftIconTV,
 #categoryLeftIconLaptop,
 #categoryLeftIconMeiset,
