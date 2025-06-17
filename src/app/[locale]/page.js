@@ -41,10 +41,27 @@ async function getCategoryeData() {
   }
 }
 
+async function getBrandsData() {
+  const cookieStore = await cookies();
+  const lang = cookieStore.get("NEXT_LOCALE");
+  try {
+    const { data: brand } = await axiosInstance.get(`/brands`, {
+      // headers: { Lang: lang.value },
+      cache: "no-store",
+    });
+    return brand;
+  } catch (error) {
+    console.error("Failed to home page data", error);
+    throw error;
+  }
+}
+
 const HomePage = async () => {
   const homeResponse = await getHomePageData();
   const categoryResponse = await getCategoryeData();
   const categoryData = categoryResponse?.categories || [];
+  const brandsResponse = await getBrandsData();
+  const brandData = brandsResponse?.brands || [];
 
   const homePageDataSlider = homeResponse?.slider || [];
   const homePageDataNewProducts = homeResponse?.new_products || [];
@@ -70,7 +87,7 @@ const HomePage = async () => {
         homePageDataBestSellingProducts={homePageDataBestSellingProducts}
       />
       <ProductsReview homePageDataVideo={homePageDataVideo} />
-      <HomePageBrands homePageDataBrands={homePageDataBrands} />
+      <HomePageBrands brandData={brandData}  homePageDataBrands={homePageDataBrands} />
       <Footer />
     </div>
   );

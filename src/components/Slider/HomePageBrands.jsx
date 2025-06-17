@@ -10,7 +10,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import Link from "next/link";
 import Image from "next/image";
 
-const HomePageBrands = ({ homePageDataBrands }) => {
+const HomePageBrands = ({ brandData, homePageDataBrands }) => {
   return (
     <section id="homePageBrands">
       <div className="container">
@@ -54,7 +54,7 @@ const HomePageBrands = ({ homePageDataBrands }) => {
             modules={[Pagination, Autoplay]}
             className="mySwiper"
           >
-            {homePageDataBrands.map((brands) => (
+            {brandData.map((brands) => (
               <SwiperSlide key={brands.id}>
                 <Link href="#">
                   <div className="homePageBrandCard">

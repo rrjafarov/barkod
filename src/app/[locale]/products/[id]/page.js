@@ -1,4 +1,4 @@
-  // app/products/[id]/page.js
+
 import React from "react";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
@@ -32,9 +32,12 @@ export default async function Page({ params }) {
 
   const product = await getProductDetail(slugOrId);
   console.log("Product detail:", product);
+
+
+
   return (
     <>
-      <Header />
+      <Header  />
       <ProductsDetailPage product={product} />
       <Footer />
     </>

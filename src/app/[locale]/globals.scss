@@ -529,10 +529,12 @@ ul {
     width: 100%;
     height: 100%;
     height: 55rem !important;
+
     #rowFill {
       width: 100%;
       height: 100%;
     }
+
     .bannerStaticCard {
       border: 1px solid rgb(235, 235, 235) !important;
       text-align: center;
@@ -2280,6 +2282,7 @@ ul {
     }
   }
 }
+
 .productsDPFancybox {
   width: 100%;
   height: 100%;
@@ -3108,13 +3111,13 @@ ul {
       }
 
       .cartNewPrice {
-        font-size: 1.6rem;
+        font-size: 2rem;
         color: $MainColor;
         font-weight: 500;
       }
 
       .cartOldPrice {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         text-decoration: line-through;
         color: #323232;
       }
@@ -4266,4 +4269,110 @@ select:focus {
   background: none;
   border: none;
   cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.profile {
+  margin: 5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  span {
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  .profileContent {
+    border: 2px solid #f5f5f5;
+    border-radius: 1rem;
+    width: 100%;
+    max-width: 50rem;
+    padding: 4rem 2rem;
+    margin: 3rem 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2rem;
+
+    span {
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: #323232;
+    }
+
+    .profileName {
+      margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      strong {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #323232;
+      }
+
+      span {
+        // background-color: #f5f5f5;
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: #000000;
+        pad: 1rem 2rem;
+      }
+    }
+
+    .profilePhone {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 1rem;
+
+      strong {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #323232;
+      }
+
+      .profilePhoneContent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+
+        strong {
+          font-size: 1.6rem;
+          font-weight: 600;
+          color: #000000;
+          // background-color: #f5f5f5;
+          border-radius: 1rem;
+        }
+        span {
+          font-size: 1.6rem;
+          font-weight: 600;
+          border-radius: 1rem;
+          color: #000000;
+        }
+      }
+    }
+  }
 }
