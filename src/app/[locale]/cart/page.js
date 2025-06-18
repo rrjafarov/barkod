@@ -78,7 +78,26 @@ async function getAddToCartData(token, guestUUID, lang) {
   }
 }
 
+async function getCategoryeData() {
+  const cookieStore = await cookies();
+  const lang = cookieStore.get("NEXT_LOCALE");
+  try {
+    const { data: home } = await axiosInstance.get(`/layouts`, {
+      // headers: { Lang: lang.value },
+      cache: "no-store",
+    });
+    return home;
+  } catch (error) {
+    console.error("Failed to home page data", error);
+    throw error;
+  }
+}
+
+
 const CartPage = async () => {
+const categoryResponse = await getCategoryeData();
+  const categoryData = categoryResponse?.categories || [];
+
   const cookieStore = await cookies();
   const token = cookieStore.get("token")?.value;
   const guestUUID = cookieStore.get("guest_uuid")?.value;
@@ -88,7 +107,7 @@ const CartPage = async () => {
 
   return (
     <div>
-      <Header />
+      <Header categoryData={categoryData} />
       <AddToCart cartData={cartData} />
       <Footer />
     </div>

@@ -172,17 +172,6 @@
 
 // export default AddToCart;
 
-
-
-
-
-
-
-
-
-
-
-
 //? Son versiya
 // "use client";
 // import React, { useState } from "react";
@@ -222,7 +211,6 @@
 //         </strong>
 //         <span className="lastChildBread">Səbət</span>
 //       </div>
-
 
 //       <div className="row">
 //         <div className="xl-8 lg-8 md-8 sm-12">
@@ -330,18 +318,15 @@
 
 
 
-
-
 // "use client";
 // import React, { useState } from "react";
-// import {
-//   MdKeyboardDoubleArrowRight,
-// } from "react-icons/md";
+// import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 // import Link from "next/link";
 // import { TbCurrencyManat } from "react-icons/tb";
 // import { IoClose } from "react-icons/io5";
 // import Image from "next/image";
 // import { useRemoveFromCartMutation } from "@/redux/cartService";
+
 
 // const AddToCart = ({ cartData }) => {
 //   const cart = cartData?.cart || {};
@@ -396,6 +381,18 @@
 //               </div>
 
 //               <div className="cartProductRight">
+//                 <div className="cartCount">
+//                   <HiOutlineMinusCircle
+//                     onClick={decreaseCount}
+//                     className="cartCountIcon"
+//                   />
+//                   <span>{count}</span>
+//                   <GoPlusCircle
+//                     onClick={increaseCount}
+//                     className="cartCountIcon"
+//                   />
+//                 </div>
+
 //                 <div className="cartPrices">
 //                   <span className="cartNewPrice">
 //                     {item.product.price} <TbCurrencyManat />
@@ -453,7 +450,9 @@
 //           </div>
 //           <div className="addToCartPaymentButtons">
 //             <Link href="/checkout">
-//               <button className="officialPaymentBtn">Sifarişi Rəsmiləşdir</button>
+//               <button className="officialPaymentBtn">
+//                 Sifarişi Rəsmiləşdir
+//               </button>
 //             </Link>
 //             <button>Bir kliklə al</button>
 //           </div>
@@ -480,38 +479,134 @@
 
 
 
-// src/components/AddToCart.jsx
+
+
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import Link from "next/link";
 import { TbCurrencyManat } from "react-icons/tb";
 import { IoClose } from "react-icons/io5";
 import Image from "next/image";
-// RTK Query hooklarını import et
 import {
-  useGetCartQuery,
   useRemoveFromCartMutation,
+  useIncreaseCartItemMutation,
+  useDecreaseCartItemMutation,
 } from "@/redux/cartService";
 
-const AddToCart = () => {
-  // RTK Query ilə client-da cart məlumatını çəkmək
-  const { data: cartResponse } = useGetCartQuery();
-  // remove mutation
-  const [removeFromCart] = useRemoveFromCartMutation();
+const AddToCart = ({ cartData }) => {
+  const cart = cartData?.cart || {};
+  const cartAllData = cart?.cart_products || [];
 
-  // count state-in dizaynda istifadə olunursa saxlayırıq, amma burada istifadə edilməyib
-  const [count, setCount] = useState(1);
-  const increaseCount = () => setCount((prev) => prev + 1);
-  const decreaseCount = () => {
-    if (count > 1) {
-      setCount((prev) => prev - 1);
+  // Lokal state ile optimistik güncelleme yapıyoruz
+  const [localCartAllData, setLocalCartAllData] = useState(cartAllData);
+
+  // Parent'ten gelen cartAllData değiştiğinde lokal state'i senkronize et
+  useEffect(() => {
+    setLocalCartAllData(cartAllData);
+  }, [cartAllData]);
+
+  const [removeFromCart, { isLoading: removingIdLoading }] = useRemoveFromCartMutation();
+  const [increaseCartItem, { isLoading: incLoading }] = useIncreaseCartItemMutation();
+  const [decreaseCartItem, { isLoading: decLoading }] = useDecreaseCartItemMutation();
+
+  // Özet hesaplama fonksiyonları, localCartAllData kullanılıyor
+  const calculateDiscount = (totalAmount) => {
+    // İndirim mantığınızı buraya ekleyin. Örneğin:
+    // if (totalAmount > 1000) return totalAmount * 0.10;
+    return 0;
+  };
+
+  const totalAmount = localCartAllData.reduce((sum, item) => {
+    const qty = item.qty || 1;
+    return sum + qty * item.product.price;
+  }, 0);
+
+  const discountAmount = calculateDiscount(totalAmount);
+  const finalAmount = totalAmount - discountAmount;
+
+  // Tıklama fonksiyonları: önce lokal state'i güncelle, sonra backend isteği
+  const handleIncrease = async (productId) => {
+    // Optimistik: miktarı hemen artır
+    setLocalCartAllData(prev =>
+      prev.map(item =>
+        item.product.id === productId
+          ? { ...item, qty: (item.qty || 1) + 1 }
+          : item
+      )
+    );
+    try {
+      await increaseCartItem(productId).unwrap();
+      // invalidation/refetch gerçekleşince parent cartData güncellenecek ve useEffect ile local state sync olacak
+    } catch (err) {
+      console.error("Kart artirma hatası:", err);
+      // Hata durumunda parent verisi sync ile geri gelecek
     }
   };
 
-  // backend response-dakı struktur: { msg: "...", cart: { count, amount, cart_products: [...] } }
-  const cart = cartResponse?.cart || {};
-  const cartAllData = cart.cart_products || [];
+  const handleDecrease = async (productId) => {
+    // Optimistik: miktarı hemen azalt
+    setLocalCartAllData(prev =>
+      prev
+        .map(item => {
+          if (item.product.id === productId) {
+            const newQty = (item.qty || 1) - 1;
+            if (newQty > 0) {
+              return { ...item, qty: newQty };
+            }
+            // newQty <= 0: silme mantığına göre tamamen kaldır
+            return null;
+          }
+          return item;
+        })
+        .filter(Boolean)
+    );
+    try {
+      await decreaseCartItem(productId).unwrap();
+      // invalidation/refetch sonrası sync
+    } catch (err) {
+      console.error("Kart azaltma hatası:", err);
+      // Hata durumunda parent verisi sync ile geri gelecek
+    }
+  };
+
+  const handleRemove = async (productId) => {
+    // Optimistik: ürünü hemen kaldır
+    setLocalCartAllData(prev =>
+      prev.filter(item => item.product.id !== productId)
+    );
+    try {
+      await removeFromCart(productId).unwrap();
+      // invalidation/refetch sonrası sync
+    } catch (err) {
+      console.error("Kart silme hatası:", err);
+      // Hata durumunda parent verisi sync ile geri gelecek
+    }
+  };
+
+  // Sepet boşsa:
+  if (!localCartAllData || localCartAllData.length === 0) {
+    return (
+      <div
+        className="container"
+        style={{
+          minHeight: "60vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div className="cartTitleEmpty" style={{ textAlign: "center" }}>
+          <p className="cartTitleEmptyPop">Səbət boşdur</p>
+          <Link href="/">
+            <button className="officialPaymentBtn" style={{ marginTop: "1rem" }}>
+              Ana səhifə
+            </button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container">
@@ -526,6 +621,7 @@ const AddToCart = () => {
       </div>
 
       <div className="row">
+        {/* Soldaki ürün listesi */}
         <div className="xl-8 lg-8 md-8 sm-12">
           <div className="addToCartProductSection">
             <div className="cartProductSectionTop">
@@ -533,75 +629,79 @@ const AddToCart = () => {
             </div>
           </div>
 
-          {cartAllData.length === 0 ? (
-            <p>Səbətiniz boşdur.</p>
-          ) : (
-            cartAllData.map((item) => {
-              const product = item.product || {};
-              const productId = product.id;
-              const price = item.price ?? product.price;
-              const imageUrl = product.image;
-              const name = product.name || "";
-
-              return (
-                <div className="cartProduct" key={item.id || productId}>
-                  <div className="cartProductLeft">
-                    <input type="checkbox" />
-                    <div className="cartProductImage">
-                      {imageUrl && (
-                        <Image
-                          src={imageUrl}
-                          alt={name}
-                          width={800}
-                          height={800}
-                        />
-                      )}
-                    </div>
-                    <div className="cartProductTitle">
-                      <h6>{name}</h6>
-                    </div>
+          {localCartAllData.map((item) => {
+            const prodId = item.product.id;
+            const qty = item.qty || 1;
+            return (
+              <div className="cartProduct" key={prodId}>
+                <div className="cartProductLeft">
+                  <input type="checkbox" />
+                  <div className="cartProductImage">
+                    {item.product.image ? (
+                      <Image
+                        src={item.product.image}
+                        alt={item.product.name}
+                        width={800}
+                        height={800}
+                      />
+                    ) : null /* default resim göstermiyoruz */}
                   </div>
-
-                  <div className="cartProductRight">
-                    <div className="cartPrices">
-                      <span className="cartNewPrice">
-                        {price} <TbCurrencyManat />
-                      </span>
-                    </div>
-
-                    {/* Remove butonu: silmə əməliyyatı burada */}
-                    <button
-                      className="closeCartProduct"
-                      onClick={() => {
-                        if (productId != null) {
-                          removeFromCart(productId);
-                        }
-                      }}
-                    >
-                      <IoClose />
-                    </button>
+                  <div className="cartProductTitle">
+                    <h6>{item.product.name}</h6>
                   </div>
                 </div>
-              );
-            })
-          )}
+
+                <div className="cartProductRight">
+                  <div className="cartCount">
+                    <button
+                      onClick={() => handleDecrease(prodId)}
+                      className="cartCountIcon"
+                      disabled={decLoading}
+                      style={{ background: "none", border: "none", cursor: "pointer" }}
+                    >
+                      −
+                    </button>
+                    <span style={{ margin: "0 0.5rem" }}>{qty}</span>
+                    <button
+                      onClick={() => handleIncrease(prodId)}
+                      className="cartCountIcon"
+                      disabled={incLoading}
+                      style={{ background: "none", border: "none", cursor: "pointer" }}
+                    >
+                      +
+                    </button>
+                  </div>
+
+                  <div className="cartPrices">
+                    {/* Solda birim fiyat sabit kalıyor */}
+                    <span className="cartNewPrice">
+                      {item.product.price.toFixed(2)} <TbCurrencyManat />
+                    </span>
+                  </div>
+
+                  <button
+                    className="closeCartProduct"
+                    onClick={() => handleRemove(prodId)}
+                    disabled={removingIdLoading}
+                    style={{ background: "none", border: "none", cursor: "pointer" }}
+                  >
+                    <IoClose />
+                  </button>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
+        {/* Sağdaki özet/ödeme bölümü */}
         <div className="xl-4 lg-4 md-4 sm-12">
           <div className="addToCartPaymentSection">
             <div className="cartPaymentSectionTop">
               <div className="firstCartPaymentSectionTop">
-                <span>Məhsul:</span>
+                <span>Məhsul sayı:</span>
               </div>
               <div className="secondCartPaymentSectionTop">
-                {/* Dizaynda statik dursa da, buranı da dinamik etmək istəyərsənsə:
-                    cart.count və cart.amount istifadə et */}
-                <span>iPhone 16 Pro 256 GB Black</span>
-                <div className="cartPrices">
-                  <span className="cartNewPrice">
-                    4599.00 <TbCurrencyManat />
-                  </span>
-                </div>
+                <span>{localCartAllData.length} ədəd</span>
               </div>
             </div>
             <div className="discountAndFinalPrice">
@@ -609,27 +709,29 @@ const AddToCart = () => {
                 <div className="discountPriceAll">
                   <span>Ümumi məbləğ:</span>
                   <span className="cartNewPrice">
-                    3599.00 <TbCurrencyManat />
+                    {totalAmount.toFixed(2)} <TbCurrencyManat />
                   </span>
                 </div>
                 <div className="discountPricesInner">
                   <span>Endirim:</span>
                   <span className="cartNewPrice">
-                    359.00 <TbCurrencyManat />
+                    {discountAmount.toFixed(2)} <TbCurrencyManat />
                   </span>
                 </div>
               </div>
               <div className="finalPrice">
                 <span>Yekun məbləğ:</span>
                 <span className="cartNewPrice">
-                  3259.00 <TbCurrencyManat />
+                  {finalAmount.toFixed(2)} <TbCurrencyManat />
                 </span>
               </div>
             </div>
           </div>
           <div className="addToCartPaymentButtons">
             <Link href="/checkout">
-              <button className="officialPaymentBtn">Sifarişi Rəsmiləşdir</button>
+              <button className="officialPaymentBtn">
+                Sifarişi Rəsmiləşdir
+              </button>
             </Link>
             <button>Bir kliklə al</button>
           </div>
@@ -640,3 +742,5 @@ const AddToCart = () => {
 };
 
 export default AddToCart;
+
+

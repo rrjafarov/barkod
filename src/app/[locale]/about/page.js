@@ -5,6 +5,22 @@ import React from 'react'
 import { cookies } from "next/headers";
 import axiosInstance from "@/lib/axios";
 
+
+async function getCategoryeData() {
+  const cookieStore = await cookies();
+  const lang = cookieStore.get("NEXT_LOCALE");
+  try {
+    const { data: home } = await axiosInstance.get(`/layouts`, {
+      // headers: { Lang: lang.value },
+      cache: "no-store",
+    });
+    return home;
+  } catch (error) {
+    console.error("Failed to home page data", error);
+    throw error;
+  }
+}
+
 async function getAboutPageData() {
   const cookieStore = await cookies();
   const lang = cookieStore.get("NEXT_LOCALE");
@@ -23,10 +39,13 @@ async function getAboutPageData() {
 const page = async () => {
   const aboutResponse = await getAboutPageData();
   const aboutPageDataSlider = aboutResponse?.data || [];
+
+  const categoryResponse = await getCategoryeData();
+  const categoryData = categoryResponse?.categories || [];
   
   return (
     <div>
-        <Header />
+        <Header categoryData={categoryData} />
         <AboutPage aboutPageDataSlider={aboutPageDataSlider} />
         <Footer />
     </div>

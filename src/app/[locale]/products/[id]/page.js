@@ -1,4 +1,3 @@
-
 import React from "react";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
@@ -16,13 +15,10 @@ export default async function Page({ params }) {
 
   async function getProductDetail(slug) {
     try {
-      const { data } = await axiosInstance.get(
-        `/product/${slug}`,
-        {
-          headers: { Lang: lang },
-          cache: "no-store",
-        }
-      );
+      const { data } = await axiosInstance.get(`/product/${slug}`, {
+        headers: { Lang: lang },
+        cache: "no-store",
+      });
       return data.product || data.data || data;
     } catch (err) {
       console.error("Failed to fetch product detail:", err);
@@ -30,14 +26,30 @@ export default async function Page({ params }) {
     }
   }
 
+  async function getCategoryeData() {
+    const cookieStore = await cookies();
+    const lang = cookieStore.get("NEXT_LOCALE");
+    try {
+      const { data: home } = await axiosInstance.get(`/layouts`, {
+        // headers: { Lang: lang.value },
+        cache: "no-store",
+      });
+      return home;
+    } catch (error) {
+      console.error("Failed to home page data", error);
+      throw error;
+    }
+  }
+
+  const categoryResponse = await getCategoryeData();
+  const categoryData = categoryResponse?.categories || [];
+
   const product = await getProductDetail(slugOrId);
   console.log("Product detail:", product);
 
-
-
   return (
     <>
-      <Header  />
+      <Header categoryData={categoryData} />
       <ProductsDetailPage product={product} />
       <Footer />
     </>

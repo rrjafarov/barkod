@@ -68,6 +68,21 @@ async function getCampaignsPageData() {
   }
 }
 
+async function getCategoryeData() {
+  const cookieStore = await cookies();
+  const lang = cookieStore.get("NEXT_LOCALE");
+  try {
+    const { data: home } = await axiosInstance.get(`/layouts`, {
+      // headers: { Lang: lang.value },
+      cache: "no-store",
+    });
+    return home;
+  } catch (error) {
+    console.error("Failed to home page data", error);
+    throw error;
+  }
+}
+
 const CampaignPage = async ({ params }) => {
   // 1) URL’den gelen param: "some-title-123" veya direkt "123"
   const rawId = params.id;
@@ -80,6 +95,9 @@ const CampaignPage = async ({ params }) => {
   const campaignResponse = await getCampaignsPageData();
   const campaigns = campaignResponse?.campaigns || [];
 
+  const categoryResponse = await getCategoryeData();
+  const categoryData = categoryResponse?.categories || [];
+
   // 4) Ayıklanan ID ile eşleşeni bul
   const campaign = campaigns.find(
     (c) => c.id.toString() === campaignId
@@ -91,7 +109,7 @@ const CampaignPage = async ({ params }) => {
 
   return (
     <div>
-      <Header />
+      <Header categoryData={categoryData} />
       {/* Doğru kampanya objesini prop olarak veriyoruz */}
       <CampaignDetailPage campaign={campaign} />
       <Footer />
