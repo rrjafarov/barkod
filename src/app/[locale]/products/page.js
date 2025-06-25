@@ -243,6 +243,14 @@
 
 
 
+
+
+
+
+
+
+
+
 // *Son versiya
 "use client";
 import React, { useEffect, useState } from "react";
@@ -260,6 +268,8 @@ export default function Page() {
   const [categoryData, setCategoryData] = useState([]);
   const [products, setProducts] = useState([]);
   const [filterGroups, setFilterGroups] = useState([]);
+  const [breadCrumbs, setBreadCrumbs] = useState([]);
+  const [reklamBanner, setReklamBanner] = useState([]);
 
   const slug = searchParams.get("cat_slug") || "";
   const filter = searchParams.getAll("filter") || [];
@@ -311,10 +321,14 @@ export default function Page() {
 
       setProducts(res.data?.products?.data || []);
       setFilterGroups(res.data?.filter_groups || []);
+      setBreadCrumbs(res.data?.bread_crumbs || []);
+      setReklamBanner(res.data?.cat?.data || []);
     } catch (error) {
       console.error("Məhsullar alınarkən xəta baş verdi:", error);
       setProducts([]);
       setFilterGroups([]);
+      setBreadCrumbs([]);
+      setReklamBanner([])
     }
   };
 
@@ -336,7 +350,9 @@ export default function Page() {
         slug={slug}
         productsCard={products}
         productsFilterGroupsTitle={filterGroups}
+        productsBreadCrumbs={breadCrumbs}
         categoryData={categoryData} 
+        reklamBanner={reklamBanner}
       />
       <Footer />
     </div>

@@ -56,7 +56,26 @@ async function getBrandsData() {
   }
 }
 
+async function getTranslations() {
+  try {
+    const response = await axiosInstance.get("/translation-list");
+    const data = response.data;
+
+    // Array-i obyektə çevir
+    const translationsObj = data.reduce((acc, item) => {
+      acc[item.key] = item.value;
+      return acc;
+    }, {});
+
+    return translationsObj;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 const HomePage = async () => {
+  const t = await getTranslations();
+
   const homeResponse = await getHomePageData();
   const categoryResponse = await getCategoryeData();
   const categoryData = categoryResponse?.categories || [];
@@ -68,27 +87,32 @@ const HomePage = async () => {
   const homePageDataDiscountedProducts =
     homeResponse?.discounted_products || [];
   const homePageDataBestSellingProducts = homeResponse?.best_seller || [];
-  const homePageDataBrands = homeResponse?.brands || [];  
+  const homePageDataBrands = homeResponse?.brands || [];
   const homePageDataVideo = homeResponse?.video || [];
-
 
   return (
     <div>
-      <Header categoryData={categoryData} />
+      <Header t={t} categoryData={categoryData} />
       <HeroSlider homePageDataSlider={homePageDataSlider} />
-      <HomePageStaticInfo />
+      <HomePageStaticInfo t={t} />
       <HomePageProductsCard
+        t={t}
         homePageDataNewProducts={homePageDataNewProducts}
         homePageDataDiscountedProducts={homePageDataDiscountedProducts}
         homePageDataBestSellingProducts={homePageDataBestSellingProducts}
       />
       {/* <HomePageCountProduct /> */}
       <HomePageSecondaryProducts
+        t={t}
         homePageDataBestSellingProducts={homePageDataBestSellingProducts}
       />
-      <ProductsReview homePageDataVideo={homePageDataVideo} />
-      <HomePageBrands brandData={brandData}  homePageDataBrands={homePageDataBrands} />
-      <Footer />
+      <ProductsReview t={t} homePageDataVideo={homePageDataVideo} />
+      <HomePageBrands
+        t={t}
+        brandData={brandData}
+        homePageDataBrands={homePageDataBrands}
+      />
+      <Footer t={t} />
     </div>
   );
 };

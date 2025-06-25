@@ -65,8 +65,26 @@ async function getWishlistData(token, guestUUID, lang) {
     return { wishlist: { products: [] } };
   }
 }
+async function getTranslations() {
+  try {
+    const response = await axiosInstance.get("/translation-list");
+    const data = response.data;
+
+    // Array-i obyektə çevir
+    const translationsObj = data.reduce((acc, item) => {
+      acc[item.key] = item.value;
+      return acc;
+    }, {});
+
+    return translationsObj;
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 const WishlistPage = async () => {
+    const t = await getTranslations();
+
   const categoryResponse = await getCategoryeData();
   const categoryData = categoryResponse?.categories || [];
   // cookies() yalnız server komponentlərdə işləyir
@@ -79,9 +97,9 @@ const WishlistPage = async () => {
 
   return (
     <div>
-      <Header categoryData={categoryData} />
-      <Wishlist wishlistData={wishlistData} />
-      <Footer />
+      <Header t={t} categoryData={categoryData} />
+      <Wishlist t={t} wishlistData={wishlistData} />
+      <Footer t={t} />
     </div>
   );
 };

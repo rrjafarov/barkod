@@ -10,13 +10,13 @@ import { Pagination, Autoplay } from "swiper/modules";
 import Link from "next/link";
 import Image from "next/image";
 
-const HomePageBrands = ({ brandData, homePageDataBrands }) => {
+const HomePageBrands = ({ brandData, homePageDataBrands,t }) => {
   return (
     <section id="homePageBrands">
       <div className="container">
         <div className="homePageBrands">
           <div className="homePageBrandsTitle">
-            <span>Brands</span>
+            <span>{t?.brands || "brands"}</span>
           </div>
           <Swiper
             slidesPerView={6}

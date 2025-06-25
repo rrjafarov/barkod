@@ -1033,6 +1033,8 @@ const ProductsPage = ({
   productsCard,
   productsFilterGroupsTitle,
   categoryData,
+  productsBreadCrumbs,
+  reklamBanner,
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -1040,7 +1042,6 @@ const ProductsPage = ({
   const [isMobileFilterOpen, setMobileFilterOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [isWishlisted, setIsWishlisted] = useState(false);
-
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
 
@@ -1095,7 +1096,7 @@ const ProductsPage = ({
   return (
     <div>
       <div className="container">
-        <div className="breadCrumb">
+        {/* <div className="breadCrumb">
           <Link href="/">
             <span>Ana Səhifə</span>
           </Link>
@@ -1109,8 +1110,38 @@ const ProductsPage = ({
             <MdKeyboardArrowRight className="breadCrumpIcon" />
           </strong>
           <span className="lastChildBread">Telefonlar</span>
+        </div> */}
+
+        <div className="breadCrumb">
+          {productsBreadCrumbs.map((item, index) => {
+            const isFirst = index === 0;
+            const isLast = index === productsBreadCrumbs.length - 1;
+
+            return (
+              <React.Fragment key={index}>
+                {item.clickable === "true" ? (
+                  <Link href={item.slug}>
+                    <span>{item.name}</span>
+                  </Link>
+                ) : (
+                  <span className="lastChildBread">{item.name}</span>
+                )}
+
+                {!isLast && (
+                  <strong>
+                    {isFirst ? (
+                      <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />
+                    ) : (
+                      <MdKeyboardArrowRight className="breadCrumpIcon" />
+                    )}
+                  </strong>
+                )}
+              </React.Fragment>
+            );
+          })}
         </div>
-        <div className="productsPageBanner">
+
+        {/* <div className="productsPageBanner">
           <div className="productsPageBannerImage">
             <Image
               src="/images/productPageBanner1.jpg"
@@ -1119,7 +1150,21 @@ const ProductsPage = ({
               height={600}
             />
           </div>
-        </div>
+        </div> */}
+
+        {reklamBanner?.reklam_banner && (
+          <div className="productsPageBanner">
+            <div className="productsPageBannerImage">
+              <Image
+                src={reklamBanner.reklam_banner}
+                alt="banner"
+                width={1000}
+                height={600}
+              />
+            </div>
+          </div>
+        )}
+
         {showModal && (
           <div className="modal-overlay" onClick={handleOverlayClick}>
             <div className="modal">

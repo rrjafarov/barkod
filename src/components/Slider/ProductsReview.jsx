@@ -25,17 +25,17 @@ Fancybox.bind("[data-fancybox]", {
 
 
 
-const HomePageProductsCard = ({ homePageDataVideo }) => {
+const HomePageProductsCard = ({t, homePageDataVideo }) => {
   return (
     <section id="homePageProductReview">
       <div className="container reviewRow">
         <div className="productReviewTitle">
           <div className="reviewTitleLeft">
-            <span>Barkodda məhsul icmalı</span>
+            <span>{t?.barkodvideo || "Barkodda mehsul icmali"}</span>
           </div>
           <div className="reviewTitleRight">
             <Link href="https://www.youtube.com/@Barkod_az">
-              <button>Kanalımıza keçid et</button>
+              <button>{t?.gochannel ||"go to channel"}</button> 
             </Link>
           </div>
         </div>

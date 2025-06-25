@@ -121,15 +121,6 @@
 
 // export default Wishlist;
 
-
-
-
-
-
-
-
-
-
 // // ! 18.06.25
 // // src/components/Wishlist.jsx
 // "use client";
@@ -336,19 +327,6 @@
 
 // ! 18.06.25
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // src/components/Wishlist.jsx
 "use client";
 import React, { useState, useEffect } from "react";
@@ -364,18 +342,23 @@ import {
   useGetFavQuery,
   useRemoveFromFavMutation,
 } from "@/redux/wishlistService";
-import {
-  useGetCartQuery,
-  useAddToCartMutation,
-} from "@/redux/cartService";
+import { useGetCartQuery, useAddToCartMutation } from "@/redux/cartService";
 
-const Wishlist = () => {
+const Wishlist = ({ t }) => {
   // Wishlist data
-  const { data: favData, isLoading: isLoadingFav, isError: isErrorFav } = useGetFavQuery();
+  const {
+    data: favData,
+    isLoading: isLoadingFav,
+    isError: isErrorFav,
+  } = useGetFavQuery();
   const [removeFromFav] = useRemoveFromFavMutation();
 
   // Cart data
-  const { data: cartData, isLoading: isLoadingCart, isError: isErrorCart } = useGetCartQuery();
+  const {
+    data: cartData,
+    isLoading: isLoadingCart,
+    isError: isErrorCart,
+  } = useGetCartQuery();
   const [addToCart] = useAddToCartMutation();
 
   // Local state: productId -> boolean map
@@ -459,12 +442,12 @@ const Wishlist = () => {
       {/* Breadcrumb */}
       <div className="breadCrumb">
         <Link href="/">
-          <span>Ana Səhifə</span>
+          <span>{t?.homebreadcrumbs}</span>
         </Link>
         <strong>
           <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />
         </strong>
-        <span className="lastChildBread">Seçilmişlər</span>
+        <span className="lastChildBread">{t?.favorites || "Favorites"}</span>
       </div>
 
       {/* Modal bölümü (ehtiyac varsa) */}
@@ -474,21 +457,21 @@ const Wishlist = () => {
             <button className="close-btns" onClick={closeModal}>
               X
             </button>
-            <span>Bir kliklə al</span>
+            <span>{t?.oneclickpay || "on"}</span>
             <div className="numberModal">
-              <label htmlFor="phone">Nömrə: +994</label>
+              <label htmlFor="phone">{t?.num}: +994</label>
               <input type="text" id="phone" name="phone" />
             </div>
-            <button className="open-btn">Bir kliklə al</button>
+            <button className="open-btn">{t?.oneclickpay || "on"}</button>
           </div>
         </div>
       )}
 
       <div className="wishlistPage">
-        <span className="wishTitle">Seçilmişlər</span>
+        <span className="wishTitle">{t?.favorites || "Favorites"}</span>
         <div className="row">
           {products.length === 0 ? (
-            <p>Seçilmişlər siyahınız boşdur.</p>
+            <p className="wishTextCenter"></p>
           ) : (
             products.map((product) => {
               const productId = product.id;
@@ -572,13 +555,13 @@ const Wishlist = () => {
                           {isAddingCart ? (
                             <div className="spinner-small"></div>
                           ) : isInCart ? (
-                            "✔︎ Əlavə edildi"
+                            <span>✔︎ {t?.added || "added"}</span>
                           ) : (
-                            "Səbətə at"
+                            t?.addtocart || "Add to cart"
                           )}
                         </button>
                         <button onClick={openModal} className="clickBtn">
-                          Bir Kliklə Al
+                          {t?.oneclickpay || "Bir kliklə al"}
                         </button>
                       </div>
                     </div>
@@ -641,5 +624,3 @@ const Wishlist = () => {
 };
 
 export default Wishlist;
-
-

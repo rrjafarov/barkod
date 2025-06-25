@@ -8,12 +8,13 @@ import LastDelivery from "../../public/icons/lastDelivery.svg";
 import LastOffical from "../../public/icons/lastOffical.svg";
 import LastPartByPart from "../../public/icons/lastPartByPart.svg";
 
-const HomePageStaticInfo = () => {
+const HomePageStaticInfo = ({ t }) => {
   return (
     <div>
       <section id="staticInfo">
         <div className="container">
           {/* <div className="row"> */}
+
           <div className="rowdurbu">
             <div className="staticInfoCard staticFirstCard">
               <div className="staticInfoImage">
@@ -27,9 +28,10 @@ const HomePageStaticInfo = () => {
                 />
               </div>
               <div className="staticInfoContent">
-                <span>Pulsuz Çatdırılma</span>
+                <span>{t?.freedelivery || "Pulsuz çatdırılma"}</span>
               </div>
             </div>
+
             <div className="staticInfoCard">
               <div className="staticInfoImage">
                 <Image
@@ -41,7 +43,7 @@ const HomePageStaticInfo = () => {
                 />
               </div>
               <div className="staticInfoContent">
-                <span>Qapıda Rəsmiləşdirmə</span>
+                <span>{t?.officialpay || "Qapıda rəsmiləşdirmə"}</span>
               </div>
             </div>
             <div className="staticInfoCard">
@@ -55,7 +57,7 @@ const HomePageStaticInfo = () => {
                 />
               </div>
               <div className="staticInfoContent">
-                <span>Hissə-hissə ödəniş</span>
+                <span>{t?.partofpartpay || "Hissə-hissə ödəniş"}</span>
               </div>
             </div>
             <div className="staticInfoCard staticLastCard">
@@ -69,9 +71,9 @@ const HomePageStaticInfo = () => {
                 />
               </div>
               <div className="staticInfoContent">
-                <span>24/7 Xidmətinizdəyik</span>
+                <span>{t?.support || "24/7 Xidmətinizdəyik"}</span>
               </div>
-            </div>            
+            </div>
           </div>
           {/* </div> */}
         </div>

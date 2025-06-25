@@ -78,7 +78,7 @@ import Link from "next/link";
 import React from "react";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 
-const CategoryPage = ({ category, subCategories }) => {
+const CategoryPage = ({t, category, subCategories }) => {
   if (!category) return null;
   const parentSlug = category.slug;
 
@@ -90,7 +90,7 @@ const CategoryPage = ({ category, subCategories }) => {
       <div className="container">
         <div className="breadCrumb">
           <Link href="/">
-            <span>Ana Səhifə</span>
+            <span>{t?.homebreadcrumbs || "Home page"}</span>
           </Link>
           <strong>
             <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />

@@ -354,7 +354,7 @@ import CategoryIcon from "../../../public/icons/categoryMenuNewIcon.svg";
 import Select from "react-select";
 import CategoryMenu from "@/components/CategoryMenu";
 
-const Header = ({ categoryData }) => {
+const Header = ({ categoryData, t }) => {
   const router = useRouter();
   const [placeholder, setPlaceholder] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
@@ -365,15 +365,7 @@ const Header = ({ categoryData }) => {
 
   const [showComponent, setShowComponent] = useState(false);
   const menuRef = useRef(null);
-
-  const placeholders = [
-    "Mebel",
-    "Telefon",
-    "Televizor",
-    "Kondisoner",
-    "Gözəllik sağlamlıq",
-    "Oyun konsolu",
-  ];
+  const placeholders = categoryData.map((item) => item.name);
   const [text, setText] = useState("");
   const [mode, setMode] = useState("typing");
   const [idx, setIdx] = useState(0);
@@ -406,7 +398,7 @@ const Header = ({ categoryData }) => {
 
   const languageOptions = [
     { value: "AZ", label: "AZ" },
-    { value: "EN", label: "EN" },
+    // { value: "EN", label: "EN" },
     { value: "RU", label: "RU" },
   ];
 
@@ -490,12 +482,12 @@ const Header = ({ categoryData }) => {
           <div className="storeAndCorporateSales">
             <div className="stores">
               <span>
-                <Link href="/stores">Mağazalar</Link>
+                <Link href="/stores">{t?.stores || "Stores"}</Link>
               </span>
             </div>
             <div className="corporateSales">
               <span>
-                <Link href="/products">Корпоративные продажи</Link>
+                <Link href="#">{t?.corporatesale || "Sales"}</Link>
               </span>
             </div>
           </div>
@@ -506,9 +498,12 @@ const Header = ({ categoryData }) => {
                 <Link href="tel:*0092">*0092</Link>
               </span>
             </div>
-            <div className="payment">
+
+
+            {/* <div className="payment">
               <button>Online Ödəniş</button>
-            </div>
+            </div> */}
+
 
             <div className="changeLang">
               <Select
@@ -539,7 +534,7 @@ const Header = ({ categoryData }) => {
                 onClick={() => setShowComponent((prev) => !prev)}
               >
                 <CategoryIcon className="newCategoryIcon" />
-                <span>Kataloq</span>
+                <span>{t?.catalog || "Kataloq"}</span>
               </div>
             </div>
             <div className="xl-8 lg-8 md-8 sm-10">
@@ -605,7 +600,7 @@ const Header = ({ categoryData }) => {
                   padding: "1rem 0",
                 }}
               >
-                <CategoryMenu categoryData={categoryData} />
+                <CategoryMenu t={t} categoryData={categoryData} />
               </div>
             )}
           </div>

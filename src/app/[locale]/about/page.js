@@ -36,7 +36,26 @@ async function getAboutPageData() {
   }
 }
 
+async function getTranslations() {
+  try {
+    const response = await axiosInstance.get("/translation-list");
+    const data = response.data;
+
+    // Array-i obyektə çevir
+    const translationsObj = data.reduce((acc, item) => {
+      acc[item.key] = item.value;
+      return acc;
+    }, {});
+
+    return translationsObj;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 const page = async () => {
+    const t = await getTranslations();
+
   const aboutResponse = await getAboutPageData();
   const aboutPageDataSlider = aboutResponse?.data || [];
 
@@ -45,9 +64,9 @@ const page = async () => {
   
   return (
     <div>
-        <Header categoryData={categoryData} />
-        <AboutPage aboutPageDataSlider={aboutPageDataSlider} />
-        <Footer />
+        <Header t={t} categoryData={categoryData} />
+        <AboutPage t={t} aboutPageDataSlider={aboutPageDataSlider} />
+        <Footer t={t} />
     </div>
   )
 }

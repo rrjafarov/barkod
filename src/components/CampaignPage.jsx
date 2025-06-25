@@ -6,19 +6,19 @@ import {
   MdKeyboardArrowRight,
 } from "react-icons/md";
 
-const CampaignPage = ({ campaignPageDataSlider }) => {
+const CampaignPage = ({ campaignPageDataSlider ,t }) => {
   return (
     <>
       <div className="container">
         <div className="breadCrumb">
           <Link href="/">
-            <span>Ana Səhifə</span>
+            <span>{t?.homebreadcrumbs || "home page"}</span>
           </Link>
           <strong>
             <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />
           </strong>
           <Link href="#">
-            <span className="lastChildBread">Kampaniyalar</span>
+            <span className="lastChildBread">{t?.campaigns|| "Kampaniyalar"}</span>
           </Link>
         </div>
       </div>
@@ -27,7 +27,7 @@ const CampaignPage = ({ campaignPageDataSlider }) => {
           <div className="row">
             {campaignPageDataSlider.map((campaign) => (
               <div className="xl-3 lg-3 md-6 sm-12" key={campaign.id}>
-                <Link className="blockCardLink" href="#">
+                <Link className="blockCardLink" href="/campaign/id">
                   <div className="campaignPageCard">
                     <div className="campaignPageCardItem">
                       <div className="campaignPageCardImage">
@@ -49,12 +49,12 @@ const CampaignPage = ({ campaignPageDataSlider }) => {
                     </div>
                     <div className="campaignPageCardBottom">
                       <div className="campaignPageCardBottomText">
-                        <span>Son</span>
+                        <span>{t?.lastday || "Son"}</span>
                         <span>99 gün</span>
                       </div>
                       <div className="campaignPageCardDetailButton">
                         <Link href={`/campaign/${campaign.slug}`}>
-                          <button>Ətraflı</button>
+                          <button>{t?.learnmore || "Learn More"}</button>
                         </Link>
                       </div>
                     </div>

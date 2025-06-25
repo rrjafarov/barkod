@@ -35,7 +35,26 @@ async function getCategoryeData() {
   }
 }
 
+async function getTranslations() {
+  try {
+    const response = await axiosInstance.get("/translation-list");
+    const data = response.data;
+
+    // Array-i obyektə çevir
+    const translationsObj = data.reduce((acc, item) => {
+      acc[item.key] = item.value;
+      return acc;
+    }, {});
+
+    return translationsObj;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 const page = async () => {
+  const t = await getTranslations();
+
   const campaignResponse = await getCampaignsPageData();
   const campaignPageDataSlider = campaignResponse?.campaigns || [];
   const categoryResponse = await getCategoryeData();
@@ -43,9 +62,9 @@ const page = async () => {
 
   return (
     <div>
-      <Header categoryData={categoryData} />
-      <CampaignPage campaignPageDataSlider={campaignPageDataSlider} />
-      <Footer />
+      <Header t={t} categoryData={categoryData} />
+      <CampaignPage t={t} campaignPageDataSlider={campaignPageDataSlider} />
+      <Footer t={t} />
     </div>
   );
 };

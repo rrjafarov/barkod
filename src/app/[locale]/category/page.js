@@ -103,7 +103,27 @@ function findCategoryBySlug(categoriesList, targetSlug) {
   return null;
 }
 
+
+async function getTranslations() {
+  try {
+    const response = await axiosInstance.get("/translation-list");
+    const data = response.data;
+
+    // Array-i obyektə çevir
+    const translationsObj = data.reduce((acc, item) => {
+      acc[item.key] = item.value;
+      return acc;
+    }, {});
+
+    return translationsObj;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 const page = async ({ searchParams }) => {
+ const t = await getTranslations();
+
   const slug = searchParams?.cat_slug || "";
   let matchedCategory = null;
   let subCategories = [];
@@ -139,9 +159,9 @@ const page = async ({ searchParams }) => {
 
   return (
     <div>
-      <Header categoryData={categoryData} /> 
-      <CategoryPage category={matchedCategory} subCategories={subCategories} />
-      <Footer />
+      <Header t={t} categoryData={categoryData} /> 
+      <CategoryPage t={t} category={matchedCategory} subCategories={subCategories} />
+      <Footer t={t} />
     </div>
   );
 };

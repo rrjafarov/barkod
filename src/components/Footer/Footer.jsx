@@ -12,7 +12,7 @@ import Masterkart from "../../../public/icons/masterkart.svg";
 import Visa from "../../../public/icons/visa.svg";
 import Image from "next/image";
 
-const Footer = () => {
+const Footer = ({t}) => {
   return (
     <>
       <div className="footer">
@@ -20,7 +20,7 @@ const Footer = () => {
           <div className="row">
             <div className="xl-2 lg-2 md-3 sm-4">
               <div className="footerLinks">
-                <span className="footerHeadLink">Əlaqə</span>
+                <span className="footerHeadLink">{t?.contact || "Contact"}</span>
                 <ul>
                   <li>
                     <Link className="contactNumber" href="tel:*0092">
@@ -32,28 +32,28 @@ const Footer = () => {
             </div>
             <div className="xl-2 lg-2 md-4 sm-4">
               <div className="footerLinks">
-                <span className="footerHeadLink">Haqqımızda</span>
+                <span className="footerHeadLink">{t?.about || "About"}</span>
                 <ul>
                   <li>
-                    <Link href="/about">Şirkət Haqqında</Link>
+                    <Link href="/about">{t?.aboutcompany || "About Company"}</Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link href="#">Karyera</Link>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>
             <div className="xl-2 lg-2 md-4 sm-4">
               <div className="footerLinks">
-                <span className="footerHeadLink">Məlumat</span>
+                <span className="footerHeadLink">{t?.information || "Melumat"}</span>
                 <ul>
                   <li>
-                    <Link href="/campaign">Kampaniyalar</Link>
+                    <Link href="/campaign">{t?.campaigns || "Campaigns"}</Link>
                   </li>
                   <li>
-                    <Link href="/stores">Mağazalar</Link>
+                    <Link href="/stores">{t?.stores|| "Stores"}</Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link href="#">Brendlər</Link>
                   </li>
                   <li>
@@ -61,22 +61,22 @@ const Footer = () => {
                   </li>
                   <li>
                     <Link href="#">Korporativ satış</Link>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>
             <div className="xl-3 lg-3 md-4 sm-6">
               <div className="footerLinks">
-                <span className="footerHeadLink">Müştərilər üçün</span>
+                <span className="footerHeadLink">{t?.forcustomers ||"for customers"}</span>
                 <ul>
                   <li>
-                    <Link href="#">Çatdırılma ödəmə</Link>
+                    <Link href="#">{t?.deliverypayment || "Delivery and payment"}</Link>
                   </li>
                   <li>
-                    <Link href="#">Hissə-hissə ödəniş şərtləri</Link>
+                    <Link href="#">{t?.partofpartterms || "Part of part pay terms"}</Link>
                   </li>
                   <li>
-                    <Link href="#">Aylıq ödənişin həyata keçirilməsi</Link>
+                    <Link href="#">{t?.monthpay || "Month payment"}</Link>
                   </li>
                 </ul>
               </div>
@@ -84,7 +84,7 @@ const Footer = () => {
             <div className="xl-3 lg-3 md-4 sm-6">
               <div className="footerContact">
                 <div className="footerLinks footerSocialLinks">
-                  <span className="footerHeadLink">Bizimlə qal:</span>
+                  <span className="footerHeadLink">{t?.staywithus || "Stay  with us"}</span>
                   <ul>
                     <li>
                       <Link

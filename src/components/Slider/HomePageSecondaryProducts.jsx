@@ -182,17 +182,6 @@
 
 // export default HomePageSecondaryProducts;
 
-
-
-
-
-
-
-
-
-
-
-
 "use client";
 import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -216,7 +205,10 @@ import {
 } from "@/redux/wishlistService";
 import { useGetCartQuery, useAddToCartMutation } from "@/redux/cartService";
 
-const HomePageSecondaryProducts = ({ homePageDataBestSellingProducts = [] }) => {
+const HomePageSecondaryProducts = ({
+  t,
+  homePageDataBestSellingProducts = [],
+}) => {
   const [showModal, setShowModal] = useState(false);
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
@@ -239,7 +231,8 @@ const HomePageSecondaryProducts = ({ homePageDataBestSellingProducts = [] }) => 
     isError: isErrorWishlistData,
   } = useGetFavQuery();
   const [addToFav, { isLoading: genericAddingFav }] = useAddToFavMutation();
-  const [removeFromFav, { isLoading: genericRemovingFav }] = useRemoveFromFavMutation();
+  const [removeFromFav, { isLoading: genericRemovingFav }] =
+    useRemoveFromFavMutation();
 
   const {
     data: cartData,
@@ -349,18 +342,18 @@ const HomePageSecondaryProducts = ({ homePageDataBestSellingProducts = [] }) => 
             <button className="close-btns" onClick={closeModal}>
               X
             </button>
-            <span>Bir kliklə al</span>
+            <span>{t?.oneclickpay || "on"}</span>
             <div className="numberModal">
-              <label htmlFor="phone">Nömrə: +994</label>
+              <label htmlFor="phone">{t?.num}: +994</label>
               <input type="text" id="phone" name="phone" />
             </div>
-            <button className="open-btn">Bir kliklə al</button>
+            <button className="open-btn">{t?.oneclickpay || "on"}</button>
           </div>
         </div>
       )}
       <div className="secondaryProductsHeadTitle">
         <div className="secondaryTitleLeft">
-          <span>Ən çox satilanlar</span>
+          <span>{t?.bestselling || "En chox satilanlar"}</span>
         </div>
         <div className="secondaryTitleRight">
           <strong>Top 100</strong>
@@ -470,7 +463,6 @@ const HomePageSecondaryProducts = ({ homePageDataBestSellingProducts = [] }) => 
                       </div>
                     </div>
                   </div>
-
                 </div>
 
                 <div className="addToCartClick">
@@ -483,13 +475,14 @@ const HomePageSecondaryProducts = ({ homePageDataBestSellingProducts = [] }) => 
                       {isAddingCart ? (
                         <div className="spinner-small"></div>
                       ) : isInCart ? (
-                        "✔︎ Əlavə edildi"
+                        // "✔︎ Əlavə edildi"
+                        <span>✔︎ {t?.added || "added"}</span>
                       ) : (
-                        "Səbətə at"
+                        t?.addtocart || "Add to cart"
                       )}
                     </button>
                     <button onClick={openModal} className="clickBtn">
-                      Bir Kliklə Al
+                      {t?.oneclickpay || "Bir kliklə al"}
                     </button>
                   </div>
                 </div>
