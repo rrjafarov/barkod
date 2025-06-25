@@ -273,7 +273,7 @@ const Profile = () => {
 
   return (
     <div className="profile">
-      <span>Profil</span>
+      {/* <span>Profil</span> */}
 
       <div className="profileContent">
         <span>Şəxsi məlumatlar</span>
