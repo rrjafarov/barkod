@@ -4647,3 +4647,352 @@ select:focus {
 }
 
 // !logout popup
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Baharstore csss
+
+
+.auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.authContainer {
+  border-radius: 2rem;
+  border: 0.1rem solid var(--line);
+  padding: 5.4rem 0 6rem;
+  width: 40%;
+}
+.authHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* width: 30%; */
+  margin: auto;
+  margin-bottom: 2.8rem;
+}
+.authHeader span {
+  color: #5f5f5f;
+  text-align: center;
+  font-size: 1.8rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.054rem;
+  opacity: 0.7;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: none;
+}
+.authHeader span:last-child {
+  margin-left: 4rem;
+}
+.authHeader span:first-child {
+  margin-left: 0;
+}
+.authHeader span.active {
+  color: var(--lightred);
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.066rem;
+  opacity: 1;
+}
+.authHeader span:hover {
+  opacity: 1;
+}
+.errorInfo {
+  color: var(--lightred);
+  text-align: center;
+  font-size: 1.4rem;
+  margin-top: 1rem;
+}
+form .error {
+  position: absolute;
+  bottom: -1.6rem;
+  left: 1rem;
+  color: var(--lightred);
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  display: none;
+}
+form.error.active {
+  display: block;
+}
+.blackButton.deactive {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.auth form label {
+  color: var(--black);
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.036rem;
+  opacity: 0.33;
+  display: block;
+  margin-bottom: 0.8rem;
+  padding-left: 1.1rem;
+}
+.auth form {
+  width: 60%;
+  margin: auto;
+}
+.phoneInput {
+  border-radius: 1rem;
+  background: #f4f4f4;
+  height: 4.9rem;
+  /* overflow: hidden; */
+  display: flex;
+  align-items: center;
+}
+
+.phoneInput select,
+.phoneInput span {
+  background: #f4f4f4;
+  min-width: 7.4rem;
+  height: 100%;
+  border: none;
+  border-right: 0.2rem solid var(--white);
+  -webkit-appearance: none;
+  display: flex;
+  align-items: center;
+  border-radius: 1rem;
+  justify-content: center;
+  text-align: center;
+  color: var(--black);
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.036rem;
+}
+.phoneInput input {
+  width: 100%;
+  color: var(--black);
+  border: none;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.036rem;
+  // padding: 0 2rem;
+  height: 100%;
+  background: #f4f4f4;
+  border-radius: 1rem;
+}
+.phoneInput,
+.inputChild {
+  margin-bottom: 2.4rem;
+  position: relative;
+}
+
+.inputChild {
+  width: var(--width);
+  height: 4.9rem;
+  border-radius: 0.8rem;
+  background: #f4f4f4;
+  /* overflow: hidden; */
+  display: flex;
+  align-items: center;
+  padding: 0 2.4rem;
+  border-radius: 1rem;
+}
+.textChild textarea {
+  width: 100%;
+  height: 85%;
+  border: none;
+  resize: none;
+}
+.textChild {
+  min-height: 17rem;
+}
+.inputChild input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  color: var(--black);
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.036rem;
+  background: #f4f4f4;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.passwordChild .password svg {
+  width: 1.3rem;
+  height: 1.4rem;
+}
+.passwordChild .password {
+  padding: 0 3rem 0 1rem;
+}
+.eye {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 5rem;
+  height: 1rem;
+  cursor: pointer;
+}
+.eyes{
+  font-size: 1.5rem;
+}
+.eye svg {
+  width: 1.7rem;
+  height: 1.7rem;
+  margin-top: 1rem;
+}
+.eye.active svg {
+  opacity: 0.3;
+}
+form .blackButton {
+  width: 100%;
+  padding: 0;
+  padding: 1rem 0;
+  background-color: #323232;
+  color: white;
+  border-radius: 1rem;
+}
+.authButtons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1.8rem 0 3.2rem;
+}
+.authButtons a {
+  color: #666;
+  text-align: center;
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.036rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
+}
+.authButtons a:hover {
+  color: var(--black);
+  border-bottom: 0.1rem solid var(--black);
+}
+.agree label {
+  opacity: 1 !important;
+  padding-left: 0;
+}
+
+.agree p {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.042rem;
+  padding-left: 1.7rem;
+}
+.agree p a {
+  color: var(--black);
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.042rem;
+  opacity: 0.6;
+  display: inline;
+}
+.agree p a:hover {
+  opacity: 1;
+}
+.errorPages {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.errorPagesContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 25%;
+}
+.errorPages h1 {
+  color: var(--lightred);
+  font-size: 14.8116rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.4443rem;
+  margin-bottom: 2.4rem;
+}
+.errorPages p {
+  color: var(--black);
+  text-align: center;
+  font-size: 2.2rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: 0.11rem;
+  opacity: 0.7;
+  width: 30%;
+  margin-bottom: 3.2rem;
+}
+.backButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  border: 0.1rem solid var(--black);
+  height: 3.6rem;
+  color: var(--black);
+  text-align: center;
+  font-size: 1.3rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.039rem;
+  text-transform: uppercase;
+  padding: 0 3rem;
+}
+.backButton svg {
+  width: 1.3rem;
+  height: 1.3rem;
+  margin-right: 0.8rem;
+}
+.backButton:hover {
+  background-color: var(--black);
+  color: var(--white);
+}
+.backButton:hover svg path {
+  fill: var(--white);
+}
+// Baharstore csss
+
+
