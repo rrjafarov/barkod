@@ -4677,7 +4677,7 @@ select:focus {
   border-radius: 2rem;
   border: 0.1rem solid var(--line);
   padding: 5.4rem 0 6rem;
-  width: 40%;
+  width: 40rem;
 }
 .authHeader {
   display: flex;
@@ -4754,14 +4754,14 @@ form.error.active {
   padding-left: 1.1rem;
 }
 .auth form {
-  width: 60%;
-  margin: auto;
+  // width: 60%;
+  // margin: auto;
+  width: 100%;
 }
 .phoneInput {
   border-radius: 1rem;
   background: #f4f4f4;
   height: 4.9rem;
-  /* overflow: hidden; */
   display: flex;
   align-items: center;
 }
@@ -4800,6 +4800,8 @@ form.error.active {
   background: #f4f4f4;
   border-radius: 1rem;
 }
+
+
 .phoneInput,
 .inputChild {
   margin-bottom: 2.4rem;
@@ -5131,7 +5133,7 @@ form .blackButton {
 
 
 //! LOGOUT POPUP!
-/* Logout Popup Styles */
+/* Logout Popup Styles */ 
 .logout-popup-overlay {
   position: fixed;
   top: 0;
@@ -5288,11 +5290,11 @@ form .blackButton {
   }
   
   .logout-title {
-    font-size: 1.8;
+    font-size: 1.8rem;
   }
   
   .logout-message {
-    font-size: 1.4;
+    font-size: 1.4rem;
     margin-bottom: 2.5;
   }
   
