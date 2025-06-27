@@ -1594,6 +1594,531 @@
 
 
 
+// // components/Auth/LoginForm.jsx
+// "use client";
+
+// import React, { useState, useEffect } from "react";
+// import { useRouter, useParams } from "next/navigation";
+// import Cookies from "js-cookie";
+// import axiosInstance from "@/lib/axios"; // Projendeki axios yolu ile uyumlu olsun
+// import { HiLockClosed } from "react-icons/hi";
+// import { LuEyeClosed, LuEye } from "react-icons/lu";
+
+// export default function LoginForm() {
+//   const router = useRouter();
+//   const { locale } = useParams();
+
+//   // --- All hooks at top, never conditionally called ---
+//   // Token check state
+//   const [checkingToken, setCheckingToken] = useState(true);
+
+//   // UI & form state
+//   const [tab, setTab] = useState("login");
+//   const [phone, setPhone] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [showPassword, setShowPassword] = useState(false);
+
+//   // Login state
+//   const [loginError, setLoginError] = useState(null);
+//   const [loginLoading, setLoginLoading] = useState(false);
+//   const [loginSuccess, setLoginSuccess] = useState(false);
+
+//   // Register state
+//   const [name, setName] = useState("");
+//   const [confirmPwd, setConfirmPwd] = useState("");
+//   const [agree, setAgree] = useState(false);
+//   const [registerError, setRegisterError] = useState(null);
+//   const [registerLoading, setRegisterLoading] = useState(false);
+//   const [registerSuccess, setRegisterSuccess] = useState(false);
+
+//   // OTP state
+//   const [otpSent, setOtpSent] = useState(false);
+//   const [otp, setOtp] = useState("");
+//   const [otpSentAgain, setOtpSentAgain] = useState(false);
+//   const [otpTimer, setOtpTimer] = useState(0);
+
+//   // Support data
+//   const [support, setSupport] = useState(null);
+
+//   // --- Effects ---
+
+//   // 1) Token check on mount
+//   useEffect(() => {
+//     const token = Cookies.get("token");
+//     if (token) {
+//       router.replace(`/${locale}/account/profile`);
+//     } else {
+//       setCheckingToken(false);
+//     }
+//   }, [locale, router]);
+
+//   // 2) Fetch support data
+//   useEffect(() => {
+//     let mounted = true;
+//     axiosInstance
+//       .get("/supports")
+//       .then((resp) => {
+//         if (mounted) setSupport(resp.data.support || []);
+//       })
+//       .catch(console.error);
+//     return () => {
+//       mounted = false;
+//     };
+//   }, []);
+
+//   // 3) OTP resend timer
+//   useEffect(() => {
+//     if (!otpTimer) return;
+//     const id = setTimeout(() => setOtpTimer((t) => t - 1), 1000);
+//     return () => clearTimeout(id);
+//   }, [otpTimer]);
+
+//   // --- Early return while checking token ---
+//   if (checkingToken) return null;
+
+//   // --- Handlers ---
+
+//   const handleLogin = async (e) => {
+//     e.preventDefault();
+//     setLoginError(null);
+//     setLoginSuccess(false);
+
+//     // Double-check token
+//     if (Cookies.get("token")) {
+//       router.replace(`/${locale}/account/profile`);
+//       return;
+//     }
+
+//     const digits = phone.replace(/\D/g, "");
+//     if (digits.length !== 9) {
+//       setLoginError("Telefon nömrəsi 9 rəqəm olmalıdır");
+//       return;
+//     }
+//     if (!password) {
+//       setLoginError("Şifrə daxil edin");
+//       return;
+//     }
+
+//     setLoginLoading(true);
+//     try {
+//       const { data } = await axiosInstance.post("/login", {
+//         tel: digits,
+//         password,
+//       });
+//       Cookies.set("token", data.token, {
+//         expires: 3,
+//         secure: true,
+//         sameSite: "Lax",
+//       });
+//       setLoginSuccess(true);
+//       setTimeout(
+//         () => router.replace(`/${locale}/account/profile`),
+//         1
+//       );
+//     } catch (err) {
+//       console.error(err);
+//       setLoginError(
+//         err.response?.status === 401
+//           ? "Telefon və ya şifrə səhvdir"
+//           : "Giriş zamanı xəta baş verdi"
+//       );
+//     } finally {
+//       setLoginLoading(false);
+//     }
+//   };
+
+//   const handleRegister = async (e) => {
+//     e.preventDefault();
+//     setRegisterError(null);
+//     setRegisterSuccess(false);
+
+//     const digits = phone.replace(/\D/g, "");
+//     if (
+//       !name.trim() ||
+//       digits.length !== 9 ||
+//       !password ||
+//       !confirmPwd ||
+//       !agree
+//     ) {
+//       setRegisterError(
+//         "Bütün sahələri doldurun və şərtləri qəbul edin"
+//       );
+//       return;
+//     }
+//     if (password !== confirmPwd) {
+//       setRegisterError("Şifrələr eyni deyil");
+//       return;
+//     }
+//     if (password.length < 6) {
+//       setRegisterError("Şifrə ən az 6 simvol olmalıdır");
+//       return;
+//     }
+
+//     setRegisterLoading(true);
+//     try {
+//       await axiosInstance.post("/otp", { tel: digits });
+//       setOtpSent(true);
+//       setOtpTimer(30);
+//       setOtpSentAgain(false);
+//       setRegisterSuccess(true);
+//     } catch (err) {
+//       console.error(err);
+//       setRegisterError("OTP göndərilərkən xəta baş verdi");
+//     } finally {
+//       setRegisterLoading(false);
+//     }
+//   };
+
+//   const handleSendOtpAgain = async () => {
+//     if (otpTimer > 0) return;
+//     setRegisterError(null);
+//     const digits = phone.replace(/\D/g, "");
+//     try {
+//       await axiosInstance.post("/otp", { tel: digits });
+//       setOtpSentAgain(true);
+//       setOtpTimer(30);
+//     } catch (err) {
+//       console.error(err);
+//       setRegisterError("OTP göndərilərkən xəta baş verdi");
+//     }
+//   };
+
+//   const handleRegisterVerify = async (e) => {
+//     e.preventDefault();
+//     setRegisterError(null);
+
+//     if (otp.length !== 4) {
+//       setRegisterError("Düzgün OTP daxil edin");
+//       return;
+//     }
+//     setRegisterLoading(true);
+//     const digits = phone.replace(/\D/g, "");
+//     try {
+//       await axiosInstance.post("/register", {
+//         name: name.trim(),
+//         tel: digits,
+//         password,
+//         password_confirmation: confirmPwd,
+//         otp_code: otp,
+//       });
+//       setRegisterSuccess(true);
+//       setTimeout(() => {
+//         switchToLogin();
+//       }, 1500);
+//     } catch (err) {
+//       console.error(err);
+//       setRegisterError(
+//         err.response?.status === 422
+//           ? "Doğrulama xətası"
+//           : "Bu nömrə artıq istifadə olunub"
+//       );
+//     } finally {
+//       setRegisterLoading(false);
+//     }
+//   };
+
+//   const switchToLogin = () => {
+//     setTab("login");
+//     setLoginError(null);
+//     setLoginLoading(false);
+//     setLoginSuccess(false);
+//     setOtpSent(false);
+//     setOtp("");
+//     setRegisterError(null);
+//     setRegisterLoading(false);
+//     setRegisterSuccess(false);
+//   };
+
+//   const switchToRegister = () => {
+//     setTab("register");
+//     setRegisterError(null);
+//     setRegisterLoading(false);
+//     setOtpSent(false);
+//     setOtp("");
+//     setOtpSentAgain(false);
+//     setOtpTimer(0);
+//     setRegisterSuccess(false);
+//     setName("");
+//     setPhone("");
+//     setPassword("");
+//     setConfirmPwd("");
+//     setAgree(false);
+//   };
+
+//   // --- Render ---
+//   return (
+//     <div className="login-container">
+//       <h1 className="login-title">
+//         {tab === "login"
+//           ? "Daxil ol"
+//           : otpSent
+//           ? "OTP Doğrulama"
+//           : "Qeydiyyat"}
+//       </h1>
+
+//       <div className="login-tabs">
+//         <button
+//           className={`login-tab ${tab === "login" ? "active" : ""}`}
+//           onClick={switchToLogin}
+//         >
+//           Daxil ol
+//         </button>
+//         <button
+//           className={`login-tab ${tab === "register" ? "active" : ""}`}
+//           onClick={switchToRegister}
+//         >
+//           Qeydiyyat
+//         </button>
+//       </div>
+
+//       {tab === "login" && (
+//         <form className="login-form" onSubmit={handleLogin}>
+//           <label className="login-label">Nömrə</label>
+//           <div className="login-group">
+//             <span className="login-prefix">+994</span>
+//             <input
+//               type="tel"
+//               className="login-input"
+//               value={phone}
+//               onChange={(e) =>
+//                 setPhone(e.target.value.replace(/\D/g, "").slice(0, 9))
+//               }
+//               required
+//             />
+//           </div>
+
+//           <label className="login-label">Şifrə</label>
+//           <div className="login-group">
+//             <span className="login-icon">
+//               <HiLockClosed />
+//             </span>
+//             <input
+//               type={showPassword ? "text" : "password"}
+//               className="login-input"
+//               value={password}
+//               onChange={(e) => setPassword(e.target.value)}
+//               required
+//             />
+//             <button
+//               type="button"
+//               className="login-toggle"
+//               onClick={() => setShowPassword((prev) => !prev)}
+//               aria-label={
+//                 showPassword ? "Şifrəni gizlət" : "Şifrəni göstər"
+//               }
+//             >
+//               {showPassword ? <LuEye /> : <LuEyeClosed />}
+//             </button>
+//           </div>
+
+//           {loginError && (
+//             <div className="errorInfo" role="alert">
+//               {loginError}
+//             </div>
+//           )}
+//           <button
+//             type="submit"
+//             className="login-submit"
+//             disabled={loginLoading}
+//           >
+//             {loginLoading ? "Yüklənir..." : "Daxil ol"}
+//           </button>
+//           <a
+//             href={`/${locale}/forgot-password`}
+//             className="login-forgot"
+//           >
+//             Şifrəmi unutdum
+//           </a>
+
+//           {loginSuccess && (
+//             <div className="successInfo">Uğurla daxil oldunuz</div>
+//           )}
+//         </form>
+//       )}
+
+//       {tab === "register" && !otpSent && (
+//         <form className="login-form" onSubmit={handleRegister}>
+//           <label className="login-label">Ad Soyad</label>
+//           <div className="login-group">
+//             <input
+//               type="text"
+//               className="login-input"
+//               value={name}
+//               onChange={(e) => setName(e.target.value)}
+//               required
+//             />
+//           </div>
+
+//           <label className="login-label">Nömrə</label>
+//           <div className="login-group">
+//             <span className="login-prefix">+994</span>
+//             <input
+//               type="tel"
+//               className="login-input"
+//               value={phone}
+//               onChange={(e) =>
+//                 setPhone(e.target.value.replace(/\D/g, "").slice(0, 9))
+//               }
+//               required
+//             />
+//           </div>
+
+//           <label className="login-label">Şifrə</label>
+//           <div className="login-group">
+//             <span className="login-icon">
+//               <HiLockClosed />
+//             </span>
+//             <input
+//               type={showPassword ? "text" : "password"}
+//               className="login-input"
+//               value={password}
+//               onChange={(e) => setPassword(e.target.value)}
+//               required
+//             />
+//             <button
+//               type="button"
+//               className="login-toggle"
+//               onClick={() => setShowPassword((prev) => !prev)}
+//               aria-label={
+//                 showPassword ? "Şifrəni gizlət" : "Şifrəni göstər"
+//               }
+//             >
+//               {showPassword ? <LuEye /> : <LuEyeClosed />}
+//             </button>
+//           </div>
+
+//           <label className="login-label">Şifrəni təkrar et</label>
+//           <div className="login-group">
+//             <span className="login-icon">
+//               <HiLockClosed />
+//             </span>
+//             <input
+//               type={showPassword ? "text" : "password"}
+//               className="login-input"
+//               value={confirmPwd}
+//               onChange={(e) => setConfirmPwd(e.target.value)}
+//               required
+//             />
+//             <button
+//               type="button"
+//               className="login-toggle"
+//               onClick={() => setShowPassword((prev) => !prev)}
+//               aria-label={
+//                 showPassword ? "Şifrəni gizlət" : "Şifrəni göstər"
+//               }
+//             >
+//               {showPassword ? <LuEye /> : <LuEyeClosed />}
+//             </button>
+//           </div>
+
+//           <div className="register-terms">
+//             <input
+//               type="checkbox"
+//               id="terms"
+//               checked={agree}
+//               onChange={(e) => setAgree(e.target.checked)}
+//             />
+//             <label htmlFor="terms">Şərtləri oxudum, qəbul edirəm</label>
+//             {support &&
+//               (() => {
+//                 const item = support.find((x) =>
+//                   x.slug.includes("politika") || x.slug.includes("gizlilik")
+//                 );
+//                 return item ? (
+//                   <a
+//                     href={`/${locale}/support/${item.slug}`}
+//                     className="privacy-link"
+//                   >
+//                     Gizlilik Siyasəti
+//                   </a>
+//                 ) : null;
+//               })()}
+//           </div>
+
+//           {registerError && (
+//             <div className="errorInfo">{registerError}</div>
+//           )}
+//           <button
+//             type="submit"
+//             className={`register-submit${agree ? "" : " disabled"}`}
+//             disabled={!agree || registerLoading}
+//           >
+//             {registerLoading ? "Yüklənir..." : "Qeydiyyatdan keç"}
+//           </button>
+//           <button
+//             type="button"
+//             className="register-back"
+//             onClick={switchToLogin}
+//           >
+//             Daxil ol
+//           </button>
+//           {registerSuccess && (
+//             <div className="successInfo">OTP gözlənilir</div>
+//           )}
+//         </form>
+//       )}
+
+//       {tab === "register" && otpSent && (
+//         <form className="login-form" onSubmit={handleRegisterVerify}>
+//           <p className="otp-title">Doğrulama Kodu</p>
+//           <div className="login-group otp-group">
+//             <input
+//               type="text"
+//               className="login-input otp-input"
+//               value={otp}
+//               onChange={(e) =>
+//                 setOtp(e.target.value.replace(/\D/g, "").slice(0, 4))
+//               }
+//               maxLength={4}
+//               required
+//             />
+//           </div>
+//           {registerError && (
+//             <div className="errorInfo">{registerError}</div>
+//           )}
+//           <button
+//             type="submit"
+//             className="login-submit"
+//             disabled={registerLoading}
+//           >
+//             {registerLoading ? "Yüklənir..." : "Təsdiq et"}
+//           </button>
+//           <div className="otp-resend">
+//             <button
+//               type="button"
+//               id="otpRepeat"
+//               onClick={handleSendOtpAgain}
+//               disabled={otpTimer > 0}
+//               className={otpSentAgain && otpTimer === 0 ? "active" : ""}
+//             >
+//               {otpTimer > 0
+//                 ? `${otpTimer}s`
+//                 : otpSentAgain
+//                 ? "Göndərildi"
+//                 : "Yenidən göndər"}
+//             </button>
+//           </div>
+//           <button
+//             type="button"
+//             className="register-back"
+//             onClick={() => {
+//               setOtpSent(false);
+//               setOtp("");
+//               setRegisterError(null);
+//             }}
+//           >
+//             Nömrəni dəyiş
+//           </button>
+//         </form>
+//       )}
+//     </div>
+//   );
+// }
+
+
+
+
+// ! ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // components/Auth/LoginForm.jsx
 "use client";
 
@@ -1622,6 +2147,7 @@ export default function LoginForm() {
   const [loginError, setLoginError] = useState(null);
   const [loginLoading, setLoginLoading] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
   // Register state
   const [name, setName] = useState("");
@@ -1711,10 +2237,13 @@ export default function LoginForm() {
         sameSite: "Lax",
       });
       setLoginSuccess(true);
-      setTimeout(
-        () => router.replace(`/${locale}/account/profile`),
-        1
-      );
+      setShowSuccessPopup(true);
+      
+      // Popup 2 saniye göstərildikdən sonra yönləndir
+      setTimeout(() => {
+        setShowSuccessPopup(false);
+        router.replace(`/${locale}/account/profile`);
+      }, 2000);
     } catch (err) {
       console.error(err);
       setLoginError(
@@ -1929,10 +2458,6 @@ export default function LoginForm() {
           >
             Şifrəmi unutdum
           </a>
-
-          {loginSuccess && (
-            <div className="successInfo">Uğurla daxil oldunuz</div>
-          )}
         </form>
       )}
 
@@ -2111,10 +2636,22 @@ export default function LoginForm() {
           </button>
         </form>
       )}
+
+      {/* Success Popup */}
+      {showSuccessPopup && (
+        <div className="success-popup-overlay">
+          <div className="success-popup">
+            <div className="success-popup-content">
+              <div className="success-icon">✓</div>
+              <h3 className="success-title">Uğurla giriş edildi</h3>
+              <p className="success-message">Hesabınıza yönləndirilirsiniz...</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
-
 // ! ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 

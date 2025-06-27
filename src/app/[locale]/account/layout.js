@@ -112,6 +112,8 @@
 
 
 
+
+
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -126,10 +128,9 @@ import { GrLocation } from "react-icons/gr";
 import { RiFileList3Line } from "react-icons/ri";
 import { FiUnlock } from "react-icons/fi";
 
-
-
 const AboutPage = ({ children, params }) => {
   const [categoryData, setCategoryData] = useState([]);
+  const [showLogoutPopup, setShowLogoutPopup] = useState(false);
   const unwrappedParams = use(params);
   const { locale } = unwrappedParams;
   const isDefaultLocale = locale === "az";
@@ -158,7 +159,11 @@ const AboutPage = ({ children, params }) => {
   const generatePath = (path) =>
     isDefaultLocale ? `/${path}` : `/${locale}/${path}`;
 
-  const handleLogout = async () => {
+  const handleLogoutClick = () => {
+    setShowLogoutPopup(true);
+  };
+
+  const handleLogoutConfirm = async () => {
     try {
       const token = typeof window !== "undefined" && Cookies.get("token");
       await axiosInstance.post(
@@ -171,12 +176,18 @@ const AboutPage = ({ children, params }) => {
         }
       );
       Cookies.remove("token");
+      setShowLogoutPopup(false);
       const redirectTo = isDefaultLocale ? "/login" : `/${locale}/login`;
       window.location.assign(redirectTo);
       setTimeout(() => window.location.reload(), 2000);
     } catch (error) {
       console.error("Logout failed:", error);
+      setShowLogoutPopup(false);
     }
+  };
+
+  const handleLogoutCancel = () => {
+    setShowLogoutPopup(false);
   };
 
   // inline style helper for underline
@@ -223,7 +234,7 @@ const AboutPage = ({ children, params }) => {
                   >
                     <FiUnlock />Change Password
                   </Link>
-                  <button onClick={handleLogout}><BiLogOut />Logout</button>
+                  <button onClick={handleLogoutClick}><BiLogOut />Logout</button>
                 </div>
               </div>
               <div className="xl-9 lg-9 md-9 sm-12">{children}</div>
@@ -231,20 +242,42 @@ const AboutPage = ({ children, params }) => {
           </div>
         </div>
       </div>
+
+      {/* Logout Confirmation Popup */}
+      {showLogoutPopup && (
+        <div className="logout-popup-overlay">
+          <div className="logout-popup">
+            <div className="logout-popup-content">
+              <div className="logout-icon">
+                <BiLogOut />
+              </div>
+              <h3 className="logout-title">Hesabdan çıxmaq istəyirsiniz?</h3>
+              {/* <p className="logout-message">Bu əməliyyatı təsdiqləsəniz, hesabınızdan çıxacaqsınız.</p> */}
+              <div className="logout-buttons">
+                <button 
+                  className="logout-btn-cancel" 
+                  onClick={handleLogoutCancel}
+                >
+                  Xeyr
+                </button>
+                <button 
+                  className="logout-btn-confirm" 
+                  onClick={handleLogoutConfirm}
+                >
+                  Bəli
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <Footer />
     </>
   );
 };
 
 export default AboutPage;
-
-
-
-
-
-
-
-
 
 
 
@@ -261,6 +294,13 @@ export default AboutPage;
 // import { use, useState, useEffect } from "react";
 // import Header from '@/components/Header/Header';
 // import Footer from '@/components/Footer/Footer';
+// import { BiLogOut } from "react-icons/bi";
+// import { FiUser } from "react-icons/fi";
+// import { GrLocation } from "react-icons/gr";
+// import { RiFileList3Line } from "react-icons/ri";
+// import { FiUnlock } from "react-icons/fi";
+
+
 
 // const AboutPage = ({ children, params }) => {
 //   const [categoryData, setCategoryData] = useState([]);
@@ -276,7 +316,7 @@ export default AboutPage;
 //         if (locale) {
 //           headers["Lang"] = locale;
 //         }
-//         const { data: home } = await axiosInstance.get(`/layouts`, {
+//         const { data: home } = await axiosInstance.get("/layouts", {
 //           headers,
 //         });
 //         setCategoryData(home?.categories || []);
@@ -313,58 +353,51 @@ export default AboutPage;
 //     }
 //   };
 
+//   // inline style helper for underline
+//   const underlineStyle = (path) => {
+//     return pathname === generatePath(path)
+//       ? { borderBottom: "2px solid #000", paddingBottom: "4px" }
+//       : {};
+//   };
+
 //   return (
 //     <>
 //       <Header categoryData={categoryData} />
 //       <div className="pages">
-//         <div className="account" >
+//         <div className="account">
 //           <div className="container">
-//             <div className="row" id="account" >
+//             <div className="row" id="account">
 //               <div className="xl-3 lg-3 md-3 sm-12">
 //                 <div className="supportLeft">
 //                   <Link
 //                     href={generatePath("account/profile")}
-//                     className={
-//                       pathname === generatePath("account/profile")
-//                         ? "active"
-//                         : ""
-//                     }
+//                     className={pathname === generatePath("account/profile") ? "active" : ""}
+//                     style={underlineStyle("account/profile")}
 //                   >
-//                     Profile
+//                     <FiUser />Profile
 //                   </Link>
 //                   <Link
 //                     href={generatePath("account/address")}
-//                     className={
-//                       pathname === generatePath("account/address")
-//                         ? "active"
-//                         : ""
-//                     }
+//                     className={pathname === generatePath("account/address") ? "active" : ""}
+//                     style={underlineStyle("account/address")}
 //                   >
-//                     Address
+//                    <GrLocation /> Address
 //                   </Link>
 //                   <Link
 //                     href={generatePath("account/order-history")}
-//                     className={
-//                       pathname === generatePath("account/order-history")
-//                         ? "active"
-//                         : ""
-//                     }
+//                     className={pathname === generatePath("account/order-history") ? "active" : ""}
+//                     style={underlineStyle("account/order-history")}
 //                   >
-//                     Order History
+//                     <RiFileList3Line />Order History
 //                   </Link>
 //                   <Link
 //                     href={generatePath("account/change-password")}
-//                     className={
-//                       pathname === generatePath("account/change-password")
-//                         ? "active"
-//                         : ""
-//                     }
+//                     className={pathname === generatePath("account/change-password") ? "active" : ""}
+//                     style={underlineStyle("account/change-password")}
 //                   >
-//                     Change Password
+//                     <FiUnlock />Change Password
 //                   </Link>
-//                   <button onClick={handleLogout}>
-//                     Logout
-//                   </button>
+//                   <button onClick={handleLogout}><BiLogOut />Logout</button>
 //                 </div>
 //               </div>
 //               <div className="xl-9 lg-9 md-9 sm-12">{children}</div>
@@ -378,6 +411,11 @@ export default AboutPage;
 // };
 
 // export default AboutPage;
+
+
+
+
+
 
 
 
