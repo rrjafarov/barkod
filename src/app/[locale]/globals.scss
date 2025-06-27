@@ -4336,6 +4336,7 @@ select:focus {
   justify-content: center;
   width: 100%;
   height: 100%;
+
   span {
     font-size: 2rem;
     font-weight: 600;
@@ -4553,6 +4554,7 @@ select:focus {
   flex-direction: column;
   align-items: flex-start;
   gap: 3rem;
+
   a {
     font-size: 2rem;
     font-weight: 400;
@@ -4562,6 +4564,7 @@ select:focus {
     align-items: center;
     gap: 1.5rem;
   }
+
   button {
     font-size: 2rem;
     font-weight: 400;
@@ -4581,8 +4584,15 @@ select:focus {
   justify-content: flex-start;
   align-items: center;
   gap: 10rem;
-  width: 100% ;
-  
+  width: 100%;
+
+}
+
+@media (max-width: 768px) {
+
+  #account {
+    gap: 5rem !important;
+  }
 }
 
 
@@ -4598,12 +4608,13 @@ select:focus {
 .logout-confirm-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10000;
 }
+
 .logout-confirm-modal {
   background: #fff;
   border-radius: 1rem;
@@ -4616,11 +4627,13 @@ select:focus {
   align-items: center;
   flex-direction: column;
 }
+
 .logout-confirm-text {
   font-size: 1.6rem;
   color: #555;
   margin-bottom: 2rem;
 }
+
 .logout-confirm-buttons {
   display: flex;
   justify-content: space-between;
@@ -4628,6 +4641,7 @@ select:focus {
   gap: 2rem;
   padding: 2rem;
 }
+
 .logout-confirm-yes,
 .logout-confirm-no {
   min-width: 15rem;
@@ -4635,11 +4649,13 @@ select:focus {
   border-radius: 0.5rem;
   font-size: 1.6rem;
 }
+
 .logout-confirm-yes {
   background: #0a0a0a;
   color: #fff;
   border: none;
 }
+
 .logout-confirm-no {
   background: #fff;
   color: #000;
@@ -4673,12 +4689,14 @@ select:focus {
   align-items: center;
   justify-content: center;
 }
+
 .authContainer {
   border-radius: 2rem;
   border: 0.1rem solid var(--line);
   padding: 5.4rem 0 6rem;
   width: 40rem;
 }
+
 .authHeader {
   display: flex;
   align-items: center;
@@ -4687,6 +4705,7 @@ select:focus {
   margin: auto;
   margin-bottom: 2.8rem;
 }
+
 .authHeader span {
   color: #5f5f5f;
   text-align: center;
@@ -4700,12 +4719,15 @@ select:focus {
   cursor: pointer;
   transition: none;
 }
+
 .authHeader span:last-child {
   margin-left: 4rem;
 }
+
 .authHeader span:first-child {
   margin-left: 0;
 }
+
 .authHeader span.active {
   color: var(--lightred);
   font-size: 2.2rem;
@@ -4713,15 +4735,18 @@ select:focus {
   letter-spacing: 0.066rem;
   opacity: 1;
 }
+
 .authHeader span:hover {
   opacity: 1;
 }
+
 .errorInfo {
   color: var(--lightred);
   text-align: center;
   font-size: 1.4rem;
   margin-top: 1rem;
 }
+
 form .error {
   position: absolute;
   bottom: -1.6rem;
@@ -4733,9 +4758,11 @@ form .error {
   line-height: normal;
   display: none;
 }
+
 form.error.active {
   display: block;
 }
+
 .blackButton.deactive {
   opacity: 0.5;
   pointer-events: none;
@@ -4753,11 +4780,13 @@ form.error.active {
   margin-bottom: 0.8rem;
   padding-left: 1.1rem;
 }
+
 .auth form {
   // width: 60%;
   // margin: auto;
   width: 100%;
 }
+
 .phoneInput {
   border-radius: 1rem;
   background: #f4f4f4;
@@ -4786,6 +4815,7 @@ form.error.active {
   line-height: normal;
   letter-spacing: 0.036rem;
 }
+
 .phoneInput input {
   width: 100%;
   color: var(--black);
@@ -4819,15 +4849,18 @@ form.error.active {
   padding: 0 2.4rem;
   border-radius: 1rem;
 }
+
 .textChild textarea {
   width: 100%;
   height: 85%;
   border: none;
   resize: none;
 }
+
 .textChild {
   min-height: 17rem;
 }
+
 .inputChild input {
   width: 100%;
   height: 100%;
@@ -4844,13 +4877,16 @@ form.error.active {
   justify-content: center;
   align-items: center;
 }
+
 .passwordChild .password svg {
   width: 1.3rem;
   height: 1.4rem;
 }
+
 .passwordChild .password {
   padding: 0 3rem 0 1rem;
 }
+
 .eye {
   display: flex;
   align-items: center;
@@ -4859,17 +4895,21 @@ form.error.active {
   height: 1rem;
   cursor: pointer;
 }
-.eyes{
+
+.eyes {
   font-size: 1.5rem;
 }
+
 .eye svg {
   width: 1.7rem;
   height: 1.7rem;
   margin-top: 1rem;
 }
+
 .eye.active svg {
   opacity: 0.3;
 }
+
 form .blackButton {
   width: 100%;
   padding: 0;
@@ -4878,12 +4918,14 @@ form .blackButton {
   color: white;
   border-radius: 1rem;
 }
+
 .authButtons {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 1.8rem 0 3.2rem;
 }
+
 .authButtons a {
   color: #666;
   text-align: center;
@@ -4895,10 +4937,12 @@ form .blackButton {
   padding-bottom: 0.3rem;
   border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
 }
+
 .authButtons a:hover {
   color: var(--black);
   border-bottom: 0.1rem solid var(--black);
 }
+
 .agree label {
   opacity: 1 !important;
   padding-left: 0;
@@ -4913,6 +4957,7 @@ form .blackButton {
   letter-spacing: 0.042rem;
   padding-left: 1.7rem;
 }
+
 .agree p a {
   color: var(--black);
   font-size: 1.4rem;
@@ -4923,9 +4968,11 @@ form .blackButton {
   opacity: 0.6;
   display: inline;
 }
+
 .agree p a:hover {
   opacity: 1;
 }
+
 .errorPages {
   width: 100%;
   height: 90vh;
@@ -4937,6 +4984,7 @@ form .blackButton {
   background-size: cover;
   background-position: center;
 }
+
 .errorPagesContent {
   display: flex;
   flex-direction: column;
@@ -4945,6 +4993,7 @@ form .blackButton {
   width: 100%;
   margin-top: 25%;
 }
+
 .errorPages h1 {
   color: var(--lightred);
   font-size: 14.8116rem;
@@ -4954,6 +5003,7 @@ form .blackButton {
   letter-spacing: 0.4443rem;
   margin-bottom: 2.4rem;
 }
+
 .errorPages p {
   color: var(--black);
   text-align: center;
@@ -4966,6 +5016,7 @@ form .blackButton {
   width: 30%;
   margin-bottom: 3.2rem;
 }
+
 .backButton {
   display: flex;
   align-items: center;
@@ -4983,18 +5034,22 @@ form .blackButton {
   text-transform: uppercase;
   padding: 0 3rem;
 }
+
 .backButton svg {
   width: 1.3rem;
   height: 1.3rem;
   margin-right: 0.8rem;
 }
+
 .backButton:hover {
   background-color: var(--black);
   color: var(--white);
 }
+
 .backButton:hover svg path {
   fill: var(--white);
 }
+
 // Baharstore csss
 
 
@@ -5076,6 +5131,7 @@ form .blackButton {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -5086,6 +5142,7 @@ form .blackButton {
     opacity: 0;
     transform: translateY(-50px) scale(0.8);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -5097,6 +5154,7 @@ form .blackButton {
     opacity: 0;
     transform: scale(0);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -5109,31 +5167,32 @@ form .blackButton {
     width: 95%;
     max-width: 32rem;
   }
-  
+
   .success-popup-content {
     padding: 3rem 2rem;
   }
-  
+
   .success-icon {
     width: 5rem;
     height: 5rem;
     font-size: 2.4rem;
   }
-  
+
   .success-title {
     font-size: 2rem;
   }
-  
+
   .success-message {
     font-size: 1.4rem;
   }
 }
+
 // ! LOGIN
 
 
 
 //! LOGOUT POPUP!
-/* Logout Popup Styles */ 
+/* Logout Popup Styles */
 .logout-popup-overlay {
   position: fixed;
   top: 0;
@@ -5241,6 +5300,7 @@ form .blackButton {
   from {
     opacity: 1;
   }
+
   to {
     opacity: 1;
   }
@@ -5251,6 +5311,7 @@ form .blackButton {
     opacity: 0;
     transform: translateY(-50px) scale(0.8);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -5262,10 +5323,12 @@ form .blackButton {
     opacity: 0;
     transform: scale(0);
   }
+
   50% {
     opacity: 1;
     transform: scale(1.1);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -5278,35 +5341,36 @@ form .blackButton {
     width: 95%;
     max-width: 32rem;
   }
-  
+
   .logout-popup-content {
     padding: 3rem 2rem;
   }
-  
+
   .logout-icon {
     width: 5rem;
     height: 5rem;
     font-size: 2rem;
   }
-  
+
   .logout-title {
     font-size: 1.8rem;
   }
-  
+
   .logout-message {
     font-size: 1.4rem;
     margin-bottom: 2.5;
   }
-  
+
   .logout-buttons {
     flex-direction: column;
     gap: 1rem;
   }
-  
+
   .logout-btn-cancel,
   .logout-btn-confirm {
     max-width: none;
     width: 100%;
   }
 }
+
 //! LOGOUT POPUP!
