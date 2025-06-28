@@ -4583,6 +4583,7 @@ select:focus {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  flex-wrap: wrap;
   gap: 10rem;
   width: 100%;
 
@@ -4681,7 +4682,7 @@ select:focus {
 
 
 
-// Baharstore csss
+//* Baharstore csss
 
 
 .auth {
@@ -5050,7 +5051,122 @@ form .blackButton {
   fill: var(--white);
 }
 
-// Baharstore csss
+//* Baharstore csss
+.formParent {
+  border-radius: 2rem;
+  border: 0.1rem solid var(--line);
+  padding: 7.6rem 0;
+  padding: 5.4rem 0 6rem;
+  width: 35rem;
+  // width: 75%;
+  // margin: auto;
+}
+
+.formParent form {
+  // width: 60%;
+  // margin: auto;
+}
+
+.formParent form p {
+  color: var(--black);
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.072rem;
+  text-transform: uppercase;
+  margin-bottom: 2.2rem;
+}
+
+.formParent form label {
+  color: var(--black);
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.036rem;
+  opacity: 0.33;
+  margin-bottom: 1rem !important;
+}
+
+.formParent .inputChild {
+  margin-top: 0.8rem;
+
+  .passIcon {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+}
+
+.inputChilds {
+  width: var(--width);
+  height: 4.9rem;
+  border-radius: 0.8rem;
+  background: #f4f4f4;
+  /* overflow: hidden; */
+  display: flex;
+  align-items: center;
+  padding: 0 1.8rem;
+  border-radius: 1rem;
+}
+
+.inputChilds input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  color: var(--black);
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 0.036rem;
+  background: #f4f4f4;
+
+}
+
+.addressParent label {
+  color: var(--black);
+  font-size: 1.8rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 155%;
+  letter-spacing: 0.054rem;
+  padding-bottom: 1rem;
+}
+
+
+.contactRight {
+  border: 2px solid #f5f5f5;
+  border-radius: 1rem;
+  width: 100%;
+  height: 100%;
+  width: 50rem;
+  padding: 5rem 5rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.formParent {
+  padding: 1rem;
+}
+
+.emptySection {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.empty-title {
+  font-size: 2.5rem;
+  width: 100%;
+}
+
+//* Baharstore csss
 
 
 

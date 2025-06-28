@@ -204,7 +204,7 @@ const AboutPage = ({ children, params }) => {
         <div className="account">
           <div className="container">
             <div className="row" id="account">
-              <div className="xl-3 lg-3 md-3 sm-12">
+              <div className="xl-4 lg-4 md-4 sm-12">
                 <div className="supportLeft">
                   <Link
                     href={generatePath("account/profile")}
@@ -237,7 +237,7 @@ const AboutPage = ({ children, params }) => {
                   <button onClick={handleLogoutClick}><BiLogOut />Logout</button>
                 </div>
               </div>
-              <div className="xl-9 lg-9 md-9 sm-12">{children}</div>
+              <div className="xl-8 lg-8 md-8 sm-12">{children}</div>
             </div>
           </div>
         </div>
