@@ -5171,6 +5171,404 @@ form .blackButton {
   font-size: 3rem;
 }
 
+
+
+// !popup adreees 
+
+
+.layer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 3;
+  background: #0e0b0b96;
+  background-blend-mode: multiply;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s all ease-in-out;
+}
+.layer.active {
+  opacity: 1;
+  visibility: visible;
+}
+.popupContainer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  z-index: 5;
+  border-radius: 1.5rem;
+  background: #fff;
+  padding: 7rem 7rem 6rem;
+  width: 50rem;
+  height: fit-content;
+  transition: 0.5s all ease-in-out;
+  display: block;
+  opacity: 0;
+  visibility: hidden;
+  scale: 0.8;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.1);
+}
+.popupContainer.active {
+  opacity: 1;
+  scale: 1;
+  visibility: visible;
+  transition: 0.5s all ease-in-out;
+}
+.popupContainer form p {
+  color: var(--black);
+  font-size: 2.7rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.054rem;
+  margin-bottom: 2rem;
+}
+.popupContainer form label {
+  color: var(--black);
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.036rem;
+  opacity: 0.33;
+  margin-bottom: 0.8rem;
+  display: block;
+}
+.popupContainer .close {
+  position: absolute;
+  right: 3.2rem;
+  top: 3rem;
+  padding: 0;
+  background-color: transparent;
+  width: 5rem;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  font-size: 2.6rem;
+  justify-content: center;
+  border: none;
+}
+.addressParentCards {
+  padding-right: 4.2rem;
+  overflow: auto;
+  // height: 80vh;
+  display: flex;
+  // flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.addressCardCreate {
+  border-radius: 1rem;
+  border: 0.1rem solid var(--line);
+  // height: 22.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: transparent;
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+.addressCardCreate svg {
+  width: 4.9rem;
+  height: 4.9rem;
+  margin-bottom: 1.4rem;
+}
+.addressCardCreate span {
+  color: var(--black);
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.024rem;
+  text-transform: uppercase;
+}
+.addressCardCreate:hover span {
+  color: #2d9d3f;
+}
+.addressCardCreate:hover {
+  border: 0.1rem solid #2d9d3f;
+  transition: all 0.3s ease;
+}
+.popupAddress.active,
+.popupAnswer.active,
+.popupEdit.active,
+.popupSuccess.active,
+.popupError.active {
+  display: block;
+}
+.popupAddress {
+  display: none;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+}
+.popupAddress.active {
+  display: block;
+  position: absolute;
+}
+.popupAddress.active .popupContainer {
+  visibility: visible;
+  opacity: 1;
+}
+.answerPopup img {
+  width: 9rem;
+  height: 9rem;
+  margin-bottom: 2.4rem;
+}
+.popupAddress .layer {
+  background: #17151584;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+
+.popupSuccess span {
+  color: #000;
+  text-align: center;
+  font-size: 2.3227rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.0465rem;
+  margin-bottom: 2.2rem;
+}
+.popupError span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.0465rem;
+  margin: 1rem 0;
+}
+.popupError span a {
+  color: #c63428;
+  text-align: center;
+  font-size: 1.8rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-left: 0.6rem;
+}
+.answerPopup p {
+  color: #7b7b7b;
+  text-align: center;
+  font-size: 2.3227rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.0465rem;
+}
+
+.selectBox {
+  width: 100%;
+  height: 4rem;
+  border-radius: 1.2rem;
+  border: 0.1rem solid var(--line);
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+.selectBoxCity {
+  width: 100%;
+  height: 5.5rem;
+  border-radius: 0.8rem;
+  background: #f4f4f4;
+  border: none;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  select{
+  background: #f4f4f4;
+  }
+}
+
+.selectBox select,
+.selectBoxCity select {
+  width: 100%;
+  height: 100%;
+  padding: 0 2rem;
+  border: 0;
+  -webkit-appearance: none;
+}
+.selectBox svg,
+.selectBoxCity svg {
+  position: absolute;
+  right: 0.8rem;
+  top: 0.8rem;
+  width: 2rem;
+  height: 2rem;
+  pointer-events: none;
+}
+.selectBoxCity svg {
+  top: 1.8rem;
+  right: 1.6rem;
+}
+.selectBoxCity select {
+  color: var(--black, #1a1a1a);
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.036rem;
+}
+// !popup adreees 
+
+
+//! adreess card
+.addressCard {
+  width: 100%;
+  position: relative;
+  margin-bottom: 2.2rem;
+  height: 22.6rem;
+}
+.addressCardInner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 5.6rem 4rem 3.4rem 3.6rem;
+  width: var(--width) !important;
+  border: 0.1rem solid var(--line);
+  border-radius: 1rem;
+  height: 100%;
+}
+.addressCard span {
+  color: #2c2c2c;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 100%;
+  letter-spacing: 0.03rem;
+  opacity: 0.6;
+  display: block;
+  margin-bottom: 1rem;
+}
+.addressCard p {
+  color: var(--black);
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%;
+  letter-spacing: 0.042rem;
+}
+.addressCardInner div {
+  margin-bottom: 3.2rem;
+  width: 40%;
+}
+.addressCardInner div:nth-child(4),
+.addressCardInner div:nth-child(5) {
+  margin-bottom: 0;
+}
+.addressCard input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 1;
+}
+.addressCard .delete,
+.edit {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  z-index: 2;
+  cursor: pointer;
+}
+.edit {
+  right: 5rem;
+}
+.addressCard .delete svg,
+.edit svg {
+  width: 2rem;
+  height: 2rem;
+}
+.addressCard input:checked ~ .addressCardInner {
+  border: 0.1rem solid #2d9d3f;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+.addressCard .tick {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 3.5rem;
+  top: 2rem;
+  left: 3rem;
+}
+.addressCard .tick svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.addressCard input:checked ~ .addressCardInner .tick {
+  background: #2d9d3f;
+}
+
+
+// .addressParentCards {
+//   padding-right: 4.2rem;
+//   overflow: auto;
+//   height: 80vh;
+// }
+.addressCardCreate {
+  border-radius: 1rem;
+  border: 0.1rem solid var(--line);
+  // height: 22.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2.4rem;
+  width: 100%;
+  background-color: transparent;
+}
+.addressCardCreate svg {
+  width: 4.9rem;
+  height: 4.9rem;
+  margin-bottom: 1.4rem;
+}
+.addressCardCreate span {
+  color: var(--black);
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.024rem;
+  text-transform: uppercase;
+}
+.addressCardCreate:hover svg path {
+  stroke: #2d9d3f;
+}
+.addressCardCreate:hover span {
+  color: #2d9d3f;
+}
+.addressCardCreate:hover {
+  border: 0.1rem solid #2d9d3f;
+}
+//! adreess card
+
 //* Baharstore csss
 
 
