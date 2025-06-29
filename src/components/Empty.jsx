@@ -1,5 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import { BiLogOut } from "react-icons/bi";
+import { RiFileList3Line } from "react-icons/ri";
+
 
 const Empty = ({
   title,
@@ -18,6 +21,7 @@ const Empty = ({
         height={500}
         alt="empty logo"
       /> */}
+      <RiFileList3Line className="empty-title-icon" />
       <span className="empty-title">{title}</span>
       <p>{description}</p>
       {isButtonTrue && (

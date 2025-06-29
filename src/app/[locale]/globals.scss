@@ -5154,16 +5154,21 @@ form .blackButton {
 }
 
 .emptySection {
-
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  gap: 2rem;
+  flex-direction: column;
+  width: 50rem;
 }
 
 .empty-title {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
+  text-align: center;
   width: 100%;
+}
+.empty-title-icon {
+  font-size: 3rem;
 }
 
 //* Baharstore csss
