@@ -83,6 +83,23 @@ async function getCategoryeData() {
   }
 }
 
+async function getTranslations() {
+  try {
+    const response = await axiosInstance.get("/translation-list");
+    const data = response.data;
+
+    // Array-i obyektə çevir
+    const translationsObj = data.reduce((acc, item) => {
+      acc[item.key] = item.value;
+      return acc;
+    }, {});
+
+    return translationsObj;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 const CampaignPage = async ({ params }) => {
   // 1) URL’den gelen param: "some-title-123" veya direkt "123"
   const rawId = params.id;
@@ -94,7 +111,7 @@ const CampaignPage = async ({ params }) => {
   // 3) Tüm kampanyaları çek
   const campaignResponse = await getCampaignsPageData();
   const campaigns = campaignResponse?.campaigns || [];
-
+  const t = await getTranslations();
   const categoryResponse = await getCategoryeData();
   const categoryData = categoryResponse?.categories || [];
 
@@ -109,10 +126,10 @@ const CampaignPage = async ({ params }) => {
 
   return (
     <div>
-      <Header categoryData={categoryData} />
+      <Header t={t} categoryData={categoryData} />
       {/* Doğru kampanya objesini prop olarak veriyoruz */}
       <CampaignDetailPage campaign={campaign} />
-      <Footer />
+      <Footer t={t} />
     </div>
   );
 };

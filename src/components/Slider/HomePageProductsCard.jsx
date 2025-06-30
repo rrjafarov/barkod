@@ -1824,7 +1824,7 @@ const HomePageProductsCard = ({
                     >
                       <div className="secondHomePageProductsCardImage">
                         <Image
-                          src={product.image}
+                          src={product.image || "/images/defaultImage.png"}
                           alt={product.name}
                           width={200}
                           height={200}

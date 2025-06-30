@@ -994,7 +994,325 @@
 // };
 
 // export default ProductsPage;
-// !dedede
+
+
+
+// ?nisbeten
+// "use client";
+// import Link from "next/link";
+// import React, { useState, useEffect, useRef } from "react";
+// import Image from "next/image";
+// import { useRouter, useSearchParams } from "next/navigation";
+// import Filter from "../../public/icons/filter.svg";
+// import { TbCurrencyManat } from "react-icons/tb";
+// import NewScale from "../../public/icons/newScale.svg";
+// import { MdKeyboardDoubleArrowRight, MdKeyboardArrowRight } from "react-icons/md";
+// import { FiHeart } from "react-icons/fi";
+// import { FaHeart } from "react-icons/fa";
+
+// const FilterAccordion = ({ title, children, defaultOpen = false }) => {
+//   const [isOpen, setIsOpen] = useState(defaultOpen);
+//   return (
+//     <div className="accordion">
+//       <button className="accordion-header" onClick={() => setIsOpen(!isOpen)}>
+//         {title}
+//         <img
+//           src={isOpen ? "/icons/minusIcon.svg" : "/icons/plusIcon.svg"}
+//           alt="toggle"
+//           className="toggle-icon"
+//         />
+//       </button>
+//       {isOpen && <div className="accordion-content">{children}</div>}
+//     </div>
+//   );
+// };
+
+// const ProductsPage = ({
+//   slug,
+//   productsCard,
+//   productsFilterGroupsTitle,
+//   categoryData,
+//   productsBreadCrumbs,
+//   reklamBanner,
+//   fetchMore,
+//   hasMore,
+//   loading,
+// }) => {
+//   const router = useRouter();
+//   const searchParams = useSearchParams();
+//   const [selectedOption, setSelectedOption] = useState(null);
+//   const [isMobileFilterOpen, setMobileFilterOpen] = useState(false);
+//   const [showModal, setShowModal] = useState(false);
+//   const [isWishlisted, setIsWishlisted] = useState(false);
+//   const loaderRef = useRef(null);
+
+//   const openModal = () => setShowModal(true);
+//   const closeModal = () => setShowModal(false);
+
+//   const handleOverlayClick = (e) => {
+//     if (e.target.className === "modal-overlay") {
+//       closeModal();
+//     }
+//   };
+
+//   const toggleWishlist = () => {
+//     setIsWishlisted((prev) => !prev);
+//   };
+
+//   const handleFilterClick = (filterValue) => {
+//     const currentFilters = searchParams.getAll("filter");
+//     const params = new URLSearchParams(searchParams.toString());
+
+//     if (currentFilters.includes(filterValue)) {
+//       params.delete("filter");
+//       currentFilters
+//         .filter((f) => f !== filterValue)
+//         .forEach((f) => params.append("filter", f));
+//     } else {
+//       params.append("filter", filterValue);
+//     }
+
+//     if (slug) {
+//       params.set("cat_slug", slug);
+//     }
+
+//     router.push(`/products?${params.toString()}`);
+//   };
+
+//   const selectedFilters = searchParams.getAll("filter");
+
+//   const getFilterName = (filterValue) => {
+//     for (const group of productsFilterGroupsTitle || []) {
+//       const foundChild = group.child.find(
+//         (child) => child.value === filterValue
+//       );
+//       if (foundChild) {
+//         return foundChild.name;
+//       }
+//     }
+//     return filterValue;
+//   };
+
+//   useEffect(() => {
+//     if (!loaderRef.current || !hasMore) return;
+//     const obs = new IntersectionObserver(
+//       ([entry]) => {
+//         if (entry.isIntersecting) {
+//           fetchMore();
+//         }
+//       },
+//       { rootMargin: "200px" }
+//     );
+//     obs.observe(loaderRef.current);
+//     return () => obs.disconnect();
+//   }, [loaderRef.current, hasMore, fetchMore]);
+
+//   return (
+//     <div>
+//       <div className="container">
+//         <div className="breadCrumb">
+//           {productsBreadCrumbs.map((item, index) => {
+//             const isFirst = index === 0;
+//             const isLast = index === productsBreadCrumbs.length - 1;
+
+//             return (
+//               <React.Fragment key={index}>
+//                 {item.clickable === "true" ? (
+//                   <Link href={item.slug}>
+//                     <span>{item.name}</span>
+//                   </Link>
+//                 ) : (
+//                   <span className="lastChildBread">{item.name}</span>
+//                 )}
+//                 {!isLast && (
+//                   <strong>
+//                     {isFirst ? (
+//                       <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />
+//                     ) : (
+//                       <MdKeyboardArrowRight className="breadCrumpIcon" />
+//                     )}
+//                   </strong>
+//                 )}
+//               </React.Fragment>
+//             );
+//           })}
+//         </div>
+
+//         {reklamBanner?.reklam_banner && (
+//           <div className="productsPageBanner">
+//             <div className="productsPageBannerImage">
+//               <Image
+//                 src={reklamBanner.reklam_banner}
+//                 alt="banner"
+//                 width={1000}
+//                 height={600}
+//               />
+//             </div>
+//           </div>
+//         )}
+
+//         <div className="row">
+//           <div className="xl-2 lg-2 md-2 sm-12">
+//             {/* Sol filter tərəfi */}
+//           </div>
+
+//           <div className="xl-10 lg-10 md-10 sm-12">
+//             <div className="productPageCards">
+//               <div className="row">
+//                 {productsCard.map((product) => (
+//                   <div className="xl-3 lg-4 md-6 sm-6" key={product.id}>
+//                     <div className="secondHomePageProductsCard">
+//                       <div className="secondHomePageProductsCardDiv">
+//                         <Link
+//                           href={`/products/${product.slug?.toLowerCase()}`}
+//                           className="blockCardLink"
+//                         >
+//                           <div className="secondHomePageProductsCardImage">
+//                             <Image
+//                               src={product.image || "/images/defaultImage.png"}
+//                               alt={product.name}
+//                               width={200}
+//                               height={200}
+//                             />
+//                           </div>
+//                         </Link>
+//                         <div className="secondHomePageProductsCardContent">
+//                           <span>{product.name}</span>
+//                           <div className="discount">
+//                             <span>{product.disc_percent} %</span>
+//                           </div>
+//                           <div className="cardBottomContent">
+//                             <div className="price">
+//                               <span className="oldPrice">
+//                                 {product.old_price}
+//                                 <TbCurrencyManat />
+//                               </span>
+//                               <span className="newPrice">
+//                                 {product.price}
+//                                 <TbCurrencyManat />
+//                               </span>
+//                             </div>
+
+//                             <div className="wishList">
+//                               <button>
+//                                 <NewScale className="newScalePR" />
+//                               </button>
+//                               <button
+//                                 onClick={toggleWishlist}
+//                                 className="wishlist-btn"
+//                               >
+//                                 {isWishlisted ? (
+//                                   <FaHeart className="newWishlistPR active" />
+//                                 ) : (
+//                                   <FiHeart className="newWishlistPR" />
+//                                 )}
+//                               </button>
+//                             </div>
+//                           </div>
+//                         </div>
+//                       </div>
+//                       <div className="addToCartClick">
+//                         <div className="addToCartClickItem">
+//                           <button className="cartBtn">Səbətə at</button>
+//                           <button onClick={openModal} className="clickBtn">
+//                             Bir Klikle Al
+//                           </button>
+//                         </div>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 ))}
+//               </div>
+
+//               {/* Infinite scroll üçün sentinel */}
+//               {hasMore && <div ref={loaderRef} style={{ height: 1 }} />}
+//               {loading && (
+//                 <p className="text-center" style={{ margin: "1rem 0" }}>
+//                   Yüklənir...
+//                 </p>
+//               )}
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default ProductsPage;
+// ?nisbeten
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// !30.06.25
+
+
+
+
+
+
 
 // ! EN SON VERISYA
 "use client";
@@ -1036,6 +1354,7 @@ const ProductsPage = ({
   productsBreadCrumbs,
   reklamBanner,
 }) => {
+  // console.log(productsBreadCrumbs , "dededed")
   const router = useRouter();
   const searchParams = useSearchParams();
   const [selectedOption, setSelectedOption] = useState(null);
@@ -1308,7 +1627,7 @@ const ProductsPage = ({
                               <div className="secondHomePageProductsCardImage">
                                 <Image
                                   src={
-                                    product.image || "/images/iphone16pro.png"
+                                    product.image || "/images/defaultImage.png"
                                   }
                                   alt={product.name}
                                   width={200}
@@ -1320,13 +1639,14 @@ const ProductsPage = ({
                               <span>{product.name}</span>
                               <div className="discount">
                                 <span>
-                                  -{product.discount} <TbCurrencyManat />
+                                  {product.disc_percent}  %
+                                  {/* <TbCurrencyManat /> */}
                                 </span>
                               </div>
                               <div className="cardBottomContent">
                                 <div className="price">
                                   <span className="oldPrice">
-                                    {product.oldPrice}
+                                    {product.old_price}
                                     <TbCurrencyManat />
                                   </span>
                                   <span className="newPrice">

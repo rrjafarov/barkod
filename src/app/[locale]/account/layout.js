@@ -116,6 +116,7 @@
 
 
 
+// ! 29.06.25
 
 "use client";
 import Link from "next/link";
@@ -131,16 +132,60 @@ import { GrLocation } from "react-icons/gr";
 import { RiFileList3Line } from "react-icons/ri";
 import { FiUnlock } from "react-icons/fi";
 
+
+async function getTranslations() {
+  try {
+    const response = await axiosInstance.get("/translation-list");
+    const data = response.data;
+    const translationsObj = data.reduce((acc, item) => {
+      acc[item.key] = item.value;
+      return acc;
+    }, {});
+    return translationsObj;
+  } catch (err) {
+    console.log(err);
+    return {};
+  }
+}
+
+
 const AboutPage = ({ children, params }) => {
   const [categoryData, setCategoryData] = useState([]);
   const [showLogoutPopup, setShowLogoutPopup] = useState(false);
+  const [t, setT] = useState({});
   const unwrappedParams = use(params);
   const { locale } = unwrappedParams;
   const isDefaultLocale = locale === "az";
   const pathname = usePathname();
 
-  useEffect(() => {
-    const fetchCategories = async () => {
+  // useEffect(() => {
+  //   const fetchCategories = async () => {
+  //     try {
+  //       const headers = {};
+  //       if (locale) {
+  //         headers["Lang"] = locale;
+  //       }
+  //       const { data: home } = await axiosInstance.get("/layouts", {
+  //         headers,
+  //       });
+  //       setCategoryData(home?.categories || []);
+  //     } catch (error) {
+  //       console.error("Failed to fetch categories:", error);
+  //       setCategoryData([]);
+  //     }
+  //   };
+    
+  //   fetchCategories();
+  // }, [locale]);
+
+
+   useEffect(() => {
+    async function init() {
+      // 1) load translations
+      const translations = await getTranslations();
+      setT(translations);
+
+      // 2) load categories
       try {
         const headers = {};
         if (locale) {
@@ -154,10 +199,10 @@ const AboutPage = ({ children, params }) => {
         console.error("Failed to fetch categories:", error);
         setCategoryData([]);
       }
-    };
-    
-    fetchCategories();
+    }
+    init();
   }, [locale]);
+
 
   const generatePath = (path) =>
     isDefaultLocale ? `/${path}` : `/${locale}/${path}`;
@@ -201,7 +246,7 @@ const AboutPage = ({ children, params }) => {
 
   return (
     <>
-      <Header categoryData={categoryData} />
+      <Header t={t} categoryData={categoryData} />
       <div className="pages">
         <div className="account">
           <div className="container">
@@ -274,14 +319,14 @@ const AboutPage = ({ children, params }) => {
         </div>
       )}
 
-      <Footer />
+      <Footer t={t} />
     </>
   );
 };
 
 export default AboutPage;
 
-
+// ! 29.06.25
 
 
 

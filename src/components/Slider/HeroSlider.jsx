@@ -41,8 +41,8 @@ export default function Home({ homePageDataSlider }) {
                         // src="/images/slideBnnrBarkod.jpg"
                         src={slider.src}
                         alt={slider.alt}
-                        width={1000}
-                        height={800}
+                        width={3000}
+                        height={2000}
                       />
                     </div>
                   </Link>

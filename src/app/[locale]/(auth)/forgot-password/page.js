@@ -189,7 +189,7 @@
 
 
 
-
+// ! 29.06.25
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -200,9 +200,29 @@ import { LuEyeClosed, LuEye } from "react-icons/lu";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 
+async function getTranslations() {
+  try {
+    const response = await axiosInstance.get("/translation-list");
+    const data = response.data;
+
+    // Array-i obyektə çevir
+    const translationsObj = data.reduce((acc, item) => {
+      acc[item.key] = item.value;
+      return acc;
+    }, {});
+
+    return translationsObj;
+  } catch (err) {
+    console.log(err);
+    return {};
+  }
+}
+
+
 const ForgotPasswordPage = () => {
   const router = useRouter();
   const [categoryData, setCategoryData] = useState([]);
+  const [t, setT] = useState({});   
   const [isPopup, setIsPopup] = useState(false);
   const [formData, setFormData] = useState({
     tel: "",
@@ -216,20 +236,41 @@ const ForgotPasswordPage = () => {
   const [error, setError] = useState(null);
 
   // fetch categories on mount
-  useEffect(() => {
-    async function fetchCategories() {
+  // useEffect(() => {
+  //   async function fetchCategories() {
+  //     try {
+  //       const lang = Cookies.get("NEXT_LOCALE");
+  //       const headers = {};
+  //       if (lang) headers["Lang"] = lang;
+  //       const { data } = await axiosInstance.get("/layouts", { headers });
+  //       setCategoryData(data.categories || []);
+  //     } catch (err) {
+  //       console.error("Failed to load categories", err);
+  //       setCategoryData([]);
+  //     }
+  //   }
+  //   fetchCategories();
+  // }, []);
+
+
+   useEffect(() => {
+    async function init() {
+      // 1) translations
+      const translations = await getTranslations();
+      setT(translations);
+
+      // 2) categories
       try {
         const lang = Cookies.get("NEXT_LOCALE");
         const headers = {};
         if (lang) headers["Lang"] = lang;
         const { data } = await axiosInstance.get("/layouts", { headers });
         setCategoryData(data.categories || []);
-      } catch (err) {
-        console.error("Failed to load categories", err);
+      } catch {
         setCategoryData([]);
       }
     }
-    fetchCategories();
+    init();
   }, []);
 
   // redirect if already logged in
@@ -276,7 +317,7 @@ const ForgotPasswordPage = () => {
 
   return (
     <>
-      <Header categoryData={categoryData} />
+      <Header t={t} categoryData={categoryData} />
 
       <div className="pages">
         <div className="auth">
@@ -388,13 +429,14 @@ const ForgotPasswordPage = () => {
         </div>
       </div>
 
-      <Footer />
+      <Footer t={t} />
     </>
   );
 };
 
 export default ForgotPasswordPage;
 
+// ! 29.06.25
 
 
 
@@ -402,185 +444,4 @@ export default ForgotPasswordPage;
 
 
 
-// "use client";
-// import { useEffect, useState } from "react";
-// import { useRouter } from "next/navigation";
-// import axiosInstance from "@/lib/axios";
-// import { HiLockClosed } from "react-icons/hi";
-// import { LuEyeClosed, LuEye } from "react-icons/lu";
-// import Header from "@/components/Header/Header";
-// import Footer from "@/components/Footer/Footer";
 
-
-
-
-// const ForgotPasswordPage = () => {
-    
-//   const router = useRouter();
-//   const [isPopup, setIsPopup] = useState(false);
-//   const [formData, setFormData] = useState({
-//     tel: "",
-//     otp_code: "",
-//     password: "",
-//     password_confirmation: "",
-//   });
-//   const [resetPage, setResetPage] = useState(false);
-//   const [passwordVisible, setPasswordVisible] = useState(false);
-//   const [passwordVisibleConfirm, setPasswordVisibleConfirm] = useState(false);
-//   const [error, setError] = useState(null);
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       if (!resetPage) {
-//         await axiosInstance.post("/otp", {
-//           tel: formData.tel,
-//           otp_code: formData.otp_code,
-//         });
-//         setResetPage(true);
-//       } else {
-//         await axiosInstance.post("/reset-password", {
-//           tel: formData.tel,
-//           otp_code: formData.otp_code,
-//           password: formData.password,
-//           password_confirmation: formData.password_confirmation,
-//         });
-//         setIsPopup(true);
-//       }
-//     } catch (error) {
-//       console.error("Error:", error);
-//       if (formData.password !== formData.password_confirmation) {
-//         setError("Passwords do not match.");
-//       } else if (error?.response?.data?.errors?.otp_code) {
-//         setError("Invalid OTP code.");
-//       } else if (error?.response?.data?.errors?.tel) {
-//         setError("Phone number must be 9 digits.");
-//       }
-//     }
-//   };
-
-//   useEffect(() => {
-//     const token = localStorage.getItem("token");
-//     if (token) {
-//       router.push("/account/profile");
-//     }
-//   }, [router]);
-
-//   return (
-//     <>
-//       <Header categoryData={categoryData} />
-//       <div className="pages">
-//         {/* <Popup icon="check" title="Password reset successful" isActive={isPopup} /> */}
-//         {/* <Breadcrumb pageTitle="Forgot Password" title="Forgot Password" link="/forgot-password" /> */}
-//         <div className="auth">
-//           {!resetPage ? (
-//             <div className="authContainer">
-//               <div className="authHeader">
-//                 <span className="active">Forgot Password</span>
-//               </div>
-//               <form onSubmit={handleSubmit}>
-//                 <label>Phone Number</label>
-//                 <div className="phoneInput">
-//                   <span>+994</span>
-//                   <input
-//                     type="number"
-//                     id="phone"
-//                     name="tel"
-//                     className="input"
-//                     required
-//                     value={formData.tel}
-//                     onChange={(e) =>
-//                       setFormData({ ...formData, tel: e.target.value })
-//                     }
-//                   />
-//                 </div>
-//                 <button type="submit" className="blackButton">
-//                   Send
-//                 </button>
-//                 {error && <div className="errorInfo">{error}</div>}
-//               </form>
-//             </div>
-//           ) : (
-//             <div className="authContainer">
-//               <div className="authHeader">
-//                 <span className="active">Set Your New Password</span>
-//               </div>
-//               <form onSubmit={handleSubmit}>
-//                 <label>OTP Code</label>
-//                 <div className="inputChild">
-//                   <input
-//                     type="text"
-//                     id="otp_code"
-//                     name="otp_code"
-//                     className="input"
-//                     required
-//                     value={formData.otp_code}
-//                     onChange={(e) =>
-//                       setFormData({ ...formData, otp_code: e.target.value })
-//                     }
-//                   />
-//                 </div>
-//                 <label>New Password</label>
-//                 <div className="inputChild passwordChild">
-//                   <div className="password">
-//                     <HiLockClosed />
-//                   </div>
-//                   <input
-//                     type={passwordVisible ? "text" : "password"}
-//                     placeholder="******"
-//                     id="password"
-//                     name="password"
-//                     required
-//                     value={formData.password}
-//                     onChange={(e) =>
-//                       setFormData({ ...formData, password: e.target.value })
-//                     }
-//                   />
-//                   <div
-//                     className="eye"
-//                     onClick={() => setPasswordVisible((prev) => !prev)}
-//                   >
-//                     {passwordVisible ? <LuEye /> : <LuEyeClosed />}
-//                   </div>
-//                 </div>
-//                 <label>Confirm Password</label>
-//                 <div className="inputChild passwordChild">
-//                   <div className="password">
-//                     <HiLockClosed />
-//                   </div>
-//                   <input
-//                     type={passwordVisibleConfirm ? "text" : "password"}
-//                     placeholder="******"
-//                     id="password_confirmation"
-//                     name="password_confirmation"
-//                     required
-//                     value={formData.password_confirmation}
-//                     onChange={(e) =>
-//                       setFormData({
-//                         ...formData,
-//                         password_confirmation: e.target.value,
-//                       })
-//                     }
-//                   />
-//                   <div
-//                     className="eye"
-//                     onClick={() => setPasswordVisibleConfirm((prev) => !prev)}
-//                   >
-//                     {passwordVisibleConfirm ? <LuEye /> : <LuEyeClosed />}
-//                   </div>
-//                 </div>
-//                 <button type="submit" className="blackButton">
-//                   Reset Password
-//                 </button>
-//                 {error && <div className="errorInfo">{error}</div>}
-//               </form>
-//             </div>
-//           )}
-//         </div>
-//       </div>
-//       <Footer />
-//     </>
-//   );
-// };
-
-// export default ForgotPasswordPage;

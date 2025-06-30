@@ -78,16 +78,35 @@ async function getCategoryeData() {
   }
 }
 
+async function getTranslations() {
+  try {
+    const response = await axiosInstance.get("/translation-list");
+    const data = response.data;
+
+    // Array-i obyektə çevir
+    const translationsObj = data.reduce((acc, item) => {
+      acc[item.key] = item.value;
+      return acc;
+    }, {});
+
+    return translationsObj;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 const page = async ({ params }) => {
   const categoryResponse = await getCategoryeData();
   const categoryData = categoryResponse?.categories || [];
 
+  const t = await getTranslations();
+
   return (
     <div>
-      <Header categoryData={categoryData} />
+      <Header t={t} categoryData={categoryData} />
       {/* Login komponentiniz burada, import ve usage unchanged */}
-      <Login />
-      <Footer />
+      <Login  t={t} />
+      <Footer t={t} />
     </div>
   );
 };

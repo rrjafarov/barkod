@@ -5,6 +5,24 @@ import React from 'react'
 import { cookies } from "next/headers";
 import axiosInstance from "@/lib/axios";
 
+async function getTranslations() {
+  try {
+    const response = await axiosInstance.get("/translation-list");
+    const data = response.data;
+
+    // Array-i obyektə çevir
+    const translationsObj = data.reduce((acc, item) => {
+      acc[item.key] = item.value;
+      return acc;
+    }, {});
+
+    return translationsObj;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+
 
 async function getCategoryeData() {
   const cookieStore = await cookies();
@@ -24,12 +42,13 @@ async function getCategoryeData() {
 const page =  async () => {
   const categoryResponse = await getCategoryeData();
   const categoryData = categoryResponse?.categories || [];
+  const t = await getTranslations();
 
   return (
     <div>
-        <Header categoryData={categoryData} />
-        <ComparePage />
-        <Footer />
+        <Header t={t} categoryData={categoryData} />
+        <ComparePage t={t} />
+        <Footer t={t} />
     </div>
   )
 }

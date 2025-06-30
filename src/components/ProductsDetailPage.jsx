@@ -19,6 +19,7 @@ import { TbCurrencyManat } from "react-icons/tb";
 
 const ProductsDetailPage = ({ product }) => {
   const productDetail = product?.product_detail || [];
+  const productBreadCrumbs = product?.bread_crumbs || [];
   const attributes = product?.product_detail?.attributes || [];
   const ratingValue = productDetail.raiting ?? 0;
   const [value, setValue] = useState(2);
@@ -56,27 +57,37 @@ const ProductsDetailPage = ({ product }) => {
             </div>
           </div>
         )}
+
         <div className="breadCrumb">
-          <Link href="/">
-            <span>Ana Səhifə</span>
-          </Link>
-          <strong>
-            <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />
-          </strong>
-          <Link href="/products">
-            <span>Məhsullar</span>
-          </Link>
-          <strong>
-            <MdKeyboardArrowRight className="breadCrumpIcon" />
-          </strong>
-          <Link href="/category">
-            <span>Telefonlar</span>
-          </Link>
-          <strong>
-            <MdKeyboardArrowRight className="breadCrumpIcon" />
-          </strong>
-          <span className="lastChildBread">{productDetail?.name}</span>
+          {productBreadCrumbs.map((item, index) => {
+            const isFirst = index === 0;
+            const isLast = index === productBreadCrumbs.length - 1;
+
+            return (
+              <React.Fragment key={index}>
+                {item.clickable === "true" ? (
+                  <Link href={item.slug}>
+                    <span>{item.name}</span>
+                  </Link>
+                ) : (
+                  <span className="lastChildBread">{item.name}</span>
+                )}
+
+                {!isLast && (
+                  <strong>
+                    {isFirst ? (
+                      <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />
+                    ) : (
+                      <MdKeyboardArrowRight className="breadCrumpIcon" />
+                    )}
+                  </strong>
+                )}
+              </React.Fragment>
+            );
+          })}
         </div>
+
+
         <div className="row">
           <div className="xl-6 lg-6 md-6 sm-12">
             <ProductsDPFancybox productDetail={productDetail} />
@@ -195,7 +206,9 @@ const ProductsDetailPage = ({ product }) => {
                   {attributes.map((attribute) => (
                     <div className="technicalContent">
                       <span className="techContentLeft">{attribute.name}</span>
-                      <span className="techContentRight">{attribute.value}</span>
+                      <span className="techContentRight">
+                        {attribute.value}
+                      </span>
                     </div>
                   ))}
 

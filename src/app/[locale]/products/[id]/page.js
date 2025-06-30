@@ -41,17 +41,35 @@ export default async function Page({ params }) {
     }
   }
 
+  async function getTranslations(lang) {
+    try {
+      const { data } = await axiosInstance.get("/translation-list", {
+        headers: { Lang: lang },
+        cache: "no-store",
+      });
+      return data.reduce((acc, item) => {
+        acc[item.key] = item.value;
+        return acc;
+      }, {});
+    } catch (err) {
+      console.error("Failed to fetch translations:", err);
+      return {};
+    }
+  }
+  
+  const t = await getTranslations(lang);
+
   const categoryResponse = await getCategoryeData();
   const categoryData = categoryResponse?.categories || [];
 
   const product = await getProductDetail(slugOrId);
-  console.log("Product detail:", product);
+  // console.log("Product detail:", product);
 
   return (
     <>
-      <Header categoryData={categoryData} />
+      <Header t={t} categoryData={categoryData} />
       <ProductsDetailPage product={product} />
-      <Footer />
+      <Footer t={t} />
     </>
   );
 }
