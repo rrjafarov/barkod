@@ -1573,7 +1573,10 @@ const HomePageProductsCard = ({
 }) => {
   // Tab seçimi ve loading spinner (tab değişiminde)
   // Burada id’leri saklıyoruz: "latestproducts", "discounted", "bestselling"
-  const [selectedTab, setSelectedTab] = useState("latestproducts");
+
+
+  // const [selectedTab, setSelectedTab] = useState("latestproducts");
+  const [selectedTab, setSelectedTab] = useState("bestselling");
   const [loadingTab, setLoadingTab] = useState(false);
 
   // Modal state
@@ -1616,9 +1619,9 @@ const HomePageProductsCard = ({
   
   const tabs = useMemo(
     () => [
-      { id: "latestproducts", label: t?.latestproducts || "LatestProducts" },
       { id: "discounted", label: t?.discounted || "Discounted" },
       { id: "bestselling", label: t?.bestselling || "Best Selling" },
+      { id: "latestproducts", label: t?.latestproducts || "LatestProducts" },
     ],
     [t]
   );
