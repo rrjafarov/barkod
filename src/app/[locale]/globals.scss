@@ -5961,3 +5961,61 @@ form .blackButton {
 }
 
 //! LOGOUT POPUP!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.paginationContainer {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+  gap: 0.8rem;
+}
+.paginationButton {
+  padding: 0.8rem 1.5rem;
+  border: 1px solid #ddd;
+  background: white;
+  color: #333;
+  cursor: pointer;
+  border-radius: 1rem;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  height: 4rem;
+}
+.paginationButton:hover {
+  background: #f0f0f0;
+}
+.active {
+  background: #ec1f27 !important;
+  color: white;
+  border-color: #ec1f27 !important;
+}
