@@ -504,7 +504,7 @@ const Wishlist = ({ t }) => {
                         </div>
                       </Link>
                       <div className="secondHomePageProductsCardContent">
-                        <span>{name}</span>
+                        <p>{name}</p>
                         {discPercent != null && (
                           <div className="discount">
                             <span>{discPercent} %</span>

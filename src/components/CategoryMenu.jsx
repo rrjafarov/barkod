@@ -1236,7 +1236,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 import { IoMdArrowRoundBack } from "react-icons/io";
 
-const MegaMenu = ({ categoryData ,t }) => {
+const MegaMenu = ({ categoryData, t }) => {
   const [activeTab, setActiveTab] = useState(null);
   const [activeSubcategory, setActiveSubcategory] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -1269,7 +1269,6 @@ const MegaMenu = ({ categoryData ,t }) => {
 
   // Yardımcı: parent ve child slug'ı birleştir
   const makeSlugParam = (...parts) => {
-    // parçaları slash ile birleştir; eğer boş veya null parça varsa atla
     return parts.filter(Boolean).join("/");
   };
 
@@ -1284,8 +1283,6 @@ const MegaMenu = ({ categoryData ,t }) => {
             </span>
           </div>
           <ul>
-            
-
             {categoryData.map((cat) => {
               const finalSlug = cat.redirect_url || cat.slug;
 
@@ -1294,7 +1291,7 @@ const MegaMenu = ({ categoryData ,t }) => {
                   key={cat.id}
                   onMouseEnter={() => handleMouseEnter(finalSlug)}
                 >
-                  {/* Birinci seviye: redirect varsa onu, yoxsa slug'u istifadə et */}
+                  {/* Birinci seviye */}
                   <Link href={`/category?cat_slug=${makeSlugParam(finalSlug)}`}>
                     <div className="categoryLeftIcon">
                       <img src={cat.icon} alt="Icon" />
@@ -1316,7 +1313,7 @@ const MegaMenu = ({ categoryData ,t }) => {
 
         <div className="rightColumn">
           <div className="mobileMenuHeader">
-            <span>{t?.categories || "Kategoriylar"}</span>
+            <span>{t?.categories || "Kategoriyalar"}</span>
             <span onClick={handleMenuClose} style={{ cursor: "pointer" }}>
               <IoClose className="inclose" />
             </span>
@@ -1349,13 +1346,8 @@ const MegaMenu = ({ categoryData ,t }) => {
                   .find((c) => c.slug === activeTab)
                   ?.sub_categories.map((sub) => (
                     <div className="rightColumnItem" key={sub.id}>
-                      {/* İkinci seviye: parent/child slug */}
-                      <Link
-                        href={`/products?cat_slug=${makeSlugParam(
-                          activeTab,
-                          sub.slug
-                        )}`}
-                      >
+                      {/* SƏVİYYƏ 2: yalnız sub.slug */}
+                      <Link href={`/products?cat_slug=${sub.slug}`}>
                         <span className="catgorySubTitle">{sub.name}</span>
                       </Link>
                       {sub.sub_categories.length > 0 && (
@@ -1397,17 +1389,12 @@ const MegaMenu = ({ categoryData ,t }) => {
                   <ul>
                     {categoryData
                       .find((c) => c.slug === activeTab)
-                      ?.sub_categories.find((s) => s.slug === activeSubcategory)
+                      ?.sub_categories
+                      .find((s) => s.slug === activeSubcategory)
                       ?.sub_categories.map((deep) => (
                         <li key={deep.id}>
-                          {/* Üçüncü seviye: parent/child/grandchild */}
-                          <Link
-                            href={`/products?cat_slug=${makeSlugParam(
-                              activeTab,
-                              activeSubcategory,
-                              deep.slug
-                            )}`}
-                          >
+                          {/* SƏVİYYƏ 3: yalnız deep.slug */}
+                          <Link href={`/products?cat_slug=${deep.slug}`}>
                             {deep.name}
                           </Link>
                         </li>
@@ -1426,13 +1413,8 @@ const MegaMenu = ({ categoryData ,t }) => {
                 ?.sub_categories.map((sub) => (
                   <div className="rightColumnItem" key={sub.id}>
                     <span className="catgorySubTitle">
-                      {/* İkinci seviye: parent/child */}
-                      <Link
-                        href={`/products?cat_slug=${makeSlugParam(
-                          activeTab,
-                          sub.slug
-                        )}`}
-                      >
+                      {/* SƏVİYYƏ 2: yalnız sub.slug */}
+                      <Link href={`/products?cat_slug=${sub.slug}`}>
                         {sub.name}
                       </Link>
                     </span>
@@ -1440,14 +1422,8 @@ const MegaMenu = ({ categoryData ,t }) => {
                       <ul>
                         {sub.sub_categories.map((deep) => (
                           <li key={deep.id}>
-                            {/* Üçüncü seviye: parent/child/grandchild */}
-                            <Link
-                              href={`/products?cat_slug=${makeSlugParam(
-                                activeTab,
-                                sub.slug,
-                                deep.slug
-                              )}`}
-                            >
+                            {/* SƏVİYYƏ 3: yalnız deep.slug */}
+                            <Link href={`/products?cat_slug=${deep.slug}`}>
                               {deep.name}
                             </Link>
                           </li>
@@ -1465,3 +1441,262 @@ const MegaMenu = ({ categoryData ,t }) => {
 };
 
 export default MegaMenu;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// !isledide gul kimi
+// // MegaMenu.js
+// "use client";
+// import Link from "next/link";
+// import { useState, useEffect } from "react";
+// import { IoIosArrowForward } from "react-icons/io";
+// import { IoClose } from "react-icons/io5";
+// import { IoMdArrowRoundBack } from "react-icons/io";
+
+// const MegaMenu = ({ categoryData ,t }) => {
+//   const [activeTab, setActiveTab] = useState(null);
+//   const [activeSubcategory, setActiveSubcategory] = useState(null);
+//   const [isMobile, setIsMobile] = useState(false);
+//   const [isMenuOpen, setIsMenuOpen] = useState(true);
+
+//   useEffect(() => {
+//     const handleResize = () => setIsMobile(window.innerWidth <= 768);
+//     handleResize();
+//     window.addEventListener("resize", handleResize);
+//     return () => window.removeEventListener("resize", handleResize);
+//   }, []);
+
+//   const containerClass = activeTab
+//     ? "containera categoryMegaMenu active"
+//     : "containera categoryMegaMenu";
+
+//   const handleMouseEnter = (tabKey) => {
+//     if (!isMobile) setActiveTab(tabKey);
+//   };
+
+//   const handleArrowClick = (e, tabKey) => {
+//     e.preventDefault();
+//     if (isMobile) {
+//       setActiveTab(tabKey);
+//       setActiveSubcategory(null);
+//     }
+//   };
+
+//   const handleMenuClose = () => setIsMenuOpen(false);
+
+//   // Yardımcı: parent ve child slug'ı birleştir
+//   const makeSlugParam = (...parts) => {
+//     // parçaları slash ile birleştir; eğer boş veya null parça varsa atla
+//     return parts.filter(Boolean).join("/");
+//   };
+
+//   return (
+//     isMenuOpen && (
+//       <div className={containerClass}>
+//         <div className="leftColumn">
+//           <div className="mobileMenuHeader">
+//             <span>{t?.categories || "Kategoriyalar"}</span>
+//             <span onClick={handleMenuClose} style={{ cursor: "pointer" }}>
+//               <IoClose className="inclose" />
+//             </span>
+//           </div>
+//           <ul>
+            
+
+//             {categoryData.map((cat) => {
+//               const finalSlug = cat.redirect_url || cat.slug;
+
+//               return (
+//                 <li
+//                   key={cat.id}
+//                   onMouseEnter={() => handleMouseEnter(finalSlug)}
+//                 >
+//                   {/* Birinci seviye: redirect varsa onu, yoxsa slug'u istifadə et */}
+//                   <Link href={`/category?cat_slug=${makeSlugParam(finalSlug)}`}>
+//                     <div className="categoryLeftIcon">
+//                       <img src={cat.icon} alt="Icon" />
+//                     </div>
+//                     <span>{cat.name}</span>
+//                   </Link>
+//                   <span
+//                     className="arrowIcon"
+//                     onClick={(e) => handleArrowClick(e, finalSlug)}
+//                     style={{ cursor: "pointer" }}
+//                   >
+//                     <IoIosArrowForward />
+//                   </span>
+//                 </li>
+//               );
+//             })}
+//           </ul>
+//         </div>
+
+//         <div className="rightColumn">
+//           <div className="mobileMenuHeader">
+//             <span>{t?.categories || "Kategoriylar"}</span>
+//             <span onClick={handleMenuClose} style={{ cursor: "pointer" }}>
+//               <IoClose className="inclose" />
+//             </span>
+//           </div>
+
+//           {/* Mobil: İkinci dərəcəli kateqoriyalar */}
+//           {isMobile && activeTab && !activeSubcategory && (
+//             <>
+//               <p
+//                 onClick={() => setActiveTab(null)}
+//                 style={{
+//                   display: "flex",
+//                   alignItems: "center",
+//                   justifyContent: "flex-start",
+//                   gap: "1rem",
+//                   cursor: "pointer",
+//                   marginBottom: "1rem",
+//                   fontSize: "1.6rem",
+//                   fontWeight: 600,
+//                 }}
+//               >
+//                 <IoMdArrowRoundBack className="inround" />
+//                 {t?.back || "Geri"}
+//               </p>
+//               <div
+//                 className="rightColumnItems"
+//                 style={{ display: "flex", flexDirection: "column" }}
+//               >
+//                 {categoryData
+//                   .find((c) => c.slug === activeTab)
+//                   ?.sub_categories.map((sub) => (
+//                     <div className="rightColumnItem" key={sub.id}>
+//                       {/* İkinci seviye: parent/child slug */}
+//                       <Link
+//                         href={`/products?cat_slug=${makeSlugParam(
+//                           activeTab,
+//                           sub.slug
+//                         )}`}
+//                       >
+//                         <span className="catgorySubTitle">{sub.name}</span>
+//                       </Link>
+//                       {sub.sub_categories.length > 0 && (
+//                         <span
+//                           className="arrowIcon"
+//                           onClick={() => setActiveSubcategory(sub.slug)}
+//                           style={{ cursor: "pointer" }}
+//                         >
+//                           <IoIosArrowForward />
+//                         </span>
+//                       )}
+//                     </div>
+//                   ))}
+//               </div>
+//             </>
+//           )}
+
+//           {/* Mobil: Üçüncü dərəcəli kateqoriyalar */}
+//           {isMobile && activeTab && activeSubcategory && (
+//             <>
+//               <p
+//                 onClick={() => setActiveSubcategory(null)}
+//                 style={{
+//                   display: "flex",
+//                   alignItems: "center",
+//                   justifyContent: "flex-start",
+//                   gap: "1rem",
+//                   cursor: "pointer",
+//                   marginBottom: "1rem",
+//                   fontSize: "1.6rem",
+//                   fontWeight: 600,
+//                 }}
+//               >
+//                 <IoMdArrowRoundBack className="inround" />
+//                 {t?.back || "Geri"}
+//               </p>
+//               <div className="rightColumnItems">
+//                 <div className="rightColumnItem">
+//                   <ul>
+//                     {categoryData
+//                       .find((c) => c.slug === activeTab)
+//                       ?.sub_categories.find((s) => s.slug === activeSubcategory)
+//                       ?.sub_categories.map((deep) => (
+//                         <li key={deep.id}>
+//                           {/* Üçüncü seviye: parent/child/grandchild */}
+//                           <Link
+//                             href={`/products?cat_slug=${makeSlugParam(
+//                               activeTab,
+//                               activeSubcategory,
+//                               deep.slug
+//                             )}`}
+//                           >
+//                             {deep.name}
+//                           </Link>
+//                         </li>
+//                       ))}
+//                   </ul>
+//                 </div>
+//               </div>
+//             </>
+//           )}
+
+//           {/* Desktop: Orijinal struktur */}
+//           {!isMobile && activeTab && (
+//             <div className="rightColumnItems">
+//               {categoryData
+//                 .find((c) => c.slug === activeTab)
+//                 ?.sub_categories.map((sub) => (
+//                   <div className="rightColumnItem" key={sub.id}>
+//                     <span className="catgorySubTitle">
+//                       {/* İkinci seviye: parent/child */}
+//                       <Link
+//                         href={`/products?cat_slug=${makeSlugParam(
+//                           activeTab,
+//                           sub.slug
+//                         )}`}
+//                       >
+//                         {sub.name}
+//                       </Link>
+//                     </span>
+//                     {sub.sub_categories.length > 0 && (
+//                       <ul>
+//                         {sub.sub_categories.map((deep) => (
+//                           <li key={deep.id}>
+//                             {/* Üçüncü seviye: parent/child/grandchild */}
+//                             <Link
+//                               href={`/products?cat_slug=${makeSlugParam(
+//                                 activeTab,
+//                                 sub.slug,
+//                                 deep.slug
+//                               )}`}
+//                             >
+//                               {deep.name}
+//                             </Link>
+//                           </li>
+//                         ))}
+//                       </ul>
+//                     )}
+//                   </div>
+//                 ))}
+//             </div>
+//           )}
+//         </div>
+//       </div>
+//     )
+//   );
+// };
+
+// export default MegaMenu;

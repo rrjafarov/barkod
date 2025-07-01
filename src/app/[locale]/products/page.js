@@ -109,8 +109,218 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ? nisbeten
-// app/products/page.jsx
+// app/products/page.js
+// "use client";
+// import React, { useEffect, useState, useCallback } from "react";
+// import { useRouter, useSearchParams } from "next/navigation";
+// import axiosInstance from "@/lib/axios";
+// import Header from "@/components/Header/Header";
+// import Footer from "@/components/Footer/Footer";
+// import ProductsPage from "@/components/ProductsPage";
+
+// async function getTranslations() {
+//   try {
+//     const response = await axiosInstance.get("/translation-list");
+//     const data = response.data;
+//     const translationsObj = data.reduce((acc, item) => {
+//       acc[item.key] = item.value;
+//       return acc;
+//     }, {});
+//     return translationsObj;
+//   } catch (err) {
+//     console.log(err);
+//     return {};
+//   }
+// }
+
+// export default function Page() {
+//   const router = useRouter();
+//   const searchParams = useSearchParams();
+
+//   // Kategori ve ürün/filter grubu state'leri
+//   const [categoryData, setCategoryData] = useState([]);
+//   const [products, setProducts] = useState([]);
+//   const [filterGroups, setFilterGroups] = useState([]);
+//   const [breadCrumbs, setBreadCrumbs] = useState([]);
+//   const [reklamBanner, setReklamBanner] = useState({});
+//   const [t, setT] = useState({});
+
+//   // ** infinite scroll üçün əlavə state **
+//   const [currentPage, setCurrentPage] = useState(1);
+//   const [lastPage, setLastPage] = useState(1);
+//   const [loading, setLoading] = useState(false);
+
+//   const slug = searchParams.get("cat_slug") || "";
+//   const filter = searchParams.getAll("filter") || [];
+
+//   const lang = (() => {
+//     const match = document.cookie
+//       .split("; ")
+//       .find((row) => row.startsWith("NEXT_LOCALE="));
+//     return match ? match.split("=")[1] : "az";
+//   })();
+
+//   // Kategori verisini client-side fetch eden fonksiyon
+//   const fetchCategoryData = async () => {
+//     try {
+//       const res = await axiosInstance.get(`/layouts`, {
+//         headers: { Lang: lang },
+//       });
+//       const home = res.data;
+//       setCategoryData(home?.categories || []);
+//     } catch (error) {
+//       console.error("Kategori verisi alınırken hata:", error);
+//       setCategoryData([]);
+//     }
+//   };
+
+//   // Ürünleri fetch eden fonksiyon (səhifə nömrəsiylə)
+//   const fetchProducts = useCallback(
+//     async (page = 1, reset = false) => {
+//       if (loading) return;
+//       setLoading(true);
+//       try {
+//         const filterQuery =
+//           filter.length > 0
+//             ? filter.map((f) => `filter[]=${encodeURIComponent(f)}`).join("&") +
+//               "&"
+//             : "";
+//         const fullUrl = `/product-list?${filterQuery}cat_slug=${slug}&page=${page}`;
+
+//         const res = await axiosInstance.get(fullUrl, {
+//           headers: { Lang: lang },
+//         });
+//         const pag = res.data.products.paginate;
+//         const fetched = res.data.products.data || [];
+
+//         setProducts(prev =>
+//           reset ? fetched : [...prev, ...fetched]
+//         );
+//         if (reset) {
+//           setFilterGroups(res.data?.filter_groups || []);
+//           setBreadCrumbs(res.data?.bread_crumbs || []);
+//           setReklamBanner(res.data?.cat || {});
+//         }
+//         setCurrentPage(pag.currentPage);
+//         setLastPage(pag.lastPage);
+//       } catch (error) {
+//         console.error("Məhsullar alınarkən xəta baş verdi:", error);
+//       } finally {
+//         setLoading(false);
+//       }
+//     },
+//     [slug, filter.join(","), lang, loading]
+//   );
+
+//   // İlk yüklənmə
+//   useEffect(() => {
+//     async function init() {
+//       const translations = await getTranslations();
+//       setT(translations);
+//       await fetchCategoryData();
+//     }
+//     init();
+//   }, []);
+
+//   // slug veya filter değiştiğinde resetlə yüklə
+//   useEffect(() => {
+//     fetchProducts(1, true);
+//     // eslint-disable-next-line react-hooks/exhaustive-deps
+//   }, [slug, filter.join(",")]);
+
+//   // Fetch more callback
+//   const handleFetchMore = () => {
+//     if (currentPage < lastPage && !loading) {
+//       fetchProducts(currentPage + 1);
+//     }
+//   };
+
+//   return (
+//     <div>
+//       <Header t={t} categoryData={categoryData} />
+//       <ProductsPage
+//         slug={slug}
+//         productsCard={products}
+//         productsFilterGroupsTitle={filterGroups}
+//         productsBreadCrumbs={breadCrumbs}
+//         categoryData={categoryData}
+//         reklamBanner={reklamBanner}
+//         fetchMore={handleFetchMore}
+//         hasMore={currentPage < lastPage}
+//         loading={loading}
+//       />
+//       <Footer t={t} />
+//     </div>
+//   );
+// }
+// ? nisbeten
+
+
+
+
+
+
+
+
+
+
+
+
+// app/products/page.js
 "use client";
 import React, { useEffect, useState, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -138,7 +348,7 @@ export default function Page() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // Kategori ve ürün/filter grubu state'leri
+  // Kategori və ürün/filter grubu state'leri
   const [categoryData, setCategoryData] = useState([]);
   const [products, setProducts] = useState([]);
   const [filterGroups, setFilterGroups] = useState([]);
@@ -175,7 +385,7 @@ export default function Page() {
     }
   };
 
-  // Ürünleri fetch eden fonksiyon (səhifə nömrəsiylə)
+  // Ürünləri fetch edən funksiya (səhifə nömrəsiylə)
   const fetchProducts = useCallback(
     async (page = 1, reset = false) => {
       if (loading) return;
@@ -210,7 +420,7 @@ export default function Page() {
         setLoading(false);
       }
     },
-    [slug, filter.join(","), lang, loading]
+    [slug, filter.join(","), lang] // loading parametrini dependency-dən çıxardıq
   );
 
   // İlk yüklənmə
@@ -223,8 +433,9 @@ export default function Page() {
     init();
   }, []);
 
-  // slug veya filter değiştiğinde resetlə yüklə
+  // slug və ya filter dəyişdikdə reset ilə yüklə və currentPage-i sıfırla
   useEffect(() => {
+    setCurrentPage(1); // Bu əlavə edildi - state-i sıfırlamaq üçün
     fetchProducts(1, true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug, filter.join(",")]);
@@ -254,20 +465,6 @@ export default function Page() {
     </div>
   );
 }
-// ? nisbeten
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
