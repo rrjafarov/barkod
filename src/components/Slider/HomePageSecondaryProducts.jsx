@@ -426,7 +426,7 @@ const HomePageSecondaryProducts = ({
                     </div>
                   </Link>
                   <div className="secondHomePageProductsCardContent">
-                    <span>{product.name}</span>
+                    <p>{product.name}</p>
                     {product.disc_percent != null && (
                       <div className="discount">
                         <span>{product.disc_percent} %</span>

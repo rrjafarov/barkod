@@ -988,7 +988,7 @@ ul {
   padding: 0 1rem;
   text-align: start;
 
-  span {
+  p {
     font-size: 1.6rem;
     color: #111;
     font-weight: 500;
@@ -996,6 +996,9 @@ ul {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    height: 4rem;
+
+
   }
 
   .discount {
@@ -1075,6 +1078,7 @@ ul {
     }
   }
 }
+
 
 .addToCartClick {
   position: absolute;
@@ -1561,6 +1565,10 @@ ul {
   font-size: 20px;
   font-weight: 500;
   cursor: pointer;
+}
+
+#productDPbreadCrumbs {
+  margin-bottom: 2rem;
 }
 
 // !  ProductPage start
@@ -2106,7 +2114,7 @@ ul {
     padding: 0 2rem;
     text-align: start;
 
-    span {
+    p {
       font-size: 1.6rem;
       color: #111;
       font-weight: 500;
@@ -2114,6 +2122,7 @@ ul {
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      height: 4rem;
     }
 
     .discount {
@@ -4682,7 +4691,8 @@ select:focus {
 }
 
 .loading-indicator img {
-  width: 30px; /* Kiçik ölçüdə */
+  width: 30px;
+  /* Kiçik ölçüdə */
   height: 30px;
 }
 
@@ -5178,6 +5188,7 @@ form .blackButton {
   text-align: center;
   width: 100%;
 }
+
 .empty-title-icon {
   font-size: 3rem;
 }
@@ -5200,10 +5211,12 @@ form .blackButton {
   visibility: hidden;
   transition: 0.3s all ease-in-out;
 }
+
 .layer.active {
   opacity: 1;
   visibility: visible;
 }
+
 .popupContainer {
   position: fixed;
   left: 0;
@@ -5224,12 +5237,14 @@ form .blackButton {
   scale: 0.8;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.1);
 }
+
 .popupContainer.active {
   opacity: 1;
   scale: 1;
   visibility: visible;
   transition: 0.5s all ease-in-out;
 }
+
 .popupContainer form p {
   color: var(--black);
   font-size: 2.7rem;
@@ -5239,6 +5254,7 @@ form .blackButton {
   letter-spacing: 0.054rem;
   margin-bottom: 2rem;
 }
+
 .popupContainer form label {
   color: var(--black);
   font-size: 1.2rem;
@@ -5250,6 +5266,7 @@ form .blackButton {
   margin-bottom: 0.8rem;
   display: block;
 }
+
 .popupContainer .close {
   position: absolute;
   right: 3.2rem;
@@ -5264,6 +5281,7 @@ form .blackButton {
   justify-content: center;
   border: none;
 }
+
 .addressParentCards {
   padding-right: 4.2rem;
   overflow: auto;
@@ -5273,6 +5291,7 @@ form .blackButton {
   justify-content: center;
   align-items: center;
 }
+
 .addressCardCreate {
   border-radius: 1rem;
   border: 0.1rem solid var(--line);
@@ -5286,11 +5305,13 @@ form .blackButton {
   padding: 1rem;
   transition: all 0.3s ease;
 }
+
 .addressCardCreate svg {
   width: 4.9rem;
   height: 4.9rem;
   margin-bottom: 1.4rem;
 }
+
 .addressCardCreate span {
   color: var(--black);
   font-size: 1.2rem;
@@ -5300,13 +5321,16 @@ form .blackButton {
   letter-spacing: 0.024rem;
   text-transform: uppercase;
 }
+
 .addressCardCreate:hover span {
   color: #2d9d3f;
 }
+
 .addressCardCreate:hover {
   border: 0.1rem solid #2d9d3f;
   transition: all 0.3s ease;
 }
+
 .popupAddress.active,
 .popupAnswer.active,
 .popupEdit.active,
@@ -5314,6 +5338,7 @@ form .blackButton {
 .popupError.active {
   display: block;
 }
+
 .popupAddress {
   display: none;
   left: 0;
@@ -5322,19 +5347,23 @@ form .blackButton {
   height: 100%;
   z-index: 5;
 }
+
 .popupAddress.active {
   display: block;
   position: absolute;
 }
+
 .popupAddress.active .popupContainer {
   visibility: visible;
   opacity: 1;
 }
+
 .answerPopup img {
   width: 9rem;
   height: 9rem;
   margin-bottom: 2.4rem;
 }
+
 .popupAddress .layer {
   background: #17151584;
   width: 100%;
@@ -5352,6 +5381,7 @@ form .blackButton {
   letter-spacing: 0.0465rem;
   margin-bottom: 2.2rem;
 }
+
 .popupError span {
   display: flex;
   align-items: center;
@@ -5365,6 +5395,7 @@ form .blackButton {
   letter-spacing: 0.0465rem;
   margin: 1rem 0;
 }
+
 .popupError span a {
   color: #c63428;
   text-align: center;
@@ -5374,6 +5405,7 @@ form .blackButton {
   line-height: normal;
   margin-left: 0.6rem;
 }
+
 .answerPopup p {
   color: #7b7b7b;
   text-align: center;
@@ -5393,6 +5425,7 @@ form .blackButton {
   position: relative;
   margin-bottom: 2.5rem;
 }
+
 .selectBoxCity {
   width: 100%;
   height: 5.5rem;
@@ -5402,8 +5435,9 @@ form .blackButton {
   position: relative;
   justify-content: center;
   align-items: center;
-  select{
-  background: #f4f4f4;
+
+  select {
+    background: #f4f4f4;
   }
 }
 
@@ -5415,6 +5449,7 @@ form .blackButton {
   border: 0;
   -webkit-appearance: none;
 }
+
 .selectBox svg,
 .selectBoxCity svg {
   position: absolute;
@@ -5424,10 +5459,12 @@ form .blackButton {
   height: 2rem;
   pointer-events: none;
 }
+
 .selectBoxCity svg {
   top: 1.8rem;
   right: 1.6rem;
 }
+
 .selectBoxCity select {
   color: var(--black, #1a1a1a);
   font-size: 1.2rem;
@@ -5436,6 +5473,7 @@ form .blackButton {
   line-height: normal;
   letter-spacing: 0.036rem;
 }
+
 // !popup adreees 
 
 
@@ -5446,6 +5484,7 @@ form .blackButton {
   margin-bottom: 2.2rem;
   height: 22.6rem;
 }
+
 .addressCardInner {
   display: flex;
   flex-wrap: wrap;
@@ -5456,6 +5495,7 @@ form .blackButton {
   border-radius: 1rem;
   height: 100%;
 }
+
 .addressCard span {
   color: #2c2c2c;
   font-size: 1rem;
@@ -5467,6 +5507,7 @@ form .blackButton {
   display: block;
   margin-bottom: 1rem;
 }
+
 .addressCard p {
   color: var(--black);
   font-size: 1.4rem;
@@ -5475,14 +5516,17 @@ form .blackButton {
   line-height: 100%;
   letter-spacing: 0.042rem;
 }
+
 .addressCardInner div {
   margin-bottom: 3.2rem;
   width: 40%;
 }
+
 .addressCardInner div:nth-child(4),
 .addressCardInner div:nth-child(5) {
   margin-bottom: 0;
 }
+
 .addressCard input {
   position: absolute;
   left: 0;
@@ -5492,6 +5536,7 @@ form .blackButton {
   opacity: 0;
   z-index: 1;
 }
+
 .addressCard .delete,
 .edit {
   position: absolute;
@@ -5503,20 +5548,24 @@ form .blackButton {
   z-index: 2;
   cursor: pointer;
 }
+
 .edit {
   right: 5rem;
 }
+
 .addressCard .delete svg,
 .edit svg {
   width: 2rem;
   height: 2rem;
 }
-.addressCard input:checked ~ .addressCardInner {
+
+.addressCard input:checked~.addressCardInner {
   border: 0.1rem solid #2d9d3f;
   position: relative;
   overflow: hidden;
   height: 100%;
 }
+
 .addressCard .tick {
   width: 2.2rem;
   height: 2.2rem;
@@ -5529,11 +5578,13 @@ form .blackButton {
   top: 2rem;
   left: 3rem;
 }
+
 .addressCard .tick svg {
   width: 1.5rem;
   height: 1.5rem;
 }
-.addressCard input:checked ~ .addressCardInner .tick {
+
+.addressCard input:checked~.addressCardInner .tick {
   background: #2d9d3f;
 }
 
@@ -5555,11 +5606,13 @@ form .blackButton {
   width: 100%;
   background-color: transparent;
 }
+
 .addressCardCreate svg {
   width: 4.9rem;
   height: 4.9rem;
   margin-bottom: 1.4rem;
 }
+
 .addressCardCreate span {
   color: var(--black);
   font-size: 1.2rem;
@@ -5569,15 +5622,19 @@ form .blackButton {
   letter-spacing: 0.024rem;
   text-transform: uppercase;
 }
+
 .addressCardCreate:hover svg path {
   stroke: #2d9d3f;
 }
+
 .addressCardCreate:hover span {
   color: #2d9d3f;
 }
+
 .addressCardCreate:hover {
   border: 0.1rem solid #2d9d3f;
 }
+
 //! adreess card
 
 //* Baharstore csss

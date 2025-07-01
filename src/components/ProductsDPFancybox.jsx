@@ -360,7 +360,7 @@ const ProductsDPFancybox = ({ productDetail }) => {
   // productDetail.images değiştiğinde images state'ini güncelle ve selectedImage'i de ilk öğeye ayarla
   useEffect(() => {
     if (productDetail && Array.isArray(productDetail.images)) {
-      const mapped = productDetail.images.map((imgObj) => ({
+      const mapped = productDetail.images.slice().reverse().map((imgObj) => ({
         id: imgObj.id,
         src: imgObj.img_url,
         // alt için ürün adı veya başka bir alan kullanılabilir
@@ -465,8 +465,8 @@ const ProductsDPFancybox = ({ productDetail }) => {
             <Image
               src={selectedImage.src}
               alt={selectedImage.alt}
-              width={600}
-              height={600}
+              width={1000}
+              height={1000}
             />
           </Link>
         )}

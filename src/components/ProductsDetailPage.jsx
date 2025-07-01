@@ -58,7 +58,7 @@ const ProductsDetailPage = ({ product }) => {
           </div>
         )}
 
-        <div className="breadCrumb">
+        <div className="breadCrumb" id="productDPbreadCrumbs">
           {productBreadCrumbs.map((item, index) => {
             const isFirst = index === 0;
             const isLast = index === productBreadCrumbs.length - 1;
@@ -154,7 +154,7 @@ const ProductsDetailPage = ({ product }) => {
               </div>
               <div className="paymentCalculator">
                 <div className="paymentCalculatorTitle">
-                  <span>Hissəli alış kalkulyatoru</span>
+                  <span>Hissə-hissə ödə</span>
                   <strong>*Şərtlər endrimsiz qiymətə tətbiq olunur</strong>
                 </div>
                 <div className="paymentCalculatorButtons">
