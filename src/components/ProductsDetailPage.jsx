@@ -108,10 +108,12 @@ const ProductsDetailPage = ({ product }) => {
                   <p>({ratingValue})</p>
                 </div>
               </div>
-              <span className="depo">Məhsul Mövcuddur: </span>
-              <span className="productCode">
+              <span className="depo">Məhsul Mövcuddur </span>
+
+              {/* <span className="productCode">
                 Məhsul kodu : <strong>{productDetail.product_code}</strong>
-              </span>
+              </span> */}
+
               <div className="productDPPrices">
                 <span className="productDPOldPrice">
                   {productDetail.old_price} <TbCurrencyManat />
