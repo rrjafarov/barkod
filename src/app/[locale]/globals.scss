@@ -6014,7 +6014,7 @@ form .blackButton {
 .paginationButton:hover {
   background: #f0f0f0;
 }
-.active {
+.paginationButton.active {
   background: #ec1f27 !important;
   color: white;
   border-color: #ec1f27 !important;
