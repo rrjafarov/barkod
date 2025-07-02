@@ -1872,7 +1872,8 @@ export default function ProductsPage({
   currentPage,
   lastPage,
   loading,
-  onPageChange
+  onPageChange,
+  t
 }) {
   const router = useRouter();
   const searchParams = useSearchParams();

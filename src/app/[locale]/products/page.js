@@ -452,6 +452,7 @@ export default function Page() {
     <div>
       <Header t={t} categoryData={categoryData} />
       <ProductsPage
+      t={t}
         slug={slug}
         productsCard={products}
         productsFilterGroupsTitle={filterGroups}

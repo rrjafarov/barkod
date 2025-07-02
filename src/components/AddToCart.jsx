@@ -313,11 +313,6 @@
 
 //? Son versiya
 
-
-
-
-
-
 // "use client";
 // import React, { useState } from "react";
 // import { MdKeyboardDoubleArrowRight } from "react-icons/md";
@@ -326,7 +321,6 @@
 // import { IoClose } from "react-icons/io5";
 // import Image from "next/image";
 // import { useRemoveFromCartMutation } from "@/redux/cartService";
-
 
 // const AddToCart = ({ cartData }) => {
 //   const cart = cartData?.cart || {};
@@ -463,23 +457,6 @@
 // };
 
 // export default AddToCart;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // "use client";
 // import React, { useState, useEffect } from "react";
@@ -743,37 +720,6 @@
 
 // export default AddToCart;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 "use client";
 import React, { useState, useEffect } from "react";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
@@ -787,7 +733,7 @@ import {
   useDecreaseCartItemMutation,
 } from "@/redux/cartService";
 
-const AddToCart = ({ cartData }) => {
+const AddToCart = ({ cartData, t }) => {
   const cart = cartData?.cart || {};
   const cartAllData = cart?.cart_products || [];
 
@@ -812,9 +758,12 @@ const AddToCart = ({ cartData }) => {
     setLocalCartAllData(cartAllData);
   }, [cartAllData]);
 
-  const [removeFromCart, { isLoading: removingIdLoading }] = useRemoveFromCartMutation();
-  const [increaseCartItem, { isLoading: incLoading }] = useIncreaseCartItemMutation();
-  const [decreaseCartItem, { isLoading: decLoading }] = useDecreaseCartItemMutation();
+  const [removeFromCart, { isLoading: removingIdLoading }] =
+    useRemoveFromCartMutation();
+  const [increaseCartItem, { isLoading: incLoading }] =
+    useIncreaseCartItemMutation();
+  const [decreaseCartItem, { isLoading: decLoading }] =
+    useDecreaseCartItemMutation();
 
   // Özet hesaplama fonksiyonları, localCartAllData kullanılıyor
   const calculateDiscount = (totalAmount) => {
@@ -837,8 +786,8 @@ const AddToCart = ({ cartData }) => {
   // Tıklama fonksiyonları: önce lokal state'i güncelle, sonra backend isteği
   const handleIncrease = async (productId) => {
     // Optimistik: miktarı hemen artır
-    setLocalCartAllData(prev =>
-      prev.map(item =>
+    setLocalCartAllData((prev) =>
+      prev.map((item) =>
         item.product.id === productId
           ? { ...item, qty: (item.qty || 1) + 1 }
           : item
@@ -855,9 +804,9 @@ const AddToCart = ({ cartData }) => {
 
   const handleDecrease = async (productId) => {
     // Optimistik: miktarı hemen azalt
-    setLocalCartAllData(prev =>
+    setLocalCartAllData((prev) =>
       prev
-        .map(item => {
+        .map((item) => {
           if (item.product.id === productId) {
             const newQty = (item.qty || 1) - 1;
             if (newQty > 0) {
@@ -881,8 +830,8 @@ const AddToCart = ({ cartData }) => {
 
   const handleRemove = async (productId) => {
     // Optimistik: ürünü hemen kaldır
-    setLocalCartAllData(prev =>
-      prev.filter(item => item.product.id !== productId)
+    setLocalCartAllData((prev) =>
+      prev.filter((item) => item.product.id !== productId)
     );
     try {
       await removeFromCart(productId).unwrap();
@@ -906,10 +855,13 @@ const AddToCart = ({ cartData }) => {
         }}
       >
         <div className="cartTitleEmpty" style={{ textAlign: "center" }}>
-          <p className="cartTitleEmptyPop">Səbət boşdur</p>
+          <p className="cartTitleEmptyPop">{t?.basketempty || "Səbət boşdur"}</p>
           <Link href="/">
-            <button className="officialPaymentBtn" style={{ marginTop: "1rem" }}>
-              Ana səhifə
+            <button
+              className="officialPaymentBtn"
+              style={{ marginTop: "1rem" }}
+            >
+              {t?.homebreadcrumbs || "Ana Sehife"}
             </button>
           </Link>
         </div>
@@ -921,12 +873,12 @@ const AddToCart = ({ cartData }) => {
     <div className="container">
       <div className="breadCrumb">
         <Link href="/">
-          <span>Ana Səhifə</span>
+          <span>{t?.homebreadcrumbs}</span>
         </Link>
         <strong>
           <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />
         </strong>
-        <span className="lastChildBread">Səbət</span>
+        <span className="lastChildBread">{t?.basket || "Səbət"}</span>
       </div>
 
       <div className="row">
@@ -934,7 +886,7 @@ const AddToCart = ({ cartData }) => {
         <div className="xl-8 lg-8 md-8 sm-12">
           <div className="addToCartProductSection">
             <div className="cartProductSectionTop">
-              <span className="cartTitle">Səbət</span>
+              <span className="cartTitle">{t?.basket || "Səbət"}</span>
             </div>
           </div>
 
@@ -971,7 +923,11 @@ const AddToCart = ({ cartData }) => {
                       onClick={() => handleDecrease(prodId)}
                       className="cartCountIcon"
                       disabled={decLoading}
-                      style={{ background: "none", border: "none", cursor: "pointer" }}
+                      style={{
+                        background: "none",
+                        border: "none",
+                        cursor: "pointer",
+                      }}
                     >
                       −
                     </button>
@@ -980,7 +936,11 @@ const AddToCart = ({ cartData }) => {
                       onClick={() => handleIncrease(prodId)}
                       className="cartCountIcon"
                       disabled={incLoading}
-                      style={{ background: "none", border: "none", cursor: "pointer" }}
+                      style={{
+                        background: "none",
+                        border: "none",
+                        cursor: "pointer",
+                      }}
                     >
                       +
                     </button>
@@ -997,7 +957,11 @@ const AddToCart = ({ cartData }) => {
                     className="closeCartProduct"
                     onClick={() => handleRemove(prodId)}
                     disabled={removingIdLoading}
-                    style={{ background: "none", border: "none", cursor: "pointer" }}
+                    style={{
+                      background: "none",
+                      border: "none",
+                      cursor: "pointer",
+                    }}
                   >
                     <IoClose />
                   </button>
@@ -1012,30 +976,30 @@ const AddToCart = ({ cartData }) => {
           <div className="addToCartPaymentSection">
             <div className="cartPaymentSectionTop">
               <div className="firstCartPaymentSectionTop">
-                <span>Məhsul sayı:</span>
+                <span>{t?.countquantity || "Say"}:</span>
               </div>
               <div className="secondCartPaymentSectionTop">
-                <span>{localCartAllData.length} ədəd</span>
+                <span>{localCartAllData.length} {t?.unit}</span>
               </div>
             </div>
             <div className="discountAndFinalPrice">
               <div className="discountPrice">
                 <div className="discountPriceAll">
-                  <span>Ümumi məbləğ:</span>
+                  <span>{t?.totalamount || "total amount"}:</span>
                   <span className="cartNewPrice">
                     {/* totalAmount sayısal, .toFixed ile */}
                     {totalAmount.toFixed(2)} <TbCurrencyManat />
                   </span>
                 </div>
                 <div className="discountPricesInner">
-                  <span>Endirim:</span>
+                  <span>{t?.discamount || "Endrimli"}:</span>
                   <span className="cartNewPrice">
                     {discountAmount.toFixed(2)} <TbCurrencyManat />
                   </span>
                 </div>
               </div>
               <div className="finalPrice">
-                <span>Yekun məbləğ:</span>
+                <span>{t?.finalamount || "Yekun məbləğ"}:</span>
                 <span className="cartNewPrice">
                   {finalAmount.toFixed(2)} <TbCurrencyManat />
                 </span>
@@ -1045,10 +1009,10 @@ const AddToCart = ({ cartData }) => {
           <div className="addToCartPaymentButtons">
             <Link href="/checkout">
               <button className="officialPaymentBtn">
-                Sifarişi Rəsmiləşdir
+                {t?.orderbtn || "order place"}
               </button>
             </Link>
-            <button>Bir kliklə al</button>
+            <button>{t?.oneclickpay	 || "Bir kliklə al"}</button>
           </div>
         </div>
       </div>

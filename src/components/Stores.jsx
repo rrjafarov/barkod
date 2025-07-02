@@ -107,29 +107,10 @@
 
 // export default Stores;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-"use client"
+"use client";
 import React, { useState } from "react";
 import { FaLocationDot } from "react-icons/fa6";
-import {
-  MdKeyboardDoubleArrowRight,
-} from "react-icons/md";
+import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import Link from "next/link";
 
 const storesData = [
@@ -139,7 +120,8 @@ const storesData = [
     address: "208 Ahmad Rajabli, Baku 1052",
     contact: "+994777773344",
     hours: "10:00-19:00",
-    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3025.9893874785475!2d49.859489375840646!3d40.412040455925116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4030873391b938e5%3A0x64ded33536aa5a06!2sBarkod!5e1!3m2!1str!2saz!4v1745356067117!5m2!1str!2saz"
+    mapSrc:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3025.9893874785475!2d49.859489375840646!3d40.412040455925116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4030873391b938e5%3A0x64ded33536aa5a06!2sBarkod!5e1!3m2!1str!2saz!4v1745356067117!5m2!1str!2saz",
   },
   {
     id: 2,
@@ -147,16 +129,19 @@ const storesData = [
     address: "208 Ahmad Rajabli, Baku 1052",
     contact: "+994777773344",
     hours: "10:00-19:00",
-    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3031.982515268272!2d48.948490375842!3d41.564890455925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40398f06377ed865%3A0x123456789abcdef0!2sXacmaz!5e1!3m2!1str!2saz!4v1745356067117!5m2!1str!2saz"
-  }
+    mapSrc:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3031.982515268272!2d48.948490375842!3d41.564890455925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40398f06377ed865%3A0x123456789abcdef0!2sXacmaz!5e1!3m2!1str!2saz!4v1745356067117!5m2!1str!2saz",
+  },
 ];
 
-const Stores = () => {
+const Stores = ({ t }) => {
   const [searchTerm, setSearchTerm] = React.useState("");
-  const [selectedMapSrc, setSelectedMapSrc] = React.useState(storesData[0].mapSrc); // Default ilk mağaza haritası
+  const [selectedMapSrc, setSelectedMapSrc] = React.useState(
+    storesData[0].mapSrc
+  ); // Default ilk mağaza haritası
 
   // Arama filtreleme için kullanılacak
-  const filteredStores = storesData.filter(store =>
+  const filteredStores = storesData.filter((store) =>
     store.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -164,13 +149,13 @@ const Stores = () => {
     <div className="container">
       <div className="breadCrumb">
         <Link href="/">
-          <span>Ana Səhifə</span>
+          <span>{t?.homebreadcrumbs || "Home Page"}</span>
         </Link>
         <strong>
           <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />
         </strong>
         <Link href="#">
-          <span className="lastChildBread">Mağazalarımız</span>
+          <span className="lastChildBread">{t?.stores || "stores"}</span>
         </Link>
       </div>
       <div className="row">
@@ -181,12 +166,12 @@ const Stores = () => {
                 <div className="storeSearch">
                   <input
                     type="search"
-                    placeholder="Mağaza axtar..."
+                    placeholder={t.search}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
                 </div>
-                {filteredStores.map(store => (
+                {filteredStores.map((store) => (
                   <div
                     key={store.id}
                     className="storesCard"
@@ -201,7 +186,7 @@ const Stores = () => {
                       <p className="storesCardItemSubTitle">{store.address}</p>
                       <div className="storesCardItemFooterTitle">
                         <strong>
-                          Əlaqə: <span>{store.contact}</span>
+                          {t?.contact || "contact"}: <span>{store.contact}</span>
                         </strong>
                         <span>{store.hours}</span>
                       </div>

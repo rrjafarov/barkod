@@ -3043,7 +3043,7 @@ ul {
   justify-content: space-between;
   align-items: center;
   border-radius: 1rem;
-  margin: 2rem 0 5rem;
+  margin: 2rem 0 2rem;
   padding: 2rem;
 
   .cartProductLeft {
@@ -6018,4 +6018,47 @@ form .blackButton {
   background: #ec1f27 !important;
   color: white;
   border-color: #ec1f27 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.searchResults {
+  position: absolute;
+  top: 100%; 
+  width: 100%;           
+  left: 0;
+  right: 0;
+  margin-top: 1rem;     
+  min-height: 50rem;      
+  background: #fff;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-radius: 2rem; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  z-index: 10;
+  padding: 3rem;
+}
+.noResults{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.searchContainer input {
+  position: relative;
 }

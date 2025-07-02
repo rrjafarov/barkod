@@ -68,7 +68,7 @@ export default async function Page({ params }) {
   return (
     <>
       <Header t={t} categoryData={categoryData} />
-      <ProductsDetailPage product={product} />
+      <ProductsDetailPage t={t} product={product} />
       <Footer t={t} />
     </>
   );

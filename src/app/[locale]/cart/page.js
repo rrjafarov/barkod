@@ -125,7 +125,7 @@ const categoryResponse = await getCategoryeData();
   return (
     <div>
       <Header t={t} categoryData={categoryData} />
-      <AddToCart cartData={cartData} />
+      <AddToCart  t={t} cartData={cartData} />
       <Footer t={t} />
     </div>
   );

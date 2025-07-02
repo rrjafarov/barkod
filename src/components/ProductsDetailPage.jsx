@@ -17,7 +17,7 @@ import { FiHeart } from "react-icons/fi";
 import { FaHeart } from "react-icons/fa";
 import { TbCurrencyManat } from "react-icons/tb";
 
-const ProductsDetailPage = ({ product }) => {
+const ProductsDetailPage = ({ product, t }) => {
   const productDetail = product?.product_detail || [];
   const productBreadCrumbs = product?.bread_crumbs || [];
   const attributes = product?.product_detail?.attributes || [];
@@ -108,7 +108,7 @@ const ProductsDetailPage = ({ product }) => {
                   <p>({ratingValue})</p>
                 </div>
               </div>
-              <span className="depo">Məhsul Mövcuddur </span>
+              <span className="depo">{t?.aviableproducts || "Məhsul Mövcuddur"} </span>
 
               {/* <span className="productCode">
                 Məhsul kodu : <strong>{productDetail.product_code}</strong>
@@ -125,12 +125,12 @@ const ProductsDetailPage = ({ product }) => {
               <div className="productsDPButtons">
                 <Link href="#">
                   <button className="productsDPaddToCart">
-                    <IoCartOutline /> Səbətə at
+                    <IoCartOutline /> {t?.addtocart	}
                   </button>
                 </Link>
                 <Link href="#">
                   <button onClick={openModal} className="productsDPbuyNow">
-                    Bir Kliklə al
+                    {t?.oneclickpay}
                   </button>
                 </Link>
                 <Link href="#">
@@ -156,32 +156,32 @@ const ProductsDetailPage = ({ product }) => {
               </div>
               <div className="paymentCalculator">
                 <div className="paymentCalculatorTitle">
-                  <span>Hissə-hissə ödə</span>
-                  <strong>*Şərtlər endrimsiz qiymətə tətbiq olunur</strong>
+                  <span>{t?.productdetailparofpart || "Hissə-hissə ödə"}</span>
+                  <strong>* {t?.productdetailterms || "Şərtlər endrimsiz qiymətə tətbiq olunur"}</strong>
                 </div>
                 <div className="paymentCalculatorButtons">
                   <div className="paymentCalculatorButton">
                     <p>0%</p>
-                    <button>3 ay</button>
+                    <button>3 {t?.moon}</button>
                   </div>
                   <div className="paymentCalculatorButton">
                     <p>0%</p>
-                    <button>6 ay</button>
+                    <button>6 {t?.moon}</button>
                   </div>
                   <div className="paymentCalculatorButton">
                     <p>0%</p>
-                    <button>9 ay</button>
+                    <button>9 {t?.moon}</button>
                   </div>
                   <div className="paymentCalculatorButton">
                     <p>0%</p>
-                    <button>12 ay</button>
+                    <button>12 {t?.moon}</button>
                   </div>
                   <div className="paymentCalculatorButton">
                     <p>0%</p>
-                    <button>18 ay</button>
+                    <button>18 {t?.moon}</button>
                   </div>
                   <div className="monthPayment">
-                    <span>Aylıq Ödəniş</span>
+                    <span>{t?.productdetailmonthpay || "Aylıq Ödəniş"}</span>
                     <strong>
                       50.00 <TbCurrencyManat />
                     </strong>
@@ -196,10 +196,10 @@ const ProductsDetailPage = ({ product }) => {
           <div className="productsDPTechnicalSection">
             <div className="productsDPTechnicalSectionTitle">
               <button onClick={() => setActiveTab("tech")}>
-                Texniki Xüsusiyyətlər
+                {t?.spesification || "Texniki Xüsusiyyətlər"}
               </button>
-              <button onClick={() => setActiveTab("desc")}>Təsvir</button>
-              <button onClick={() => setActiveTab("reviews")}>Rəylər</button>
+              <button onClick={() => setActiveTab("desc")}>{t?.destcription || "Təsvir"}</button>
+              <button onClick={() => setActiveTab("reviews")}>{t?.comment || "Rəylər"}</button>
             </div>
 
             {activeTab === "tech" && (
@@ -214,58 +214,6 @@ const ProductsDetailPage = ({ product }) => {
                     </div>
                   ))}
 
-                  {/* <div className="technicalContent">
-                    <span className="techContentLeft">
-                      Prosessor tipi (Chipset)
-                    </span>
-                    <span className="techContentRight">
-                      Apple A14 Bionic (5 nm)
-                    </span>
-                  </div>
-                  <div className="technicalContent">
-                    <span className="techContentLeft">Ekran</span>
-                    <span className="techContentRight">Oled</span>
-                  </div>
-                  <div className="technicalContent">
-                    <span className="techContentLeft">Marka</span>
-                    <span className="techContentRight">Apple</span>
-                  </div>
-                  <div className="technicalContent">
-                    <span className="techContentLeft">
-                      Prosessor tipi (Chipset)
-                    </span>
-                    <span className="techContentRight">
-                      Apple A14 Bionic (5 nm)
-                    </span>
-                  </div>
-                  <div className="technicalContent">
-                    <span className="techContentLeft">
-                      Prosessor tipi (Chipset)
-                    </span>
-                    <span className="techContentRight">
-                      Apple A14 Bionic (5 nm)
-                    </span>
-                  </div>
-                  <div className="technicalContent">
-                    <span className="techContentLeft">Ekran</span>
-                    <span className="techContentRight">Oled</span>
-                  </div>
-                  <div className="technicalContent">
-                    <span className="techContentLeft">Marka</span>
-                    <span className="techContentRight">Apple</span>
-                  </div>
-                  <div className="technicalContent">
-                    <span className="techContentLeft">
-                      Prosessor tipi (Chipset)
-                    </span>
-                    <span className="techContentRight">
-                      Apple A14 Bionic (5 nm)
-                    </span>
-                  </div>
-                  <div className="technicalContent">
-                    <span className="techContentLeft">Ekran</span>
-                    <span className="techContentRight">Oled</span>
-                  </div> */}
                 </div>
               </div>
             )}
@@ -278,18 +226,18 @@ const ProductsDetailPage = ({ product }) => {
 
             {activeTab === "reviews" && (
               <div className="productsDPComments">
-                <span>Rəy Bildir</span>
+                <span>{t?.incoment || "Rəy Bildir"}</span>
                 <div className="commentsFormSection">
                   <Form className="formComment" action="/search">
-                    <label htmlFor="">Adınız Soyadınız</label>
+                    <label htmlFor="">{t?.namesurname || "Adınız Soyadınız"}</label>
                     <input type="text" placeholder="..." />
-                    <label htmlFor="">Rəy</label>
+                    <label htmlFor="">{t?.incoment || "Rəy Bildir"}</label>
                     <textarea
                       placeholder="..."
                       name="comment"
                       id="commentArea"
                     ></textarea>
-                    <label htmlFor="">Dəyərləndir:</label>
+                    <label htmlFor="">{t?.rate}:</label>
                     <div className="commentsRating">
                       <Box className="commentsRatingBox">
                         <Rating
@@ -300,7 +248,7 @@ const ProductsDetailPage = ({ product }) => {
                       </Box>
                     </div>
                     <button className="submitCommentBTN" type="submit">
-                      Göndər
+                      {t?.send || "Gonder"}
                     </button>
                   </Form>
                 </div>
