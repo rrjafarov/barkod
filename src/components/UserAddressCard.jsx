@@ -5,7 +5,7 @@ import {
   useSelectPrimaryAddressMutation,
 } from "@/redux/userService";
 
-const UserAddressCard = ({ address, setActive, onEdit }) => {
+const UserAddressCard = ({t, address, setActive, onEdit }) => {
   const [deleteAddressList, { isLoading: isDeleting }] =
     useDeleteAddressListMutation();
   const [selectPrimaryAddress, { isLoading: isSettingPrimary }] =

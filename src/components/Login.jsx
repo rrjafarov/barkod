@@ -2129,7 +2129,7 @@ import axiosInstance from "@/lib/axios"; // Projendeki axios yolu ile uyumlu ols
 import { HiLockClosed } from "react-icons/hi";
 import { LuEyeClosed, LuEye } from "react-icons/lu";
 
-export default function LoginForm() {
+export default function LoginForm({t}) {
   const router = useRouter();
   const { locale } = useParams();
 
@@ -2379,10 +2379,10 @@ export default function LoginForm() {
     <div className="login-container">
       <h1 className="login-title">
         {tab === "login"
-          ? "Daxil ol"
+          ? t?.login || "Login"
           : otpSent
-          ? "OTP Doğrulama"
-          : "Qeydiyyat"}
+          ? t?.["otp-verification"] || "OTP Doğrulama"
+          : t?.register || "Qeydiyyat"}
       </h1>
 
       <div className="login-tabs">
@@ -2390,19 +2390,19 @@ export default function LoginForm() {
           className={`login-tab ${tab === "login" ? "active" : ""}`}
           onClick={switchToLogin}
         >
-          Daxil ol
+         { t?.login || "Login"}
         </button>
         <button
           className={`login-tab ${tab === "register" ? "active" : ""}`}
           onClick={switchToRegister}
         >
-          Qeydiyyat
+         { t?.register || "Register"}
         </button>
       </div>
 
       {tab === "login" && (
         <form className="login-form" onSubmit={handleLogin}>
-          <label className="login-label">Nömrə</label>
+          <label className="login-label">{t?.num || "Nomre"}</label>
           <div className="login-group">
             <span className="login-prefix">+994</span>
             <input
@@ -2416,7 +2416,7 @@ export default function LoginForm() {
             />
           </div>
 
-          <label className="login-label">Şifrə</label>
+          <label className="login-label">{t?.password || "Password"}</label>
           <div className="login-group">
             <span className="login-icon">
               <HiLockClosed />
@@ -2450,21 +2450,21 @@ export default function LoginForm() {
             className="login-submit"
             disabled={loginLoading}
           >
-            {loginLoading ? "Yüklənir..." : "Daxil ol"}
+            {loginLoading ? t?.loading || "Loading" : t?.login || "Login"}
           </button>
           <a
             href={`/${locale}/forgot-password`}
             className="login-forgot"
           >
-            Şifrəmi unutdum
+            {t?.["forgot-pass"] || "Forgot password"}
           </a>
         </form>
       )}
 
       {tab === "register" && !otpSent && (
         <form className="login-form" onSubmit={handleRegister}>
-          <label className="login-label">Ad Soyad</label>
-          <div className="login-group">
+          <label className="login-label">{t?.namesurname || "Name Surname"}</label>
+          <div className="login-group"> 
             <input
               type="text"
               className="login-input"
@@ -2474,7 +2474,7 @@ export default function LoginForm() {
             />
           </div>
 
-          <label className="login-label">Nömrə</label>
+          <label className="login-label">{t?.num || "Number"}</label>
           <div className="login-group">
             <span className="login-prefix">+994</span>
             <input
@@ -2488,7 +2488,7 @@ export default function LoginForm() {
             />
           </div>
 
-          <label className="login-label">Şifrə</label>
+          <label className="login-label">{t?.password}</label>
           <div className="login-group">
             <span className="login-icon">
               <HiLockClosed />
@@ -2512,7 +2512,7 @@ export default function LoginForm() {
             </button>
           </div>
 
-          <label className="login-label">Şifrəni təkrar et</label>
+          <label className="login-label">{t?.["forgot-pass"] || "Forgot password"}</label>
           <div className="login-group">
             <span className="login-icon">
               <HiLockClosed />
@@ -2543,7 +2543,7 @@ export default function LoginForm() {
               checked={agree}
               onChange={(e) => setAgree(e.target.checked)}
             />
-            <label htmlFor="terms">Şərtləri oxudum, qəbul edirəm</label>
+            <label htmlFor="terms">{t?.["read-of-terms"] || "Şərtləri oxudum, qəbul edirəm" }</label>
             {support &&
               (() => {
                 const item = support.find((x) =>
@@ -2568,24 +2568,24 @@ export default function LoginForm() {
             className={`register-submit${agree ? "" : " disabled"}`}
             disabled={!agree || registerLoading}
           >
-            {registerLoading ? "Yüklənir..." : "Qeydiyyatdan keç"}
+            {registerLoading ? t?.loading || "Loading" : t?.register || "Register" }
           </button>
           <button
             type="button"
             className="register-back"
             onClick={switchToLogin}
           >
-            Daxil ol
+            {t?.login || "Login"}
           </button>
           {registerSuccess && (
-            <div className="successInfo">OTP gözlənilir</div>
+            <div className="successInfo">{t?.["waiting-otp"] || "OTP gözlənilir" }</div>
           )}
         </form>
       )}
 
       {tab === "register" && otpSent && (
         <form className="login-form" onSubmit={handleRegisterVerify}>
-          <p className="otp-title">Doğrulama Kodu</p>
+          <p className="otp-title">{t?.["verification-code"] || "Doğrulama Kodu"}</p>
           <div className="login-group otp-group">
             <input
               type="text"
@@ -2606,7 +2606,7 @@ export default function LoginForm() {
             className="login-submit"
             disabled={registerLoading}
           >
-            {registerLoading ? "Yüklənir..." : "Təsdiq et"}
+            {registerLoading ? t?.loading || "Loading": t?.confirm || "confirm"}
           </button>
           <div className="otp-resend">
             <button
@@ -2632,7 +2632,7 @@ export default function LoginForm() {
               setRegisterError(null);
             }}
           >
-            Nömrəni dəyiş
+            {t?.["change-number "] || "Nömrəni dəyiş"}
           </button>
         </form>
       )}
@@ -2643,8 +2643,8 @@ export default function LoginForm() {
           <div className="success-popup">
             <div className="success-popup-content">
               <div className="success-icon">✓</div>
-              <h3 className="success-title">Uğurla giriş edildi</h3>
-              <p className="success-message">Hesabınıza yönləndirilirsiniz...</p>
+              <h3 className="success-title">{t?.["success-login"] || "Success login"}</h3>
+              <p className="success-message">{t?.["redirect-account "] || "Redirect account"}</p>
             </div>
           </div>
         </div>

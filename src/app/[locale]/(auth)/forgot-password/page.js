@@ -324,10 +324,10 @@ const ForgotPasswordPage = () => {
           {!resetPage ? (
             <div className="authContainer">
               <div className="authHeader">
-                <span className="active">Forgot Password</span>
+                <span className="active">{t?.["forgot-pass"] || "forgot password"}</span>
               </div>
               <form onSubmit={handleSubmit}>
-                <label>Phone Number</label>
+                <label>{t?.num}</label>
                 <div className="phoneInput">
                   <span>+994</span>
                   <input
@@ -343,7 +343,7 @@ const ForgotPasswordPage = () => {
                   />
                 </div>
                 <button type="submit" className="blackButton">
-                  Send
+                  {t?.send || "send"}
                 </button>
                 {error && <div className="errorInfo">{error}</div>}
               </form>
@@ -354,7 +354,7 @@ const ForgotPasswordPage = () => {
                 <span className="active">Set Your New Password</span>
               </div>
               <form onSubmit={handleSubmit}>
-                <label>OTP Code</label>
+                <label>{t?.["otp-verification"] || "OTP Code"}</label>
                 <div className="inputChild">
                   <input
                     type="text"
@@ -368,7 +368,7 @@ const ForgotPasswordPage = () => {
                     }
                   />
                 </div>
-                <label>New Password</label>
+                <label>{t?.["new-password"] || "New password"}</label>
                 <div className="inputChild passwordChild">
                   {/* <div className="password">
                     <HiLockClosed />
@@ -391,7 +391,7 @@ const ForgotPasswordPage = () => {
                     {passwordVisible ? <LuEye /> : <LuEyeClosed />}
                   </div>
                 </div>
-                <label>Confirm Password</label>
+                <label>{t?.["confirm-pass"] || "Confirm Password"}</label>
                 <div className="inputChild passwordChild">
                   {/* <div className="password">
                     <HiLockClosed />
@@ -420,7 +420,7 @@ const ForgotPasswordPage = () => {
                   </div>
                 </div>
                 <button type="submit" className="blackButton">
-                  Reset Password
+                 {t?.["reset-pass"] || "Reset Password" }
                 </button>
                 {error && <div className="errorInfo">{error}</div>}
               </form>

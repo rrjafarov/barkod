@@ -111,17 +111,30 @@
 
 // export default ChangePasswordPage;
 
-
-
-
 // !
-
 
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUpdatePasswordMutation } from "@/redux/userService";
 import { HiLockClosed } from "react-icons/hi";
+import axiosInstance from "@/lib/axios";
+import Cookies from "js-cookie";
+
+async function getTranslations() {
+  try {
+    const response = await axiosInstance.get("/translation-list");
+    const data = response.data;
+    const translationsObj = data.reduce((acc, item) => {
+      acc[item.key] = item.value;
+      return acc;
+    }, {});
+    return translationsObj;
+  } catch (err) {
+    console.log(err);
+    return {};
+  }
+}
 
 const ChangePasswordPage = () => {
   const [updatePassword] = useUpdatePasswordMutation();
@@ -132,6 +145,13 @@ const ChangePasswordPage = () => {
   });
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const [t, setT] = useState({});
+
+  useEffect(() => {
+    getTranslations().then((translations) => {
+      setT(translations);
+    });
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -164,9 +184,9 @@ const ChangePasswordPage = () => {
     <div className="contactRight">
       <div className="formParent">
         <form onSubmit={handleSubmit}>
-          <p>Change Password</p>
+          <p>{t?.changepassword || "Change passwod"}</p>
 
-          <label>Current Password</label>
+          <label>{t?.["current-password"] || "Current Password"}</label>
           <div className="inputChild inputChilds passwordChild">
             <div className="password">
               <HiLockClosed className="passIcon" />
@@ -182,7 +202,7 @@ const ChangePasswordPage = () => {
             />
           </div>
 
-          <label>New Password</label>
+          <label>{t?.["new-password"] || "New Password"}</label>
           <div className="inputChild inputChilds passwordChild">
             <div className="password">
               <HiLockClosed className="passIcon" />
@@ -198,7 +218,9 @@ const ChangePasswordPage = () => {
             />
           </div>
 
-          <label>Repeat New Password</label>
+          {/* <label>Repeat New Password</label> */}
+          <label>{t?.["repeat-new-password"] || "Repeat new password"}</label>
+
           <div className="inputChild inputChilds passwordChild">
             <div className="password">
               <HiLockClosed className="passIcon" />
@@ -219,7 +241,7 @@ const ChangePasswordPage = () => {
             className={`blackButton ${success ? "active" : ""}`}
             disabled={success}
           >
-            {success ? "Password Updated" : "Save"}
+            {success ? t?.["password-updated"] || "Password updated" : t?.["save-password"] || "Save "}
           </button>
 
           {error && <div className="errorInfo">{error}</div>}

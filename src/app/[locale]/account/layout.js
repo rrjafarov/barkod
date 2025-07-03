@@ -258,30 +258,30 @@ const AboutPage = ({ children, params }) => {
                     className={pathname === generatePath("account/profile") ? "active" : ""}
                     style={underlineStyle("account/profile")}
                   >
-                    <FiUser />Profile
+                    <FiUser />{t?.profile || "Profile"}
                   </Link>
                   <Link
                     href={generatePath("account/address")}
                     className={pathname === generatePath("account/address") ? "active" : ""}
                     style={underlineStyle("account/address")}
                   >
-                   <GrLocation /> Address
+                   <GrLocation /> {t?.address || "Address"}
                   </Link>
                   <Link
                     href={generatePath("account/order-history")}
                     className={pathname === generatePath("account/order-history") ? "active" : ""}
                     style={underlineStyle("account/order-history")}
                   >
-                    <RiFileList3Line />Order History
+                    <RiFileList3Line />{t?.orderhistory || "Order History"}
                   </Link>
                   <Link
                     href={generatePath("account/change-password")}
                     className={pathname === generatePath("account/change-password") ? "active" : ""}
                     style={underlineStyle("account/change-password")}
                   >
-                    <FiUnlock />Change Password
+                    <FiUnlock />{t?.changepassword || "Change password"}
                   </Link>
-                  <button onClick={handleLogoutClick}><BiLogOut />Logout</button>
+                  <button onClick={handleLogoutClick}><BiLogOut />{t?.logout || "Logout"}</button>
                 </div>
               </div>
               <div className="xl-8 lg-8 md-8 sm-12">{children}</div>
@@ -298,20 +298,19 @@ const AboutPage = ({ children, params }) => {
               <div className="logout-icon">
                 <BiLogOut />
               </div>
-              <h3 className="logout-title">Hesabdan çıxmaq istəyirsiniz?</h3>
-              {/* <p className="logout-message">Bu əməliyyatı təsdiqləsəniz, hesabınızdan çıxacaqsınız.</p> */}
+              <h3 className="logout-title">{t?.questionlogout || "Hesabdan çıxmaq istəyirsiniz?"}</h3>
               <div className="logout-buttons">
                 <button 
                   className="logout-btn-cancel" 
                   onClick={handleLogoutCancel}
                 >
-                  Xeyr
+                  {t?.no || "Xeyr"}
                 </button>
                 <button 
                   className="logout-btn-confirm" 
                   onClick={handleLogoutConfirm}
                 >
-                  Bəli
+                  {t?.yes || "Bəli"}
                 </button>
               </div>
             </div>

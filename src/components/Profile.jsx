@@ -203,7 +203,7 @@ import {
   useUpdateUserInfoMutation,
 } from "@/redux/userService";
 
-const Profile = () => {
+const Profile = ({t}) => {
   const [formData, setFormData] = useState({
     name_surname: "",
     tel: "",
@@ -276,13 +276,13 @@ const Profile = () => {
       {/* <span>Profil</span> */}
 
       <div className="profileContent">
-        <span>Şəxsi məlumatlar</span>
+        <span>{t?.["personal-info"] || "Personal information"}</span>
 
         {/* <Popup icon="check" isActive={isPopup} title="Uğurla yeniləndi" /> */}
 
         <form onSubmit={handleSubmit}>
           <div className="profileName">
-            <strong>Ad soyad:</strong>
+            <strong>{t?.namesurname || "Name surname"}:</strong>
             <input
               type="text"
               value={formData.name_surname}
@@ -293,7 +293,7 @@ const Profile = () => {
           </div>
 
           <div className="profilePhone">
-            <strong>Telefon:</strong>
+            <strong>{t?.phone || "phone"}:</strong>
             <div className="profilePhoneContent">
               <strong>+994</strong>
               <input
@@ -312,9 +312,9 @@ const Profile = () => {
             </div>
           </div>
 
-          <button type="submit" className="blackButton" disabled={isUpdating}>
+          {/* <button type="submit" className="blackButton" disabled={isUpdating}>
             {isUpdating ? "Yadda saxlanır..." : "Yadda saxla"}
-          </button>
+          </button> */}
 
           {error && <div className="errorInfo">{error}</div>}
         </form>

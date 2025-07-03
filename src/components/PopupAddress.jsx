@@ -7,7 +7,7 @@ import {
 } from "@/redux/userService";
 import { useState, useEffect } from "react";
 
-const PopupAddress = ({ active, setActive, edit, delivery }) => {
+const PopupAddress = ({t, active, setActive, edit, delivery }) => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [region, setRegion] = useState("");
@@ -64,9 +64,9 @@ const PopupAddress = ({ active, setActive, edit, delivery }) => {
           <FiX />
         </button>
         <form onSubmit={handleSubmit}>
-          <p>{edit ? "Update Address" : "Add Address"}</p>
+          <p>{edit ? "Update Address" : t?.["add-address"]}</p>
 
-          <label>Name</label>
+          <label>{t?.name || "name"}</label>
           <div className="inputChild">
             <input
               type="text"
@@ -76,7 +76,7 @@ const PopupAddress = ({ active, setActive, edit, delivery }) => {
             />
           </div>
 
-          <label>Address</label>
+          <label>{t?.address}</label>
           <div className="inputChild">
             <input
               type="text"
@@ -86,7 +86,7 @@ const PopupAddress = ({ active, setActive, edit, delivery }) => {
             />
           </div>
 
-          <label>City</label>
+          <label>{t?.city || "City"}</label>
           <div className="selectBox selectBoxCity">
             <select
               value={region}
@@ -94,7 +94,7 @@ const PopupAddress = ({ active, setActive, edit, delivery }) => {
               required
             >
               <option value="" disabled>
-                Select Region
+                {t?.["select-region"]}
               </option>
               {delivery?.map((city) => (
                 <option key={city.id} value={city.name}>
@@ -105,7 +105,7 @@ const PopupAddress = ({ active, setActive, edit, delivery }) => {
             <FiChevronDown />
           </div>
 
-          <label>Phone</label>
+          <label>{t?.phone || "phone"}</label>
           <div className="phoneInput">
             <span>+994</span>
             <input
@@ -128,7 +128,7 @@ const PopupAddress = ({ active, setActive, edit, delivery }) => {
             ) : edit ? (
               "Update Address"
             ) : (
-              "Add Address"
+              t?.["add-address"]
             )}
           </button>
         </form>

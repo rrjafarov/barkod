@@ -4,7 +4,7 @@
 // // import Stores from '@/components/Stores'
 // import React from 'react'
 // import { cookies } from "next/headers";
-// import axiosInstance from "@/lib/axios";  
+// import axiosInstance from "@/lib/axios";
 
 // async function getCategoryeData() {
 //   const cookieStore = await cookies();
@@ -40,16 +40,33 @@
 
 // export default page
 
+import Profile from "@/components/Profile";
+import React from "react";
+import { cookies } from "next/headers";
+import axiosInstance from "@/lib/axios";
 
+async function getTranslations() {
+  try {
+    const response = await axiosInstance.get("/translation-list");
+    const data = response.data;
 
+    // Array-i obyektə çevir
+    const translationsObj = data.reduce((acc, item) => {
+      acc[item.key] = item.value;
+      return acc;
+    }, {});
 
-
-import Profile from '@/components/Profile'
-import React from 'react'
+    return translationsObj;
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 // Data artıq layout-da yüklənir
 const page = async () => {
-  return <Profile />
-}
+  const t = await getTranslations();
 
-export default page
+  return <Profile t={t} />;
+};
+
+export default page;
