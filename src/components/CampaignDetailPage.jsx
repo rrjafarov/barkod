@@ -78,46 +78,6 @@ const CompaignDetailPage = ({campaign}) => {
             <div className="campaignDetailPageContent">
               <span>{campaign.title}</span>
             <div dangerouslySetInnerHTML={{ __html: campaign.content }}></div>
-
-              {/* <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-                dolorum corrupti explicabo ex, hic excepturi expedita vel eius,
-                ducimus reiciendis est reprehenderit qui maiores unde
-                accusantium iste ipsam odio repellendus magni amet omnis nobis
-                fugiat! Tempore officiis nesciunt assumenda perferendis id
-                mollitia ratione earum nisi ab molestiae. Suscipit odio alias
-                harum porro, aperiam aliquid minima dolore sapiente!
-                Voluptatibus sed nemo quaerat, rerum, laboriosam hic sequi
-                veritatis praesentium vel eligendi et facere iste? Molestiae
-                dolores ratione minus facilis exercitationem officia deleniti
-                soluta doloremque commodi. Excepturi laudantium nulla error
-                deserunt minima, ullam aut fuga velit ipsam at expedita earum,
-                delectus neque sint unde officiis eius ipsum non! Sed
-                praesentium nesciunt cumque esse libero doloremque? Aut, quae
-                numquam. Accusamus delectus porro, corrupti facere possimus
-                fugit incidunt quos cum omnis, ea minima eum illo error totam
-                sapiente tempora corporis adipisci? Dignissimos facere
-                repudiandae numquam cum nobis, incidunt quos. Corrupti ea
-                quaerat ab beatae necessitatibus aperiam. Dolore cum nam sint
-                repellendus unde, ipsam, optio totam delectus obcaecati,
-                voluptas quos excepturi officiis ut veritatis maiores! Eaque
-                maxime nam at voluptas tenetur, optio earum. Repellendus quos
-                architecto facilis unde magnam quam deleniti quasi modi quae,
-                debitis totam sequi accusantium officiis reiciendis, maxime vel
-                in veniam. Consequuntur, iure cupiditate maiores consequatur
-                alias impedit, vel dolorum harum ut ipsum, aperiam sequi.
-                Quaerat, ducimus? Et similique dolorem quos ipsa deserunt nulla
-                eos velit aliquid neque quod vero necessitatibus, consectetur
-                rerum facere cum praesentium obcaecati! Praesentium quis maiores
-                harum esse dignissimos, voluptatem rem, sequi sapiente id labore
-                laboriosam architecto saepe pariatur ipsum ducimus possimus
-                dolor reprehenderit ut asperiores culpa dolorum laborum
-                accusantium. Ipsa, eius eaque eum dolor maxime aspernatur ipsum
-                dignissimos dolorem repellat animi aut. Placeat aliquid ducimus
-                minima explicabo nam blanditiis atque, quidem alias tempora
-                quod, possimus, quam dolore quas illo perferendis libero vel
-                facere. Minima id possimus adipisci exercitationem.
-              </p> */}
             </div>
           </div>
         </div>

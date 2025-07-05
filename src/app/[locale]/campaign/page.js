@@ -52,6 +52,36 @@ async function getTranslations() {
   }
 }
 
+export async function generateMetadata() {
+  const campaignResponse = await getCampaignsPageData();
+  const seo = campaignResponse.seo || {};
+  const canonicalUrl = "https://barkodelectronics.az/campaign";
+  const locale = (await cookies()).get("NEXT_LOCALE")?.value;
+
+  return {
+    title: seo.meta_title || "Barkod Electronics",
+    description: seo.meta_description || "",
+    openGraph: {
+      title: seo.meta_title || "Barkod Electronics",
+      description: seo.meta_description || "",
+      url: canonicalUrl,
+      site_name: "barkodelectronics.az",
+      type: "website",
+      locale,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seo.meta_title || "Barkod Electronics",
+      description: seo.meta_description || "",
+      site: "@barkodelectronics",
+    },
+    alternates: {
+      canonical: canonicalUrl,
+    },
+  };
+}
+
+
 const page = async () => {
   const t = await getTranslations();
 

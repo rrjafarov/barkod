@@ -100,6 +100,14 @@ async function getTranslations() {
   }
 }
 
+
+
+
+
+
+
+
+
 const CampaignPage = async ({ params }) => {
   // 1) URL’den gelen param: "some-title-123" veya direkt "123"
   const rawId = params.id;
