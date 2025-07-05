@@ -35,16 +35,33 @@ async function getTranslations() {
     console.log(err);
   }
 }
+async function getBranchsData() {
+  const cookieStore = await cookies();
+  const lang = cookieStore.get("NEXT_LOCALE");
+  try {
+    const { data: branches } = await axiosInstance.get(`/branches`, {
+      // headers: { Lang: lang.value },
+      cache: "no-store",
+    });
+    return branches;
+  } catch (error) {
+    console.error("Failed to branches page data", error);
+    throw error;
+  }
+}
+
+
 const page = async () => {
   const t = await getTranslations();
 
   const categoryResponse = await getCategoryeData();
   const categoryData = categoryResponse?.categories || [];
-
+  const branchesResponse = await getBranchsData();
+  const branchesData = branchesResponse?.branches || [];
   return (
     <div>
         <Header t={t} categoryData={categoryData} />
-        <Stores t={t} />
+        <Stores branchesData={branchesData} t={t} />
         <Footer t={t} />
     </div>
   )

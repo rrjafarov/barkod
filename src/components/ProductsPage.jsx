@@ -2035,7 +2035,11 @@ export default function ProductsPage({
               return (
                 <React.Fragment key={index}>
                   {item.clickable === "true" ? (
-                    <Link href={item.slug}>
+                    <Link
+                    //  href={item.slug}
+                    href={`/products?cat_slug=${item.slug}`}
+                     >
+                      
                       <span>{item.name}</span>
                     </Link>
                   ) : (
