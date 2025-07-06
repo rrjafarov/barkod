@@ -1081,8 +1081,8 @@ export default function ProductsPage({
           </div>
 
           <div className="productsPageDescriptions">
-            <h1>{seoData.title}</h1>
-            <p>{seoData.meta_title}</p>
+            <h1>{seoData.page_title}</h1>
+            <p>{seoData.page_description}</p>
           </div>
         </div>
       </div>
