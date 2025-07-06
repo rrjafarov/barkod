@@ -2273,7 +2273,29 @@ ul {
   }
 }
 
+
+
+.productsPageDescriptions{
+  padding: 5rem 0 2rem;
+  h1{
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #111;
+    text-align: start;
+    padding-bottom: 1rem;
+  }
+  p{
+    font-size: 1.6rem;
+    color: #444444;
+    text-align: start;
+    line-height: 2.5rem;
+    padding-bottom: 1rem;
+  }
+}
 // !  ProductPage finish
+
+
+
 
 //! ProductsDetailPage  start
 #productsDetailPage {
@@ -4333,7 +4355,43 @@ select:focus {
 
 
 
+// !Products sort
+.productSortButtons {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
 
+  span {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: rgba(0, 0, 0, .6);
+    // opacity: 0.5;
+  }
+
+  .productSortButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      background-color: transparent;
+      border: 1px solid #cfcfcf;
+      border-radius: 1rem;
+      padding: 0.7rem 1.5rem;
+      font-size: 1.4rem;
+      color: rgba(0, 0, 0, .6);
+      // opacity: 0.5;
+
+      .active {
+        border: 2px solid $MainColor;
+      }
+    }
+  }
+}
+
+// !Products sort
 
 
 
@@ -5999,6 +6057,7 @@ form .blackButton {
   margin: 1rem 0;
   gap: 0.8rem;
 }
+
 .paginationButton {
   padding: 0.8rem 1.5rem;
   border: 1px solid #ddd;
@@ -6015,9 +6074,11 @@ form .blackButton {
   width: 4rem;
   height: 4rem;
 }
+
 .paginationButton:hover {
   background: #f0f0f0;
 }
+
 .paginationButton.active {
   background: #ec1f27 !important;
   color: white;
@@ -6043,26 +6104,28 @@ form .blackButton {
 
 .searchResults {
   position: absolute;
-  top: 100%; 
-  width: 100%;           
+  top: 100%;
+  width: 100%;
   left: 0;
   right: 0;
-  margin-top: 1rem;     
-  min-height: 50rem;      
+  margin-top: 1rem;
+  min-height: 50rem;
   background: #fff;
   border: 1px solid #ddd;
   border-top: none;
-  border-radius: 2rem; 
+  border-radius: 2rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
   z-index: 10;
   padding: 3rem;
 }
-.noResults{
+
+.noResults {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .searchContainer input {
   position: relative;
 }
