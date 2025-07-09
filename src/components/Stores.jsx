@@ -1,5 +1,3 @@
-
-
 // "use client";
 // import React, { useState } from "react";
 // import { FaLocationDot } from "react-icons/fa6";
@@ -31,7 +29,7 @@
 //   const [searchTerm, setSearchTerm] = React.useState("");
 //   const [selectedMapSrc, setSelectedMapSrc] = React.useState(
 //     storesData[0].mapSrc
-//   ); // Default ilk mağaza haritası
+//   ); 
 
 //   // Arama filtreleme için kullanılacak
 //   const filteredStores = storesData.filter((store) =>
@@ -121,131 +119,6 @@
 
 
 
-"use client";
-import React, { useState } from "react";
-import { FaLocationDot } from "react-icons/fa6";
-import { MdKeyboardDoubleArrowRight } from "react-icons/md";
-import Link from "next/link";
-
-const Stores = ({ t, branchesData }) => {
-
-  const branches = branchesData || [];
-
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const [selectedMapSrc, setSelectedMapSrc] = useState(
-    branches[0]?.mapSrc || ""
-  );
-
-  const [selectedBranchId, setSelectedBranchId] = useState(branches[0]?.id);
-
-  
-  const filteredBranches = branches.filter((branch) =>
-    branch.branch_name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  return (
-    <div className="container">
-      <div className="breadCrumb">
-        <Link href="/">
-          <span>{t?.homebreadcrumbs || "Home Page"}</span>
-        </Link>
-        <strong>
-          <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />
-        </strong>
-        <Link href="#">
-          <span className="lastChildBread">{t?.stores || "Stores"}</span>
-        </Link>
-      </div>
-
-      <div className="row">
-        {/* Sidebar with list */}
-        <div className="xl-3 lg-3 md-3 sm-12">
-          <div className="stores">
-            <div className="storeSearch">
-              <input
-                type="search"
-                placeholder={t?.search || "Search branches"}
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-
-            {filteredBranches.map((branch) => (
-              <div
-                key={branch.id}
-                className="storesCard"
-                style={{
-                  cursor: "pointer",
-                  border:
-                    branch.id === selectedBranchId
-                      ? "2px solid black"
-                      : undefined,
-                }}
-                onClick={() => {
-                  branch.mapSrc && setSelectedMapSrc(branch.mapSrc);
-                  setSelectedBranchId(branch.id);
-                }}
-              >
-                <div className="storesCardItem">
-                  <div className="storesCardItemTitle">
-                    <h5>{branch.branch_name}</h5>
-                    <FaLocationDot className="storeLocationIcon" />
-                  </div>
-                  <p className="storesCardItemSubTitle">{branch.address}</p>
-                  <div className="storesCardItemFooterTitle">
-                    <strong>
-                      {t?.contact || "Contact"}: <span>{branch.tel}</span>
-                    </strong>
-                    <span>{branch.working_time}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Map area */}
-        <div className="xl-9 lg-9 md-9 sm-12">
-          <div className="storesMap">
-            {selectedMapSrc ? (
-              <iframe
-                src={selectedMapSrc}
-                width="1000"
-                height="500"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            ) : (
-              <p>{t?.noMap || "No map available for this branch."}</p>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default Stores;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -256,18 +129,14 @@ export default Stores;
 // import Link from "next/link";
 
 // const Stores = ({ t, branchesData }) => {
-//   // Pull branches array out of the passed‑in data
-//   const branches = branchesData || [];
-
 //   const [searchTerm, setSearchTerm] = useState("");
-//   // Default to the first branch's mapSrc if provided
 //   const [selectedMapSrc, setSelectedMapSrc] = useState(
-//     branches[0]?.mapSrc || ""
-//   );
+//     branchesData[0]?.location || ""
+//   ); // Default ilk şubenin haritası
 
-//   // Filter by branch_name
-//   const filteredBranches = branches.filter((branch) =>
-//     branch.branch_name.toLowerCase().includes(searchTerm.toLowerCase())
+//   // Arama filtreleme için kullanılacak
+//   const filteredStores = branchesData.filter((store) =>
+//     store.branch_name.toLowerCase().includes(searchTerm.toLowerCase())
 //   );
 
 //   return (
@@ -280,64 +149,60 @@ export default Stores;
 //           <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />
 //         </strong>
 //         <Link href="#">
-//           <span className="lastChildBread">{t?.stores || "Stores"}</span>
+//           <span className="lastChildBread">{t?.stores || "stores"}</span>
 //         </Link>
 //       </div>
-
 //       <div className="row">
-//         {/* Sidebar with list */}
 //         <div className="xl-3 lg-3 md-3 sm-12">
 //           <div className="stores">
-//             <div className="storeSearch">
-//               <input
-//                 type="search"
-//                 placeholder={t?.search || "Search branches"}
-//                 value={searchTerm}
-//                 onChange={(e) => setSearchTerm(e.target.value)}
-//               />
-//             </div>
-
-//             {filteredBranches.map((branch) => (
-//               <div
-//                 key={branch.id}
-//                 className="storesCard"
-//                 style={{ cursor: "pointer" }}
-//                 onClick={() => branch.mapSrc && setSelectedMapSrc(branch.mapSrc)}
-//               >
-//                 <div className="storesCardItem">
-//                   <div className="storesCardItemTitle">
-//                     <h5>{branch.branch_name}</h5>
-//                     <FaLocationDot className="storeLocationIcon" />
-//                   </div>
-//                   <p className="storesCardItemSubTitle">{branch.address}</p>
-//                   <div className="storesCardItemFooterTitle">
-//                     <strong>
-//                       {t?.contact || "Contact"}: <span>{branch.tel}</span>
-//                     </strong>
-//                     <span>{branch.working_time}</span>
-//                   </div>
+//             <div className="row">
+//               <div className="xl-12 lg-12 md-12 sm-12">
+//                 <div className="storeSearch">
+//                   <input
+//                     type="search"
+//                     placeholder={t.search}
+//                     value={searchTerm}
+//                     onChange={(e) => setSearchTerm(e.target.value)}
+//                   />
 //                 </div>
+//                 {filteredStores.map((store) => (
+//                   <div
+//                     key={store.id}
+//                     className="storesCard"
+//                     style={{ cursor: "pointer" }}
+//                     onClick={() => setSelectedMapSrc(store.location)}
+//                   >
+//                     <div className="storesCardItem">
+//                       <div className="storesCardItemTitle">
+//                         <h5>{store.branch_name}</h5>
+//                         <FaLocationDot className="storeLocationIcon" />
+//                       </div>
+//                       <p className="storesCardItemSubTitle">{store.address}</p>
+//                       <div className="storesCardItemFooterTitle">
+//                         <strong>
+//                           {t?.contact || "contact"}: <span>{store.tel}</span>
+//                         </strong>
+//                         <span>{store.working_time}</span>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 ))}
 //               </div>
-//             ))}
+//             </div>
 //           </div>
 //         </div>
 
-//         {/* Map area */}
 //         <div className="xl-9 lg-9 md-9 sm-12">
 //           <div className="storesMap">
-//             {selectedMapSrc ? (
-//               <iframe
-//                 src={selectedMapSrc}
-//                 width="1000"
-//                 height="500"
-//                 style={{ border: 0 }}
-//                 allowFullScreen
-//                 loading="lazy"
-//                 referrerPolicy="no-referrer-when-downgrade"
-//               />
-//             ) : (
-//               <p>{t?.noMap || "No map available for this branch."}</p>
-//             )}
+//             <iframe
+//               src={selectedMapSrc}
+//               width="1000"
+//               height="500"
+//               style={{ border: 0 }}
+//               allowFullScreen
+//               loading="lazy"
+//               referrerPolicy="no-referrer-when-downgrade"
+//             ></iframe>
 //           </div>
 //         </div>
 //       </div>
@@ -346,3 +211,111 @@ export default Stores;
 // };
 
 // export default Stores;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"use client";
+import React, { useState } from "react";
+import { FaLocationDot } from "react-icons/fa6";
+import { MdKeyboardDoubleArrowRight } from "react-icons/md";
+import Link from "next/link";
+
+const Stores = ({ t, branchesData }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedMapSrc, setSelectedMapSrc] = useState(
+    branchesData[0]?.location || ""
+  );
+
+  const filteredStores = branchesData.filter((store) =>
+    store.branch_name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <div className="container">
+      <div className="breadCrumb">
+        <Link href="/">
+          <span>{t?.homebreadcrumbs || "Home Page"}</span>
+        </Link>
+        <strong>
+          <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />
+        </strong>
+        <Link href="#">
+          <span className="lastChildBread">{t?.stores || "stores"}</span>
+        </Link>
+      </div>
+      <div className="row">
+        <div className="xl-3 lg-3 md-3 sm-12">
+          <div className="stores">
+            <div className="row">
+              <div className="xl-12 lg-12 md-12 sm-12">
+                <div className="storeSearch">
+                  <input
+                    type="search"
+                    placeholder={t.search}
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                </div>
+                {filteredStores.map((store) => (
+                  <div
+                    key={store.id}
+                    className="storesCard"
+                    style={{
+                      cursor: "pointer",
+                      borderWidth:
+                        store.location === selectedMapSrc ? "3px" : "1px",
+                    }}
+                    onClick={() => setSelectedMapSrc(store.location)}
+                  >
+                    <div className="storesCardItem">
+                      <div className="storesCardItemTitle">
+                        <h5>{store.branch_name}</h5>
+                        <FaLocationDot className="storeLocationIcon" />
+                      </div>
+                      <p className="storesCardItemSubTitle">
+                        {store.address}
+                      </p>
+                      <div className="storesCardItemFooterTitle">
+                        <strong>
+                          {t?.contact || "contact"}: <span>{store.tel}</span>
+                        </strong>
+                        <span>{store.working_time}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="xl-9 lg-9 md-9 sm-12">
+          <div className="storesMap">
+            <iframe
+              src={selectedMapSrc}
+              width="1000"
+              height="500"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Stores;
