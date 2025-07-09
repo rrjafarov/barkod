@@ -120,16 +120,45 @@
 
 
 
-"use client"
-import { useState } from 'react'; // Add this import for state management
+
+
+
+
+// ! adding checkout form with popup functionality
+"use client";
+import Link from "next/link";
+import { useState } from "react"; // Add this import for state management
+import axiosInstance from "@/lib/axios"; // ← EKLENDİ
 
 export default function CheckoutForm() {
   const [isPopupOpen, setIsPopupOpen] = useState(false); // State to control popup visibility
 
   // Handle form submission to show the popup
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission
-    setIsPopupOpen(true); // Show the popup
+
+    // FormData oluştur
+    const form = e.target;
+    const formData = new FormData();
+    formData.append("name", form.name.value);
+    formData.append("surname", form.surname.value);
+    formData.append("tel", form.phone.value);
+    formData.append("email", form.email.value);
+    formData.append("address", form.address.value);
+
+    // Şu an yalnızca nağd ödeme: payment_method = 0
+    formData.append("payment_method", "0");
+
+    try {
+      // /make-payment endpoint’ine form-data ile POST at
+      await axiosInstance.post("/make-payment", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      setIsPopupOpen(true); // Show the popup on success
+    } catch (err) {
+      console.error("Ödeme işlemi başarısız:", err);
+      // İsterseniz kullanıcıya hata mesajı gösterebilirsiniz
+    }
   };
 
   // Handle closing the popup
@@ -139,7 +168,7 @@ export default function CheckoutForm() {
 
   return (
     <div className="form-container">
-      <form onSubmit={handleSubmit}> 
+      <form onSubmit={handleSubmit}>
         <div className="form-row">
           <div className="form-group">
             <input
@@ -203,9 +232,9 @@ export default function CheckoutForm() {
             <div className="checkGroup">
               <label htmlFor="pay-now">İndi nağd ödə</label>
               <input
-                type="checkbox"
+                type="radio"
                 id="pay-now"
-                name="payment"
+                name="pay"
                 value="now"
                 defaultChecked
               />
@@ -213,18 +242,18 @@ export default function CheckoutForm() {
             <div className="checkGroup">
               <label htmlFor="pay-later">Qapıda ödə</label>
               <input
-                type="checkbox"
+                type="radio"
                 id="pay-later"
-                name="payment"
+                name="pay"
                 value="later"
               />
             </div>
             <div className="checkGroup">
               <label htmlFor="installments">Hissə-hissə al</label>
               <input
-                type="checkbox"
+                type="radio"
                 id="installments"
-                name="installments"
+                name="pay"
                 value="installments"
               />
             </div>
@@ -246,18 +275,189 @@ export default function CheckoutForm() {
       {/* Popup Component */}
       {isPopupOpen && (
         <div className="popup-overlay">
-          <div className="popup-content">
+          <div className="popup-contentCheckout">
             <button className="popup-close" onClick={handleClosePopup}>
               &times;
             </button>
             <h2>Sifarişiniz qeydə alındı!</h2>
             <p>Əməkdaşımız bir neçə dəqiqə ərzində sizinlə əlaqə saxlayacaq</p>
-            <button className="popup-continue" onClick={handleClosePopup}>
-              Davam et
-            </button>
+            <Link href="/">
+              <button className="popup-continue" onClick={handleClosePopup}>
+                Davam et
+              </button>
+            </Link>
           </div>
         </div>
       )}
     </div>
   );
 }
+// ! adding checkout form with popup functionality
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// "use client";
+// import Link from "next/link";
+// import { useState } from "react"; // Add this import for state management
+
+// export default function CheckoutForm() {
+//   const [isPopupOpen, setIsPopupOpen] = useState(false); // State to control popup visibility
+
+//   // Handle form submission to show the popup
+//   const handleSubmit = (e) => {
+//     e.preventDefault(); // Prevent default form submission
+//     setIsPopupOpen(true); // Show the popup
+//   };
+
+//   // Handle closing the popup
+//   const handleClosePopup = () => {
+//     setIsPopupOpen(false);
+//   };
+
+//   return (
+//     <div className="form-container">
+//       <form onSubmit={handleSubmit}>
+//         <div className="form-row">
+//           <div className="form-group">
+//             <input
+//               type="text"
+//               id="name"
+//               name="name"
+//               required
+//               placeholder="Ad"
+//             />
+//           </div>
+//           <div className="form-group">
+//             <input
+//               type="text"
+//               id="surname"
+//               name="surname"
+//               required
+//               placeholder="Soyad"
+//             />
+//           </div>
+//         </div>
+
+//         {/* Telefon və E-mail üçün sətir */}
+//         <div className="form-row">
+//           <div className="form-group">
+//             <input
+//               type="text"
+//               id="phone"
+//               name="phone"
+//               required
+//               placeholder="Telefon"
+//             />
+//           </div>
+//           <div className="form-group">
+//             <input type="email" id="email" name="email" placeholder="E-mail" />
+//           </div>
+//         </div>
+
+//         {/* Şəhər Dropdown */}
+//         <div className="form-group">
+//           <select id="city" name="city">
+//             <option value="Bakı">Bakı</option>
+//             <option value="Gəncə">Gəncə</option>
+//             <option value="Sumqayıt">Sumqayıt</option>
+//           </select>
+//         </div>
+
+//         {/* Ünvan Sahəsi */}
+//         <div className="form-group adreesInput">
+//           <input
+//             type="text"
+//             id="address"
+//             name="address"
+//             placeholder="Ünvan qeyd edin"
+//           />
+//         </div>
+
+//         {/* Ödəniş Metodu Radio Düymələri */}
+//         <div className="form-group">
+//           <label className="priceTitleSegment">Ödəniş üsulunu seç</label>
+//           <div className="radio-group">
+//             <div className="checkGroup">
+//               <label htmlFor="pay-now">İndi nağd ödə</label>
+//               <input
+//                 type="radio"
+//                 id="pay-now"
+//                 name="pay"
+//                 value="now"
+//                 defaultChecked
+//               />
+//             </div>
+//             <div className="checkGroup">
+//               <label htmlFor="pay-later">Qapıda ödə</label>
+//               <input
+//                 type="radio"
+//                 id="pay-later"
+//                 name="pay"
+//                 value="later"
+//               />
+//             </div>
+//             <div className="checkGroup">
+//               <label htmlFor="installments">Hissə-hissə al</label>
+//               <input
+//                 type="radio"
+//                 id="installments"
+//                 name="pay"
+//                 value="installments"
+//               />
+//             </div>
+//           </div>
+//         </div>
+
+//         {/* Şərtlərə Razılıq Checkbox */}
+//         <div className="form-group contitionCheck">
+//           <input type="checkbox" id="terms" name="terms" required />
+//           <label htmlFor="terms">Şərtlərə razıyam</label>
+//         </div>
+
+//         {/* Təsdiq Düyməsi */}
+//         <button type="submit" className="submit-button">
+//           Sifarişi tamamla
+//         </button>
+//       </form>
+
+//       {/* Popup Component */}
+//       {isPopupOpen && (
+//         <div className="popup-overlay">
+//           <div className="popup-contentCheckout">
+//             <button className="popup-close" onClick={handleClosePopup}>
+//               &times;
+//             </button>
+//             <h2>Sifarişiniz qeydə alındı!</h2>
+//             <p>Əməkdaşımız bir neçə dəqiqə ərzində sizinlə əlaqə saxlayacaq</p>
+//             <Link href="/">
+//               <button className="popup-continue" onClick={handleClosePopup}>
+//                 Davam et
+//               </button>
+//             </Link>
+//           </div>
+//         </div>
+//       )}
+//     </div>
+//   );
+// }

@@ -23,9 +23,8 @@
 // const page = async () => {
 //   const cartResponse = await getAddToCartData();
 //   // const cartData = cartResponse?.data || [];
-//   const cartData = cartResponse || {}; 
+//   const cartData = cartResponse || {};
 
-  
 //   return (
 //     <div>
 //         <Header />
@@ -43,28 +42,19 @@
 
 
 
-
-
-
-
-
-
-
-
-
-import AddToCart from '@/components/AddToCart';
-import Footer from '@/components/Footer/Footer';
-import Header from '@/components/Header/Header';
+import AddToCart from "@/components/AddToCart";
+import Footer from "@/components/Footer/Footer";
+import Header from "@/components/Header/Header";
 import { cookies } from "next/headers";
 import axiosInstance from "@/lib/axios";
 
 async function getAddToCartData(token, guestUUID, lang) {
   try {
-    const headers = { Lang: lang || 'en' };
+    const headers = { Lang: lang || "en" };
     if (token) {
       headers.Authorization = `Bearer ${token}`;
     } else if (guestUUID) {
-      headers['Guest-UUID'] = guestUUID;
+      headers["Guest-UUID"] = guestUUID;
     }
 
     const { data: cart } = await axiosInstance.get(`/cart/list`, {
@@ -112,20 +102,20 @@ async function getTranslations() {
 
 const CartPage = async () => {
   const t = await getTranslations();
-const categoryResponse = await getCategoryeData();
+  const categoryResponse = await getCategoryeData();
   const categoryData = categoryResponse?.categories || [];
 
   const cookieStore = await cookies();
   const token = cookieStore.get("token")?.value;
   const guestUUID = cookieStore.get("guest_uuid")?.value;
-  const lang = cookieStore.get("NEXT_LOCALE")?.value || 'en';
+  const lang = cookieStore.get("NEXT_LOCALE")?.value || "en";
 
   const cartData = await getAddToCartData(token, guestUUID, lang);
 
   return (
     <div>
       <Header t={t} categoryData={categoryData} />
-      <AddToCart  t={t} cartData={cartData} />
+      <AddToCart t={t} cartData={cartData} />
       <Footer t={t} />
     </div>
   );
