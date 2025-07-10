@@ -104,7 +104,6 @@ const page = async ({ params }) => {
   return (
     <div>
       <Header t={t} categoryData={categoryData} />
-      {/* Login komponentiniz burada, import ve usage unchanged */}
       <Login  t={t} />
       <Footer t={t} />
     </div>

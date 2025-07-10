@@ -63,7 +63,6 @@ export default async function Page({ params }) {
   const categoryData = categoryResponse?.categories || [];
 
   const product = await getProductDetail(slugOrId);
-  // console.log("Product detail:", product);
 
   return (
     <>

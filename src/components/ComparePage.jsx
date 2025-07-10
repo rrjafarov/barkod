@@ -34,9 +34,7 @@ const ComparePage = () => {
           <strong>
             <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />
           </strong>
-          {/* <Link href="#"> */}
             <span className="lastChildBread" >Müqaisə</span>
-          {/* </Link> */}
         </div>
       </div>
       <section id="comparePageSection">
@@ -60,19 +58,11 @@ const ComparePage = () => {
           <div className="row">
             <div className="xl-3 lg-3 md-3 sm-12">
               <div className="comparePageLeft">
-                <span className="seeCompare">Göstər</span>
+                {/* <span className="seeCompare">Göstər</span> */}
                 <div className="compareAllParametrs">
                   <span>Telefonlar</span>
                   <span>Hamısını silin</span>
                 </div>
-                {/* <div className="allParametrAndDifference">
-                  <span>Bütün Parametrər</span>
-                  <Switch
-                    defaultChecked
-                    // onChange={onChange}
-                  />
-                  <span>Fərqlər</span>
-                </div> */}
               </div>
               <div className="comparePageLeftAttribute">
                 <span className="attr">Xüsusiyyətlər</span>
@@ -127,7 +117,7 @@ const ComparePage = () => {
                           </div>
                         </Link>
                         <div className="secondHomePageProductsCardContent">
-                          <span>iPhone 16 Pro Max 256 GB Black Titanium</span>
+                          <p>iPhone 16 Pro Max 256 GB Black Titanium</p>
                           <div className="discount">
                             <span>
                               -350 <TbCurrencyManat />
@@ -167,58 +157,7 @@ const ComparePage = () => {
                       </div>
                     </div>
 
-                    {/* <div className="productSecondHomePageProductsCard">
-                      <div className="compareCloseIcon">
-                        <IoCloseSharp id="compareCloseIcon" />
-                      </div>
-                      <Link href="/products/id" className="blockCardLink">
-                        <div className="secondHomePageProductsCardImage">
-                          <Image
-                            src="/images/iphone16pro.png"
-                            alt="sony"
-                            width={200}
-                            height={200}
-                          />
-                        </div>
-                      </Link>
-                      <div className="secondHomePageProductsCardContent">
-                        <span>iPhone 16 Pro Max 256 GB Black Titanium</span>
-                        <div className="discount">
-                          <span>
-                            -350 <TbCurrencyManat />
-                          </span>
-                        </div>
-                        <div className="cardBottomContent">
-                          <div className="price">
-                            <span className="oldPrice">
-                              3000,00
-                              <TbCurrencyManat />
-                            </span>
-                            <span className="newPrice">
-                              2400,00
-                              <TbCurrencyManat />
-                            </span>
-                          </div>
 
-                          <div className="wishList">
-                            <button>
-                              <NewScale className="newScalePR" />
-                            </button>
-                            <button>
-                              <NewWishList className="newWishlistPR" />
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="addToCartClick">
-                        <div className="addToCartClickItem">
-                          <button className="cartBtn">Səbətə at</button>
-                          <button onClick={openModal} className="clickBtn">
-                            Bir Klikle Al
-                          </button>
-                        </div>
-                      </div>
-                    </div> */}
                   </div>
                 </div>
               </div>
