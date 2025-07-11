@@ -76,7 +76,17 @@ const UserAddressPage = () => {
               <FiPlus />
               <span>{t?.["add-address"] || "Add address"}</span>
             </button>
-            {data?.shipping_address?.map((item) => (
+            {/* {data?.shipping_address?.map((item) => (
+              <UserAddressCard
+                t={t}
+                key={item.id}
+                address={item}
+                setActive={setActive}
+                onEdit={handleEditClick}
+              />
+            ))} */}
+            
+            {data?.delivery?.map((item) => (
               <UserAddressCard
                 t={t}
                 key={item.id}
