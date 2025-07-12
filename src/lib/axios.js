@@ -97,23 +97,12 @@
 
 
 
-
-
-
-
-
-
-
-// lib/axiosInstance.js
+// src/lib/axiosInstance.js
 import axios from "axios";
 import Cookies from "js-cookie";
-import { v4 as uuidv4 } from "uuid"; // Import from uuid
+import { v4 as uuidv4 } from "uuid";
 
-// Check and initialize guest UUID from cookies if it exists
 let guestUUID = Cookies.get("guest_uuid");
-
-// State to track loading (if you are not using global state management, use this approach)
-let isLoading = false;
 
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
@@ -126,20 +115,23 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   (config) => {
     if (typeof window !== "undefined") {
-      // Set a unique guest ID for guest users if not already set
-      if (!guestUUID) {
-        guestUUID = uuidv4(); // Generate UUID if not available
-        Cookies.set("guest_uuid", guestUUID); // Store in cookies
-      }
-      config.headers["Guest-UUID"] = guestUUID;
+      const token = Cookies.get("token");
 
-      // Set language preference
+      if (token) {
+        // Login olmuş istifadəçi üçün yalnız Authorization header
+        config.headers.Authorization = `Bearer ${token}`;
+      } else {
+        // Guest istifadəçi üçün Guest-UUID header
+        if (!guestUUID) {
+          guestUUID = uuidv4();
+          Cookies.set("guest_uuid", guestUUID, { path: "/", expires: 365 });
+        }
+        config.headers["Guest-UUID"] = guestUUID;
+      }
+
+      // Dil header-i hər halda əlavə et
       const NEXT_LOCALE = Cookies.get("NEXT_LOCALE") || "az";
       config.headers["Lang"] = NEXT_LOCALE;
-
-      // Check for authorization token
-      let token = Cookies.get("token");
-      config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
@@ -147,29 +139,109 @@ axiosInstance.interceptors.request.use(
 );
 
 axiosInstance.interceptors.response.use(
-  (response) => {
-    // Reset loading state after a successful response
-    isLoading = false;
-    return response;
-  },
+  (response) => response,
   (error) => {
     if (error.response?.status === 429) {
-      // Handle 429 Too Many Requests error
-      isLoading = true; // Set loading state to true
-      console.log("Loading... Too Many Requests (429)");
-
-      // Retry logic (optional) or fallback
       return new Promise((resolve) => {
         setTimeout(() => {
-          isLoading = false; // Reset loading after some delay
-          resolve(axiosInstance.request(error.config)); // Retry the request
-        }, 3000); // Adjust delay time as necessary
+          resolve(axiosInstance.request(error.config));
+        }, 3000);
       });
     }
-
-    isLoading = false; // Reset loading state for other errors
     return Promise.reject(error);
   }
 );
 
 export default axiosInstance;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // lib/axiosInstance.js
+// import axios from "axios";
+// import Cookies from "js-cookie";
+// import { v4 as uuidv4 } from "uuid"; // Import from uuid
+
+// // Check and initialize guest UUID from cookies if it exists
+// let guestUUID = Cookies.get("guest_uuid");
+
+// // State to track loading (if you are not using global state management, use this approach)
+// let isLoading = false;
+
+// const axiosInstance = axios.create({
+//   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+//   headers: {
+//     Lang: Cookies.get("NEXT_LOCALE") || "az",
+//     "Content-Type": "application/json",
+//   },
+// });
+
+// axiosInstance.interceptors.request.use(
+//   (config) => {
+//     if (typeof window !== "undefined") {
+//       // Set a unique guest ID for guest users if not already set
+//       if (!guestUUID) {
+//         guestUUID = uuidv4(); // Generate UUID if not available
+//         Cookies.set("guest_uuid", guestUUID); // Store in cookies
+//       }
+//       config.headers["Guest-UUID"] = guestUUID;
+
+//       // Set language preference
+//       const NEXT_LOCALE = Cookies.get("NEXT_LOCALE") || "az";
+//       config.headers["Lang"] = NEXT_LOCALE;
+
+//       // Check for authorization token
+//       let token = Cookies.get("token");
+//       config.headers.Authorization = `Bearer ${token}`;
+//     }
+//     return config;
+//   },
+//   (error) => Promise.reject(error)
+// );
+
+// axiosInstance.interceptors.response.use(
+//   (response) => {
+//     // Reset loading state after a successful response
+//     isLoading = false;
+//     return response;
+//   },
+//   (error) => {
+//     if (error.response?.status === 429) {
+//       // Handle 429 Too Many Requests error
+//       isLoading = true; // Set loading state to true
+//       console.log("Loading... Too Many Requests (429)");
+
+//       // Retry logic (optional) or fallback
+//       return new Promise((resolve) => {
+//         setTimeout(() => {
+//           isLoading = false; // Reset loading after some delay
+//           resolve(axiosInstance.request(error.config)); // Retry the request
+//         }, 3000); // Adjust delay time as necessary
+//       });
+//     }
+
+//     isLoading = false; // Reset loading state for other errors
+//     return Promise.reject(error);
+//   }
+// );
+
+// export default axiosInstance;
