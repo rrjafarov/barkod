@@ -97,6 +97,12 @@
 
 
 
+
+
+
+
+
+
 // src/lib/axiosInstance.js
 import axios from "axios";
 import Cookies from "js-cookie";
@@ -118,18 +124,22 @@ axiosInstance.interceptors.request.use(
       const token = Cookies.get("token");
 
       if (token) {
-        // Login olmuş istifadəçi üçün yalnız Authorization header
+        // Əgər token varsa, mütləq Authorization göndər, 
+        // və əvvəlki Guest-UUID header-i tamamilə sil
         config.headers.Authorization = `Bearer ${token}`;
+        delete config.headers["Guest-UUID"];
       } else {
-        // Guest istifadəçi üçün Guest-UUID header
+        // Token yoxdursa, guest user olaraq Guest-UUID yarat və ya oxu
         if (!guestUUID) {
           guestUUID = uuidv4();
           Cookies.set("guest_uuid", guestUUID, { path: "/", expires: 365 });
         }
         config.headers["Guest-UUID"] = guestUUID;
+        // Authorization varsa sil (əgər əvvəl default-da qalsa)
+        delete config.headers.Authorization;
       }
 
-      // Dil header-i hər halda əlavə et
+      // Hər halda dil header-i əlavə et
       const NEXT_LOCALE = Cookies.get("NEXT_LOCALE") || "az";
       config.headers["Lang"] = NEXT_LOCALE;
     }
@@ -153,12 +163,6 @@ axiosInstance.interceptors.response.use(
 );
 
 export default axiosInstance;
-
-
-
-
-
-
 
 
 
