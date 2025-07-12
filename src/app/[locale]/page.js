@@ -136,7 +136,7 @@ const HomePage = async () => {
         homePageDataDiscountedProducts={homePageDataDiscountedProducts}
         homePageDataBestSellingProducts={homePageDataBestSellingProducts}
       />
-      {/* <HomePageCountProduct /> */}
+      <HomePageCountProduct />
       <HomePageSecondaryProducts
         t={t}
         homePageDataBestSellingProducts={homePageDataBestSellingProducts}

@@ -98,7 +98,7 @@ const PopupAddress = ({t, active, setActive, edit, delivery }) => {
               </option>
               {delivery?.map((city) => (
                 <option key={city.id} value={city.name}>
-                  {city.region_az} | {city.region_ru}
+                  {city.name_az} | {city.name_ru}
                 </option>
               ))}
             </select>

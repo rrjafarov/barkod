@@ -149,7 +149,7 @@ const HomePageCountProduct = () => {
                 />
               </div>
               <div className="homePageCountProductsContent">
-                <div className="countDownRating">
+                {/* <div className="countDownRating">
                   <Box>
                     <Rating
                       name="star-rating"
@@ -158,7 +158,7 @@ const HomePageCountProduct = () => {
                     />
                   </Box>
                   <p>({value})</p>
-                </div>
+                </div> */}
 
                 <span className="miniTitle">Mobile&Tablet</span>
                 <h5 className="productsMiniTitle">Galaxy Smart Phone</h5>
