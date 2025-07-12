@@ -455,7 +455,7 @@ const AboutPage = ({ children, params }) => {
   return (
     <>
       <Header t={t} categoryData={categoryData} />
-      <div className="pages">
+      <div className="pagesProfile">
         <div className="account">
           <div className="container">
             <div className="row" id="account">

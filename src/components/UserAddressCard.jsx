@@ -16,7 +16,6 @@ const UserAddressCard = ({t, address, setActive, onEdit }) => {
       await selectPrimaryAddress(address.id);
     }
   };
-  console.log(address , "dededededed")
 
   return (
     <div className="xl-6 lg-6 md-6 sm-12">

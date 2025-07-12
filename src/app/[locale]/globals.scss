@@ -2275,16 +2275,18 @@ ul {
 
 
 
-.productsPageDescriptions{
+.productsPageDescriptions {
   padding: 5rem 0 2rem;
-  h1{
+
+  h1 {
     font-size: 2.2rem;
     font-weight: 600;
     color: #111;
     text-align: start;
     padding-bottom: 1rem;
   }
-  p{
+
+  p {
     font-size: 1.6rem;
     color: #444444;
     text-align: start;
@@ -2292,6 +2294,7 @@ ul {
     padding-bottom: 1rem;
   }
 }
+
 // !  ProductPage finish
 
 
@@ -3946,13 +3949,15 @@ ul {
 .form-group input[type="email"],
 .form-group select {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #f3f3f3;
-  border-radius: 5px;
+  padding: 1.5rem 1.2rem;
+  border: 1px solid #a8a8a8;
+  border-radius: 1rem;
   box-sizing: border-box;
 
   &::placeholder {
-    opacity: 0.5;
+    opacity: 0.8;
+    font-family: "Inter Tight", sans-serif !important;
+
   }
 }
 
@@ -3961,9 +3966,9 @@ ul {
 }
 
 .form-group select {
-  color: gray;
-  // appearance: none;
-  // background-size: 1.5rem;
+  // color: gray;
+  opacity: 0.8;
+  font-family: "Inter Tight", sans-serif !important;
 }
 
 .priceTitleSegment {
@@ -4083,9 +4088,11 @@ select:focus {
   align-items: center;
   flex-direction: column;
 }
+
 input[type="radio"] {
   accent-color: #ec1f27;
 }
+
 .popup-close {
   position: absolute;
   top: 0.5rem;
@@ -4611,6 +4618,14 @@ input[type="radio"] {
 
 
 // !profile
+// .pagesProfile{
+//   // width: 100%;
+//   display: flex;
+//   justify-content: flex-start;
+//   align-items: flex-start;
+//   flex-direction: column;
+// }
+
 .supportLeft {
   display: flex;
   flex-direction: column;
@@ -4642,15 +4657,16 @@ input[type="radio"] {
 
 // !profile
 #account {
-  margin: 3rem 0;
+  margin: 5rem 0;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   gap: 10rem;
   width: 100%;
 
 }
+
 
 @media (max-width: 768px) {
 
@@ -5222,6 +5238,7 @@ form .blackButton {
   align-items: flex-start;
   flex-direction: column;
   gap: 2rem;
+  margin-bottom: 2rem;
 }
 
 .formParent {
@@ -5348,7 +5365,7 @@ form .blackButton {
 
 .addressCardCreate {
   border-radius: 1rem;
-  border: 0.1rem solid var(--line);
+  border: 0.1rem solid lightgray;
   // height: 22.6rem;
   display: flex;
   flex-direction: column;
@@ -5537,6 +5554,8 @@ form .blackButton {
   position: relative;
   margin-bottom: 2.2rem;
   height: 22.6rem;
+  border: 0.1rem solid lightgray;
+  border-radius: 1.1rem;
 }
 
 .addressCardInner {

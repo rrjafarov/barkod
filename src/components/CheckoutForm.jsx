@@ -122,110 +122,410 @@
 
 
 
-
-
-// ! adding checkout form with popup functionality
 "use client";
 import Link from "next/link";
-import { useState } from "react"; // Add this import for state management
-import axiosInstance from "@/lib/axios"; // ← EKLENDİ
+import { useState, useEffect } from "react";
+import axiosInstance from "@/lib/axios";
+import Cookies from "js-cookie";
+import { FiPlus, FiChevronDown, FiX, FiCheck, FiEdit2 } from "react-icons/fi";
+import {
+  useGetAddressListQuery,
+  useAddAddressMutation,
+  useUpdateAddressMutation,
+  useDeleteAddressListMutation,
+} from "@/redux/userService";
 
-export default function CheckoutForm() {
-  const [isPopupOpen, setIsPopupOpen] = useState(false); // State to control popup visibility
+// Address Popup Component
+const CheckoutAddressPopup = ({ t, active, setActive, edit, delivery, onAddressAdded }) => {
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [region, setRegion] = useState("");
+  const [tel, setTel] = useState("");
+  const [added, setAdded] = useState(false);
 
-  // Handle form submission to show the popup
+  const [addAddress, { isLoading: isAdding }] = useAddAddressMutation();
+  const [updateAddress, { isLoading: isUpdating }] = useUpdateAddressMutation();
+
+  useEffect(() => {
+    if (edit) {
+      setName(edit.name);
+      setAddress(edit.address);
+      setRegion(edit.region);
+      setTel(edit.tel.replace("+994", ""));
+    } else {
+      setName("");
+      setAddress("");
+      setRegion("");
+      setTel("");
+    }
+  }, [edit]);
+
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent default form submission
-
-    // FormData oluştur
-    const form = e.target;
-    const formData = new FormData();
-    formData.append("name", form.name.value);
-    formData.append("surname", form.surname.value);
-    formData.append("tel", form.phone.value);
-    formData.append("email", form.email.value);
-    formData.append("address", form.address.value);
-
-    // Şu an yalnızca nağd ödeme: payment_method = 0
-    formData.append("payment_method", "0");
-
+    e.preventDefault();
     try {
-      // /make-payment endpoint’ine form-data ile POST at
-      await axiosInstance.post("/make-payment", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-      setIsPopupOpen(true); // Show the popup on success
-    } catch (err) {
-      console.error("Ödeme işlemi başarısız:", err);
-      // İsterseniz kullanıcıya hata mesajı gösterebilirsiniz
+      const payload = { name, address, region, tel: `+994${tel}` };
+      if (edit) {
+        await updateAddress({ id: edit.id, data: payload }).unwrap();
+      } else {
+        await addAddress(payload).unwrap();
+      }
+      setAdded(true);
+      onAddressAdded && onAddressAdded();
+      setTimeout(() => setActive(false), 1500);
+    } catch (error) {
+      console.error("Failed to submit address", error);
+    } finally {
+      setTimeout(() => {
+        setName("");
+        setAddress("");
+        setRegion("");
+        setTel("");
+        setAdded(false);
+      }, 1500);
     }
   };
 
-  // Handle closing the popup
+  return (
+    <div className={`popupAddress ${active ? "active" : ""}`}>
+      <div className="layer" onClick={() => setActive(false)}></div>
+      <div className="popupContainer">
+        <button className="close" onClick={() => setActive(false)}>
+          <FiX />
+        </button>
+        <form onSubmit={handleSubmit}>
+          <p>{edit ? "Update Address" : t?.["add-address"]}</p>
+
+          <label>{t?.name || "name"}</label>
+          <div className="inputChild">
+            <input
+              type="text"
+              value={name}
+              required
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+
+          <label>{t?.address}</label>
+          <div className="inputChild">
+            <input
+              type="text"
+              value={address}
+              required
+              onChange={(e) => setAddress(e.target.value)}
+            />
+          </div>
+
+          <label>{t?.city || "City"}</label>
+          <div className="selectBox selectBoxCity">
+            <select
+              value={region}
+              onChange={(e) => setRegion(e.target.value)}
+              required
+            >
+              <option value="" disabled>
+                {t?.["select-region"]}
+              </option>
+              {delivery?.map((city) => (
+                <option key={city.id} value={city.name}>
+                  {city.name_az} | {city.name_ru}
+                </option>
+              ))}
+            </select>
+            <FiChevronDown />
+          </div>
+
+          <label>{t?.phone || "phone"}</label>
+          <div className="phoneInput">
+            <span>+994</span>
+            <input
+              type="number"
+              value={tel}
+              required
+              onChange={(e) => setTel(e.target.value)}
+            />
+          </div>
+
+          <button
+            type="submit"
+            className={`blackButton ${added ? "active" : ""}`}
+            disabled={isAdding || isUpdating}
+          >
+            {isAdding || isUpdating ? (
+              <div className="loader2"></div>
+            ) : added ? (
+              "Address Added"
+            ) : edit ? (
+              "Update Address"
+            ) : (
+              t?.["add-address"]
+            )}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+// Address Card Component for checkout
+const CheckoutAddressCard = ({ t, address, selectedAddress, onSelect, onEdit }) => {
+  const [deleteAddressList, { isLoading: isDeleting }] = useDeleteAddressListMutation();
+
+  const handleSelect = () => {
+    onSelect(address);
+  };
+
+  return (
+    <div className="xl-6 lg-6 md-6 sm-12">
+      <div className="addressCard">
+        <input
+          type="radio"
+          name="checkout-address"
+          checked={selectedAddress?.id === address.id}
+          onChange={handleSelect}
+        />
+        <div className="addressCardInner">
+          <div className="tick">
+            <FiCheck />
+          </div>
+          <div>
+            <span>Name</span>
+            <p>{address?.name}</p>
+          </div>
+          <div>
+            <span>City</span>
+            <p>{address?.region}</p>
+          </div>
+          <div>
+            <span>Address</span>
+            <p>{address?.address}</p>
+          </div>
+          <div>
+            <span>Number</span>
+            <p>{address?.tel}</p>
+          </div>
+        </div>
+        <button
+          className="delete"
+          onClick={(e) => {
+            e.stopPropagation();
+            deleteAddressList(address.id);
+          }}
+          disabled={isDeleting}
+        >
+          {isDeleting ? <div className="loader2"></div> : <FiX />}
+        </button>
+        <button
+          className="edit"
+          onClick={(e) => {
+            e.stopPropagation();
+            onEdit(address);
+          }}
+        >
+          <FiEdit2 />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default function CheckoutForm({ deliveryData, products, t }) {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isAddressPopupOpen, setIsAddressPopupOpen] = useState(false);
+  const [editAddress, setEditAddress] = useState(null);
+  const [selectedAddress, setSelectedAddress] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Get user addresses
+  const { data: addressData, isLoading: isAddressLoading, refetch } = useGetAddressListQuery();
+
+  // Check if user is logged in
+  useEffect(() => {
+    const token = Cookies.get("token");
+    setIsLoggedIn(!!token);
+    
+    // If user is logged in and has addresses, select the first one or main one
+    if (token && addressData && addressData.length > 0) {
+      const mainAddress = addressData.find(addr => addr.is_main);
+      setSelectedAddress(mainAddress || addressData[0]);
+    }
+  }, [addressData]);
+
+  const handleAddressAdded = () => {
+    refetch();
+  };
+
+  const handleAddClick = () => {
+    setEditAddress(null);
+    setIsAddressPopupOpen(true);
+  };
+
+  const handleEditClick = (address) => {
+    setEditAddress(address);
+    setIsAddressPopupOpen(true);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData();
+
+    if (isLoggedIn && selectedAddress) {
+      // Use selected address for logged in user
+      formData.append("name", selectedAddress.name);
+      formData.append("surname", ""); // You might want to split name or add surname field
+      formData.append("tel", selectedAddress.tel);
+      formData.append("email", form.email?.value || "");
+      formData.append("address", selectedAddress.address);
+      formData.append("city", selectedAddress.region);
+    } else {
+      // Use form data for guest user
+      formData.append("name", form.name.value);
+      formData.append("surname", form.surname.value);
+      formData.append("tel", form.phone.value);
+      formData.append("email", form.email.value);
+      formData.append("address", form.address.value);
+      formData.append("city", form.city.value);
+    }
+
+    formData.append("payment_method", "0");
+
+    try {
+      await axiosInstance.post("/make-payment", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+      setIsPopupOpen(true);
+    } catch (err) {
+      console.error("Ödeme işlemi başarısız:", err);
+    }
+  };
+
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
 
+  // Loading state for addresses
+  if (isLoggedIn && isAddressLoading) {
+    return (
+      <div className="loaderDiv">
+        <div className="loader"></div>
+      </div>
+    );
+  }
+
   return (
     <div className="form-container">
+      {/* Address Popup */}
+      <CheckoutAddressPopup
+        t={t}
+        active={isAddressPopupOpen}
+        setActive={setIsAddressPopupOpen}
+        edit={editAddress}
+        delivery={deliveryData}
+        onAddressAdded={handleAddressAdded}
+      />
+
       <form onSubmit={handleSubmit}>
-        <div className="form-row">
-          <div className="form-group">
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              placeholder="Ad"
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="text"
-              id="surname"
-              name="surname"
-              required
-              placeholder="Soyad"
-            />
-          </div>
-        </div>
+        {/* Address Section for Logged In Users */}
+        {isLoggedIn && (
+          <div className="address-section">
+            <h3>{t?.["shipping-address"] || "Shipping Address"}</h3>
+            
+            {/* Add Address Button */}
+            <div className="addressParent">
+              <div className="addressParentCards">
+                <button
+                  type="button"
+                  className="addressCardCreate"
+                  onClick={handleAddClick}
+                >
+                  <FiPlus />
+                  <span>{t?.["add-address"] || "Add address"}</span>
+                </button>
+              </div>
+            </div>
 
-        {/* Telefon və E-mail üçün sətir */}
-        <div className="form-row">
-          <div className="form-group">
-            <input
-              type="text"
-              id="phone"
-              name="phone"
-              required
-              placeholder="Telefon"
-            />
+            {/* Address List */}
+            <div className="address-list">
+              {addressData?.map((address) => (
+                <CheckoutAddressCard
+                  key={address.id}
+                  t={t}
+                  address={address}
+                  selectedAddress={selectedAddress}
+                  onSelect={setSelectedAddress}
+                  onEdit={handleEditClick}
+                />
+              ))}
+            </div>
+
+            {/* Email field for logged in users */}
+            <div className="form-group">
+              <input type="email" id="email" name="email" placeholder="E-mail" />
+            </div>
           </div>
-          <div className="form-group">
-            <input type="email" id="email" name="email" placeholder="E-mail" />
-          </div>
-        </div>
+        )}
 
-        {/* Şəhər Dropdown */}
-        <div className="form-group">
-          <select id="city" name="city">
-            <option value="Bakı">Bakı</option>
-            <option value="Gəncə">Gəncə</option>
-            <option value="Sumqayıt">Sumqayıt</option>
-          </select>
-        </div>
+        {/* Guest User Form */}
+        {!isLoggedIn && (
+          <>
+            <div className="form-row">
+              <div className="form-group">
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  placeholder="Ad"
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  type="text"
+                  id="surname"
+                  name="surname"
+                  required
+                  placeholder="Soyad"
+                />
+              </div>
+            </div>
 
-        {/* Ünvan Sahəsi */}
-        <div className="form-group adreesInput">
-          <input
-            type="text"
-            id="address"
-            name="address"
-            placeholder="Ünvan qeyd edin"
-          />
-        </div>
+            <div className="form-row">
+              <div className="form-group">
+                <input
+                  type="text"
+                  id="phone"
+                  name="phone"
+                  required
+                  placeholder="Telefon"
+                />
+              </div>
+              <div className="form-group">
+                <input type="email" id="email" name="email" placeholder="E-mail" />
+              </div>
+            </div>
 
-        {/* Ödəniş Metodu Radio Düymələri */}
+            <div className="form-group">
+              <select id="city" name="city">
+                {deliveryData.map((region) => (
+                  <option key={region.id} value={region.id}>
+                    {region.name_az} | {region.name_ru}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="form-group adreesInput">
+              <input
+                type="text"
+                id="address"
+                name="address"
+                placeholder="Ünvan qeyd edin"
+              />
+            </div>
+          </>
+        )}
+
+        {/* Payment Method (same for both) */}
         <div className="form-group">
           <label className="priceTitleSegment">Ödəniş üsulunu seç</label>
           <div className="radio-group">
@@ -241,12 +541,7 @@ export default function CheckoutForm() {
             </div>
             <div className="checkGroup">
               <label htmlFor="pay-later">Qapıda ödə</label>
-              <input
-                type="radio"
-                id="pay-later"
-                name="pay"
-                value="later"
-              />
+              <input type="radio" id="pay-later" name="pay" value="later" />
             </div>
             <div className="checkGroup">
               <label htmlFor="installments">Hissə-hissə al</label>
@@ -260,19 +555,23 @@ export default function CheckoutForm() {
           </div>
         </div>
 
-        {/* Şərtlərə Razılıq Checkbox */}
+        {/* Terms Agreement */}
         <div className="form-group contitionCheck">
           <input type="checkbox" id="terms" name="terms" required />
           <label htmlFor="terms">Şərtlərə razıyam</label>
         </div>
 
-        {/* Təsdiq Düyməsi */}
-        <button type="submit" className="submit-button">
+        {/* Submit Button */}
+        <button 
+          type="submit" 
+          className="submit-button"
+          disabled={isLoggedIn && !selectedAddress}
+        >
           Sifarişi tamamla
         </button>
       </form>
 
-      {/* Popup Component */}
+      {/* Success Popup */}
       {isPopupOpen && (
         <div className="popup-overlay">
           <div className="popup-contentCheckout">
@@ -292,42 +591,73 @@ export default function CheckoutForm() {
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ! adding checkout form with popup functionality
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // "use client";
 // import Link from "next/link";
 // import { useState } from "react"; // Add this import for state management
+// import axiosInstance from "@/lib/axios"; // ← EKLENDİ
 
-// export default function CheckoutForm() {
+// export default function CheckoutForm({deliveryData}) {
 //   const [isPopupOpen, setIsPopupOpen] = useState(false); // State to control popup visibility
 
 //   // Handle form submission to show the popup
-//   const handleSubmit = (e) => {
+//   const handleSubmit = async (e) => {
 //     e.preventDefault(); // Prevent default form submission
-//     setIsPopupOpen(true); // Show the popup
+
+//     // FormData oluştur
+//     const form = e.target;
+//     const formData = new FormData();
+//     formData.append("name", form.name.value);
+//     formData.append("surname", form.surname.value);
+//     formData.append("tel", form.phone.value);
+//     formData.append("email", form.email.value);
+//     formData.append("address", form.address.value);
+
+//     // Şu an yalnızca nağd ödeme: payment_method = 0
+//     formData.append("payment_method", "0");
+
+//     try {
+//       // /make-payment endpoint’ine form-data ile POST at
+//       await axiosInstance.post("/make-payment", formData, {
+//         headers: { "Content-Type": "multipart/form-data" },
+//       });
+//       setIsPopupOpen(true); // Show the popup on success
+//     } catch (err) {
+//       console.error("Ödeme işlemi başarısız:", err);
+//       // İsterseniz kullanıcıya hata mesajı gösterebilirsiniz
+//     }
 //   };
 
 //   // Handle closing the popup
@@ -378,9 +708,9 @@ export default function CheckoutForm() {
 //         {/* Şəhər Dropdown */}
 //         <div className="form-group">
 //           <select id="city" name="city">
-//             <option value="Bakı">Bakı</option>
-//             <option value="Gəncə">Gəncə</option>
-//             <option value="Sumqayıt">Sumqayıt</option>
+//             {deliveryData.map((region) =>(
+//               <option key={region.id} value={region.id}>{region.name_az} | {region.name_ru}</option>
+//             ))}
 //           </select>
 //         </div>
 
@@ -461,3 +791,4 @@ export default function CheckoutForm() {
 //     </div>
 //   );
 // }
+// ! adding checkout form with popup functionality

@@ -90,6 +90,22 @@ async function getTranslations() {
   }
 }
 
+
+async function getDeliveryRegions() {
+  const cookieStore = await cookies();
+  const lang = cookieStore.get("NEXT_LOCALE");
+  try {
+    const { data: home } = await axiosInstance.get(`/delivery-regions`, {
+      // headers: { Lang: lang.value },
+      cache: "no-store",
+    });
+    return home;
+  } catch (error) {
+    console.error("Failed to home page data", error);
+    throw error;
+  }
+}
+
 async function getCategoryeData() {
   const cookieStore = await cookies();
   const lang = cookieStore.get("NEXT_LOCALE");
@@ -109,10 +125,15 @@ const page = async () => {
   const t = await getTranslations();
   const categoryResponse = await getCategoryeData();
   const categoryData = categoryResponse?.categories || [];
+  const deliveryRegionResponse = await getDeliveryRegions();
+  const deliveryData = deliveryRegionResponse?.data|| [];
+  console.log(deliveryData);
+  
+  
   return (
     <div>
       <Header t={t} categoryData={categoryData} />
-      <Checkout />
+      <Checkout t={t} deliveryData={deliveryData} />
       <Footer t={t} />
     </div>
   );
