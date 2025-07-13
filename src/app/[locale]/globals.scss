@@ -6183,3 +6183,103 @@ form .blackButton {
 .searchContainer input {
   position: relative;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//! cart badge
+
+
+// Cart Badge stilleri - header.scss faylına əlavə edin
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #ec1f27;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  z-index: 10;
+  
+  // Animasiya əlavə etmək üçün
+  animation: badgeAppear 0.3s ease-out;
+  
+  // Kiçik ekranlar üçün
+  @media (max-width: 768px) {
+    top: -6px;
+    right: -6px;
+    font-size: 1rem;
+    min-width: 16px;
+    height: 16px;
+    padding: 1px 4px;
+  }
+}
+
+// Badge animasiyası
+@keyframes badgeAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Hover effekti
+.rightPagesIcon:hover .cart-badge,
+.mobileFixedButton:hover .cart-badge {
+  background-color: #ff2222;
+  transform: scale(1.1);
+  transition: all 0.2s ease;
+}
+
+// Button position əlavə etmək lazımdır
+.rightPagesIcon button,
+.mobileFixedButton button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
