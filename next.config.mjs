@@ -16,6 +16,10 @@ const nextConfig = {
         hostname: "dev-admin.barkodelectronics.az",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "img.youtube.com",
+      },
     ],
   },
 

@@ -2300,6 +2300,49 @@ ul {
 
 
 
+.sort-select {
+  width: 18rem !important;
+  border: 1.2px solid #ced2e2 !important;
+  border-radius: 10px !important;
+  font-size: 1.6rem !important;
+}
+
+.sort-select :global(.react-select__control:hover) {
+  border-color: red !important;
+}
+
+.sort-select :global(.react-select__option--is-selected) {
+  background-color: #f0f0f0 !important;
+}
+
+.css-16w7ay3-control {
+  border: none !important;
+  border-radius: 10px !important;
+}
+
+.css-16w7ay3-control:active {
+  border-color: #ec1f27 !important;
+}
+
+.css-1ha1dmk-singleValue {
+  font-size: 2rem !important;
+}
+
+
+
+@media (max-width: 768px) {
+  .desktop-filter-title{
+    display: none !important;
+  }
+}
+.filter-and-sort-container{
+  margin-bottom: 3rem !important;
+  margin-right: 1rem !important;
+}
+
+
+
+
 //! ProductsDetailPage  start
 #productsDetailPage {
   .productDPTitle {

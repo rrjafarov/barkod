@@ -114,6 +114,7 @@ const HomePage = async () => {
   const homeResponse = await getHomePageData();
   const categoryResponse = await getCategoryeData();
   const categoryData = categoryResponse?.categories || [];
+
   const brandsResponse = await getBrandsData();
   const brandData = brandsResponse?.brands || [];
 
@@ -147,7 +148,7 @@ const HomePage = async () => {
         brandData={brandData}
         homePageDataBrands={homePageDataBrands}
       />
-      <Footer t={t} />
+      <Footer  t={t} />
     </div>
   );
 };

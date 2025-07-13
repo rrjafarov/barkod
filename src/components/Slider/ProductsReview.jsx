@@ -90,8 +90,8 @@ const HomePageProductsCard = ({t, homePageDataVideo }) => {
                 >
                   <div className="productsReviewCard">
                     <Image
-                      src="/images/homeBanner.png"
-                      // src={video.video_thumbnail}
+                      // src="/images/homeBanner.png"
+                      src={video.video_thumbnail}
                       className="reviewCardImage"
                       alt="review"
                       width={800}
