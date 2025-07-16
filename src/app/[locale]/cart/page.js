@@ -103,7 +103,9 @@ async function getTranslations() {
 const CartPage = async () => {
   const t = await getTranslations();
   const categoryResponse = await getCategoryeData();
-  const categoryData = categoryResponse?.categories || [];
+  const categoryData = categoryResponse?.categories || [];  
+  const settingData= categoryResponse?.setting || []
+
 
   const cookieStore = await cookies();
   const token = cookieStore.get("token")?.value;
@@ -114,9 +116,9 @@ const CartPage = async () => {
 
   return (
     <div>
-      <Header t={t} categoryData={categoryData} />
+      <Header settingData={settingData} t={t} categoryData={categoryData} />
       <AddToCart t={t} cartData={cartData} />
-      <Footer t={t} />
+      <Footer settingData={settingData} t={t} />
     </div>
   );
 };

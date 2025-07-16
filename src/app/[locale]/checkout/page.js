@@ -52,24 +52,12 @@
 
 // export default page
 
-
 //! Bu en dogrun dur funsiyasiz
 
-
-
-
-
-
-
-
-
-
-
-
-import Checkout from '@/components/Checkout'
-import Footer from '@/components/Footer/Footer'
-import Header from '@/components/Header/Header'
-import React from 'react'
+import Checkout from "@/components/Checkout";
+import Footer from "@/components/Footer/Footer";
+import Header from "@/components/Header/Header";
+import React from "react";
 import { cookies } from "next/headers";
 import axiosInstance from "@/lib/axios";
 
@@ -89,7 +77,6 @@ async function getTranslations() {
     console.log(err);
   }
 }
-
 
 async function getDeliveryRegions() {
   const cookieStore = await cookies();
@@ -125,16 +112,18 @@ const page = async () => {
   const t = await getTranslations();
   const categoryResponse = await getCategoryeData();
   const categoryData = categoryResponse?.categories || [];
+
+  const settingData = categoryResponse?.setting || [];
+
   const deliveryRegionResponse = await getDeliveryRegions();
-  const deliveryData = deliveryRegionResponse?.data|| [];
+  const deliveryData = deliveryRegionResponse?.data || [];
   console.log(deliveryData);
-  
-  
+
   return (
     <div>
-      <Header t={t} categoryData={categoryData} />
+      <Header settingData={settingData} t={t} categoryData={categoryData} />
       <Checkout t={t} deliveryData={deliveryData} />
-      <Footer t={t} />
+      <Footer settingData={settingData} t={t} />
     </div>
   );
 };

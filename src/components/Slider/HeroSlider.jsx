@@ -33,7 +33,7 @@ export default function Home({ homePageDataSlider }) {
             >
               {homePageDataSlider.map((slider) => (
                 <SwiperSlide className="sldr"  key={slider.id} >
-                  <Link href={slider.redirect_url || "#"} className="heroSliderLink">
+                  <Link href={slider.redirect_url || "#"} className="heroSliderLink" target="_blank">
                     <div className="heroSliderItem">
                       {/* <img src={slider.src} alt="de" /> */}
                       <Image

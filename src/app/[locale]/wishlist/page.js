@@ -1,34 +1,10 @@
-// import Footer from '@/components/Footer/Footer'
-// import Header from '@/components/Header/Header'
-// import Wishlist from '@/components/Slider/Wishlist'
-// import React from 'react'
-
-// const page = () => {
-//   return (
-//     <div>
-//         <Header />
-//         <Wishlist />
-//         <Footer />
-//     </div>
-//   )
-// }
-
-// export default page
-
-
-
-
-
-
-
-
 
 // app/wishlist/page.jsx
-import Header from '@/components/Header/Header';
-import Footer from '@/components/Footer/Footer';
-import Wishlist from '@/components/Wishlist'; // Aşağıda yaradacağımız component
-import { cookies } from 'next/headers';
-import axiosInstance from '@/lib/axios';
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
+import Wishlist from "@/components/Wishlist"; // Aşağıda yaradacağımız component
+import { cookies } from "next/headers";
+import axiosInstance from "@/lib/axios";
 
 async function getCategoryeData() {
   const cookieStore = await cookies();
@@ -47,20 +23,20 @@ async function getCategoryeData() {
 
 async function getWishlistData(token, guestUUID, lang) {
   try {
-    const headers = { Lang: lang || 'en' };
+    const headers = { Lang: lang || "en" };
     if (token) {
       headers.Authorization = `Bearer ${token}`;
     } else if (guestUUID) {
-      headers['Guest-UUID'] = guestUUID;
+      headers["Guest-UUID"] = guestUUID;
     }
     // `cache: "no-store"` ilə hər sorğuda yenidən fetch edirik
-    const { data } = await axiosInstance.get('/wishlist', {
+    const { data } = await axiosInstance.get("/wishlist", {
       headers,
-      cache: 'no-store',
+      cache: "no-store",
     });
     return data;
   } catch (error) {
-    console.error('Failed to fetch wishlist data', error);
+    console.error("Failed to fetch wishlist data", error);
     // Backend cavab strukturu: { wishlist: {...} } gözlənirsə, boş struktur qaytaraq
     return { wishlist: { products: [] } };
   }
@@ -83,23 +59,25 @@ async function getTranslations() {
 }
 
 const WishlistPage = async () => {
-    const t = await getTranslations();
+  const t = await getTranslations();
 
   const categoryResponse = await getCategoryeData();
   const categoryData = categoryResponse?.categories || [];
+  const settingData = categoryResponse?.setting || [];
+
   // cookies() yalnız server komponentlərdə işləyir
   const cookieStore = await cookies();
-  const token = cookieStore.get('token')?.value;
-  const guestUUID = cookieStore.get('guest_uuid')?.value;
-  const lang = cookieStore.get('NEXT_LOCALE')?.value || 'en';
+  const token = cookieStore.get("token")?.value;
+  const guestUUID = cookieStore.get("guest_uuid")?.value;
+  const lang = cookieStore.get("NEXT_LOCALE")?.value || "en";
 
   const wishlistData = await getWishlistData(token, guestUUID, lang);
 
   return (
     <div>
-      <Header t={t} categoryData={categoryData} />
+      <Header settingData={settingData} t={t} categoryData={categoryData} />
       <Wishlist t={t} wishlistData={wishlistData} />
-      <Footer t={t} />
+      <Footer settingData={settingData} t={t} />
     </div>
   );
 };

@@ -98,14 +98,15 @@ async function getTranslations() {
 const page = async ({ params }) => {
   const categoryResponse = await getCategoryeData();
   const categoryData = categoryResponse?.categories || [];
+  const settingData= categoryResponse?.setting || []
 
   const t = await getTranslations();
 
   return (
     <div>
-      <Header t={t} categoryData={categoryData} />
+      <Header settingData={settingData}  t={t} categoryData={categoryData} />
       <Login  t={t} />
-      <Footer t={t} />
+      <Footer settingData={settingData} t={t} />
     </div>
   );
 };

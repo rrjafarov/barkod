@@ -6289,3 +6289,63 @@ form .blackButton {
   align-items: center;
   justify-content: center;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#nprogress .bar {
+  height: 7px !important; // default 2px-dir
+  border-radius: 1rem;
+}
+
+#nprogress .bar {
+  background: #ec1f27 !important; // Burada istədiyin rəngi yaz (məs: #08316F, red, green)
+}
+#nprogress .peg {
+  box-shadow: 0 0 10px #ec1f27, 0 0 5px #ec1f27 !important;
+}
+/* Spinner varsa, onu da dəyişə bilərsən */
+#nprogress .spinner-icon {
+  border-top-color: red;
+  border-left-color: red;
+}

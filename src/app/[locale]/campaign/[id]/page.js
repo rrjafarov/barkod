@@ -122,6 +122,8 @@ const CampaignPage = async ({ params }) => {
   const t = await getTranslations();
   const categoryResponse = await getCategoryeData();
   const categoryData = categoryResponse?.categories || [];
+    const settingData= categoryResponse?.setting || []
+
 
   // 4) Ayıklanan ID ile eşleşeni bul
   const campaign = campaigns.find(
@@ -134,10 +136,10 @@ const CampaignPage = async ({ params }) => {
 
   return (
     <div>
-      <Header t={t} categoryData={categoryData} />
+      <Header settingData={settingData} t={t} categoryData={categoryData} />
       {/* Doğru kampanya objesini prop olarak veriyoruz */}
       <CampaignDetailPage campaign={campaign} />
-      <Footer t={t} />
+      <Footer settingData={settingData} t={t} />
     </div>
   );
 };

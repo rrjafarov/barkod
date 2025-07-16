@@ -61,14 +61,17 @@ export default async function Page({ params }) {
 
   const categoryResponse = await getCategoryeData();
   const categoryData = categoryResponse?.categories || [];
+  const settingData= categoryResponse?.setting || {}
+
+
 
   const product = await getProductDetail(slugOrId);
 
   return (
     <>
-      <Header t={t} categoryData={categoryData} />
+      <Header settingData={settingData} t={t} categoryData={categoryData} />
       <ProductsDetailPage t={t} product={product} />
-      <Footer t={t} />
+      <Footer settingData={settingData} t={t} />
     </>
   );
 }

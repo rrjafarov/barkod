@@ -421,7 +421,7 @@ import CategoryIcon from "../../../public/icons/categoryMenuNewIcon.svg";
 import Select from "react-select";
 import CategoryMenu from "@/components/CategoryMenu";
 
-const Header = ({ categoryData, t }) => {
+const Header = ({ categoryData, t ,settingData}) => {
   const router = useRouter();
   const [placeholder, setPlaceholder] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
@@ -608,7 +608,7 @@ const Header = ({ categoryData, t }) => {
           <div className="headerTopRight">
             <div className="contactCall">
               <span>
-                <Link href="tel:*0092">*0092</Link>
+                <Link href={`tel:${settingData.tel_short}`}>{settingData.tel_short}</Link>
               </span>
             </div>
 

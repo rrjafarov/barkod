@@ -48,7 +48,7 @@
 import "./globals.scss";
 import StoreProvider from "@/redux/StoreProvider";
 import GuestUUIDProvider from "@/utils/GuestUUIDProvider";
-
+import NavigationProgress from "../../components/NavigationProgress";
 export const metadata = {
   title: "Barkod Electronics",
   description: "Barkod Electronics",
@@ -62,6 +62,7 @@ export default function RootLayout({ children }) {
         <StoreProvider>
           {/* guest_uuid cookie-nin yazılması */}
           <GuestUUIDProvider />  
+          <NavigationProgress />
           {children}
         </StoreProvider>
       </body>

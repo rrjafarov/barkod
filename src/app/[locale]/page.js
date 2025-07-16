@@ -73,8 +73,6 @@ async function getTranslations() {
   }
 }
 
-
-
 export async function generateMetadata() {
   const homePageResponse = await getHomePageData();
   const seo = homePageResponse.seo || {};
@@ -114,6 +112,7 @@ const HomePage = async () => {
   const homeResponse = await getHomePageData();
   const categoryResponse = await getCategoryeData();
   const categoryData = categoryResponse?.categories || [];
+  const settingData= categoryResponse?.setting || []
 
   const brandsResponse = await getBrandsData();
   const brandData = brandsResponse?.brands || [];
@@ -128,7 +127,7 @@ const HomePage = async () => {
 
   return (
     <div>
-      <Header t={t} categoryData={categoryData} />
+      <Header settingData={settingData} t={t} categoryData={categoryData} />
       <HeroSlider homePageDataSlider={homePageDataSlider} />
       <HomePageStaticInfo t={t} />
       <HomePageProductsCard
@@ -142,13 +141,13 @@ const HomePage = async () => {
         t={t}
         homePageDataBestSellingProducts={homePageDataBestSellingProducts}
       />
-      <ProductsReview t={t} homePageDataVideo={homePageDataVideo} />
+      <ProductsReview settingData={settingData} t={t} homePageDataVideo={homePageDataVideo} />
       <HomePageBrands
         t={t}
         brandData={brandData}
         homePageDataBrands={homePageDataBrands}
       />
-      <Footer  t={t} />
+      <Footer  settingData={settingData} t={t} />
     </div>
   );
 };

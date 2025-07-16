@@ -12,7 +12,7 @@ import Masterkart from "../../../public/icons/masterkart.svg";
 import Visa from "../../../public/icons/visa.svg";
 import Image from "next/image";
 
-const Footer = ({t}) => {
+const Footer = ({ t, settingData }) => {
   return (
     <>
       <div className="footer">
@@ -20,11 +20,16 @@ const Footer = ({t}) => {
           <div className="row">
             <div className="xl-2 lg-2 md-3 sm-4">
               <div className="footerLinks">
-                <span className="footerHeadLink">{t?.contact || "Contact"}</span>
+                <span className="footerHeadLink">
+                  {t?.contact || "Contact"}
+                </span>
                 <ul>
                   <li>
-                    <Link className="contactNumber" href="tel:*0092">
-                      *0092
+                    <Link
+                      className="contactNumber"
+                      href={`tel:${settingData.tel_short}`}
+                    >
+                      {settingData.tel_short}
                     </Link>
                   </li>
                 </ul>
@@ -35,7 +40,9 @@ const Footer = ({t}) => {
                 <span className="footerHeadLink">{t?.about || "About"}</span>
                 <ul>
                   <li>
-                    <Link href="/about">{t?.aboutcompany || "About Company"}</Link>
+                    <Link href="/about">
+                      {t?.aboutcompany || "About Company"}
+                    </Link>
                   </li>
                   {/* <li>
                     <Link href="#">Karyera</Link>
@@ -45,13 +52,15 @@ const Footer = ({t}) => {
             </div>
             <div className="xl-2 lg-2 md-4 sm-4">
               <div className="footerLinks">
-                <span className="footerHeadLink">{t?.information || "Melumat"}</span>
+                <span className="footerHeadLink">
+                  {t?.information || "Melumat"}
+                </span>
                 <ul>
                   <li>
                     <Link href="/campaign">{t?.campaigns || "Campaigns"}</Link>
                   </li>
                   <li>
-                    <Link href="/stores">{t?.stores|| "Stores"}</Link>
+                    <Link href="/stores">{t?.stores || "Stores"}</Link>
                   </li>
                   {/* <li>
                     <Link href="#">Brendlər</Link>
@@ -67,13 +76,19 @@ const Footer = ({t}) => {
             </div>
             <div className="xl-3 lg-3 md-4 sm-6">
               <div className="footerLinks">
-                <span className="footerHeadLink">{t?.forcustomers ||"for customers"}</span>
+                <span className="footerHeadLink">
+                  {t?.forcustomers || "for customers"}
+                </span>
                 <ul>
                   <li>
-                    <Link href="#">{t?.deliverypayment || "Delivery and payment"}</Link>
+                    <Link href="#">
+                      {t?.deliverypayment || "Delivery and payment"}
+                    </Link>
                   </li>
                   <li>
-                    <Link href="#">{t?.partofpartterms || "Part of part pay terms"}</Link>
+                    <Link href="#">
+                      {t?.partofpartterms || "Part of part pay terms"}
+                    </Link>
                   </li>
                   <li>
                     <Link href="#">{t?.monthpay || "Month payment"}</Link>
@@ -84,11 +99,13 @@ const Footer = ({t}) => {
             <div className="xl-3 lg-3 md-4 sm-6">
               <div className="footerContact">
                 <div className="footerLinks footerSocialLinks">
-                  <span className="footerHeadLink">{t?.staywithus || "Stay  with us"}</span>
+                  <span className="footerHeadLink">
+                    {t?.staywithus || "Stay  with us"}
+                  </span>
                   <ul>
                     <li>
                       <Link
-                        href="https://www.facebook.com/BarkodElectronics/"
+                        href={settingData?.facebook || "#"}
                         target="_blank"
                       >
                         <button>
@@ -98,7 +115,7 @@ const Footer = ({t}) => {
                     </li>
                     <li>
                       <Link
-                        href="https://www.instagram.com/barkod_az/"
+                        href={settingData.instagram || "#"}
                         target="_blank"
                       >
                         <button>
@@ -108,7 +125,7 @@ const Footer = ({t}) => {
                     </li>
                     <li>
                       <Link
-                        href="https://www.youtube.com/@Barkod_az"
+                        href={settingData.youtube || "#"}
                         target="_blank"
                       >
                         <button>
@@ -116,16 +133,16 @@ const Footer = ({t}) => {
                         </button>
                       </Link>
                     </li>
-                    <li>
+                    {/* <li>
                       <Link href="#">
                         <button>
                           <Telegram className="footSocialIcon" />
                         </button>
                       </Link>
-                    </li>
+                    </li> */}
                     <li>
                       <Link
-                        href="https://wa.me/994552700092"
+                        href={`https://wa.me/${settingData.tel_whatsapp}`}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -142,7 +159,7 @@ const Footer = ({t}) => {
                     </li>
                     <li>
                       <Link
-                        href="https://www.tiktok.com/@barkod_az"
+                        href={settingData.tiktok || "#"}
                         target="_blank"
                       >
                         <button>

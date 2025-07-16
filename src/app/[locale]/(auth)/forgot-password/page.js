@@ -218,10 +218,10 @@ async function getTranslations() {
   }
 }
 
-
 const ForgotPasswordPage = () => {
   const router = useRouter();
   const [categoryData, setCategoryData] = useState([]);
+  const [settingData, setSettingData] = useState([]);
   const [t, setT] = useState({});   
   const [isPopup, setIsPopup] = useState(false);
   const [formData, setFormData] = useState({
@@ -266,6 +266,8 @@ const ForgotPasswordPage = () => {
         if (lang) headers["Lang"] = lang;
         const { data } = await axiosInstance.get("/layouts", { headers });
         setCategoryData(data.categories || []);
+        setSettingData(data.setting || []);
+
       } catch {
         setCategoryData([]);
       }
@@ -317,7 +319,7 @@ const ForgotPasswordPage = () => {
 
   return (
     <>
-      <Header t={t} categoryData={categoryData} />
+      <Header settingData={settingData} t={t} categoryData={categoryData} />
 
       <div className="pages">
         <div className="auth">
@@ -429,7 +431,7 @@ const ForgotPasswordPage = () => {
         </div>
       </div>
 
-      <Footer t={t} />
+      <Footer settingData={settingData} t={t} />
     </>
   );
 };

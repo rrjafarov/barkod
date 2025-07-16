@@ -91,12 +91,14 @@ const page = async () => {
 
   const categoryResponse = await getCategoryeData();
   const categoryData = categoryResponse?.categories || [];
+  const settingData= categoryResponse?.setting || []
+
   
   return (
     <div>
-        <Header t={t} categoryData={categoryData} />
-        <AboutPage t={t} aboutPageDataSlider={aboutPageDataSlider} />
-        <Footer t={t} />
+        <Header settingData={settingData} t={t} categoryData={categoryData} />
+        <AboutPage settingData={settingData} t={t} aboutPageDataSlider={aboutPageDataSlider} />
+        <Footer settingData={settingData} t={t} />
     </div>
   )
 }

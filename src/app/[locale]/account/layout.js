@@ -359,6 +359,7 @@ async function getTranslations() {
 
 const AboutPage = ({ children, params }) => {
   const [categoryData, setCategoryData] = useState([]);
+  const [settingData, setSettingData] = useState([]);
   const [showLogoutPopup, setShowLogoutPopup] = useState(false);
   const [t, setT] = useState({});
   const unwrappedParams = use(params);
@@ -403,6 +404,7 @@ const AboutPage = ({ children, params }) => {
           headers,
         });
         setCategoryData(home?.categories || []);
+        setSettingData(home?.setting || []);
       } catch (error) {
         console.error("Failed to fetch categories:", error);
         setCategoryData([]);
@@ -454,7 +456,7 @@ const AboutPage = ({ children, params }) => {
 
   return (
     <>
-      <Header t={t} categoryData={categoryData} />
+      <Header settingData={settingData} t={t} categoryData={categoryData} />
       <div className="pagesProfile">
         <div className="account">
           <div className="container">
@@ -526,7 +528,7 @@ const AboutPage = ({ children, params }) => {
         </div>
       )}
 
-      <Footer t={t} />
+      <Footer settingData={settingData} t={t} />
     </>
   );
 };

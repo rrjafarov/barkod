@@ -81,7 +81,6 @@ export async function generateMetadata() {
   };
 }
 
-
 const page = async () => {
   const t = await getTranslations();
 
@@ -89,12 +88,13 @@ const page = async () => {
   const campaignPageDataSlider = campaignResponse?.campaigns || [];
   const categoryResponse = await getCategoryeData();
   const categoryData = categoryResponse?.categories || [];
+  const settingData = categoryResponse?.setting || [];
 
   return (
     <div>
-      <Header t={t} categoryData={categoryData} />
+      <Header settingData={settingData} t={t} categoryData={categoryData} />
       <CampaignPage t={t} campaignPageDataSlider={campaignPageDataSlider} />
-      <Footer t={t} />
+      <Footer settingData={settingData} t={t} />
     </div>
   );
 };
