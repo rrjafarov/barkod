@@ -39,6 +39,13 @@
 
 
 
+
+
+
+
+
+
+
 import AddToCart from "@/components/AddToCart";
 import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
@@ -54,15 +61,16 @@ async function getAddToCartData(token, guestUUID, lang) {
       headers["Guest-UUID"] = guestUUID;
     }
 
-    const { data: cart } = await axiosInstance.get(`/cart/list`, {
+    // → Burada artık yalnızca tek bir headers objesi gönderiyoruz
+    const { data: cart } = await axiosInstance.get("/cart/list", {
       headers,
-      headers: { Lang: lang?.value || "az" }, // ← DÜZƏLDILDI
       cache: "no-store",
     });
+
     return cart;
   } catch (error) {
     console.error("Failed to fetch cart data", error);
-    return { cart: {} }; // Boş obyekt qaytarırıq ki, komponent səhv verməsin
+    return { cart: {} };
   }
 }
 
@@ -70,10 +78,8 @@ async function getCategoryeData() {
   const cookieStore = await cookies();
   const lang = cookieStore.get("NEXT_LOCALE");
   try {
-    const { data: home } = await axiosInstance.get(`/layouts`, {
-      // headers: { Lang: lang.value },
-      headers: { Lang: lang?.value || "az" }, // ← DÜZƏLDILDI
-
+    const { data: home } = await axiosInstance.get("/layouts", {
+      headers: { Lang: lang?.value || "az" },
       cache: "no-store",
     });
     return home;
@@ -83,30 +89,13 @@ async function getCategoryeData() {
   }
 }
 
-// async function getTranslations() {
-//   try {
-//     const response = await axiosInstance.get("/translation-list");
-//     const data = response.data;
-
-//     // Array-i obyektə çevir
-//     const translationsObj = data.reduce((acc, item) => {
-//       acc[item.key] = item.value;
-//       return acc;
-//     }, {});
-
-//     return translationsObj;
-//   } catch (err) {
-//     console.log(err);
-//   }
-// }
-
 async function getTranslations() {
   const cookieStore = await cookies();
   const lang = cookieStore.get("NEXT_LOCALE");
 
   try {
     const { data } = await axiosInstance.get("/translation-list", {
-      headers: { Lang: lang?.value || "az" }, // ← DÜZƏLDILDI
+      headers: { Lang: lang?.value || "az" },
       cache: "no-store",
     });
     return data.reduce((acc, item) => {
@@ -142,3 +131,123 @@ const CartPage = async () => {
 };
 
 export default CartPage;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ! Cart isleyir amma  mehsul ortada yoxdur
+// import AddToCart from "@/components/AddToCart";
+// import Footer from "@/components/Footer/Footer";
+// import Header from "@/components/Header/Header";
+// import { cookies } from "next/headers";
+// import axiosInstance from "@/lib/axios";
+
+// async function getAddToCartData(token, guestUUID, lang) {
+//   try {
+//     const headers = { Lang: lang || "en" };
+//     if (token) {
+//       headers.Authorization = `Bearer ${token}`;
+//     } else if (guestUUID) {
+//       headers["Guest-UUID"] = guestUUID;
+//     }
+
+//     const { data: cart } = await axiosInstance.get(`/cart/list`, {
+//       headers,
+//       headers: { Lang: lang?.value || "az" }, // ← DÜZƏLDILDI
+//       cache: "no-store",
+//     });
+//     return cart;
+//   } catch (error) {
+//     console.error("Failed to fetch cart data", error);
+//     return { cart: {} }; // Boş obyekt qaytarırıq ki, komponent səhv verməsin
+//   }
+// }
+
+// async function getCategoryeData() {
+//   const cookieStore = await cookies();
+//   const lang = cookieStore.get("NEXT_LOCALE");
+//   try {
+//     const { data: home } = await axiosInstance.get(`/layouts`, {
+//       // headers: { Lang: lang.value },
+//       headers: { Lang: lang?.value || "az" }, // ← DÜZƏLDILDI
+
+//       cache: "no-store",
+//     });
+//     return home;
+//   } catch (error) {
+//     console.error("Failed to home page data", error);
+//     throw error;
+//   }
+// }
+
+// // async function getTranslations() {
+// //   try {
+// //     const response = await axiosInstance.get("/translation-list");
+// //     const data = response.data;
+
+// //     // Array-i obyektə çevir
+// //     const translationsObj = data.reduce((acc, item) => {
+// //       acc[item.key] = item.value;
+// //       return acc;
+// //     }, {});
+
+// //     return translationsObj;
+// //   } catch (err) {
+// //     console.log(err);
+// //   }
+// // }
+
+// async function getTranslations() {
+//   const cookieStore = await cookies();
+//   const lang = cookieStore.get("NEXT_LOCALE");
+
+//   try {
+//     const { data } = await axiosInstance.get("/translation-list", {
+//       headers: { Lang: lang?.value || "az" }, // ← DÜZƏLDILDI
+//       cache: "no-store",
+//     });
+//     return data.reduce((acc, item) => {
+//       acc[item.key] = item.value;
+//       return acc;
+//     }, {});
+//   } catch (err) {
+//     console.error("Failed to fetch translations:", err);
+//     return {};
+//   }
+// }
+
+// const CartPage = async () => {
+//   const t = await getTranslations();
+//   const categoryResponse = await getCategoryeData();
+//   const categoryData = categoryResponse?.categories || [];
+//   const settingData = categoryResponse?.setting || [];
+
+//   const cookieStore = await cookies();
+//   const token = cookieStore.get("token")?.value;
+//   const guestUUID = cookieStore.get("guest_uuid")?.value;
+//   const lang = cookieStore.get("NEXT_LOCALE")?.value || "en";
+
+//   const cartData = await getAddToCartData(token, guestUUID, lang);
+
+//   return (
+//     <div>
+//       <Header settingData={settingData} t={t} categoryData={categoryData} />
+//       <AddToCart t={t} cartData={cartData} />
+//       <Footer settingData={settingData} t={t} />
+//     </div>
+//   );
+// };
+
+// export default CartPage;
