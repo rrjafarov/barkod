@@ -20,17 +20,37 @@ async function getCategoryData() {
   }
 }
 
+// async function getTranslations() {
+//   try {
+//     const response = await axiosInstance.get("/translation-list");
+//     const data = response.data;
+//     return data.reduce((acc, item) => {
+//       acc[item.key] = item.value;
+//       return acc;
+//     }, {});
+//   } catch (err) {
+//     console.error("Failed to fetch translations", err);
+//     throw err;
+//   }
+// }
+
+
 async function getTranslations() {
+  const cookieStore = await cookies();
+  const lang = cookieStore.get("NEXT_LOCALE");
+
   try {
-    const response = await axiosInstance.get("/translation-list");
-    const data = response.data;
+    const { data } = await axiosInstance.get("/translation-list", {
+      headers: { Lang: lang?.value || "az" }, // ← DÜZƏLDILDI
+      cache: "no-store",
+    });
     return data.reduce((acc, item) => {
       acc[item.key] = item.value;
       return acc;
     }, {});
   } catch (err) {
-    console.error("Failed to fetch translations", err);
-    throw err;
+    console.error("Failed to fetch translations:", err);
+    return {};
   }
 }
 
@@ -82,7 +102,7 @@ const Page = async () => {
   const t = await getTranslations();
   const categoryResp = await getCategoryData();
   const categoryData = categoryResp?.categories || [];
-  const settingData = categoryResponse?.setting || [];
+  const settingData = categoryResp?.setting || [];
 
   const branchesResponse = await getBranchesData();
   const branchesData = branchesResponse?.branches || [];

@@ -92,6 +92,7 @@
 
 
 
+
 import React from "react";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
@@ -113,8 +114,13 @@ function findCategoryBySlug(categoriesList, targetSlug) {
 }
 
 async function getTranslations() {
+  const cookieStore = await cookies();
+  const lang = cookieStore.get("NEXT_LOCALE");
+  
   try {
-    const response = await axiosInstance.get("/translation-list");
+    const response = await axiosInstance.get("/translation-list", {
+      headers: { Lang: lang?.value || "az" }, // ← Lang header əlavə edildi
+    });
     const data = response.data;
 
     // Array-i obyektə çevir
@@ -126,14 +132,20 @@ async function getTranslations() {
     return translationsObj;
   } catch (err) {
     console.log(err);
+    return {}; // ← Boş obyekt qaytarırıq
   }
 }
 
 async function getBestSellerProducts(categorySlug) {
   if (!categorySlug) return [];
   
+  const cookieStore = await cookies();
+  const lang = cookieStore.get("NEXT_LOCALE");
+  
   try {
-    const response = await axiosInstance.get(`/product-list?is_best_seller=1&cat_slug=${categorySlug}`);
+    const response = await axiosInstance.get(`/product-list?is_best_seller=1&cat_slug=${categorySlug}`, {
+      headers: { Lang: lang?.value || "az" }, // ← Lang header əlavə edildi
+    });
     return response.data || [];
   } catch (err) {
     console.error("Best seller məhsulları fetch xətası:", err);
@@ -149,9 +161,9 @@ const page = async ({ searchParams }) => {
   let subCategories = [];
   let categoryData = [];
   let bestSellerProducts = [];
-  let settingData = {}; // burada saxlayacağıq
+  let settingData = {};
 
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const localeCookie = cookieStore.get("NEXT_LOCALE")?.value;
   const lang = localeCookie || "az";
 
@@ -223,14 +235,7 @@ export default page;
 
 
 
-
-
-
-
-
-
-// ! en cox satilanlar 
-
+//  !    SOS dil deyisimi duzgun islemir
 // import React from "react";
 // import Header from "@/components/Header/Header";
 // import Footer from "@/components/Footer/Footer";
@@ -288,6 +293,7 @@ export default page;
 //   let subCategories = [];
 //   let categoryData = [];
 //   let bestSellerProducts = [];
+//   let settingData = {}; // burada saxlayacağıq
 
 //   const cookieStore = cookies();
 //   const localeCookie = cookieStore.get("NEXT_LOCALE")?.value;
@@ -297,6 +303,9 @@ export default page;
 //     const res = await axiosInstance.get("/layouts", {
 //       headers: { Lang: lang },
 //     });
+
+//     // settings və categories obyektlərini çıxarırıq
+//     settingData = res.data?.setting || {};
 
 //     const rootCats = Array.isArray(res.data?.categories)
 //       ? res.data.categories
@@ -318,18 +327,48 @@ export default page;
 //     matchedCategory = null;
 //     subCategories = [];
 //     categoryData = [];
+//     settingData = {};
 //   }
   
 
 //   return (
 //     <div>
-//       <Header t={t} categoryData={categoryData} />
+//       <Header 
+//         t={t} 
+//         categoryData={categoryData} 
+//         settingData={settingData} 
+//       />
       
-//       <CategoryPage t={t} category={matchedCategory} subCategories={subCategories} />
-//       <CategoryBestSeller t={t} bestSellerProducts={bestSellerProducts?.products?.data} categorySlug={slug} />
-//       <Footer t={t} />
+//       <CategoryPage 
+//         t={t} 
+//         category={matchedCategory} 
+//         subCategories={subCategories} 
+//       />
+//       <CategoryBestSeller 
+//         t={t} 
+//         bestSellerProducts={bestSellerProducts?.products?.data} 
+//         categorySlug={slug} 
+//       />
+//       <Footer 
+//         t={t} 
+//         settingData={settingData} 
+//       />
 //     </div>
 //   );
 // };
 
 // export default page;
+
+
+
+
+
+
+
+
+
+
+
+
+
+

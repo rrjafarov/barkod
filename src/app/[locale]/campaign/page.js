@@ -11,6 +11,8 @@ async function getCampaignsPageData() {
   try {
     const { data: campaign } = await axiosInstance.get(`/campaigns`, {
       // headers: { Lang: lang.value },
+      headers: { Lang: lang?.value || "az" }, // ← DÜZƏLDILDI
+
       cache: "no-store",
     });
     return campaign;
@@ -26,6 +28,7 @@ async function getCategoryeData() {
   try {
     const { data: home } = await axiosInstance.get(`/layouts`, {
       // headers: { Lang: lang.value },
+      headers: { Lang: lang?.value || "az" }, // ← DÜZƏLDILDI
       cache: "no-store",
     });
     return home;
@@ -35,20 +38,39 @@ async function getCategoryeData() {
   }
 }
 
-async function getTranslations() {
-  try {
-    const response = await axiosInstance.get("/translation-list");
-    const data = response.data;
+// async function getTranslations() {
+//   try {
+//     const response = await axiosInstance.get("/translation-list");
+//     const data = response.data;
 
-    // Array-i obyektə çevir
-    const translationsObj = data.reduce((acc, item) => {
+//     // Array-i obyektə çevir
+//     const translationsObj = data.reduce((acc, item) => {
+//       acc[item.key] = item.value;
+//       return acc;
+//     }, {});
+
+//     return translationsObj;
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
+
+async function getTranslations() {
+  const cookieStore = await cookies();
+  const lang = cookieStore.get("NEXT_LOCALE");
+
+  try {
+    const { data } = await axiosInstance.get("/translation-list", {
+      headers: { Lang: lang?.value || "az" }, // ← DÜZƏLDILDI
+      cache: "no-store",
+    });
+    return data.reduce((acc, item) => {
       acc[item.key] = item.value;
       return acc;
     }, {});
-
-    return translationsObj;
   } catch (err) {
-    console.log(err);
+    console.error("Failed to fetch translations:", err);
+    return {};
   }
 }
 

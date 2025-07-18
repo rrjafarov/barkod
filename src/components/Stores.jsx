@@ -262,7 +262,7 @@ const Stores = ({ t, branchesData }) => {
                 <div className="storeSearch">
                   <input
                     type="search"
-                    placeholder={t.search}
+                    placeholder={t?.search}
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />

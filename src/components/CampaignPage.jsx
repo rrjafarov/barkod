@@ -27,12 +27,11 @@ const CampaignPage = ({ campaignPageDataSlider ,t }) => {
           <div className="row">
             {campaignPageDataSlider.map((campaign) => (
               <div className="xl-3 lg-3 md-6 sm-12" key={campaign.id}>
-                <Link className="blockCardLink" href="/campaign/id">
+                <Link className="blockCardLink" href={`/campaign/${campaign.slug}`}>
                   <div className="campaignPageCard">
                     <div className="campaignPageCardItem">
                       <div className="campaignPageCardImage">
                         <Image
-                          // src="/images/campaignImage.png"
                           src={campaign.img_url}
                           alt="campaign"
                           width={800}

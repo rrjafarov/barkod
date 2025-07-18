@@ -39,9 +39,6 @@
 
 
 
-
-
-
 import AddToCart from "@/components/AddToCart";
 import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
@@ -59,6 +56,7 @@ async function getAddToCartData(token, guestUUID, lang) {
 
     const { data: cart } = await axiosInstance.get(`/cart/list`, {
       headers,
+      headers: { Lang: lang?.value || "az" }, // ← DÜZƏLDILDI
       cache: "no-store",
     });
     return cart;
@@ -74,6 +72,8 @@ async function getCategoryeData() {
   try {
     const { data: home } = await axiosInstance.get(`/layouts`, {
       // headers: { Lang: lang.value },
+      headers: { Lang: lang?.value || "az" }, // ← DÜZƏLDILDI
+
       cache: "no-store",
     });
     return home;
@@ -83,29 +83,47 @@ async function getCategoryeData() {
   }
 }
 
-async function getTranslations() {
-  try {
-    const response = await axiosInstance.get("/translation-list");
-    const data = response.data;
+// async function getTranslations() {
+//   try {
+//     const response = await axiosInstance.get("/translation-list");
+//     const data = response.data;
 
-    // Array-i obyektə çevir
-    const translationsObj = data.reduce((acc, item) => {
+//     // Array-i obyektə çevir
+//     const translationsObj = data.reduce((acc, item) => {
+//       acc[item.key] = item.value;
+//       return acc;
+//     }, {});
+
+//     return translationsObj;
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
+
+async function getTranslations() {
+  const cookieStore = await cookies();
+  const lang = cookieStore.get("NEXT_LOCALE");
+
+  try {
+    const { data } = await axiosInstance.get("/translation-list", {
+      headers: { Lang: lang?.value || "az" }, // ← DÜZƏLDILDI
+      cache: "no-store",
+    });
+    return data.reduce((acc, item) => {
       acc[item.key] = item.value;
       return acc;
     }, {});
-
-    return translationsObj;
   } catch (err) {
-    console.log(err);
+    console.error("Failed to fetch translations:", err);
+    return {};
   }
 }
 
 const CartPage = async () => {
   const t = await getTranslations();
   const categoryResponse = await getCategoryeData();
-  const categoryData = categoryResponse?.categories || [];  
-  const settingData= categoryResponse?.setting || []
-
+  const categoryData = categoryResponse?.categories || [];
+  const settingData = categoryResponse?.setting || [];
 
   const cookieStore = await cookies();
   const token = cookieStore.get("token")?.value;

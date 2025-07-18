@@ -6,7 +6,7 @@ import {
   MdKeyboardArrowRight,
 } from "react-icons/md";
 
-const CompaignDetailPage = ({campaign}) => {
+const CompaignDetailPage = ({campaign ,t}) => {
   return (
     <>
       <div className="container">
@@ -18,13 +18,13 @@ const CompaignDetailPage = ({campaign}) => {
             <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />
           </strong>
           <Link href="/campaign">
-            <span>Kampaniyalar</span>
+            <span>{t?.campaigns || "Kampaniya"}</span>
           </Link>
           <strong>
             <MdKeyboardArrowRight className="breadCrumpIcon" />
           </strong>
           <Link href="#">
-            <span className="lastChildBread" >Bahar kampaniyası</span>
+            <span className="lastChildBread">{campaign.title}</span>
           </Link>
         </div>
       </div>

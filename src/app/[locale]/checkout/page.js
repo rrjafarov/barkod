@@ -61,28 +61,50 @@ import React from "react";
 import { cookies } from "next/headers";
 import axiosInstance from "@/lib/axios";
 
-async function getTranslations() {
-  try {
-    const response = await axiosInstance.get("/translation-list");
-    const data = response.data;
 
-    // Array-i obyektə çevir
-    const translationsObj = data.reduce((acc, item) => {
+
+async function getTranslations() {
+  const cookieStore = await cookies();
+  const lang = cookieStore.get("NEXT_LOCALE");
+
+  try {
+    const { data } = await axiosInstance.get("/translation-list", {
+      headers: { Lang: lang?.value || "az" }, // ← DÜZƏLDILDI
+      cache: "no-store",
+    });
+    return data.reduce((acc, item) => {
       acc[item.key] = item.value;
       return acc;
     }, {});
-
-    return translationsObj;
   } catch (err) {
-    console.log(err);
+    console.error("Failed to fetch translations:", err);
+    return {};
   }
 }
+// async function getTranslations() {
+//   try {
+//     const response = await axiosInstance.get("/translation-list");
+//     const data = response.data;
+
+//     // Array-i obyektə çevir
+//     const translationsObj = data.reduce((acc, item) => {
+//       acc[item.key] = item.value;
+//       return acc;
+//     }, {});
+
+//     return translationsObj;
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
 
 async function getDeliveryRegions() {
   const cookieStore = await cookies();
   const lang = cookieStore.get("NEXT_LOCALE");
   try {
     const { data: home } = await axiosInstance.get(`/delivery-regions`, {
+      headers: { Lang: lang?.value || "az" }, // ← DÜZƏLDILDI
+
       // headers: { Lang: lang.value },
       cache: "no-store",
     });
@@ -98,6 +120,8 @@ async function getCategoryeData() {
   const lang = cookieStore.get("NEXT_LOCALE");
   try {
     const { data: home } = await axiosInstance.get(`/layouts`, {
+      headers: { Lang: lang?.value || "az" }, // ← DÜZƏLDILDI
+
       // headers: { Lang: lang.value },
       cache: "no-store",
     });
