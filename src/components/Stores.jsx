@@ -1,126 +1,3 @@
-// "use client";
-// import React, { useState } from "react";
-// import { FaLocationDot } from "react-icons/fa6";
-// import { MdKeyboardDoubleArrowRight } from "react-icons/md";
-// import Link from "next/link";
-
-// const storesData = [
-//   {
-//     id: 1,
-//     name: "Baş ofis",
-//     address: "208 Ahmad Rajabli, Baku 1052",
-//     contact: "+994777773344",
-//     hours: "10:00-19:00",
-//     mapSrc:
-//       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3025.9893874785475!2d49.859489375840646!3d40.412040455925116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4030873391b938e5%3A0x64ded33536aa5a06!2sBarkod!5e1!3m2!1str!2saz!4v1745356067117!5m2!1str!2saz",
-//   },
-//   {
-//     id: 2,
-//     name: "Xaçmaz Filialımız",
-//     address: "208 Ahmad Rajabli, Baku 1052",
-//     contact: "+994777773344",
-//     hours: "10:00-19:00",
-//     mapSrc:
-//       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3031.982515268272!2d48.948490375842!3d41.564890455925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40398f06377ed865%3A0x123456789abcdef0!2sXacmaz!5e1!3m2!1str!2saz!4v1745356067117!5m2!1str!2saz",
-//   },
-// ];
-
-// const Stores = ({ t , branchesData }) => {
-//   const [searchTerm, setSearchTerm] = React.useState("");
-//   const [selectedMapSrc, setSelectedMapSrc] = React.useState(
-//     storesData[0].mapSrc
-//   ); 
-
-//   // Arama filtreleme için kullanılacak
-//   const filteredStores = storesData.filter((store) =>
-//     store.name.toLowerCase().includes(searchTerm.toLowerCase())
-//   );
-
-//   return (
-//     <div className="container">
-//       <div className="breadCrumb">
-//         <Link href="/">
-//           <span>{t?.homebreadcrumbs || "Home Page"}</span>
-//         </Link>
-//         <strong>
-//           <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />
-//         </strong>
-//         <Link href="#">
-//           <span className="lastChildBread">{t?.stores || "stores"}</span>
-//         </Link>
-//       </div>
-//       <div className="row">
-//         <div className="xl-3 lg-3 md-3 sm-12">
-//           <div className="stores">
-//             <div className="row">
-//               <div className="xl-12 lg-12 md-12 sm-12">
-//                 <div className="storeSearch">
-//                   <input
-//                     type="search"
-//                     placeholder={t.search}
-//                     value={searchTerm}
-//                     onChange={(e) => setSearchTerm(e.target.value)}
-//                   />
-//                 </div>
-//                 {filteredStores.map((store) => (
-//                   <div
-//                     key={store.id}
-//                     className="storesCard"
-//                     style={{ cursor: "pointer" }}
-//                     onClick={() => setSelectedMapSrc(store.mapSrc)}
-//                   >
-//                     <div className="storesCardItem">
-//                       <div className="storesCardItemTitle">
-//                         <h5>{store.name}</h5>
-//                         <FaLocationDot className="storeLocationIcon" />
-//                       </div>
-//                       <p className="storesCardItemSubTitle">{store.address}</p>
-//                       <div className="storesCardItemFooterTitle">
-//                         <strong>
-//                           {t?.contact || "contact"}: <span>{store.contact}</span>
-//                         </strong>
-//                         <span>{store.hours}</span>
-//                       </div>
-//                     </div>
-//                   </div>
-//                 ))}
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-
-//         <div className="xl-9 lg-9 md-9 sm-12">
-//           <div className="storesMap">
-//             <iframe
-//               src={selectedMapSrc}
-//               width="1000"
-//               height="500"
-//               style={{ border: 0 }}
-//               allowFullScreen
-//               loading="lazy"
-//               referrerPolicy="no-referrer-when-downgrade"
-//             ></iframe>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Stores;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // "use client";
 // import React, { useState } from "react";
@@ -132,9 +9,8 @@
 //   const [searchTerm, setSearchTerm] = useState("");
 //   const [selectedMapSrc, setSelectedMapSrc] = useState(
 //     branchesData[0]?.location || ""
-//   ); // Default ilk şubenin haritası
+//   );
 
-//   // Arama filtreleme için kullanılacak
 //   const filteredStores = branchesData.filter((store) =>
 //     store.branch_name.toLowerCase().includes(searchTerm.toLowerCase())
 //   );
@@ -160,7 +36,7 @@
 //                 <div className="storeSearch">
 //                   <input
 //                     type="search"
-//                     placeholder={t.search}
+//                     placeholder={t?.search}
 //                     value={searchTerm}
 //                     onChange={(e) => setSearchTerm(e.target.value)}
 //                   />
@@ -169,7 +45,11 @@
 //                   <div
 //                     key={store.id}
 //                     className="storesCard"
-//                     style={{ cursor: "pointer" }}
+//                     style={{
+//                       cursor: "pointer",
+//                       borderWidth:
+//                         store.location === selectedMapSrc ? "3px" : "1px",
+//                     }}
 //                     onClick={() => setSelectedMapSrc(store.location)}
 //                   >
 //                     <div className="storesCardItem">
@@ -177,7 +57,9 @@
 //                         <h5>{store.branch_name}</h5>
 //                         <FaLocationDot className="storeLocationIcon" />
 //                       </div>
-//                       <p className="storesCardItemSubTitle">{store.address}</p>
+//                       <p className="storesCardItemSubTitle">
+//                         {store.address}
+//                       </p>
 //                       <div className="storesCardItemFooterTitle">
 //                         <strong>
 //                           {t?.contact || "contact"}: <span>{store.tel}</span>
@@ -220,9 +102,7 @@
 
 
 
-
-
-
+// ?------------
 
 
 "use client";
@@ -267,34 +147,49 @@ const Stores = ({ t, branchesData }) => {
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
                 </div>
-                {filteredStores.map((store) => (
-                  <div
-                    key={store.id}
-                    className="storesCard"
-                    style={{
-                      cursor: "pointer",
-                      borderWidth:
-                        store.location === selectedMapSrc ? "3px" : "1px",
-                    }}
-                    onClick={() => setSelectedMapSrc(store.location)}
-                  >
-                    <div className="storesCardItem">
-                      <div className="storesCardItemTitle">
-                        <h5>{store.branch_name}</h5>
-                        <FaLocationDot className="storeLocationIcon" />
-                      </div>
-                      <p className="storesCardItemSubTitle">
-                        {store.address}
-                      </p>
-                      <div className="storesCardItemFooterTitle">
-                        <strong>
-                          {t?.contact || "contact"}: <span>{store.tel}</span>
-                        </strong>
-                        <span>{store.working_time}</span>
+                
+                {/* Scrollable container for store cards */}
+                <div 
+                  className="storesCardsContainer"
+                  style={{
+                    height: "500px", // Increased height
+                    overflowY: "auto",
+                    overflowX: "hidden",
+                    padding: "5px 12px", // Reduced top/bottom padding to 5px
+                    scrollbarWidth: "thin", // For Firefox
+                    scrollbarColor: "#ec1f27 #f1f1f1" // For Firefox - orange scrollbar
+                  }}
+                >
+                  {filteredStores.map((store) => (
+                    <div
+                      key={store.id}
+                      className="storesCard"
+                      style={{
+                        cursor: "pointer",
+                        borderWidth:
+                          store.location === selectedMapSrc ? "3px" : "1px",
+                        marginBottom: "15px" // Add some spacing between cards
+                      }}
+                      onClick={() => setSelectedMapSrc(store.location)}
+                    >
+                      <div className="storesCardItem">
+                        <div className="storesCardItemTitle">
+                          <h5>{store.branch_name}</h5>
+                          <FaLocationDot className="storeLocationIcon" />
+                        </div>
+                        <p className="storesCardItemSubTitle">
+                          {store.address}
+                        </p>
+                        <div className="storesCardItemFooterTitle">
+                          <strong>
+                            {t?.contact || "contact"}: <span>{store.tel}</span>
+                          </strong>
+                          <span>{store.working_time}</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -305,7 +200,7 @@ const Stores = ({ t, branchesData }) => {
             <iframe
               src={selectedMapSrc}
               width="1000"
-              height="500"
+              height="600"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
@@ -319,3 +214,24 @@ const Stores = ({ t, branchesData }) => {
 };
 
 export default Stores;
+
+// Add this CSS to your stylesheet or as a style tag
+const scrollbarStyles = `
+  .storesCardsContainer::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .storesCardsContainer::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+  
+  .storesCardsContainer::-webkit-scrollbar-thumb {
+    background: #ec1f27;
+    border-radius: 10px;
+  }
+  
+  .storesCardsContainer::-webkit-scrollbar-thumb:hover {
+    background: #d11a24;
+  }
+`;

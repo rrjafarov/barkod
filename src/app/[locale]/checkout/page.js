@@ -52,6 +52,12 @@
 
 // export default page
 
+
+
+
+
+
+
 //! Bu en dogrun dur funsiyasiz
 
 import Checkout from "@/components/Checkout";

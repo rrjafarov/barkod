@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 $MainColor: #ec1f27 !important;
 
 .cls-1 {
@@ -81,7 +82,9 @@ body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  font-family: "Inter Tight", sans-serif !important;
+  // font-family: "Inter Tight", sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
+  
 }
 
 html {
@@ -418,7 +421,8 @@ button {
   cursor: pointer;
   padding: 0;
   border: none;
-  font-family: "Inter Tight", sans-serif !important;
+  // font-family: "Inter Tight", sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
 }
 
 button,
@@ -878,7 +882,7 @@ ul {
 .productsHeadTitle {
   margin: 5rem 0 3rem;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 5rem;
 
@@ -1274,7 +1278,7 @@ ul {
   margin-top: 10rem;
   padding: 2rem 0;
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
   align-items: center;
 
   .secondaryTitleLeft {
@@ -1302,8 +1306,8 @@ ul {
       border: 1px solid lightgray;
       border-radius: 3rem;
       color: $MainColor;
-      padding: 0.4rem 1rem;
-      font-size: 1.2rem;
+      padding: 0.6rem 1.3rem;
+      font-size: 1.4rem;
       // cursor: pointer;
     }
 
@@ -3027,6 +3031,7 @@ ul {
   padding: 2rem 0;
   width: 100%;
   height: 60rem;
+  // height: 100%;
   border-radius: 1rem;
 
   iframe {
@@ -3425,6 +3430,7 @@ ul {
 
       .campaignPageCardTitle {
         padding: 2rem 1rem 3rem;
+        height: 7rem;
 
         span {
           display: -webkit-box;
@@ -3996,6 +4002,7 @@ ul {
 
 .form-group input[type="text"],
 .form-group input[type="email"],
+.form-group input[type="tel"],
 .form-group select {
   width: 100%;
   padding: 1.5rem 1.2rem;
@@ -4005,9 +4012,18 @@ ul {
 
   &::placeholder {
     opacity: 0.8;
-    font-family: "Inter Tight", sans-serif !important;
+    // font-family: "Inter Tight", sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
+
 
   }
+}
+.form-group textarea{
+  width: 100%;
+  padding: 1.5rem 1.2rem;
+  border: 1px solid #a8a8a8;
+  border-radius: 1rem;
+  box-sizing: border-box;
 }
 
 .adreesInput {
@@ -4017,7 +4033,9 @@ ul {
 .form-group select {
   // color: gray;
   opacity: 0.8;
-  font-family: "Inter Tight", sans-serif !important;
+  // font-family: "Inter Tight", sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
+
 }
 
 .priceTitleSegment {

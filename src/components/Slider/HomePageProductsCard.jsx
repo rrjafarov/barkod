@@ -610,8 +610,8 @@ const HomePageProductsCard = ({
   // Tabs
   const tabs = useMemo(
     () => [
-      { id: "discounted", label: t?.discounted || "Discounted" },
       { id: "bestselling", label: t?.bestselling || "Best Selling" },
+      { id: "discounted", label: t?.discounted || "Discounted" },
       { id: "latestproducts", label: t?.latestproducts || "LatestProducts" },
     ],
     [t]

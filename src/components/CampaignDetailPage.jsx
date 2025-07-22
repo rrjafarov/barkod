@@ -55,7 +55,7 @@ const CompaignDetailPage = ({campaign ,t}) => {
                         <div className="campaignDetailPageCardTopText">
                           <span>
                             Tarixinə qədər etibarlıdır{" "}
-                            <strong>30.04.2025</strong>
+                            <strong>{campaign.end_date}</strong>
                           </span>
                         </div>
                         <h6>Promosyonun sonuna qədər</h6>

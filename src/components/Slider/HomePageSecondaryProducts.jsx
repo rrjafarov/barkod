@@ -356,9 +356,9 @@ const HomePageSecondaryProducts = ({
         </div>
       )}
       <div className="secondaryProductsHeadTitle">
-        <div className="secondaryTitleLeft">
+        {/* <div className="secondaryTitleLeft">
           <span>{t?.bestselling || "En chox satilanlar"}</span>
-        </div>
+        </div> */}
         <div className="secondaryTitleRight">
           <strong>Top 100</strong>
           <span>Smartfonlar</span>
