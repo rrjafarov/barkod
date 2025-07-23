@@ -84,7 +84,7 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
 // countDown
 const { Text } = Typography;
 
-const HomePageCountProduct = () => {
+const HomePageCountProduct = ({t}) => {
   const total = 300;
   const sold = 50;
   const available = total - sold;
@@ -96,7 +96,7 @@ const HomePageCountProduct = () => {
     <div id="homePageCountProduct">
       <div className="container">
         <div className="homePageCountProductTitle">
-          <span>Deals of the day</span>
+          <span>{t?.dealsday	|| "Deals of the day"}</span>
         </div>
         <Swiper
           slidesPerView={2}
@@ -149,16 +149,6 @@ const HomePageCountProduct = () => {
                 />
               </div>
               <div className="homePageCountProductsContent">
-                {/* <div className="countDownRating">
-                  <Box>
-                    <Rating
-                      name="star-rating"
-                      value={value}
-                      onChange={(event, newValue) => setValue(newValue)}
-                    />
-                  </Box>
-                  <p>({value})</p>
-                </div> */}
 
                 <span className="miniTitle">Mobile&Tablet</span>
                 <h5 className="productsMiniTitle">Galaxy Smart Phone</h5>
