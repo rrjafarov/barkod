@@ -12,7 +12,7 @@ const nextConfig = {
       {
         // protocol: "https",
         protocol: "https",
-        hostname: "//",
+        // hostname: "//",
         hostname: "dev-admin.barkodelectronics.az",
         pathname: "/**",
       },
