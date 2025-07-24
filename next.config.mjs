@@ -11,13 +11,13 @@ const nextConfig = {
     remotePatterns: [
       {
         // protocol: "https",
-        protocol: "https//",
-        // hostname: "//",
+        protocol: "https",
+        hostname: "//",
         hostname: "dev-admin.barkodelectronics.az",
         pathname: "/**",
       },
       {
-        protocol: "https//",
+        protocol: "https",
         hostname: "img.youtube.com",
       },
     ],
