@@ -87,7 +87,8 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'dev-admin.barkodelectronics.az',
         port: '',
-        pathname: '/**',
+        // Yalnızca product-images klasöründeki tüm alt dizinleri ve dosyaları kapsayacak şekilde daraltdım
+        pathname: '/storage/uploads/images/product-images/**',
       },
       {
         protocol: 'https',
