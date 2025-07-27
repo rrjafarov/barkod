@@ -240,6 +240,8 @@ export default function ComparePage({ t }) {
   }
 
   // Backend-dən gələn data-nın strukturuna uyğun olaraq məhsulları və kateqoriyaları çıxarırıq
+  console.log(data);
+  
   const products = data?.compare || [];
   const categories = data?.categories || [];
 

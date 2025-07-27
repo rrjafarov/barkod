@@ -1043,12 +1043,6 @@
 
 
 
-
-
-
-
-
-
 "use client";
 import React, { useState, useEffect } from "react";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
@@ -1071,9 +1065,6 @@ const AddToCart = ({ cartData, t }) => {
 
   // Lokal state ile optimistik güncelleme yapıyoruz
   const [localCartAllData, setLocalCartAllData] = useState(cartAllData);
-
-  // Yeni: hangi ürünün seçili olduğunu takip edelim
-  const [checkedItems, setCheckedItems] = useState([]);
 
   // Parent'ten gelen cartAllData değiştiğinde lokal state'i senkronize et
   useEffect(() => {
@@ -1105,9 +1096,8 @@ const AddToCart = ({ cartData, t }) => {
     return 0;
   };
 
-  // totalAmount: sadece seçili ürünler için qty * priceNum
+  // totalAmount: bütün ürünler için qty * priceNum
   const totalAmount = localCartAllData.reduce((sum, item) => {
-    if (!checkedItems.includes(item.product.id)) return sum;
     const qty = item.qty || 1;
     const priceNum = getPriceNum(item.product.price);
     return sum + qty * (isNaN(priceNum) ? 0 : priceNum);
@@ -1115,15 +1105,6 @@ const AddToCart = ({ cartData, t }) => {
 
   const discountAmount = calculateDiscount(totalAmount);
   const finalAmount = totalAmount - discountAmount;
-
-  // Checkbox toggle handler
-  const handleCheckboxChange = (productId) => {
-    setCheckedItems((prev) =>
-      prev.includes(productId)
-        ? prev.filter((id) => id !== productId)
-        : [...prev, productId]
-    );
-  };
 
   // Tıklama fonksiyonları: önce lokal state'i güncelle, sonra backend isteği
   const handleIncrease = async (productId) => {
@@ -1165,7 +1146,6 @@ const AddToCart = ({ cartData, t }) => {
     setLocalCartAllData((prev) =>
       prev.filter((item) => item.product.id !== productId)
     );
-    setCheckedItems((prev) => prev.filter((id) => id !== productId));
     try {
       await removeFromCart(productId).unwrap();
     } catch (err) {
@@ -1201,6 +1181,9 @@ const AddToCart = ({ cartData, t }) => {
     );
   }
 
+  // Bütün məhsul ID-lərini al
+  const allProductIds = localCartAllData.map(item => item.product.id);
+
   return (
     <div className="container">
       <div className="breadCrumb">
@@ -1230,11 +1213,6 @@ const AddToCart = ({ cartData, t }) => {
             return (
               <div className="cartProduct" key={prodId}>
                 <div className="cartProductLeft">
-                  <input
-                    type="checkbox"
-                    checked={checkedItems.includes(prodId)}
-                    onChange={() => handleCheckboxChange(prodId)}
-                  />
                   <div className="cartProductImage">
                     {item.product.image ? (
                       <Image
@@ -1280,12 +1258,9 @@ const AddToCart = ({ cartData, t }) => {
                   </div>
 
                   <div className="cartPrices">
-                    {/* Sadece işaretli ürünün fiyatı görünecek */}
-                    {checkedItems.includes(prodId) && (
-                      <span className="cartNewPrice">
-                        {priceStr ?? "—"} <TbCurrencyManat />
-                      </span>
-                    )}
+                    <span className="cartNewPrice">
+                      {priceStr ?? "—"} <TbCurrencyManat />
+                    </span>
                   </div>
 
                   <button
@@ -1314,7 +1289,7 @@ const AddToCart = ({ cartData, t }) => {
               </div>
               <div className="secondCartPaymentSectionTop">
                 <span>
-                  {checkedItems.length} {t?.unit}
+                  {localCartAllData.length} {t?.unit}
                 </span>
               </div>
             </div>
@@ -1342,10 +1317,9 @@ const AddToCart = ({ cartData, t }) => {
             </div>
           </div>
           <div className="addToCartPaymentButtons">
-            {/* ↓↓↓ BURAYI DEĞİŞTİRDİK ↓↓↓ */}
             <button
               onClick={() =>
-                router.push(`/checkout?items=${checkedItems.join(",")}`)
+                router.push(`/checkout?items=${allProductIds.join(",")}`)
               }
               className="officialPaymentBtn"
             >
@@ -1372,160 +1346,7 @@ export default AddToCart;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ! BU en dogru koddur checkout calismadan 
+// ? burda checkout var legv edecem yuxarida
 // "use client";
 // import React, { useState, useEffect } from "react";
 // import { MdKeyboardDoubleArrowRight } from "react-icons/md";
@@ -1533,6 +1354,7 @@ export default AddToCart;
 // import { TbCurrencyManat } from "react-icons/tb";
 // import { IoClose } from "react-icons/io5";
 // import Image from "next/image";
+// import { useRouter } from "next/navigation";                // ← EKLENDİ
 // import {
 //   useRemoveFromCartMutation,
 //   useIncreaseCartItemMutation,
@@ -1540,6 +1362,8 @@ export default AddToCart;
 // } from "@/redux/cartService";
 
 // const AddToCart = ({ cartData, t }) => {
+//   const router = useRouter();                               // ← EKLENDİ
+
 //   const cart = cartData?.cart || {};
 //   const cartAllData = cart?.cart_products || [];
 
@@ -1816,11 +1640,15 @@ export default AddToCart;
 //             </div>
 //           </div>
 //           <div className="addToCartPaymentButtons">
-//             <Link href="/checkout">
-//               <button className="officialPaymentBtn">
-//                 {t?.orderbtn || "order place"}
-//               </button>
-//             </Link>
+//             {/* ↓↓↓ BURAYI DEĞİŞTİRDİK ↓↓↓ */}
+//             <button
+//               onClick={() =>
+//                 router.push(`/checkout?items=${checkedItems.join(",")}`)
+//               }
+//               className="officialPaymentBtn"
+//             >
+//               {t?.orderbtn || "order place"}
+//             </button>
 //             <button>{t?.oneclickpay || "Bir kliklə al"}</button>
 //           </div>
 //         </div>
@@ -1830,4 +1658,3 @@ export default AddToCart;
 // };
 
 // export default AddToCart;
-// ! BU en dogru koddur checkout calismadan 
