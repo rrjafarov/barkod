@@ -44,17 +44,17 @@
     ) : (
       <div className="orderHistoryInner">
         <div className="orderHistoryInnerTop">
-          <span>Ödəniş Statusu</span>
+          <span>{t?.paystatus || "Ödəniş Statusu"}</span>
           <span>ID</span>
-          <span>Çatdırılma Statusu</span>
-          <span>Tarix</span>
-          <span>Qiymət</span>
-          <span>Sayı</span>
+          <span>{t?.deliverystatus || "Çatdırılma Statusu"}</span>
+          <span>{t?.history || "Tarix"}</span>
+          <span>{t?.price || "Qiymət"}</span>
+          <span>{t?.quantity || "Say"}</span>
           <span></span>
         </div>
         <div className="orderHistoryInnerBody">
           {orderHistory.map((order) => (
-            <OrderHistoryCard key={order.id} order={order} />
+            <OrderHistoryCard key={order.id} order={order} t={t} />
           ))}
         </div>
       </div>

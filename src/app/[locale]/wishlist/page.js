@@ -63,23 +63,6 @@ async function getTranslations() {
   }
 }
 
-// async function getTranslations() {
-//   try {
-//     const response = await axiosInstance.get("/translation-list");
-//     const data = response.data;
-
-//     // Array-i obyektə çevir
-//     const translationsObj = data.reduce((acc, item) => {
-//       acc[item.key] = item.value;
-//       return acc;
-//     }, {});
-
-//     return translationsObj;
-//   } catch (err) {
-//     console.log(err);
-//   }
-// }
-
 
 
 

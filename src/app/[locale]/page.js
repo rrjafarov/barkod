@@ -275,9 +275,9 @@ export async function generateMetadata() {
   };
 }
 
+
 const HomePage = async () => {
   const t = await getTranslations();
-
   const homeResponse = await getHomePageData();
   const categoryResponse = await getCategoryeData();
   const categoryData = categoryResponse?.categories || [];
@@ -287,12 +287,14 @@ const HomePage = async () => {
   const brandData = brandsResponse?.brands || [];
 
   const homePageDataSlider = homeResponse?.slider || [];
+  const homePageTop100 = homeResponse?.categories || [];
   const homePageDataNewProducts = homeResponse?.new_products || [];
   const homePageDataDiscountedProducts =
     homeResponse?.discounted_products || [];
   const homePageDataBestSellingProducts = homeResponse?.best_seller || [];
   const homePageDataBrands = homeResponse?.brands || [];
   const homePageDataVideo = homeResponse?.video || [];
+  const campaignProducts = homeResponse?.campaign_products || [];
 
   return (
     <div>
@@ -305,9 +307,10 @@ const HomePage = async () => {
         homePageDataDiscountedProducts={homePageDataDiscountedProducts}
         homePageDataBestSellingProducts={homePageDataBestSellingProducts}
       />
-      <HomePageCountProduct t={t} />
+      <HomePageCountProduct t={t} campaignProducts ={campaignProducts} />
       <HomePageSecondaryProducts
         t={t}
+        homePageTop100={homePageTop100}
         homePageDataBestSellingProducts={homePageDataBestSellingProducts}
       />
       <ProductsReview settingData={settingData} t={t} homePageDataVideo={homePageDataVideo} />

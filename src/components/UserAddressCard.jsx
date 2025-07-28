@@ -32,19 +32,19 @@ const UserAddressCard = ({t, address, setActive, onEdit }) => {
             <FiCheck />
           </div>
           <div>
-            <span>Name</span>
+            <span>{t?.name || "Ad"}</span>
             <p>{address?.name}</p>
           </div>
           <div>
-            <span>City</span>
+            <span>{t?.city || "City"}</span>
             <p>{address?.region}</p>
           </div>
           <div>
-            <span>Address</span>
+            <span>{t?.address || "Address"}</span>
             <p>{address?.address}</p>
           </div>
           <div>
-            <span>Number</span>
+            <span>{t?.num || "Number"}</span>
             <p>{address?.tel}</p>
           </div>
         </div>
