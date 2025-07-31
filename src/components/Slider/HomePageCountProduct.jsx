@@ -235,9 +235,6 @@ const HomePageCountProduct = ({ t, campaignProducts }) => {
             textAlign: "start",
           }}
         >
-          {/* <h2 style={{ fontSize: "1.2rem", textAlign: "start" }}>
-            {t?.countUpTitle || "Count UP!"}
-          </h2> */}
           <h2
             style={{
               fontSize: "1.3rem",
@@ -336,22 +333,25 @@ const HomePageCountProduct = ({ t, campaignProducts }) => {
               <SwiperSlide key={campaign.id}>
                 <div className="homePageCountProducts">
                   <div className="homePageCountProductsImage">
-                    <Image
-                      src={product.image || "/images/placeholder-product.png"}
-                      alt={product.name}
-                      width={800}
-                      height={800}
-                    />
+                    <Link href={`/products/${product.slug}`}>
+                      <Image
+                        src={product.image || "/images/placeholder-product.png"}
+                        alt={product.name}
+                        width={800}
+                        height={800}
+                      />
+                    </Link>
+
                     {product.is_discount && (
                       <div
                         style={{
                           position: "absolute",
-                          top: "10px",
-                          right: "10px",
+                          top: "15px",
+                          right: "15px",
                           backgroundColor: "#ec1f27",
                           color: "white",
                           padding: "5px 10px",
-                          borderRadius: "5px",
+                          borderRadius: "7px",
                           fontSize: "12px",
                           fontWeight: "bold",
                         }}

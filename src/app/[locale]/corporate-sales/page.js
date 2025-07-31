@@ -1,5 +1,3 @@
-
-
 import AboutPage from '@/components/AboutPage'
 import Footer from '@/components/Footer/Footer'
 import Header from '@/components/Header/Header'
@@ -87,6 +85,8 @@ export async function generateMetadata() {
     },
   };
 }
+
+
 
 const page = async () => {
   const t = await getTranslations();

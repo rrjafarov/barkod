@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 $MainColor: #ec1f27 !important;
 
 .cls-1 {
@@ -84,7 +84,6 @@ body {
   overflow-x: hidden;
   // font-family: "Inter Tight", sans-serif !important;
   font-family: "Montserrat", sans-serif !important;
-
 }
 
 html {
@@ -442,10 +441,6 @@ ul {
   display: block;
 }
 
-
-
-
-
 // !     Pages
 // ? HeroSlider.jsx
 .heroSliderLink {
@@ -682,7 +677,6 @@ ul {
   }
 }
 
-
 #bannerLeft {
   position: relative;
 }
@@ -869,7 +863,6 @@ ul {
 
 // ? StaticInfo.jsx
 
-
 .wishTextCenter {
   width: 100% !important;
   text-align: center;
@@ -884,14 +877,13 @@ ul {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 5rem;
+  gap: 2rem;
 
   span {
     font-size: 2rem;
     font-weight: 600;
     transition: all 0.05s ease-in-out;
     cursor: pointer;
-
   }
 }
 
@@ -1005,8 +997,6 @@ ul {
     -webkit-box-orient: vertical;
     overflow: hidden;
     height: 4rem;
-
-
   }
 
   .discount {
@@ -1080,13 +1070,11 @@ ul {
         .newWishlistPR {
           width: 2.3rem;
           height: 2.3rem;
-
         }
       }
     }
   }
 }
-
 
 .addToCartClick {
   position: absolute;
@@ -1150,14 +1138,12 @@ ul {
   fill: red !important;
   stroke: red !important;
   stroke-width: 2;
-
 }
 
 .wishlist-btn .newWishlistPR.active path {
   fill: red !important;
   stroke: red !important;
   stroke-width: 2;
-
 }
 
 //! son versiya
@@ -1191,7 +1177,7 @@ ul {
 
     .homePageCountProductsImage {
       padding: 1rem;
-      padding-right: 0;
+      // padding-right: 0;
       border-radius: 2rem;
       display: flex;
       justify-content: flex-start !important;
@@ -1201,7 +1187,9 @@ ul {
       img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        padding: 1rem 0;
+        object-fit: contain;
+        border-radius: 2rem;
       }
     }
 
@@ -1280,7 +1268,6 @@ ul {
   margin-top: 10rem;
   padding: 2rem 0;
   display: flex;
-  // justify-content: space-between;
   align-items: center;
 
   .secondaryTitleLeft {
@@ -1288,10 +1275,7 @@ ul {
       font-size: 2.2rem;
       font-weight: 600;
       cursor: pointer;
-
       &:hover {
-        // border-bottom: 2px solid #ec1f27;
-        // transition: all 0.2s ease-in-out;
         text-decoration: underline;
         text-decoration-color: $MainColor;
         transition: all 0.05s ease-in-out;
@@ -1973,7 +1957,6 @@ ul {
 }
 
 @media (max-width: 767.9px) {
-
   // .filter-title {
   //   // transform: translateY(58px);
   //   display: flex;
@@ -2309,8 +2292,6 @@ ul {
   }
 }
 
-
-
 .productsPageDescriptions {
   padding: 5rem 0 2rem;
 
@@ -2332,9 +2313,6 @@ ul {
 }
 
 // !  ProductPage finish
-
-
-
 
 .sort-select {
   width: 18rem !important;
@@ -2364,8 +2342,6 @@ ul {
   font-size: 2rem !important;
 }
 
-
-
 @media (max-width: 768px) {
   .desktop-filter-title {
     display: none !important;
@@ -2376,9 +2352,6 @@ ul {
   margin-bottom: 3rem !important;
   margin-right: 1rem !important;
 }
-
-
-
 
 //! ProductsDetailPage  start
 #productsDetailPage {
@@ -3566,14 +3539,12 @@ ul {
 
     border-radius: 1rem;
     width: 100%;
-    cursor: pointer;
+    // cursor: pointer;
 
     .campaignDetailPageLeft {
       border-radius: 1rem;
       height: 37rem;
       width: 100%;
-
-      // height: 100%;
       img {
         width: 100%;
         border-radius: 1rem;
@@ -3587,74 +3558,105 @@ ul {
       height: 37rem;
       width: 100%;
 
-      .blockDPCardLink {
+      // .blockDPCardLink {
+      //   width: 100%;
+      //   height: 100%;
+
+      // }
+      .campaignDetailPageCard {
+        background-color: #f5f5f5;
+        border-radius: 1rem;
         width: 100%;
         height: 100%;
 
-        .campaignDetailPageCard {
-          background-color: #f5f5f5;
-          border-radius: 1rem;
-          width: 100%;
-          height: 100%;
-
-          .campaignDetailPageCardItem {
-            .campaignDetailPageCardTopText {
-              padding: 2rem 1rem;
-
-              span {
-                font-size: 1.6rem;
-                font-weight: 500;
-                display: flex;
-                justify-content: flex-start;
-                align-items: center;
-                color: #323232;
-                gap: 1rem;
-
-                strong {
-                  background-color: rgb(128, 68, 128);
-                  color: #fff;
-                  font-weight: 500;
-                  padding: 0.5rem;
-                  border-radius: 1rem;
-                }
-              }
-            }
-
-            h6 {
-              font-size: 1.8rem;
-              padding: 2rem 1rem;
-              color: #323232;
-            }
-
-            .campaignDetailPageCardTimeout {
-              padding: 5rem;
+        .campaignDetailPageCardItem {
+          .campaignDetailPageCardTopText {
+            padding: 2rem 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            span {
+              width: 100%;
+              font-size: 1.4rem;
+              font-weight: 500;
               display: flex;
-              justify-content: center;
+              justify-content: space-between;
               align-items: center;
+              color: #323232;
+              gap: 1rem;
 
-              span {
-                font-size: 4rem;
-                font-weight: 600;
-                color: #e95d2a;
-                text-align: center;
-                letter-spacing: 5px;
-                line-height: 45px;
+              strong {
+                background-color: rgb(128, 68, 128);
+                color: #fff;
+                font-size: 1.5rem;
+                font-weight: 500;
+                padding: 0.5rem;
+                border-radius: 1rem;
               }
             }
           }
 
-          .campaignDetailPageCardBottom {
+          h6 {
+            font-size: 1.8rem;
+            padding: 2rem 1rem;
+            color: #323232;
+          }
+
+          .campaignDetailPageCardTimeout {
+            padding: 5rem;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 1rem 0;
 
             span {
-              padding: 1rem;
-              font-size: 1.6rem;
-              font-weight: 400;
-              color: #323232;
+              font-size: 4rem;
+              font-weight: 600;
+              color: #e95d2a;
+              text-align: center;
+              letter-spacing: 5px;
+              line-height: 45px;
             }
+          }
+        }
+
+        .campaignDetailPageCardBottom {
+          padding-top: 0.5rem;
+          .shareWithWP {
+            border-radius: 5.1016rem;
+            border: 1.701px solid #46c756;
+            background: #46c756;
+            // width: 18rem;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 1rem;
+            // gap: 1rem;
+            button {
+              background-color: transparent;
+              padding: 1rem;
+            }
+            span {
+              font-size: 1.6rem;
+              font-weight: 500;
+              color: #fff;
+            }
+          }
+          strong {
+            color: #323232;
+            font-size: 1.6rem;
+            font-weight: 600;
+          }
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 1rem;
+          span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
           }
         }
       }
@@ -3988,8 +3990,6 @@ ul {
   }
 }
 
-
-
 // Checkout Form
 .form-container {
   width: 100%;
@@ -4022,7 +4022,7 @@ ul {
 }
 
 .required::after {
-  content: '*';
+  content: "*";
   color: red;
   margin-left: 2px;
 }
@@ -4041,8 +4041,6 @@ ul {
     opacity: 0.8;
     // font-family: "Inter Tight", sans-serif !important;
     font-family: "Montserrat", sans-serif !important;
-
-
   }
 }
 
@@ -4063,7 +4061,6 @@ ul {
   opacity: 0.8;
   // font-family: "Inter Tight", sans-serif !important;
   font-family: "Montserrat", sans-serif !important;
-
 }
 
 .priceTitleSegment {
@@ -4076,7 +4073,6 @@ ul {
   display: flex;
   gap: 2rem;
 }
-
 
 .radio-group {
   display: flex;
@@ -4221,19 +4217,6 @@ input[type="radio"] {
 
 // Checkout Form popup
 // ! CheckoutPage
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // LOign
 /* container */
@@ -4402,7 +4385,6 @@ input[type="radio"] {
   cursor: pointer;
 }
 
-
 .register-back {
   display: block;
   margin: 1rem auto 0;
@@ -4413,11 +4395,6 @@ input[type="radio"] {
   border: none;
   cursor: pointer;
 }
-
-
-
-
-
 
 .cartTitleEmpty {
   p {
@@ -4439,14 +4416,12 @@ input[type="radio"] {
     &:hover {
       transition: all 0.3s ease-in-out;
       background-color: #000;
-      color: #FFF;
+      color: #fff;
       font-size: 1.6rem;
       border: 1px solid #fff;
     }
   }
 }
-
-
 
 // !Products sort
 .productSortButtons {
@@ -4459,7 +4434,7 @@ input[type="radio"] {
   span {
     font-size: 1.4rem;
     font-weight: 600;
-    color: rgba(0, 0, 0, .6);
+    color: rgba(0, 0, 0, 0.6);
     // opacity: 0.5;
   }
 
@@ -4474,7 +4449,7 @@ input[type="radio"] {
       border-radius: 1rem;
       padding: 0.7rem 1.5rem;
       font-size: 1.4rem;
-      color: rgba(0, 0, 0, .6);
+      color: rgba(0, 0, 0, 0.6);
       // opacity: 0.5;
 
       .active {
@@ -4485,12 +4460,6 @@ input[type="radio"] {
 }
 
 // !Products sort
-
-
-
-
-
-
 
 .profile {
   // margin: 3rem 0;
@@ -4572,7 +4541,6 @@ input[type="radio"] {
         margin-bottom: 2rem;
         padding: 0.5rem 1.5rem;
         border-radius: 1rem;
-
       }
 
       input {
@@ -4614,8 +4582,6 @@ input[type="radio"] {
   }
 }
 
-
-
 .inclose {
   font-size: 3.5rem !important;
 }
@@ -4623,28 +4589,6 @@ input[type="radio"] {
 .inround {
   font-size: 2.5rem !important;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // ! user profile
 
@@ -4684,7 +4628,6 @@ input[type="radio"] {
 
 // !user profile
 
-
 // !login
 .successInfo {
   color: #00cc00;
@@ -4710,7 +4653,6 @@ input[type="radio"] {
 }
 
 // !login
-
 
 // !profile
 // .pagesProfile{
@@ -4759,25 +4701,13 @@ input[type="radio"] {
   flex-wrap: wrap;
   gap: 10rem;
   width: 100%;
-
 }
 
-
 @media (max-width: 768px) {
-
   #account {
     gap: 5rem !important;
   }
 }
-
-
-
-
-
-
-
-
-
 
 // !logout popup
 .logout-confirm-overlay {
@@ -4839,14 +4769,6 @@ input[type="radio"] {
 
 // !logout popup
 
-
-
-
-
-
-
-
-
 .loading-indicator {
   position: fixed;
   top: 50%;
@@ -4861,15 +4783,7 @@ input[type="radio"] {
   height: 30px;
 }
 
-
-
-
-
-
-
-
 //* Baharstore csss
-
 
 .auth {
   display: flex;
@@ -5017,7 +4931,6 @@ form.error.active {
   background: #f4f4f4;
   border-radius: 1rem;
 }
-
 
 .phoneInput,
 .inputChild {
@@ -5307,7 +5220,6 @@ form .blackButton {
   line-height: normal;
   letter-spacing: 0.036rem;
   background: #f4f4f4;
-
 }
 
 .addressParent label {
@@ -5319,7 +5231,6 @@ form .blackButton {
   letter-spacing: 0.054rem;
   padding-bottom: 1rem;
 }
-
 
 .contactRight {
   border: 2px solid #f5f5f5;
@@ -5359,10 +5270,7 @@ form .blackButton {
   font-size: 3rem;
 }
 
-
-
-// !popup adreees 
-
+// !popup adreees
 
 .layer {
   position: fixed;
@@ -5640,8 +5548,7 @@ form .blackButton {
   letter-spacing: 0.036rem;
 }
 
-// !popup adreees 
-
+// !popup adreees
 
 //! adreess card
 .addressCard {
@@ -5727,7 +5634,7 @@ form .blackButton {
   height: 2rem;
 }
 
-.addressCard input:checked~.addressCardInner {
+.addressCard input:checked ~ .addressCardInner {
   border: 0.1rem solid #2d9d3f;
   position: relative;
   overflow: hidden;
@@ -5752,10 +5659,9 @@ form .blackButton {
   height: 1.5rem;
 }
 
-.addressCard input:checked~.addressCardInner .tick {
+.addressCard input:checked ~ .addressCardInner .tick {
   background: #2d9d3f;
 }
-
 
 // .addressParentCards {
 //   padding-right: 4.2rem;
@@ -5807,20 +5713,6 @@ form .blackButton {
 
 //* Baharstore csss
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // ! LOGIN
 /* Success Popup Styles */
 .success-popup-overlay {
@@ -5855,7 +5747,7 @@ form .blackButton {
 .success-icon {
   width: 6rem;
   height: 6rem;
-  background: #4CAF50;
+  background: #4caf50;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -5943,8 +5835,6 @@ form .blackButton {
 }
 
 // ! LOGIN
-
-
 
 //! LOGOUT POPUP!
 /* Logout Popup Styles */
@@ -6130,33 +6020,6 @@ form .blackButton {
 
 //! LOGOUT POPUP!
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .paginationContainer {
   display: flex;
   justify-content: center;
@@ -6191,23 +6054,6 @@ form .blackButton {
   border-color: #ec1f27 !important;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .searchResults {
   position: absolute;
   top: 100%;
@@ -6236,42 +6082,7 @@ form .blackButton {
   position: relative;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //! cart badge
-
 
 // Cart Badge stilleri - header.scss faylına əlavə edin
 
@@ -6337,49 +6148,6 @@ form .blackButton {
   justify-content: center;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #nprogress .bar {
   height: 7px !important; // default 2px-dir
   border-radius: 1rem;
@@ -6399,15 +6167,7 @@ form .blackButton {
   border-left-color: red;
 }
 
-
-
-
-
-
-
-
 // ? orderHistory Bahar<><>><<><><><><
-
 
 .orderHistoryInner {
   border-radius: 2rem;
@@ -6649,15 +6409,6 @@ p.greenTotal span {
   letter-spacing: 0.02rem;
   text-align: center;
 }
-
-
-
-
-
-
-
-
-
 
 // .orderHistoryInner {
 //   border-radius: 2rem;

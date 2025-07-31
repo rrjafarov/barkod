@@ -605,7 +605,7 @@ const Header = ({ categoryData, t ,settingData}) => {
             </div>
             <div className="corporateSales">
               <span>
-                <Link href="#">{t?.corporatesale || "Sales"}</Link>
+                <Link href="/corporate-sales">{t?.corporatesale || "Sales"}</Link>
               </span>
             </div>
           </div>

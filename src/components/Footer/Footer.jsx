@@ -67,10 +67,10 @@ const Footer = ({ t, settingData }) => {
                   </li>
                   <li>
                     <Link href="#">Bloq və xəbərlər</Link>
-                  </li>
-                  <li>
-                    <Link href="#">Korporativ satış</Link>
                   </li> */}
+                  <li>
+                    <Link href="/corporate-sales">Korporativ satış</Link>
+                  </li>
                 </ul>
               </div>
             </div>
