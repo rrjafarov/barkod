@@ -1232,11 +1232,15 @@ export default function ProductsPage({
                   </button>
                   <div className="lineFiltered"></div>
 
+                   {/* 1. Qiymət filtri */}
+                  <FilterAccordion title={t?.price || "Qiymət"} defaultOpen={true}>
+                    {/* <PriceRangeFilter onPriceChange={handlePriceChange} /> */}
+                  </FilterAccordion>
                   
 
                   {/* 2. Brend filtri */}
                   {brandFilter && (
-                    <FilterAccordion title={brandFilter.name} defaultOpen={false}>
+                    <FilterAccordion title={brandFilter.name} defaultOpen={true}>
                       <ul className="filterList">
                         {brandFilter.child.map((childItem) => (
                           <li key={childItem.value} className="filterListItem">
@@ -1264,14 +1268,12 @@ export default function ProductsPage({
                   )}
 
 
-                  {/* 1. Qiymət filtri */}
-                  <FilterAccordion title={t?.price || "Qiymət"} defaultOpen={true}>
-                    {/* <PriceRangeFilter onPriceChange={handlePriceChange} /> */}
-                  </FilterAccordion>
-
                   {/* 3. Digər filter qrupları */}
                   {otherFilters.map((group, index) => (
-                    <FilterAccordion key={group.value} title={group.name} defaultOpen={false}>
+                    <FilterAccordion key={group.value} title={group.name} 
+                    // defaultOpen={false}
+                     defaultOpen={index < (4 - 1 - (brandFilter ? 1 : 0))} // 1 qiymət, 1 brend varsa, qalan 2-ni aç
+                    >
                       <ul className="filterList">
                         {group.child.map((childItem) => (
                           <li key={childItem.value} className="filterListItem">
