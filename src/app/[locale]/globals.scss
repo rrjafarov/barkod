@@ -6149,11 +6149,14 @@ form .blackButton {
 }
 
 #nprogress .bar {
-  height: 7px !important; // default 2px-dir
-  border-radius: 1rem;
+  height: 0.7rem !important; // default 2px-dir
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px #ec1f27, 0 0 5px #ec1f27 !important;
+
 }
 
 #nprogress .bar {
+  box-shadow: 0 0 10px #ec1f27, 0 0 5px #ec1f27 !important;
   background: #ec1f27 !important; // Burada istədiyin rəngi yaz (məs: #08316F, red, green)
 }
 
