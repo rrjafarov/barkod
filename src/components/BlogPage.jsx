@@ -1,4 +1,3 @@
-
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -7,18 +6,9 @@ import {
   MdKeyboardArrowRight,
 } from "react-icons/md";
 
-const CampaignPage = ({ campaignPageDataSlider, t }) => {
-  // end_date ilə indiki tarix arasındakı gün sayını hesablayan funksiya
-  const calculateDaysRemaining = (endDate) => {
-    const now = new Date();
-    const end = new Date(endDate);
-    const diffTime = end.getTime() - now.getTime();
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays > 0 ? `${diffDays} gün` : "bitdi";
-  };
-
+const BlogPage = ({blogResponseData, t }) => {
   return (
-    <>
+    <div>
       <div className="container">
         <div className="breadCrumb">
           <Link href="/">
@@ -28,27 +18,27 @@ const CampaignPage = ({ campaignPageDataSlider, t }) => {
             <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />
           </strong>
           <Link href="#">
-            <span className="lastChildBread">{t?.campaigns || "Kampaniyalar"}</span>
+            <span className="lastChildBread">{t?.blogs || "Bloglar"}</span>
           </Link>
         </div>
       </div>
       <section id="campaignPageCard">
         <div className="container">
           <div className="row">
-            {campaignPageDataSlider.map((campaign) => (
-              <div className="xl-4 lg-4 md-6 sm-12" key={campaign.id}>
+            {blogResponseData.map((blog) => (
+              <div className="xl-4 lg-4 md-6 sm-12" key={blog.id}>
                 <div className="campaignPageCard">
                   <div className="campaignPageCardItem">
                     <div className="campaignPageCardImage">
                       <Image
-                        src={campaign.img_url}
+                        src={blog.img_url}
                         alt="campaign"
                         width={800}
                         height={800}
                       />
                     </div>
                     <div className="campaignPageCardTitle">
-                      <span>{campaign.title}</span>
+                      <span>{blog.title}</span>
                     </div>
                   </div>
                   <div className="circleLine">
@@ -56,13 +46,8 @@ const CampaignPage = ({ campaignPageDataSlider, t }) => {
                     <span className="rightCircle"></span>
                   </div>
                   <div className="campaignPageCardBottom">
-                    <div className="campaignPageCardBottomText">
-                      <span>{t?.lastday || "Son"}</span>
-                      {/* Burada end_date yerinə qalan gün sayını göstəririk */}
-                      <span>{calculateDaysRemaining(campaign.end_date)}</span>
-                    </div>
                     <div className="campaignPageCardDetailButton">
-                      <Link href={`/campaign/${campaign.slug}`}>
+                      <Link href={`/blogs/${blog.slug}`}>
                         <button>{t?.learnmore || "Learn More"}</button>
                       </Link>
                     </div>
@@ -73,8 +58,8 @@ const CampaignPage = ({ campaignPageDataSlider, t }) => {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 
-export default CampaignPage;
+export default BlogPage;

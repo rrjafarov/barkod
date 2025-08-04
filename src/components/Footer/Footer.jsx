@@ -64,12 +64,14 @@ const Footer = ({ t, settingData }) => {
                   </li>
                   {/* <li>
                     <Link href="#">Brendlər</Link>
-                  </li>
-                  <li>
-                    <Link href="#">Bloq və xəbərlər</Link>
                   </li> */}
                   <li>
-                    <Link href="/corporate-sales">Korporativ satış</Link>
+                    <Link href="/blogs">{t?.blognews || "Blog"}</Link>
+                  </li>
+                  <li>
+                    <Link href="/corporate-sales">
+                      {t?.corporatesale || "Sales"}
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -104,30 +106,21 @@ const Footer = ({ t, settingData }) => {
                   </span>
                   <ul>
                     <li>
-                      <Link
-                        href={settingData?.facebook || "#"}
-                        target="_blank"
-                      >
+                      <Link href={settingData?.facebook || "#"} target="_blank">
                         <button>
                           <Facebook className="footSocialIcon" />
                         </button>
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        href={settingData.instagram || "#"}
-                        target="_blank"
-                      >
+                      <Link href={settingData.instagram || "#"} target="_blank">
                         <button>
                           <Instagram className="footSocialIcon" />
                         </button>
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        href={settingData.youtube || "#"}
-                        target="_blank"
-                      >
+                      <Link href={settingData.youtube || "#"} target="_blank">
                         <button>
                           <Youtube className="footSocialIcon" />
                         </button>
@@ -158,10 +151,7 @@ const Footer = ({ t, settingData }) => {
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        href={settingData.tiktok || "#"}
-                        target="_blank"
-                      >
+                      <Link href={settingData.tiktok || "#"} target="_blank">
                         <button>
                           <Image
                             src="/icons/tiktok.svg"

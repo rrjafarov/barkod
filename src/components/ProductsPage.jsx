@@ -1406,8 +1406,8 @@ export default function ProductsPage({
                                 <Image
                                   src={product.image || "/images/defaultImage.png"}
                                   alt={product.name}
-                                  width={200}
-                                  height={200}
+                                  width={100}
+                                  height={100}
                                 />
                               </div>
                             </Link>
