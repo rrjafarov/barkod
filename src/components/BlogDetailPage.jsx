@@ -32,7 +32,7 @@ const CompaignDetailPage = ({ campaign, t }) => {
   return (
     <>
       <div className="container">
-        <div className="breadCrumb">
+        <div className="breadCrumb breadCrumbsHideMobile">
           <Link href="/"><span>{t?.homebreadcrumbs || "Ana səhifə" }</span></Link>
           <strong><MdKeyboardDoubleArrowRight className="breadCrumpIcon" /></strong>
           <Link href="/campaign"><span>{t?.blog || "blog"}</span></Link>

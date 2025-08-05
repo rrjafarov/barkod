@@ -687,6 +687,7 @@ import {
   useRemoveFromFavMutation,
 } from "@/redux/wishlistService";
 import { useGetCartQuery, useAddToCartMutation } from "@/redux/cartService";
+import { FormControl, Select, MenuItem } from '@mui/material';
 
 // RTK Query hooks are used below
 
@@ -1125,7 +1126,7 @@ export default function ProductsPage({
 
       <div>
         <div className="container">
-          <div className="breadCrumb">
+          <div className="breadCrumb breadCrumbsHideMobile">
             {searchText ? (
               <span>Axtarışın nəticələri: "{searchText}"</span>
             ) : (
@@ -1197,6 +1198,10 @@ export default function ProductsPage({
                     <Filter className="filIcon" />
                   </div>
                 </button>
+                
+
+
+                
 
                 <div className="selectedFilter desktop-only">
                   {selectedFilters.map((filter) => (
@@ -1232,10 +1237,7 @@ export default function ProductsPage({
                   </button>
                   <div className="lineFiltered"></div>
 
-                   {/* 1. Qiymət filtri */}
-                  <FilterAccordion title={t?.price || "Qiymət"} defaultOpen={true}>
-                    {/* <PriceRangeFilter onPriceChange={handlePriceChange} /> */}
-                  </FilterAccordion>
+                  
                   
 
                   {/* 2. Brend filtri */}
@@ -1267,6 +1269,10 @@ export default function ProductsPage({
                     </FilterAccordion>
                   )}
 
+                   {/* 1. Qiymət filtri */}
+                  <FilterAccordion title={t?.price || "Qiymət"} defaultOpen={true}>
+                    {/* <PriceRangeFilter onPriceChange={handlePriceChange} /> */}
+                  </FilterAccordion>
 
                   {/* 3. Digər filter qrupları */}
                   {otherFilters.map((group, index) => (
@@ -1300,8 +1306,9 @@ export default function ProductsPage({
                       </ul>
                     </FilterAccordion>
                   ))}
-                </div>
+                </div>                
               </div>
+              
             </div>
 
             <div className="xl-10 lg-10 md-10 sm-12">

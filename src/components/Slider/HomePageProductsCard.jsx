@@ -669,7 +669,7 @@ const HomePageProductsCard = ({
             className={tab.id === selectedTab ? "active-tab" : ""}
             style={{
               cursor: "pointer",
-              fontWeight: tab.id === selectedTab ? "bold" : "normal",
+              fontWeight: tab.id === selectedTab ? "600" : "normal",
             }}
           >
             {tab.label}
@@ -804,12 +804,10 @@ const HomePageProductsCard = ({
       )}
 
       <style jsx>{`
-        .productsHeadTitle span {
-          margin-right: 1rem;
-        }
-        .active-tab {
-          border-bottom: 2px solid #000;
-        }
+        
+        // .active-tab {
+        //   border-bottom: 1.5px solid #000;
+        // }
         .tab-loading {
           width: 100%;
           padding: 3rem 0;

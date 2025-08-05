@@ -444,7 +444,7 @@ const ProductsDetailPage = ({ product, t }) => {
           </div>
         )}
 
-        <div className="breadCrumb" id="productDPbreadCrumbs">
+        <div className="breadCrumb breadCrumbsHideMobile" id="productDPbreadCrumbs">
           {productBreadCrumbs.map((item, index) => {
             const isFirst = index === 0;
             const isLast = index === productBreadCrumbs.length - 1;

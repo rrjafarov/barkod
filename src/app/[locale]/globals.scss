@@ -795,9 +795,9 @@ ul {
       gap: 0.5rem;
 
       span {
-        font-size: 1.8rem;
+        font-size: 1.7rem;
         font-style: normal;
-        font-weight: 700;
+        font-weight: 600;
       }
     }
   }
@@ -877,8 +877,7 @@ ul {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 2rem;
-
+  gap: 1.5rem;
   span {
     font-size: 2rem;
     font-weight: 600;
@@ -893,10 +892,11 @@ ul {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2rem !important;
-
+    gap: 1.3rem !important;
     span {
-      font-size: 1.6rem !important;
+      // width: 15rem !important;
+      font-size: 1.5rem !important;
+      // text-align: center !important;
     }
   }
 }
@@ -1172,7 +1172,7 @@ ul {
     border-radius: 2rem;
     gap: 1rem;
     width: 100% !important;
-    height: 30rem !important;
+    height: 33rem !important;
     border: 2px solid $MainColor;
 
     .homePageCountProductsImage {
@@ -1201,7 +1201,7 @@ ul {
       align-items: flex-start;
       flex-direction: column;
       padding-right: 2rem !important;
-      gap: 1rem;
+      gap: 0.5rem;
 
       .countDownRating {
         display: flex;
@@ -1286,19 +1286,18 @@ ul {
   .secondaryTitleRight {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 1rem;
 
     strong {
       border: 1px solid lightgray;
       border-radius: 3rem;
       color: $MainColor;
-      padding: 0.6rem 1.3rem;
+      padding: 0.6rem 1rem;
       font-size: 1.4rem;
-      // cursor: pointer;
     }
-
     span {
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: 600;
       cursor: pointer;
 
@@ -1338,19 +1337,11 @@ ul {
 
     .reviewTitleLeft {
       span {
-        font-size: 2.2rem;
+        font-size: 2rem;
         font-weight: 600;
         flex-shrink: 0;
         transition: all 0.2s ease-in-out;
         cursor: pointer;
-
-        &:hover {
-          // border-bottom: 2px solid #ec1f27;
-          // transition: all 0.2s ease-in-out;
-          text-decoration: underline;
-          text-decoration-color: $MainColor;
-          transition: all 0.05s ease-in-out;
-        }
       }
     }
 
@@ -1358,7 +1349,7 @@ ul {
       button {
         background-color: $MainColor;
         font-size: 1.6rem;
-        padding: 1.5rem 3rem;
+        padding: 1.5rem 2.2rem;
         border-radius: 1rem;
         font-weight: 600;
         border: 1px solid lightgray;
@@ -1415,6 +1406,22 @@ ul {
             font-size: 2rem;
           }
         }
+      }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .productReviewTitle {
+    .reviewTitleLeft {
+      span {
+        font-size: 1.8rem !important;
+      }
+    }
+
+    .reviewTitleRight {
+      button {
+        font-size: 1.5rem;
+        padding: 1.5rem 2.2rem;
       }
     }
   }
@@ -2353,6 +2360,23 @@ ul {
   margin-right: 1rem !important;
 }
 
+
+// ? <><><><><><><><><><><><><><<><><><><><>
+.mobile-sort-select {
+  display: none; /* Desktop-da gizli */
+}
+@media (max-width: 767.9px) {
+  .mobile-sort-select {
+    display: block !important;
+    
+  }
+}
+// ? <><><><><><><><><><><><><><><><><><><><><><><><>
+
+
+
+
+
 //! ProductsDetailPage  start
 #productsDetailPage {
   .productDPTitle {
@@ -2386,7 +2410,22 @@ ul {
     }
   }
 }
-
+.countCampaignButtons{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.cartBtnCampaign {
+  background-color: #ec1f27;
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 500;
+  border-radius: 1rem;
+  width: 12rem;
+  height: 4rem;
+}
 .productsDPFancybox {
   width: 100%;
   height: 100%;
@@ -3865,6 +3904,10 @@ ul {
     display: flex;
     flex-direction: column;
     gap: 3rem;
+    h4{
+      font-size: 1.8rem;
+
+    }
 
     p {
       font-size: 1.6rem;
@@ -6152,7 +6195,6 @@ form .blackButton {
   height: 0.7rem !important; // default 2px-dir
   border-radius: 0.5rem;
   box-shadow: 0 0 10px #ec1f27, 0 0 5px #ec1f27 !important;
-
 }
 
 #nprogress .bar {
@@ -6658,3 +6700,21 @@ p.greenTotal span {
 // }
 
 // ? orderHistory Bahar
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 767.9px) {
+  .breadCrumbsHideMobile{
+    display: none !important;
+  }
+}

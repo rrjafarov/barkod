@@ -20,7 +20,7 @@ const CampaignPage = ({ campaignPageDataSlider, t }) => {
   return (
     <>
       <div className="container">
-        <div className="breadCrumb">
+        <div className="breadCrumb breadCrumbsHideMobile">
           <Link href="/">
             <span>{t?.homebreadcrumbs || "home page"}</span>
           </Link>

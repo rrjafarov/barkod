@@ -10,7 +10,7 @@ const BlogPage = ({blogResponseData, t }) => {
   return (
     <div>
       <div className="container">
-        <div className="breadCrumb">
+        <div className="breadCrumb breadCrumbsHideMobile">
           <Link href="/">
             <span>{t?.homebreadcrumbs || "home page"}</span>
           </Link>

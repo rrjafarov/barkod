@@ -247,7 +247,7 @@ export default function ComparePage({ t }) {
   return (
     <>
       <div className="container">
-        <div className="breadCrumb">
+        <div className="breadCrumb breadCrumbsHideMobile">
           <Link href="/"><span>{t.homePageLabel || 'Ana Sayfa'}</span></Link>
           <strong><MdKeyboardDoubleArrowRight className="breadCrumpIcon" /></strong>
           <span className="lastChildBread">{t.compareLabel || 'Müqayisə'}</span>
