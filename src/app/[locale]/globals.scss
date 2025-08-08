@@ -3725,6 +3725,7 @@ ul {
   }
 }
 
+
 .circleLine1 {
   position: relative;
   height: 2rem; // hündürlüyü kartın ayıran yerinə uyğun təyin edirik
@@ -6717,4 +6718,136 @@ p.greenTotal span {
   .breadCrumbsHideMobile{
     display: none !important;
   }
+}
+
+
+
+
+//? Products Page Filter prices 
+
+/* FilterPrice styles */
+// .filter-price {
+//   // padding: 8px;
+// }
+
+/* Inputs wrapper: yan-yana, arada 1.5rem məsafə */
+.filter-price .inputs-wrapper {
+  display: flex;
+  gap: 1.5rem; 
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem !important;
+  padding: 0 1rem !important;
+
+}
+
+/* Input əsas eni */
+.filter-price .fp-input {
+  width: 8rem; 
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+/* Antd InputNumber iç elementini daha yaxşı hizalamaq üçün */
+.filter-price .fp-input .ant-input-number {
+  width: 100%;
+  display: inline-flex;
+  
+}
+
+/* Input içi (input elementinin özünə təsir) */
+.filter-price .fp-input .ant-input-number-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center !important;
+}
+
+/* Sol inputun kənarları (birleşmiş görünüş) */
+.filter-price .fp-input-left .ant-input-number {
+  border-radius: 4px 0 0 4px;
+  border-right: 1px solid rgba(0,0,0,0.06);
+}
+
+/* Sağ inputun kənarları */
+.filter-price .fp-input-right .ant-input-number {
+  border-radius: 0 4px 4px 0;
+}
+
+/* Slider konteyneri */
+.filter-price .slider-wrapper {
+  margin-top: 8px;
+  padding: 0 1rem !important;
+
+}
+
+/* Slider - seçilmiş range rəngi (#ec1f27) */
+.filter-price .fp-slider .ant-slider-track {
+  background-color: #ec1f27 !important;
+}
+
+/* Slider handle (topluq) kənar rəngi və fonu */
+.filter-price .fp-slider .ant-slider-handle {
+  border-color: #ec1f27 !important;
+  background-color: #fff !important; /* istəsən #ec1f27 də edə bilərik */
+  box-shadow: none !important;
+}
+
+/* Seçilmemiş hissə (rail) */
+.filter-price .fp-slider .ant-slider-rail {
+  background-color: #f5f5f5 !important;
+}
+
+//? Products Page Filter prices 
+/* Handle kənar və iç rəngi */
+.filter-price .fp-slider .ant-slider-handle {
+  border-color: #ec1f27 !important;     /* kənar qırmızı */
+  background-color: #ec1f27 !important; /* iç rəng qırmızı */
+  box-shadow: none !important;          /* göy xətləri silinir */
+}
+
+.filter-price .fp-slider .ant-slider-handle {
+  border-color: #ec1f27 !important;
+  background-color: #ec1f27 !important;
+  box-shadow: none !important;
+}
+
+
+
+
+
+
+
+
+:where(.css-dev-only-do-not-override-1a3rktk).ant-slider .ant-slider-handle::after {
+    content: "";
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    width: 10px;
+    height: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 2px #ec1f27 !important;
+    outline: 0px solid transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: inset-inline-start 0.2s, inset-block-start 0.2s, width 0.2s, height 0.2s, box-shadow 0.2s, outline 0.2s;
+}
+
+.filterPriceBtn{
+  background: #111111;
+  font-size: 1.6rem;
+  font-weight: 500;
+  width: 100%;
+  padding: 0.6rem 1rem !important;
+  display: flex;
+  justify-content: center;
+  border-radius: 1rem;
+  align-items: center;
+  color: #fff;
+  margin-top: 2rem;
 }

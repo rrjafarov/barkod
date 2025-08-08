@@ -688,6 +688,7 @@ import {
 } from "@/redux/wishlistService";
 import { useGetCartQuery, useAddToCartMutation } from "@/redux/cartService";
 import { FormControl, Select, MenuItem } from '@mui/material';
+import FilterPrice from "./FilterPrice";
 
 // RTK Query hooks are used below
 
@@ -1238,7 +1239,12 @@ export default function ProductsPage({
                   <div className="lineFiltered"></div>
 
                   
-                  
+                  {/* 1. Qiymət filtri */}
+                  <FilterAccordion title={t?.price || "Qiymət"} defaultOpen={true}>
+                    <div className="priceFilterDesign">
+                      <FilterPrice />
+                    </div>
+                  </FilterAccordion>
 
                   {/* 2. Brend filtri */}
                   {brandFilter && (
@@ -1269,10 +1275,7 @@ export default function ProductsPage({
                     </FilterAccordion>
                   )}
 
-                   {/* 1. Qiymət filtri */}
-                  <FilterAccordion title={t?.price || "Qiymət"} defaultOpen={true}>
-                    {/* <PriceRangeFilter onPriceChange={handlePriceChange} /> */}
-                  </FilterAccordion>
+                   
 
                   {/* 3. Digər filter qrupları */}
                   {otherFilters.map((group, index) => (

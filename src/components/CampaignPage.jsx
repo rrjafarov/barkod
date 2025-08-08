@@ -36,7 +36,7 @@ const CampaignPage = ({ campaignPageDataSlider, t }) => {
         <div className="container">
           <div className="row">
             {campaignPageDataSlider.map((campaign) => (
-              <div className="xl-4 lg-4 md-6 sm-12" key={campaign.id}>
+              <div className="xl-3 lg-3 md-6 sm-12" key={campaign.id}>
                 <div className="campaignPageCard">
                   <div className="campaignPageCardItem">
                     <div className="campaignPageCardImage">
@@ -56,11 +56,10 @@ const CampaignPage = ({ campaignPageDataSlider, t }) => {
                     <span className="rightCircle"></span>
                   </div>
                   <div className="campaignPageCardBottom">
-                    <div className="campaignPageCardBottomText">
+                    {/* <div className="campaignPageCardBottomText">
                       <span>{t?.lastday || "Son"}</span>
-                      {/* Burada end_date yerinə qalan gün sayını göstəririk */}
                       <span>{calculateDaysRemaining(campaign.end_date)}</span>
-                    </div>
+                    </div> */}
                     <div className="campaignPageCardDetailButton">
                       <Link href={`/campaign/${campaign.slug}`}>
                         <button>{t?.learnmore || "Learn More"}</button>
