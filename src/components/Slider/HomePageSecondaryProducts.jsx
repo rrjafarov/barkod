@@ -74,7 +74,7 @@
 //     }
 //   }, [cartData]);
 
-//   // Fetch products when category changes (client-side)
+//   // Fetch products when category changes
 //   useEffect(() => {
 //     const fetchProducts = async () => {
 //       if (!selectedCategorySlug) {
@@ -88,7 +88,6 @@
 //           `/product-list?is_best_seller=1&cat_slug=${selectedCategorySlug}`,
 //           { headers: { Lang: lang || "az" }, cache: "no-store" }
 //         );
-//         // Normalize response.products to array
 //         const raw = data.products;
 //         const list = Array.isArray(raw)
 //           ? raw
@@ -97,8 +96,7 @@
 //           : [];
 //         setDisplayedProducts(list);
 //       } catch (error) {
-//         console.error("Failed to fetch products for category", error, error.response?.data);
-//         // fallback to empty list
+//         console.error("Failed to fetch products for category", error);
 //         setDisplayedProducts([]);
 //       } finally {
 //         setLoadingProducts(false);
@@ -177,7 +175,6 @@
 //                 )
 //               }
 //               style={{
-//                 marginLeft: 12,
 //                 cursor: "pointer",
 //                 fontWeight:
 //                   selectedCategorySlug === cat.slug ? "bold" : "normal",
@@ -207,7 +204,9 @@
 //         className="mySwiper custom-overflow-container"
 //       >
 //         {loadingProducts ? (
-//           <div></div>
+//           <div className="tab-loading">
+//             <div className="spinner" />
+//           </div>
 //         ) : (
 //           displayedProducts.map((product) => {
 //             const id = product.id;
@@ -251,19 +250,24 @@
 //                           </span>
 //                         </div>
 //                         <div className="wishList">
-//                           <button><NewScale className="newScalePR" /></button>
+//                           <button>
+//                             <NewScale className="newScalePR" />
+//                           </button>
 //                           <button
 //                             onClick={() => handleToggleWishlist(id)}
 //                             disabled={addingWish}
 //                             className="wishlist-btn"
 //                           >
-//                             {isWish ? <FaHeart className="newWishlistPR active" /> : <FiHeart className="newWishlistPR" />}
+//                             {isWish ? (
+//                               <FaHeart className="newWishlistPR active" />
+//                             ) : (
+//                               <FiHeart className="newWishlistPR" />
+//                             )}
 //                           </button>
 //                         </div>
 //                       </div>
 //                     </div>
 //                   </div>
-
 //                   <div className="addToCartClick">
 //                     <div className="addToCartClickItem">
 //                       <button
@@ -293,22 +297,43 @@
 //       </Swiper>
 
 //       <style jsx>{`
+//         .custom-overflow-container {
+//           /* slider konteynerinin minimum hündürlüyü */
+//           min-height: 360px;
+//         }
 //         .wishlist-btn:disabled,
 //         .cartBtn:disabled {
 //           cursor: not-allowed;
 //           opacity: 0.6;
 //         }
 //         .spinner-small {
-//           width: 16px;
-//           height: 16px;
-//           border: 3px solid rgba(0, 0, 0, 0.1);
+//           width: 35px;
+//           height: 35px;
+//           border: 4px solid rgba(0, 0, 0, 0.1);
 //           border-top-color: #ec1f27;
 //           border-radius: 50%;
 //           animation: spin 1s linear infinite;
 //           display: inline-block;
 //         }
+//         .tab-loading {
+//           /* yüklenme zamanı konteyner sabit qalır, spinner ortalanır */
+//           min-height: 360px;
+//           display: flex;
+//           align-items: center;
+//           justify-content: center;
+//         }
+//         .spinner {
+//           width: 40px;
+//           height: 40px;
+//           border: 5px solid rgba(0, 0, 0, 0.1);
+//           border-top-color: #ec1f27;
+//           border-radius: 50%;
+//           animation: spin 1s linear infinite;
+//         }
 //         @keyframes spin {
-//           to { transform: rotate(360deg); }
+//           to {
+//             transform: rotate(360deg);
+//           }
 //         }
 //       `}</style>
 //     </div>
@@ -316,23 +341,7 @@
 // };
 
 // export default HomePageSecondaryProducts;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// ! compare yoxdur yuxarida amma ela isleyir
 
 
 
@@ -364,13 +373,14 @@ import { FaHeart } from "react-icons/fa";
 import axiosInstance from "@/lib/axios";
 import Cookies from "js-cookie";
 
-// RTK Query hook’ları
+// RTK Query hook'ları
 import {
   useGetFavQuery,
   useAddToFavMutation,
   useRemoveFromFavMutation,
 } from "@/redux/wishlistService";
 import { useGetCartQuery, useAddToCartMutation } from "@/redux/cartService";
+import { useAddToCompareMutation } from "@/redux/compareService";
 
 const HomePageSecondaryProducts = ({
   homePageTop100,
@@ -392,6 +402,7 @@ const HomePageSecondaryProducts = ({
   const [addingWishMap, setAddingWishMap] = useState({});
   const [cartMap, setCartMap] = useState({});
   const [addingCartMap, setAddingCartMap] = useState({});
+  const [addingCompareMap, setAddingCompareMap] = useState({});
 
   const { data: wishlistData } = useGetFavQuery();
   const [addToFav] = useAddToFavMutation();
@@ -399,6 +410,9 @@ const HomePageSecondaryProducts = ({
 
   const { data: cartData } = useGetCartQuery();
   const [addToCart] = useAddToCartMutation();
+
+  // Compare
+  const [addToCompare, { isLoading: isAddingCompare }] = useAddToCompareMutation();
 
   // Wishlist sync
   useEffect(() => {
@@ -453,6 +467,35 @@ const HomePageSecondaryProducts = ({
     };
     fetchProducts();
   }, [selectedCategorySlug, homePageDataBestSellingProducts]);
+
+  // Compare handler
+  const handleAddToCompare = async (productId) => {
+    if (!productId) {
+      console.error("Product ID boşdur və ya undefined gəldi");
+      return;
+    }
+
+    // Loading state
+    if (addingCompareMap[productId]) return;
+    
+    setAddingCompareMap((prev) => ({
+      ...prev,
+      [productId]: true,
+    }));
+
+    try {
+      await addToCompare(productId).unwrap();
+      console.log(`Məhsul ${productId} müqayisəyə əlavə edildi.`);
+    } catch (error) {
+      console.error("Məhsul müqayisəyə əlavə edilərkən xəta baş verdi:", error);
+    } finally {
+      setAddingCompareMap((prev) => {
+        const copy = { ...prev };
+        delete copy[productId];
+        return copy;
+      });
+    }
+  };
 
   // Toggle wishlist
   const handleToggleWishlist = async (id) => {
@@ -563,6 +606,7 @@ const HomePageSecondaryProducts = ({
             const addingWish = !!addingWishMap[id];
             const inCart = !!cartMap[id];
             const addingCart = !!addingCartMap[id];
+            const isAddingCompareItem = !!addingCompareMap[id];
 
             return (
               <SwiperSlide key={id} className="productCardSlide">
@@ -599,8 +643,16 @@ const HomePageSecondaryProducts = ({
                           </span>
                         </div>
                         <div className="wishList">
-                          <button>
-                            <NewScale className="newScalePR" />
+                          <button
+                            className="newScaleBtn"
+                            onClick={() => handleAddToCompare(id)}
+                            disabled={isAddingCompareItem}
+                          >
+                            {isAddingCompareItem ? (
+                              <div className="spinner-small"></div>
+                            ) : (
+                              <NewScale className="newScalePR" />
+                            )}
                           </button>
                           <button
                             onClick={() => handleToggleWishlist(id)}
@@ -627,7 +679,7 @@ const HomePageSecondaryProducts = ({
                         {addingCart ? (
                           <div className="spinner-small" />
                         ) : inCart ? (
-                          <span>✔︎ {t?.added || "added"}</span>
+                          <span>{t?.added || "added"}</span>
                         ) : (
                           t?.addtocart || "Add to cart"
                         )}
@@ -656,9 +708,9 @@ const HomePageSecondaryProducts = ({
           opacity: 0.6;
         }
         .spinner-small {
-          width: 35px;
-          height: 35px;
-          border: 4px solid rgba(0, 0, 0, 0.1);
+          width: 16px;
+          height: 16px;
+          border: 3px solid rgba(0, 0, 0, 0.1);
           border-top-color: #ec1f27;
           border-radius: 50%;
           animation: spin 1s linear infinite;
@@ -683,6 +735,13 @@ const HomePageSecondaryProducts = ({
           to {
             transform: rotate(360deg);
           }
+        }
+        .newScaleBtn {
+          cursor: pointer;
+        }
+        .newScaleBtn:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
         }
       `}</style>
     </div>

@@ -1287,7 +1287,7 @@ ul {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1.2rem;
 
     strong {
       border: 1px solid lightgray;
@@ -1297,12 +1297,13 @@ ul {
       font-size: 1.4rem;
     }
     span {
-      font-size: 1.8rem;
+      border: 1px solid lightgray;
+      border-radius: 3rem;
+      padding: 0.6rem 1rem;
+      font-size: 1.4rem;
       font-weight: 600;
       cursor: pointer;
-
       &:hover {
-        text-decoration: underline;
         text-decoration-color: $MainColor;
         transition: all 0.05s ease-in-out;
       }
@@ -4097,15 +4098,43 @@ ul {
 }
 
 .adreesInput {
-  width: 75%;
+  width: 100%;
 }
 
 .form-group select {
   // color: gray;
-  opacity: 0.8;
+  // opacity: 0.8;
+  background-color: #fff;
   // font-family: "Inter Tight", sans-serif !important;
   font-family: "Montserrat", sans-serif !important;
 }
+.form-group ::placeholder {
+  color: gray;
+  opacity: 0.8;
+  font-family: "Montserrat", sans-serif !important;
+}
+select option[disabled] {
+  color: gray;
+  opacity: 0.8;
+  font-family: "Montserrat", sans-serif !important;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 8px 2.5rem 8px 1rem; /* sağdan boşluq */
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  background-image: url("data:image/svg+xml,%3Csvg fill='black' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px;
+  cursor: pointer;
+}
+
 
 .priceTitleSegment {
   font-size: 1.6rem;
@@ -4217,7 +4246,7 @@ select:focus {
   width: 90%;
   max-width: 45rem;
   max-height: 40rem;
-  height: 20rem;
+  height: 22rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -4981,7 +5010,9 @@ form.error.active {
   margin-bottom: 2.4rem;
   position: relative;
 }
-
+.inputChild ::placeholder{
+  opacity: 0.5 !important;
+}
 .inputChild {
   width: var(--width);
   height: 4.9rem;

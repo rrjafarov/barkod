@@ -166,7 +166,7 @@ $MainColor: #ec1f27 !important;
             opacity: 1;
             font-size: 1.8rem;
             font-weight: 300;
-            letter-spacing: -.02em;
+            letter-spacing: -0.02em;
           }
         }
         .searchButtonIcon {
@@ -244,12 +244,86 @@ $MainColor: #ec1f27 !important;
             fill: black !important;
             stroke: black !important;
           }
-
         }
       }
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media (max-width: 767.9px) {
   .headerTop {
@@ -330,15 +404,7 @@ $MainColor: #ec1f27 !important;
       display: none !important;
     }
   }
-
-
 }
-
-
-
-
-
-
 
 .mobileFixedButtons {
   display: none;
@@ -378,21 +444,16 @@ $MainColor: #ec1f27 !important;
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.fixedHeadLogo{
+  width: 3.5rem;
+  height: 3.5rem;
+  // margin-right: 0.5rem;
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
 
 // ! EN SON VERSIYA
 .categoryMegaMenu {
@@ -403,8 +464,9 @@ $MainColor: #ec1f27 !important;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
   min-height: 60rem;
+  min-height: 65rem;
   max-height: 50rem !important;
-   overflow: hidden;
+  overflow: hidden;
 }
 @media (max-width: 767.9px) {
   .categoryMegaMenu {
@@ -417,17 +479,18 @@ $MainColor: #ec1f27 !important;
   width: 30%;
   border-right: 1px solid #111;
   padding: 2rem;
+  padding: 1rem 2rem;
+
   margin: 1rem 0;
   overflow-x: auto;
   // max-height: 50rem; /* ya da inherit: max-height: inherit; */
   overflow-y: auto;
-
 }
 
 .leftColumn ul {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -446,7 +509,8 @@ $MainColor: #ec1f27 !important;
   &:hover img,
   &.active img {
     transition: filter 0.3s ease;
-    filter: invert(15%) sepia(100%) saturate(7490%) hue-rotate(-10deg) brightness(100%) contrast(100%);
+    filter: invert(15%) sepia(100%) saturate(7490%) hue-rotate(-10deg)
+      brightness(100%) contrast(100%);
   }
 }
 
@@ -496,11 +560,11 @@ $MainColor: #ec1f27 !important;
 
 .leftColumn::-webkit-scrollbar,
 .rightColumn::-webkit-scrollbar {
-  width: 0.1px !important; 
+  width: 0.1px !important;
 }
 .leftColumn::-webkit-scrollbar-track,
 .rightColumn::-webkit-scrollbar-track {
-  background: #fff !important; 
+  background: #fff !important;
 }
 
 .ee {
@@ -532,9 +596,9 @@ $MainColor: #ec1f27 !important;
   flex: 1;
   margin: 1rem 0;
   padding: 2rem;
+  padding: 1rem 2rem;
   min-height: 200px;
   overflow-y: auto;
-
 }
 
 .rightColumn a {
@@ -695,7 +759,6 @@ $MainColor: #ec1f27 !important;
     font-size: 2.5rem;
     font-size: 3rem !important;
     padding: 1rem;
-
   }
 }
 
@@ -765,7 +828,6 @@ $MainColor: #ec1f27 !important;
     .rightColumnItem {
       display: flex !important;
       align-items: center !important;
-
     }
 
     ul {
@@ -783,14 +845,16 @@ $MainColor: #ec1f27 !important;
     color: #111 !important;
   }
 
-  .categoryMegaMenu .rightColumn .rightColumnItems .rightColumnItem .catgorySubTitle a {
+  .categoryMegaMenu
+    .rightColumn
+    .rightColumnItems
+    .rightColumnItem
+    .catgorySubTitle
+    a {
     font-size: 2.2rem !important;
     border-bottom: 1px solid rgb(76, 79, 76);
     font-weight: 600 !important;
   }
-
-
-
 
   .categoryMegaMenu .rightColumn a {
     font-size: 2rem !important;
@@ -799,7 +863,6 @@ $MainColor: #ec1f27 !important;
     text-decoration: none !important;
     padding: 1rem 0 2rem 0;
   }
-
 }
 
 // ! EN SON VERSIYA

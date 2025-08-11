@@ -353,7 +353,9 @@ const ForgotPasswordPage = () => {
           ) : (
             <div className="authContainer">
               <div className="authHeader">
-                <span className="active">Set Your New Password</span>
+                <span className="active">
+                  {t?.["setnewpass"] || "Set your new password"}
+                </span>
               </div>
               <form onSubmit={handleSubmit}>
                 <label>{t?.["otp-verification"] || "OTP Code"}</label>

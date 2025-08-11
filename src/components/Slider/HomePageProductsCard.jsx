@@ -785,7 +785,7 @@ const HomePageProductsCard = ({
                         {isAddingCart ? (
                           <div className="spinner-small"></div>
                         ) : isInCart ? (
-                          <span>✔︎ {t?.added || "added"}</span>
+                          <span>{t?.added || "added"}</span>
                         ) : (
                           t?.addtocart || "Add to cart"
                         )}
