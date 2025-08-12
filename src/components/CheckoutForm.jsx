@@ -1,685 +1,3 @@
-// ! bu kod ileyir
-// "use client";
-// import Link from "next/link";
-// import { useState, useEffect } from "react";
-// import axiosInstance from "@/lib/axios";
-// import Cookies from "js-cookie";
-// import { FiPlus, FiChevronDown, FiX, FiCheck, FiEdit2 } from "react-icons/fi";
-// import {
-//   useGetAddressListQuery,
-//   useAddAddressMutation,
-//   useUpdateAddressMutation,
-//   useDeleteAddressListMutation,
-// } from "@/redux/userService";
-
-// // Address Popup Component
-// const CheckoutAddressPopup = ({ t, active, setActive, edit, delivery, onAddressAdded }) => {
-//   const [name, setName] = useState("");
-//   const [address, setAddress] = useState("");
-//   const [region, setRegion] = useState("");
-//   const [tel, setTel] = useState("");
-//   const [added, setAdded] = useState(false);
-//   const [error, setError] = useState("");
-
-//   const [addAddress, { isLoading: isAdding }] = useAddAddressMutation();
-//   const [updateAddress, { isLoading: isUpdating }] = useUpdateAddressMutation();
-
-//   useEffect(() => {
-//     if (edit) {
-//       setName(edit.name || "");
-//       setAddress(edit.address || "");
-//       setRegion(edit.region || "");
-//       setTel(edit.tel ? edit.tel.replace("+994", "") : "");
-//     } else {
-//       setName("");
-//       setAddress("");
-//       setRegion("");
-//       setTel("");
-//     }
-//     setError("");
-//   }, [edit]);
-
-//   // Phone validation
-//   const validatePhone = (phone) => {
-//     const phoneRegex = /^[0-9]{9}$/; // 9 digits after +994
-//     return phoneRegex.test(phone);
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     setError("");
-
-//     // Validation
-//     if (!validatePhone(tel)) {
-//       setError("Telefon nömrəsi düzgün formatda olmalıdır (9 rəqəm)");
-//       return;
-//     }
-
-//     if (!name.trim() || !address.trim() || !region || !tel) {
-//       setError("Bütün sahələr doldurulmalıdır");
-//       return;
-//     }
-
-//     try {
-//       const payload = {
-//         name: name.trim(),
-//         address: address.trim(),
-//         region,
-//         tel: `+994${tel}`
-//       };
-
-//       if (edit) {
-//         await updateAddress({ id: edit.id, data: payload }).unwrap();
-//       } else {
-//         await addAddress(payload).unwrap();
-//       }
-
-//       setAdded(true);
-//       onAddressAdded && onAddressAdded();
-//       setTimeout(() => setActive(false), 1500);
-//     } catch (error) {
-//       console.error("Failed to submit address", error);
-//       setError(error?.data?.message || "Ünvan əlavə edilərkən xəta baş verdi");
-//     } finally {
-//       setTimeout(() => {
-//         setName("");
-//         setAddress("");
-//         setRegion("");
-//         setTel("");
-//         setAdded(false);
-//       }, 1500);
-//     }
-//   };
-
-//   return (
-//     <div className={`popupAddress ${active ? "active" : ""}`}>
-//       <div className="layer" onClick={() => setActive(false)} />
-//       <div className="popupContainer">
-//         <button className="close" onClick={() => setActive(false)}>
-//           <FiX />
-//         </button>
-//         <form onSubmit={handleSubmit}>
-//           <p>{edit ? "Ünvanı yenilə" : t?.["add-address"] || "Ünvan əlavə et"}</p>
-
-//           {error && <div className="error-message">{error}</div>}
-
-//           <label>{t?.name || "Ad"}</label>
-//           <div className="inputChild">
-//             <input
-//               type="text"
-//               value={name}
-//               required
-//               onChange={(e) => setName(e.target.value)}
-//               placeholder="Adınızı daxil edin"
-//             />
-//           </div>
-
-//           <label>{t?.address || "Ünvan"}</label>
-//           <div className="inputChild">
-//             <input
-//               type="text"
-//               value={address}
-//               required
-//               onChange={(e) => setAddress(e.target.value)}
-//               placeholder="Ünvanınızı daxil edin"
-//             />
-//           </div>
-
-//           <label>{t?.city || "Şəhər"}</label>
-//           <div className="selectBox selectBoxCity">
-//             <select
-//               value={region}
-//               onChange={(e) => setRegion(e.target.value)}
-//               required
-//             >
-//               <option value="" disabled>
-//                 {t?.["select-region"] || "Şəhər seçin"}
-//               </option>
-//               {delivery?.map((city) => (
-//                 <option key={city.id} value={city.name}>
-//                   {city.name_az} | {city.name_ru}
-//                 </option>
-//               ))}
-//             </select>
-//             <FiChevronDown />
-//           </div>
-
-//           <label>{t?.phone || "Telefon"}</label>
-//           <div className="phoneInput">
-//             <span>+994</span>
-//             <input
-//               type="tel"
-//               value={tel}
-//               required
-//               maxLength="9"
-//               pattern="[0-9]{9}"
-//               onChange={(e) => {
-//                 const value = e.target.value.replace(/\D/g, ''); // Only numbers
-//                 setTel(value);
-//               }}
-//               placeholder="501234567"
-//             />
-//           </div>
-
-//           <button
-//             type="submit"
-//             className={`blackButton ${added ? "active" : ""}`}
-//             disabled={isAdding || isUpdating}
-//           >
-//             {isAdding || isUpdating ? (
-//               <div className="loader2" />
-//             ) : added ? (
-//               "Ünvan əlavə edildi"
-//             ) : edit ? (
-//               "Ünvanı yenilə"
-//             ) : (
-//               t?.["add-address"] || "Ünvan əlavə et"
-//             )}
-//           </button>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
-
-// // Address Card Component for checkout
-// const CheckoutAddressCard = ({ t, address, selectedAddress, onSelect, onEdit }) => {
-//   const [deleteAddressList, { isLoading: isDeleting }] = useDeleteAddressListMutation();
-
-//   const handleSelect = () => {
-//     console.log("Card clicked, selecting address:", address);
-//     onSelect(address);
-//   };
-
-//   const handleDelete = async (e) => {
-//     e.stopPropagation();
-//     if (window.confirm("Bu ünvanı silmək istədiyinizdən əminsiniz?")) {
-//       try {
-//         await deleteAddressList(address.id).unwrap();
-//       } catch (error) {
-//         console.error("Failed to delete address", error);
-//       }
-//     }
-//   };
-
-//   return (
-//     <div className="xl-6 lg-6 md-6 sm-12">
-//       <div
-//         className={`addressCard ${selectedAddress?.id === address.id ? 'selected' : ''}`}
-//         onClick={handleSelect}
-//         style={{ cursor: 'pointer' }}
-//       >
-//         <input
-//           type="radio"
-//           name="checkout-address"
-//           checked={selectedAddress?.id === address.id}
-//           onChange={handleSelect}
-//           onClick={(e) => e.stopPropagation()}
-//         />
-//         <div className="addressCardInner">
-//           <div className="tick"><FiCheck /></div>
-//           <div><span>Ad</span><p>{address?.name}</p></div>
-//           <div><span>Şəhər</span><p>{address?.region}</p></div>
-//           <div><span>Ünvan</span><p>{address?.address}</p></div>
-//           <div><span>Telefon</span><p>{address?.tel}</p></div>
-//         </div>
-//         <button
-//           className="delete"
-//           onClick={handleDelete}
-//           disabled={isDeleting}
-//           title="Ünvanı sil"
-//         >
-//           {isDeleting ? <div className="loader2" /> : <FiX />}
-//         </button>
-//         <button
-//           className="edit"
-//           onClick={(e) => { e.stopPropagation(); onEdit(address); }}
-//           title="Ünvanı redaktə et"
-//         >
-//           <FiEdit2 />
-//         </button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default function CheckoutForm({ deliveryData, products, t }) {
-//   const [isPopupOpen, setIsPopupOpen] = useState(false);
-//   const [isAddressPopupOpen, setIsAddressPopupOpen] = useState(false);
-//   const [editAddress, setEditAddress] = useState(null);
-//   const [selectedAddress, setSelectedAddress] = useState(null);
-//   const [isLoggedIn, setIsLoggedIn] = useState(false);
-//   const [paymentMethod, setPaymentMethod] = useState("0");
-//   const [isSubmitting, setIsSubmitting] = useState(false);
-//   const [formError, setFormError] = useState("");
-//   const [paymentUrl, setPaymentUrl] = useState(null);
-
-//   // Get user addresses with skip condition
-//   const token = Cookies.get("token");
-//   const { data: addressData, isLoading: isAddressLoading, refetch } = useGetAddressListQuery(
-//     undefined, // query params
-//     { skip: !token } // skip query if no token
-//   );
-
-//   // Debug: Log address data
-//   console.log("Address Data:", addressData);
-//   console.log("Selected Address:", selectedAddress);
-//   console.log("Is Logged In:", isLoggedIn);
-
-//   useEffect(() => {
-//     setIsLoggedIn(!!token);
-//   }, [token]);
-
-//   // Separate useEffect for address selection
-//   useEffect(() => {
-//     if (isLoggedIn && addressData?.length > 0) {
-//       // Find main address or use first one
-//       const mainAddress = addressData.find(a => a.is_main);
-//       const addressToSelect = mainAddress || addressData[0];
-
-//       console.log("Setting selected address:", addressToSelect);
-//       setSelectedAddress(addressToSelect);
-//     } else if (!isLoggedIn) {
-//       setSelectedAddress(null);
-//     }
-//   }, [isLoggedIn, addressData]);
-
-//   const handleAddressAdded = () => {
-//     refetch();
-//   };
-
-//   const handleAddClick = () => {
-//     setEditAddress(null);
-//     setIsAddressPopupOpen(true);
-//   };
-
-//   const handleEditClick = (addr) => {
-//     setEditAddress(addr);
-//     setIsAddressPopupOpen(true);
-//   };
-
-//   const handlePaymentMethodChange = (e) => {
-//     setPaymentMethod(e.target.value);
-//   };
-
-//   const handleClosePopup = () => {
-//     setIsPopupOpen(false);
-//   };
-
-//   const handleContinue = () => {
-//     if (paymentUrl) {
-//       window.open(paymentUrl, '_blank');
-//     } else {
-//       window.location.href = "/";
-//     }
-//   };
-
-//   // Address selection handler with debugging
-//   const handleAddressSelect = (address) => {
-//     console.log("Address selected:", address);
-//     setSelectedAddress(address);
-//   };
-
-//   // Form validation
-//   const validateForm = (formData) => {
-//     const requiredFields = [];
-
-//     if (!isLoggedIn) {
-//       if (!formData.get("name")?.trim()) requiredFields.push("Ad");
-//       if (!formData.get("phone")?.trim()) requiredFields.push("Telefon");
-//       if (!formData.get("city")) requiredFields.push("Şəhər");
-//       if (!formData.get("address")?.trim()) requiredFields.push("Ünvan");
-//     } else if (!selectedAddress) {
-//       requiredFields.push("Ünvan seçimi");
-//     }
-
-//     if (!formData.get("terms")) requiredFields.push("Şərtlərlə razılıq");
-
-//     return requiredFields;
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     setFormError("");
-//     setIsSubmitting(true);
-
-//     const form = e.target;
-//     const formData = new FormData(form);
-
-//     // Validate form
-//     const missingFields = validateForm(formData);
-//     if (missingFields.length > 0) {
-//       setFormError(`Aşağıdakı sahələr tələb olunur: ${missingFields.join(", ")}`);
-//       setIsSubmitting(false);
-//       return;
-//     }
-
-//     // Prepare data with detailed logging
-//     const submitData = new FormData();
-
-//     console.log("=== FORM SUBMISSION DEBUG ===");
-//     console.log("Is Logged In:", isLoggedIn);
-//     console.log("Selected Address:", selectedAddress);
-//     console.log("Payment Method:", paymentMethod);
-
-//     if (isLoggedIn && selectedAddress) {
-//       console.log("Using logged in user address:");
-//       console.log("Name:", selectedAddress.name);
-//       console.log("Tel:", selectedAddress.tel);
-//       console.log("Address:", selectedAddress.address);
-//       console.log("Region:", selectedAddress.region);
-
-//       submitData.append("name", selectedAddress.name);
-//       submitData.append("tel", selectedAddress.tel);
-//       submitData.append("address", selectedAddress.address);
-
-//       // Find city data for the selected address - improved matching
-//       const cityData = deliveryData.find(city => {
-//         const cityName = city.name || city.name_az || city.name_ru;
-//         const combined = `${city.name_az} | ${city.name_ru}`;
-//         const region = selectedAddress.region;
-
-//         console.log("Comparing:", {
-//           cityName,
-//           combined,
-//           region,
-//           match: combined === region ||
-//                  city.name_az === region ||
-//                  city.name_ru === region ||
-//                  cityName === region
-//         });
-
-//         return combined === region ||
-//                city.name_az === region ||
-//                city.name_ru === region ||
-//                cityName === region;
-//       });
-
-//       console.log("Found city data:", cityData);
-
-//       if (cityData) {
-//         submitData.append("city_id", cityData.id.toString());
-//         submitData.append("shipping_address_id", selectedAddress.id.toString());
-//       } else {
-//         console.warn("No matching city found for region:", selectedAddress.region);
-//         submitData.append("region", selectedAddress.region);
-//       }
-//     } else {
-//       console.log("Using guest user data:");
-//       const guestName = formData.get("name") || "";
-//       const guestPhone = formData.get("phone") || "";
-//       const guestCity = formData.get("city") || "";
-//       const guestAddress = formData.get("address") || "";
-
-//       console.log("Guest Name:", guestName);
-//       console.log("Guest Phone:", guestPhone);
-//       console.log("Guest City:", guestCity);
-//       console.log("Guest Address:", guestAddress);
-
-//       submitData.append("name", guestName);
-//       submitData.append("tel", guestPhone);
-//       submitData.append("city", guestCity);
-//       submitData.append("address", guestAddress);
-//     }
-
-//     submitData.append("email", formData.get("email") || "");
-//     submitData.append("order_note", formData.get("order_note") || "");
-//     submitData.append("payment_method", paymentMethod);
-
-//     // Add product information
-//     if (products && products.length > 0) {
-//       console.log("Adding products:", products);
-//       products.forEach((product, index) => {
-//         submitData.append(`products[${index}][id]`, product.product.id);
-//         submitData.append(`products[${index}][qty]`, product.qty || 1);
-//         submitData.append(`products[${index}][price]`, product.product.price);
-//       });
-//     }
-
-//     // Log all form data being sent
-//     console.log("=== FINAL FORM DATA ===");
-//     for (let [key, value] of submitData.entries()) {
-//       console.log(`${key}: ${value}`);
-//     }
-
-//     try {
-//       const response = await axiosInstance.post("/make-payment", submitData, {
-//         headers: { "Content-Type": "multipart/form-data" },
-//       });
-
-//       console.log("Order submitted successfully:", response.data);
-
-//       // Store payment URL if exists
-//       if (response.data && response.data.payment_url) {
-//         setPaymentUrl(response.data.payment_url);
-//       }
-
-//       setIsPopupOpen(true);
-
-//     } catch (err) {
-//       console.error("Payment failed:", err);
-//       console.error("Error response:", err.response?.data);
-//       setFormError(
-//         err.response?.data?.message ||
-//         "Ödeme işlemi başarısız oldu. Lütfen tekrar deneyin."
-//       );
-//     } finally {
-//       setIsSubmitting(false);
-//     }
-//   };
-
-//   if (isLoggedIn && isAddressLoading) {
-//     return (
-//       <div className="loaderDiv">
-//         <div className="loader"></div>
-//       </div>
-//     );
-//   }
-
-//   return (
-//     <div className="form-container">
-//       {/* Address Popup */}
-//       <CheckoutAddressPopup
-//         t={t}
-//         active={isAddressPopupOpen}
-//         setActive={setIsAddressPopupOpen}
-//         edit={editAddress}
-//         delivery={deliveryData}
-//         onAddressAdded={handleAddressAdded}
-//       />
-
-//       <form onSubmit={handleSubmit}>
-//         {formError && <div className="form-error">{formError}</div>}
-
-//         {isLoggedIn ? (
-//           <div className="address-section">
-//             <h3>{t?.["shipping-address"] || "Çatdırılma ünvanı"}</h3>
-//             <div className="addressParent">
-//               <div className="addressParentCards">
-//                 <button
-//                   type="button"
-//                   className="addressCardCreate"
-//                   onClick={handleAddClick}
-//                 >
-//                   <FiPlus />
-//                   <span>{t?.["add-address"] || "Ünvan əlavə et"}</span>
-//                 </button>
-//               </div>
-//             </div>
-//             <div className="address-list">
-//               {addressData?.map((address) => (
-//                 <CheckoutAddressCard
-//                   key={address.id}
-//                   t={t}
-//                   address={address}
-//                   selectedAddress={selectedAddress}
-//                   onSelect={handleAddressSelect}
-//                   onEdit={handleEditClick}
-//                 />
-//               ))}
-//             </div>
-//             <div className="form-group">
-//               <input
-//                 type="email"
-//                 id="email"
-//                 name="email"
-//                 placeholder="E-mail (ixtiyari)"
-//               />
-//             </div>
-//           </div>
-//         ) : (
-//           <>
-//             <div className="form-row">
-//               <div className="form-group">
-//                 <input
-//                   type="text"
-//                   id="name"
-//                   name="name"
-//                   required
-//                   placeholder="Ad *"
-//                 />
-//               </div>
-//               <div className="form-group">
-//                 <input
-//                   type="text"
-//                   id="surname"
-//                   name="surname"
-//                   placeholder="Soyad"
-//                 />
-//               </div>
-//             </div>
-//             <div className="form-row">
-//               <div className="form-group">
-//                 <input
-//                   type="tel"
-//                   id="phone"
-//                   name="phone"
-//                   required
-//                   placeholder="Telefon *"
-//                 />
-//               </div>
-//               <div className="form-group">
-//                 <input
-//                   type="email"
-//                   id="email"
-//                   name="email"
-//                   placeholder="E-mail"
-//                 />
-//               </div>
-//             </div>
-//             <div className="form-group">
-//               <select
-//                 id="city"
-//                 name="city"
-//                 defaultValue={deliveryData[0]?.id}
-//                 required
-//               >
-//                 <option value="" disabled>Şəhər seçin *</option>
-//                 {deliveryData?.map((region) => (
-//                   <option key={region.id} value={region.id}>
-//                     {region.name_az} | {region.name_ru}
-//                   </option>
-//                 ))}
-//               </select>
-//             </div>
-//             <div className="form-group adreesInput">
-//               <input
-//                 type="text"
-//                 id="address"
-//                 name="address"
-//                 placeholder="Ünvan qeyd edin *"
-//                 required
-//               />
-//             </div>
-//           </>
-//         )}
-
-//         {/* Order Note */}
-//         <div className="form-group">
-//           <textarea
-//             id="order_note"
-//             name="order_note"
-//             placeholder="Sifariş qeydi (ixtiyari)"
-//             rows="3"
-//           />
-//         </div>
-
-//         {/* Payment Method */}
-//         <div className="form-group">
-//           <label className="priceTitleSegment">Ödəniş üsulunu seç</label>
-//           <div className="radio-group">
-//             <div className="checkGroup">
-//               <label htmlFor="pay-cash">Nağd ödə</label>
-//               <input
-//                 type="radio"
-//                 id="pay-cash"
-//                 name="payment"
-//                 value="0"
-//                 checked={paymentMethod === "0"}
-//                 onChange={handlePaymentMethodChange}
-//               />
-//             </div>
-//             <div className="checkGroup">
-//               <label htmlFor="pay-online">Online ödə</label>
-//               <input
-//                 type="radio"
-//                 id="pay-online"
-//                 name="payment"
-//                 value="1"
-//                 checked={paymentMethod === "1"}
-//                 onChange={handlePaymentMethodChange}
-//               />
-//             </div>
-//           </div>
-//         </div>
-
-//         {/* Terms Agreement */}
-//         <div className="form-group contitionCheck">
-//           <input type="checkbox" id="terms" name="terms" required />
-//           <label htmlFor="terms">Şərtlərə razıyam *</label>
-//         </div>
-
-//         {/* Submit Button */}
-//         <button
-//           type="submit"
-//           className="submit-button"
-//           disabled={isSubmitting || (isLoggedIn && !selectedAddress)}
-//         >
-//           {isSubmitting ? "Göndərilir..." : "Sifarişi tamamla"}
-//         </button>
-//       </form>
-
-//       {/* Success Popup */}
-//       {isPopupOpen && (
-//         <div className="popup-overlay">
-//           <div className="popup-contentCheckout">
-//             <button className="popup-close" onClick={handleClosePopup}>
-//               &times;
-//             </button>
-//             <h2>Sifarişiniz qeydə alındı!</h2>
-//             <p>Əməkdaşımız bir neçə dəqiqə ərzində sizinlə əlaqə saxlayacaq</p>
-//             <button className="popup-continue" onClick={handleContinue}>
-//               {paymentUrl ? "Ödənişə davam et" : "Davam et"}
-//             </button>
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-// ! XAIS EDIREM ISLEMELISEN
-
-
-
-
-
-
-
-
-
-
-
-
 // "use client";
 // import Link from "next/link";
 // import { useState, useEffect } from "react";
@@ -965,6 +283,7 @@
 //   t,
 //   totalAmount,
 //   onDeliveryUpdate,
+//   deliveryInfo, // ÖNƏMLİ: deliveryInfo props kimi alırıq
 // }) {
 //   const [isPopupOpen, setIsPopupOpen] = useState(false);
 //   const [isAddressPopupOpen, setIsAddressPopupOpen] = useState(false);
@@ -976,12 +295,8 @@
 //   const [formError, setFormError] = useState("");
 //   const [paymentUrl, setPaymentUrl] = useState(null);
 //   const [selectedCityForGuest, setSelectedCityForGuest] = useState("");
-  
-//   // ÖNƏMLİ: Çatdırılma məlumatlarını saxlamaq üçün state əlavə etdik
-//   const [deliveryInfo, setDeliveryInfo] = useState({
-//     price: 0,
-//     isFree: false
-//   });
+
+//   // ÖNƏMLİ: deliveryInfo artıq props-dan gəlir, local state silindi
 
 //   // Get user addresses with skip condition
 //   const token = Cookies.get("token");
@@ -1015,25 +330,7 @@
 //     }
 //   }, [isLoggedIn, addressData]);
 
-//   // ÖNƏMLİ: Çatdırılma məlumatlarını yeniləmək və saxlamaq
-//   const updateDeliveryInfo = (selectedCityData) => {
-//     if (!selectedCityData) {
-//       setDeliveryInfo({ price: 0, isFree: false });
-//       onDeliveryUpdate && onDeliveryUpdate(null);
-//       return;
-//     }
-
-//     const cityLimit = parseFloat(selectedCityData.limit) || 0;
-//     const cityPrice = parseFloat(selectedCityData.price) || 0;
-
-//     const newDeliveryInfo = {
-//       price: totalAmount >= cityLimit ? 0 : cityPrice,
-//       isFree: totalAmount >= cityLimit
-//     };
-
-//     setDeliveryInfo(newDeliveryInfo);
-//     onDeliveryUpdate && onDeliveryUpdate(selectedCityData);
-//   };
+//   // ÖNƏMLİ: updateDeliveryInfo funksiyası silindi çünki artıq parent-dən gəlir
 
 //   // Update delivery info when address or city changes
 //   useEffect(() => {
@@ -1051,23 +348,23 @@
 //         );
 //       });
 
-//       updateDeliveryInfo(cityData);
+//       onDeliveryUpdate && onDeliveryUpdate(cityData);
 //     } else if (!isLoggedIn && selectedCityForGuest) {
 //       // Find delivery data for guest selected city
 //       const cityData = deliveryData.find(
 //         (city) => city.id.toString() === selectedCityForGuest.toString()
 //       );
 
-//       updateDeliveryInfo(cityData);
+//       onDeliveryUpdate && onDeliveryUpdate(cityData);
 //     } else {
-//       updateDeliveryInfo(null);
+//       onDeliveryUpdate && onDeliveryUpdate(null);
 //     }
 //   }, [
 //     selectedAddress,
 //     selectedCityForGuest,
 //     isLoggedIn,
 //     deliveryData,
-//     totalAmount // totalAmount dəyişəndə də yenilənməlidir
+//     onDeliveryUpdate
 //   ]);
 
 //   const handleAddressAdded = () => {
@@ -1146,11 +443,14 @@
 //     }
 
 //     // ÖNƏMLİ: Ümumi məbləği hesablayırıq (məhsullar + çatdırılma)
-//     const finalTotalAmount = totalAmount + deliveryInfo.price;
+//     // deliveryInfo.price string ola bilər, ona görə parseFloat istifadə edirik
+//     const deliveryPrice = parseFloat(deliveryInfo?.price || 0);
+//     const finalTotalAmount = totalAmount + deliveryPrice;
 
 //     console.log("=== PAYMENT CALCULATION DEBUG ===");
 //     console.log("Product Total:", totalAmount);
-//     console.log("Delivery Price:", deliveryInfo.price);
+//     console.log("Delivery Info:", deliveryInfo);
+//     console.log("Delivery Price (parsed):", deliveryPrice);
 //     console.log("Final Total Amount:", finalTotalAmount);
 
 //     // Prepare data with detailed logging
@@ -1222,12 +522,21 @@
 //     submitData.append("payment_method", paymentMethod);
 
 //     // ÖNƏMLİ: Çatdırılma məlumatlarını da göndəririk
-//     submitData.append("delivery_price", deliveryInfo.price.toString());
-//     submitData.append("delivery_is_free", deliveryInfo.isFree.toString());
-    
-//     // ÖNƏMLİ: Ümumi məbləği (məhsullar + çatdırılma) göndəririk
-//     submitData.append("total_amount", finalTotalAmount.toFixed(2));
+//     submitData.append("delivery_price", deliveryPrice.toString());
+//     submitData.append("delivery_is_free", (deliveryInfo?.isFree || false).toString());
+
+//     // ÖNƏMLİ: Ümumi məbləği müxtəlif parametrlərlə göndəririk
+//     // Backend hansını istifadə edirsə, o düzgün məbləği alacaq
+//     submitData.append("amount", finalTotalAmount.toFixed(2)); // Ən çox istifadə edilən
+//     submitData.append("total", finalTotalAmount.toFixed(2)); // Alternativ
+//     submitData.append("total_amount", finalTotalAmount.toFixed(2)); // Alternativ
+//     submitData.append("order_total", finalTotalAmount.toFixed(2)); // Alternativ
+//     submitData.append("final_amount", finalTotalAmount.toFixed(2)); // Alternativ
+//     submitData.append("payment_amount", finalTotalAmount.toFixed(2)); // Alternativ
+
+//     // Ayrı məlumatlar
 //     submitData.append("product_total", totalAmount.toFixed(2));
+//     submitData.append("subtotal", totalAmount.toFixed(2));
 
 //     // Add product information
 //     if (products && products.length > 0) {
@@ -1482,9 +791,15 @@
 
 
 
+
+
+
+
+
+
 "use client";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axiosInstance from "@/lib/axios";
 import Cookies from "js-cookie";
 import { FiPlus, FiChevronDown, FiX, FiCheck, FiEdit2 } from "react-icons/fi";
@@ -1568,7 +883,6 @@ const CheckoutAddressPopup = ({
       onAddressAdded && onAddressAdded();
       setTimeout(() => setActive(false), 1500);
     } catch (error) {
-      console.error("Failed to submit address", error);
       setError(error?.data?.message || "Ünvan əlavə edilərkən xəta baş verdi");
     } finally {
       setTimeout(() => {
@@ -1686,7 +1000,6 @@ const CheckoutAddressCard = ({
     useDeleteAddressListMutation();
 
   const handleSelect = () => {
-    console.log("Card clicked, selecting address:", address);
     onSelect(address);
   };
 
@@ -1695,9 +1008,7 @@ const CheckoutAddressCard = ({
     if (window.confirm("Bu ünvanı silmək istədiyinizdən əminsiniz?")) {
       try {
         await deleteAddressList(address.id).unwrap();
-      } catch (error) {
-        console.error("Failed to delete address", error);
-      }
+      } catch (error) {}
     }
   };
 
@@ -1767,7 +1078,6 @@ export default function CheckoutForm({
   t,
   totalAmount,
   onDeliveryUpdate,
-  deliveryInfo, // ÖNƏMLİ: deliveryInfo props kimi alırıq
 }) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isAddressPopupOpen, setIsAddressPopupOpen] = useState(false);
@@ -1779,8 +1089,6 @@ export default function CheckoutForm({
   const [formError, setFormError] = useState("");
   const [paymentUrl, setPaymentUrl] = useState(null);
   const [selectedCityForGuest, setSelectedCityForGuest] = useState("");
-  
-  // ÖNƏMLİ: deliveryInfo artıq props-dan gəlir, local state silindi
 
   // Get user addresses with skip condition
   const token = Cookies.get("token");
@@ -1793,10 +1101,6 @@ export default function CheckoutForm({
     { skip: !token } // skip query if no token
   );
 
-  console.log("Address Data:", addressData);
-  console.log("Selected Address:", selectedAddress);
-  console.log("Is Logged In:", isLoggedIn);
-
   useEffect(() => {
     setIsLoggedIn(!!token);
   }, [token]);
@@ -1804,18 +1108,19 @@ export default function CheckoutForm({
   // Separate useEffect for address selection
   useEffect(() => {
     if (isLoggedIn && addressData?.length > 0) {
+      // Find main address or use first one
       const mainAddress = addressData.find((a) => a.is_main);
       const addressToSelect = mainAddress || addressData[0];
 
-      console.log("Setting selected address:", addressToSelect);
       setSelectedAddress(addressToSelect);
     } else if (!isLoggedIn) {
       setSelectedAddress(null);
     }
   }, [isLoggedIn, addressData]);
 
-  // ÖNƏMLİ: updateDeliveryInfo funksiyası silindi çünki artıq parent-dən gəlir
-
+  // deliveryData-nı string-ə çevirib cache edirik
+  const deliveryDataString = JSON.stringify(deliveryData);
+  
   // Update delivery info when address or city changes
   useEffect(() => {
     if (isLoggedIn && selectedAddress) {
@@ -1844,54 +1149,51 @@ export default function CheckoutForm({
       onDeliveryUpdate && onDeliveryUpdate(null);
     }
   }, [
-    selectedAddress,
+    selectedAddress?.id, // Yalnız address id
     selectedCityForGuest,
     isLoggedIn,
-    deliveryData,
-    onDeliveryUpdate
+    deliveryDataString, // String format
+    onDeliveryUpdate,
   ]);
 
-  const handleAddressAdded = () => {
+  const handleAddressAdded = useCallback(() => {
     refetch();
-  };
+  }, [refetch]);
 
-  const handleAddClick = () => {
+  const handleAddClick = useCallback(() => {
     setEditAddress(null);
     setIsAddressPopupOpen(true);
-  };
+  }, []);
 
-  const handleEditClick = (addr) => {
+  const handleEditClick = useCallback((addr) => {
     setEditAddress(addr);
     setIsAddressPopupOpen(true);
-  };
+  }, []);
 
-  const handlePaymentMethodChange = (e) => {
+  const handlePaymentMethodChange = useCallback((e) => {
     setPaymentMethod(e.target.value);
-  };
+  }, []);
 
-  const handleClosePopup = () => {
+  const handleClosePopup = useCallback(() => {
     setIsPopupOpen(false);
-  };
+  }, []);
 
-  const handleContinue = () => {
-    if (paymentUrl) {
-      window.open(paymentUrl, "_blank");
-    } else {
-      window.location.href = "/";
-    }
-  };
+  const handleContinue = useCallback(() => {
+    window.location.href = "/";
+  }, []);
 
-  const handleAddressSelect = (address) => {
-    console.log("Address selected:", address);
+  // Address selection handler with debugging
+  const handleAddressSelect = useCallback((address) => {
     setSelectedAddress(address);
-  };
+  }, []);
 
-  const handleGuestCityChange = (e) => {
+  // Guest city selection handler
+  const handleGuestCityChange = useCallback((e) => {
     setSelectedCityForGuest(e.target.value);
-  };
+  }, []);
 
   // Form validation
-  const validateForm = (formData) => {
+  const validateForm = useCallback((formData) => {
     const requiredFields = [];
 
     if (!isLoggedIn) {
@@ -1906,9 +1208,9 @@ export default function CheckoutForm({
     if (!formData.get("terms")) requiredFields.push("Şərtlərlə razılıq");
 
     return requiredFields;
-  };
+  }, [isLoggedIn, selectedAddress]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
     setFormError("");
     setIsSubmitting(true);
@@ -1926,38 +1228,15 @@ export default function CheckoutForm({
       return;
     }
 
-    // ÖNƏMLİ: Ümumi məbləği hesablayırıq (məhsullar + çatdırılma)
-    // deliveryInfo.price string ola bilər, ona görə parseFloat istifadə edirik
-    const deliveryPrice = parseFloat(deliveryInfo?.price || 0);
-    const finalTotalAmount = totalAmount + deliveryPrice;
-
-    console.log("=== PAYMENT CALCULATION DEBUG ===");
-    console.log("Product Total:", totalAmount);
-    console.log("Delivery Info:", deliveryInfo);
-    console.log("Delivery Price (parsed):", deliveryPrice);
-    console.log("Final Total Amount:", finalTotalAmount);
-
     // Prepare data with detailed logging
     const submitData = new FormData();
 
-    console.log("=== FORM SUBMISSION DEBUG ===");
-    console.log("Is Logged In:", isLoggedIn);
-    console.log("Selected Address:", selectedAddress);
-    console.log("Payment Method:", paymentMethod);
-    console.log("Delivery Info:", deliveryInfo);
-
     if (isLoggedIn && selectedAddress) {
-      console.log("Using logged in user address:");
-      console.log("Name:", selectedAddress.name);
-      console.log("Tel:", selectedAddress.tel);
-      console.log("Address:", selectedAddress.address);
-      console.log("Region:", selectedAddress.region);
-
       submitData.append("name", selectedAddress.name);
       submitData.append("tel", selectedAddress.tel);
       submitData.append("address", selectedAddress.address);
 
-      // Find city data for the selected address
+      // Find city data for the selected address - improved matching
       const cityData = deliveryData.find((city) => {
         const cityName = city.name || city.name_az || city.name_ru;
         const combined = `${city.name_az} | ${city.name_ru}`;
@@ -1971,60 +1250,25 @@ export default function CheckoutForm({
         );
       });
 
-      console.log("Found city data:", cityData);
-
       if (cityData) {
         submitData.append("city_id", cityData.id.toString());
         submitData.append("shipping_address_id", selectedAddress.id.toString());
       } else {
-        console.warn(
-          "No matching city found for region:",
-          selectedAddress.region
-        );
         submitData.append("region", selectedAddress.region);
       }
     } else {
-      console.log("Using guest user data:");
-      const guestName = formData.get("name") || "";
-      const guestPhone = formData.get("phone") || "";
-      const guestCity = formData.get("city") || "";
-      const guestAddress = formData.get("address") || "";
-
-      console.log("Guest Name:", guestName);
-      console.log("Guest Phone:", guestPhone);
-      console.log("Guest City:", guestCity);
-      console.log("Guest Address:", guestAddress);
-
-      submitData.append("name", guestName);
-      submitData.append("tel", guestPhone);
-      submitData.append("city", guestCity);
-      submitData.append("address", guestAddress);
+      submitData.append("name", formData.get("name") || "");
+      submitData.append("tel", formData.get("phone") || "");
+      submitData.append("city", formData.get("city") || "");
+      submitData.append("address", formData.get("address") || "");
     }
 
-    submitData.append("email", formData.get("email") || "");
+    // submitData.append("email", formData.get("email") || "");
     submitData.append("order_note", formData.get("order_note") || "");
     submitData.append("payment_method", paymentMethod);
 
-    // ÖNƏMLİ: Çatdırılma məlumatlarını da göndəririk
-    submitData.append("delivery_price", deliveryPrice.toString());
-    submitData.append("delivery_is_free", (deliveryInfo?.isFree || false).toString());
-    
-    // ÖNƏMLİ: Ümumi məbləği müxtəlif parametrlərlə göndəririk
-    // Backend hansını istifadə edirsə, o düzgün məbləği alacaq
-    submitData.append("amount", finalTotalAmount.toFixed(2)); // Ən çox istifadə edilən
-    submitData.append("total", finalTotalAmount.toFixed(2)); // Alternativ
-    submitData.append("total_amount", finalTotalAmount.toFixed(2)); // Alternativ 
-    submitData.append("order_total", finalTotalAmount.toFixed(2)); // Alternativ
-    submitData.append("final_amount", finalTotalAmount.toFixed(2)); // Alternativ
-    submitData.append("payment_amount", finalTotalAmount.toFixed(2)); // Alternativ
-    
-    // Ayrı məlumatlar
-    submitData.append("product_total", totalAmount.toFixed(2));
-    submitData.append("subtotal", totalAmount.toFixed(2));
-
     // Add product information
     if (products && products.length > 0) {
-      console.log("Adding products:", products);
       products.forEach((product, index) => {
         submitData.append(`products[${index}][id]`, product.product.id);
         submitData.append(`products[${index}][qty]`, product.qty || 1);
@@ -2032,28 +1276,18 @@ export default function CheckoutForm({
       });
     }
 
-    // Log all form data being sent
-    console.log("=== FINAL FORM DATA ===");
-    for (let [key, value] of submitData.entries()) {
-      console.log(`${key}: ${value}`);
-    }
-
     try {
       const response = await axiosInstance.post("/make-payment", submitData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      console.log("Order submitted successfully:", response.data);
-
-      // Store payment URL if exists
-      if (response.data && response.data.payment_url) {
-        setPaymentUrl(response.data.payment_url);
+      if (paymentMethod === "1" && response.data && response.data.payment_url) {
+        window.location.href = response.data.payment_url;
+      } else {
+        setIsPopupOpen(true);
+        setPaymentUrl(null);
       }
-
-      setIsPopupOpen(true);
     } catch (err) {
-      console.error("Payment failed:", err);
-      console.error("Error response:", err.response?.data);
       setFormError(
         err.response?.data?.message ||
           "Ödəniş uğursuz oldu. Zəhmət olmasa təkrar cəhd edin."
@@ -2061,7 +1295,7 @@ export default function CheckoutForm({
     } finally {
       setIsSubmitting(false);
     }
-  };
+  }, [validateForm, isLoggedIn, selectedAddress, deliveryData, paymentMethod, products]);
 
   if (isLoggedIn && isAddressLoading) {
     return (
@@ -2113,38 +1347,29 @@ export default function CheckoutForm({
                 />
               ))}
             </div>
-            <div className="form-group">
+            {/* <div className="form-group">
               <input
                 type="email"
                 id="email"
                 name="email"
                 placeholder={t?.email || "E-mail"}
               />
-            </div>
+            </div> */}
           </div>
         ) : (
           <>
             <div className="form-row">
-              <div className="form-group">
+              <div className="form-group form-input-yarim">
                 <input
                   type="text"
                   id="name"
                   name="name"
                   required
-                  placeholder={t?.name || "Ad *"}
+                  placeholder={t?.namesurname || "Ad *"}
                 />
               </div>
-              <div className="form-group">
-                <input
-                  type="text"
-                  id="surname"
-                  name="surname"
-                  placeholder={t?.surname || "Soyad"}
-                />
-              </div>
-            </div>
-            <div className="form-row">
-              <div className="form-group">
+
+              <div className="form-group form-input-yarim">
                 <input
                   type="tel"
                   id="phone"
@@ -2153,42 +1378,72 @@ export default function CheckoutForm({
                   placeholder={t?.phone || "Telefon *"}
                 />
               </div>
-              <div className="form-group">
+              
+              {/* <div className="form-group">
+                <input
+                  type="text"
+                  id="surname"
+                  name="surname"
+                  placeholder={t?.surname || "Soyad"}
+                />
+              </div> */}
+            </div>
+
+
+            <div className="form-row ">
+              {/* <div className="form-group form-input-yarim">
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  required
+                  placeholder={t?.phone || "Telefon *"}
+                />
+              </div> */}
+
+              {/* <div className="form-group">
                 <input
                   type="email"
                   id="email"
                   name="email"
                   placeholder={t?.email || "E-mail"}
                 />
-              </div>
+              </div> */}
             </div>
-            <div className="form-group">
-              <select
-                id="city"
-                name="city"
-                value={selectedCityForGuest}
-                onChange={handleGuestCityChange}
-                required
-                style={{ color: selectedCityForGuest ? "black" : "gray", opacity: selectedCityForGuest ? 1 : 0.8 }}
-              >
-                <option  value="" disabled>
-                  {t?.city} *
-                </option>
-                {deliveryData?.map((region) => (
-                  <option key={region.id} value={region.id}>
-                    {region.name_az} | {region.name_ru}
+
+            <div className="form-row ">
+              <div className="form-group form-input-yarim">
+                <select
+                  id="city"
+                  name="city"
+                  value={selectedCityForGuest}
+                  onChange={handleGuestCityChange}
+                  required
+                  style={{
+                    color: selectedCityForGuest ? "black" : "gray",
+                    opacity: selectedCityForGuest ? 1 : 0.8,
+                  }}
+                >
+                  <option value="" disabled>
+                    {t?.city} *
                   </option>
-                ))}
-              </select>
-            </div>
-            <div className="form-group adreesInput">
-              <input
-                type="text"
-                id="address"
-                name="address"
-                placeholder={t?.enteraddress || "Ünvan qeyd edin *"}
-                required
-              />
+                  {deliveryData?.map((region) => (
+                    <option key={region.id} value={region.id}>
+                      {region.name_az} | {region.name_ru}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="form-group adreesInput form-input-yarim">
+                <input
+                  type="text"
+                  id="address"
+                  name="address"
+                  placeholder={t?.enteraddress || "Ünvan qeyd edin *"}
+                  required
+                />
+              </div>
             </div>
           </>
         )}
@@ -2244,7 +1499,9 @@ export default function CheckoutForm({
           className="submit-button"
           disabled={isSubmitting || (isLoggedIn && !selectedAddress)}
         >
-          {isSubmitting ? (t?.sending || "Göndərilir...")  : (t?.completeorder || "Sifarişi tamamla")}
+          {isSubmitting
+            ? t?.sending || "Göndərilir..."
+            : t?.completeorder || "Sifarişi tamamla"}
         </button>
       </form>
 
@@ -2255,10 +1512,10 @@ export default function CheckoutForm({
             <button className="popup-close" onClick={handleClosePopup}>
               &times;
             </button>
-            <h2>{t?.orderplaced || "Sifarişi qeyde alindi " }</h2>
-            <p>{t?.emekdaslar || "Sifarişi qeyde alindi "  }</p>
+            <h2>{t?.orderplaced || "Sifarişi qeyde alindi "}</h2>
+            <p>{t?.emekdaslar || "Sifarişi qeyde alindi "}</p>
             <button className="popup-continue" onClick={handleContinue}>
-              {paymentUrl ? (t?.proceedpay) : (t?.continue)}
+              {t?.continue}
             </button>
           </div>
         </div>
@@ -2285,6 +1542,733 @@ export default function CheckoutForm({
 
 
 
+ 
+// ! GROK ai  not email
+ 
+// "use client";
+// import Link from "next/link";
+// import { useState, useEffect } from "react";
+// import axiosInstance from "@/lib/axios";
+// import Cookies from "js-cookie";
+// import { FiPlus, FiChevronDown, FiX, FiCheck, FiEdit2 } from "react-icons/fi";
+// import {
+//   useGetAddressListQuery,
+//   useAddAddressMutation,
+//   useUpdateAddressMutation,
+//   useDeleteAddressListMutation,
+// } from "@/redux/userService";
+
+// // Address Popup Component
+// const CheckoutAddressPopup = ({
+//   t,
+//   active,
+//   setActive,
+//   edit,
+//   delivery,
+//   onAddressAdded,
+// }) => {
+//   const [name, setName] = useState("");
+//   const [address, setAddress] = useState("");
+//   const [region, setRegion] = useState("");
+//   const [tel, setTel] = useState("");
+//   const [added, setAdded] = useState(false);
+//   const [error, setError] = useState("");
+
+//   const [addAddress, { isLoading: isAdding }] = useAddAddressMutation();
+//   const [updateAddress, { isLoading: isUpdating }] = useUpdateAddressMutation();
+
+//   useEffect(() => {
+//     if (edit) {
+//       setName(edit.name || "");
+//       setAddress(edit.address || "");
+//       setRegion(edit.region || "");
+//       setTel(edit.tel ? edit.tel.replace("+994", "") : "");
+//     } else {
+//       setName("");
+//       setAddress("");
+//       setRegion("");
+//       setTel("");
+//     }
+//     setError("");
+//   }, [edit]);
+
+//   // Phone validation
+//   const validatePhone = (phone) => {
+//     const phoneRegex = /^[0-9]{9}$/; // 9 digits after +994
+//     return phoneRegex.test(phone);
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     setError("");
+
+//     // Validation
+//     if (!validatePhone(tel)) {
+//       setError("Telefon nömrəsi düzgün formatda olmalıdır (9 rəqəm)");
+//       return;
+//     }
+
+//     if (!name.trim() || !address.trim() || !region || !tel) {
+//       setError("Bütün sahələr doldurulmalıdır");
+//       return;
+//     }
+
+//     try {
+//       const payload = {
+//         name: name.trim(),
+//         address: address.trim(),
+//         region,
+//         tel: `+994${tel}`,
+//       };
+
+//       if (edit) {
+//         await updateAddress({ id: edit.id, data: payload }).unwrap();
+//       } else {
+//         await addAddress(payload).unwrap();
+//       }
+
+//       setAdded(true);
+//       onAddressAdded && onAddressAdded();
+//       setTimeout(() => setActive(false), 1500);
+//     } catch (error) {
+//       setError(error?.data?.message || "Ünvan əlavə edilərkən xəta baş verdi");
+//     } finally {
+//       setTimeout(() => {
+//         setName("");
+//         setAddress("");
+//         setRegion("");
+//         setTel("");
+//         setAdded(false);
+//       }, 1500);
+//     }
+//   };
+
+//   return (
+//     <div className={`popupAddress ${active ? "active" : ""}`}>
+//       <div className="layer" onClick={() => setActive(false)} />
+//       <div className="popupContainer">
+//         <button className="close" onClick={() => setActive(false)}>
+//           <FiX />
+//         </button>
+//         <form onSubmit={handleSubmit}>
+//           <p>
+//             {edit ? "Ünvanı yenilə" : t?.["add-address"] || "Ünvan əlavə et"}
+//           </p>
+
+//           {error && <div className="error-message">{error}</div>}
+
+//           <label>{t?.name || "Ad"}</label>
+//           <div className="inputChild">
+//             <input
+//               type="text"
+//               value={name}
+//               required
+//               onChange={(e) => setName(e.target.value)}
+//               placeholder={t?.name || "Adınızı daxil edin"}
+//             />
+//           </div>
+
+//           <label>{t?.address || "Ünvan"}</label>
+//           <div className="inputChild">
+//             <input
+//               type="text"
+//               value={address}
+//               required
+//               onChange={(e) => setAddress(e.target.value)}
+//               placeholder={t?.address || "Adınızı daxil edin"}
+//             />
+//           </div>
+
+//           <label>{t?.city || "Şəhər"}</label>
+//           <div className="selectBox selectBoxCity">
+//             <select
+//               value={region}
+//               onChange={(e) => setRegion(e.target.value)}
+//               required
+//             >
+//               <option value="" disabled>
+//                 {t?.["select-region"] || "Şəhər seçin"}
+//               </option>
+//               {delivery?.map((city) => (
+//                 <option key={city.id} value={city.name}>
+//                   {city.name_az} | {city.name_ru}
+//                 </option>
+//               ))}
+//             </select>
+//             <FiChevronDown />
+//           </div>
+
+//           <label>{t?.phone || "Telefon"}</label>
+//           <div className="phoneInput">
+//             <span>+994</span>
+//             <input
+//               type="tel"
+//               value={tel}
+//               required
+//               maxLength="9"
+//               pattern="[0-9]{9}"
+//               onChange={(e) => {
+//                 const value = e.target.value.replace(/\D/g, ""); // Only numbers
+//                 setTel(value);
+//               }}
+//               placeholder="501234567"
+//             />
+//           </div>
+
+//           <button
+//             type="submit"
+//             className={`blackButton ${added ? "active" : ""}`}
+//             disabled={isAdding || isUpdating}
+//           >
+//             {isAdding || isUpdating ? (
+//               <div className="loader2" />
+//             ) : added ? (
+//               "Ünvan əlavə edildi"
+//             ) : edit ? (
+//               "Ünvanı yenilə"
+//             ) : (
+//               t?.["add-address"] || "Ünvan əlavə et"
+//             )}
+//           </button>
+//         </form>
+//       </div>
+//     </div>
+//   );
+// };
+
+// // Address Card Component for checkout
+// const CheckoutAddressCard = ({
+//   t,
+//   address,
+//   selectedAddress,
+//   onSelect,
+//   onEdit,
+// }) => {
+//   const [deleteAddressList, { isLoading: isDeleting }] =
+//     useDeleteAddressListMutation();
+
+//   const handleSelect = () => {
+//     onSelect(address);
+//   };
+
+//   const handleDelete = async (e) => {
+//     e.stopPropagation();
+//     if (window.confirm("Bu ünvanı silmək istədiyinizdən əminsiniz?")) {
+//       try {
+//         await deleteAddressList(address.id).unwrap();
+//       } catch (error) {}
+//     }
+//   };
+
+//   return (
+//     <div className="xl-6 lg-6 md-6 sm-12">
+//       <div
+//         className={`addressCard ${
+//           selectedAddress?.id === address.id ? "selected" : ""
+//         }`}
+//         onClick={handleSelect}
+//         style={{ cursor: "pointer" }}
+//       >
+//         <input
+//           type="radio"
+//           name="checkout-address"
+//           checked={selectedAddress?.id === address.id}
+//           onChange={handleSelect}
+//           onClick={(e) => e.stopPropagation()}
+//         />
+//         <div className="addressCardInner">
+//           <div className="tick">
+//             <FiCheck />
+//           </div>
+//           <div>
+//             <span>{t?.name}</span>
+//             <p>{address?.name}</p>
+//           </div>
+//           <div>
+//             <span>{t?.city}</span>
+//             <p>{address?.region}</p>
+//           </div>
+//           <div>
+//             <span>{t?.address}</span>
+//             <p>{address?.address}</p>
+//           </div>
+//           <div>
+//             <span>{t?.phone}</span>
+//             <p>{address?.tel}</p>
+//           </div>
+//         </div>
+//         <button
+//           className="delete"
+//           onClick={handleDelete}
+//           disabled={isDeleting}
+//           title="delete"
+//         >
+//           {isDeleting ? <div className="loader2" /> : <FiX />}
+//         </button>
+//         <button
+//           className="edit"
+//           onClick={(e) => {
+//             e.stopPropagation();
+//             onEdit(address);
+//           }}
+//           title="edit"
+//         >
+//           <FiEdit2 />
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default function CheckoutForm({
+//   deliveryData,
+//   products,
+//   t,
+//   totalAmount,
+//   onDeliveryUpdate,
+// }) {
+//   const [isPopupOpen, setIsPopupOpen] = useState(false);
+//   const [isAddressPopupOpen, setIsAddressPopupOpen] = useState(false);
+//   const [editAddress, setEditAddress] = useState(null);
+//   const [selectedAddress, setSelectedAddress] = useState(null);
+//   const [isLoggedIn, setIsLoggedIn] = useState(false);
+//   const [paymentMethod, setPaymentMethod] = useState("0");
+//   const [isSubmitting, setIsSubmitting] = useState(false);
+//   const [formError, setFormError] = useState("");
+//   const [paymentUrl, setPaymentUrl] = useState(null);
+//   const [selectedCityForGuest, setSelectedCityForGuest] = useState("");
+
+//   // Get user addresses with skip condition
+//   const token = Cookies.get("token");
+//   const {
+//     data: addressData,
+//     isLoading: isAddressLoading,
+//     refetch,
+//   } = useGetAddressListQuery(
+//     undefined, // query params
+//     { skip: !token } // skip query if no token
+//   );
+
+//   useEffect(() => {
+//     setIsLoggedIn(!!token);
+//   }, [token]);
+
+//   // Separate useEffect for address selection
+//   useEffect(() => {
+//     if (isLoggedIn && addressData?.length > 0) {
+//       // Find main address or use first one
+//       const mainAddress = addressData.find((a) => a.is_main);
+//       const addressToSelect = mainAddress || addressData[0];
+
+//       setSelectedAddress(addressToSelect);
+//     } else if (!isLoggedIn) {
+//       setSelectedAddress(null);
+//     }
+//   }, [isLoggedIn, addressData]);
+
+//   // Update delivery info when address or city changes
+//   useEffect(() => {
+//     if (isLoggedIn && selectedAddress) {
+//       // Find delivery data for selected address
+//       const cityData = deliveryData.find((city) => {
+//         const combined = `${city.name_az} | ${city.name_ru}`;
+//         const region = selectedAddress.region;
+
+//         return (
+//           combined === region ||
+//           city.name_az === region ||
+//           city.name_ru === region ||
+//           city.name === region
+//         );
+//       });
+
+//       onDeliveryUpdate && onDeliveryUpdate(cityData);
+//     } else if (!isLoggedIn && selectedCityForGuest) {
+//       // Find delivery data for guest selected city
+//       const cityData = deliveryData.find(
+//         (city) => city.id.toString() === selectedCityForGuest.toString()
+//       );
+
+//       onDeliveryUpdate && onDeliveryUpdate(cityData);
+//     } else {
+//       onDeliveryUpdate && onDeliveryUpdate(null);
+//     }
+//   }, [
+//     selectedAddress,
+//     selectedCityForGuest,
+//     isLoggedIn,
+//     deliveryData,
+//     onDeliveryUpdate,
+//   ]);
+
+//   const handleAddressAdded = () => {
+//     refetch();
+//   };
+
+//   const handleAddClick = () => {
+//     setEditAddress(null);
+//     setIsAddressPopupOpen(true);
+//   };
+
+//   const handleEditClick = (addr) => {
+//     setEditAddress(addr);
+//     setIsAddressPopupOpen(true);
+//   };
+
+//   const handlePaymentMethodChange = (e) => {
+//     setPaymentMethod(e.target.value);
+//   };
+
+//   const handleClosePopup = () => {
+//     setIsPopupOpen(false);
+//   };
+
+//   const handleContinue = () => {
+//     window.location.href = "/";
+//   };
+
+//   // Address selection handler with debugging
+//   const handleAddressSelect = (address) => {
+//     setSelectedAddress(address);
+//   };
+
+//   // Guest city selection handler
+//   const handleGuestCityChange = (e) => {
+//     setSelectedCityForGuest(e.target.value);
+//   };
+
+//   // Form validation
+//   const validateForm = (formData) => {
+//     const requiredFields = [];
+
+//     if (!isLoggedIn) {
+//       if (!formData.get("name")?.trim()) requiredFields.push("Ad");
+//       if (!formData.get("phone")?.trim()) requiredFields.push("Telefon");
+//       if (!formData.get("city")) requiredFields.push("Şəhər");
+//       if (!formData.get("address")?.trim()) requiredFields.push("Ünvan");
+//     } else if (!selectedAddress) {
+//       requiredFields.push("Ünvan seçimi");
+//     }
+
+//     if (!formData.get("terms")) requiredFields.push("Şərtlərlə razılıq");
+
+//     return requiredFields;
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     setFormError("");
+//     setIsSubmitting(true);
+
+//     const form = e.target;
+//     const formData = new FormData(form);
+
+//     // Validate form
+//     const missingFields = validateForm(formData);
+//     if (missingFields.length > 0) {
+//       setFormError(
+//         `Aşağıdakı sahələr tələb olunur: ${missingFields.join(", ")}`
+//       );
+//       setIsSubmitting(false);
+//       return;
+//     }
+
+//     // Prepare data with detailed logging
+//     const submitData = new FormData();
+
+//     if (isLoggedIn && selectedAddress) {
+//       submitData.append("name", selectedAddress.name);
+//       submitData.append("tel", selectedAddress.tel);
+//       submitData.append("address", selectedAddress.address);
+
+//       // Find city data for the selected address - improved matching
+//       const cityData = deliveryData.find((city) => {
+//         const cityName = city.name || city.name_az || city.name_ru;
+//         const combined = `${city.name_az} | ${city.name_ru}`;
+//         const region = selectedAddress.region;
+
+//         return (
+//           combined === region ||
+//           city.name_az === region ||
+//           city.name_ru === region ||
+//           cityName === region
+//         );
+//       });
+
+//       if (cityData) {
+//         submitData.append("city_id", cityData.id.toString());
+//         submitData.append("shipping_address_id", selectedAddress.id.toString());
+//       } else {
+//         submitData.append("region", selectedAddress.region);
+//       }
+//     } else {
+//       submitData.append("name", formData.get("name") || "");
+//       submitData.append("tel", formData.get("phone") || "");
+//       submitData.append("city", formData.get("city") || "");
+//       submitData.append("address", formData.get("address") || "");
+//     }
+
+//     // submitData.append("email", formData.get("email") || "");
+//     submitData.append("order_note", formData.get("order_note") || "");
+//     submitData.append("payment_method", paymentMethod);
+
+//     // Add product information
+//     if (products && products.length > 0) {
+//       products.forEach((product, index) => {
+//         submitData.append(`products[${index}][id]`, product.product.id);
+//         submitData.append(`products[${index}][qty]`, product.qty || 1);
+//         submitData.append(`products[${index}][price]`, product.product.price);
+//       });
+//     }
+
+//     try {
+//       const response = await axiosInstance.post("/make-payment", submitData, {
+//         headers: { "Content-Type": "multipart/form-data" },
+//       });
+
+//       if (paymentMethod === "1" && response.data && response.data.payment_url) {
+//         window.location.href = response.data.payment_url;
+//       } else {
+//         setIsPopupOpen(true);
+//         setPaymentUrl(null);
+//       }
+//     } catch (err) {
+//       setFormError(
+//         err.response?.data?.message ||
+//           "Ödəniş uğursuz oldu. Zəhmət olmasa təkrar cəhd edin."
+//       );
+//     } finally {
+//       setIsSubmitting(false);
+//     }
+//   };
+
+//   if (isLoggedIn && isAddressLoading) {
+//     return (
+//       <div className="loaderDiv">
+//         <div className="loader"></div>
+//       </div>
+//     );
+//   }
+
+//   return (
+//     <div className="form-container">
+//       {/* Address Popup */}
+//       <CheckoutAddressPopup
+//         t={t}
+//         active={isAddressPopupOpen}
+//         setActive={setIsAddressPopupOpen}
+//         edit={editAddress}
+//         delivery={deliveryData}
+//         onAddressAdded={handleAddressAdded}
+//       />
+
+//       <form onSubmit={handleSubmit}>
+//         {formError && <div className="form-error">{formError}</div>}
+
+//         {isLoggedIn ? (
+//           <div className="address-section">
+//             <h3>{t?.["shipping-address"] || "Çatdırılma ünvanı"}</h3>
+//             <div className="addressParent">
+//               <div className="addressParentCards">
+//                 <button
+//                   type="button"
+//                   className="addressCardCreate"
+//                   onClick={handleAddClick}
+//                 >
+//                   <FiPlus />
+//                   <span>{t?.["add-address"] || "Ünvan əlavə et"}</span>
+//                 </button>
+//               </div>
+//             </div>
+//             <div className="address-list">
+//               {addressData?.map((address) => (
+//                 <CheckoutAddressCard
+//                   key={address.id}
+//                   t={t}
+//                   address={address}
+//                   selectedAddress={selectedAddress}
+//                   onSelect={handleAddressSelect}
+//                   onEdit={handleEditClick}
+//                 />
+//               ))}
+//             </div>
+//             {/* <div className="form-group">
+//               <input
+//                 type="email"
+//                 id="email"
+//                 name="email"
+//                 placeholder={t?.email || "E-mail"}
+//               />
+//             </div> */}
+//           </div>
+//         ) : (
+//           <>
+//             <div className="form-row">
+//               <div className="form-group form-input-yarim">
+//                 <input
+//                   type="text"
+//                   id="name"
+//                   name="name"
+//                   required
+//                   placeholder={t?.namesurname || "Ad *"}
+//                 />
+//               </div>
+
+//               <div className="form-group form-input-yarim">
+//                 <input
+//                   type="tel"
+//                   id="phone"
+//                   name="phone"
+//                   required
+//                   placeholder={t?.phone || "Telefon *"}
+//                 />
+//               </div>
+              
+//               {/* <div className="form-group">
+//                 <input
+//                   type="text"
+//                   id="surname"
+//                   name="surname"
+//                   placeholder={t?.surname || "Soyad"}
+//                 />
+//               </div> */}
+//             </div>
+
+
+//             <div className="form-row ">
+//               {/* <div className="form-group form-input-yarim">
+//                 <input
+//                   type="tel"
+//                   id="phone"
+//                   name="phone"
+//                   required
+//                   placeholder={t?.phone || "Telefon *"}
+//                 />
+//               </div> */}
+
+//               {/* <div className="form-group">
+//                 <input
+//                   type="email"
+//                   id="email"
+//                   name="email"
+//                   placeholder={t?.email || "E-mail"}
+//                 />
+//               </div> */}
+//             </div>
+
+//             <div className="form-row ">
+//               <div className="form-group form-input-yarim">
+//                 <select
+//                   id="city"
+//                   name="city"
+//                   value={selectedCityForGuest}
+//                   onChange={handleGuestCityChange}
+//                   required
+//                   style={{
+//                     color: selectedCityForGuest ? "black" : "gray",
+//                     opacity: selectedCityForGuest ? 1 : 0.8,
+//                   }}
+//                 >
+//                   <option value="" disabled>
+//                     {t?.city} *
+//                   </option>
+//                   {deliveryData?.map((region) => (
+//                     <option key={region.id} value={region.id}>
+//                       {region.name_az} | {region.name_ru}
+//                     </option>
+//                   ))}
+//                 </select>
+//               </div>
+
+//               <div className="form-group adreesInput form-input-yarim">
+//                 <input
+//                   type="text"
+//                   id="address"
+//                   name="address"
+//                   placeholder={t?.enteraddress || "Ünvan qeyd edin *"}
+//                   required
+//                 />
+//               </div>
+//             </div>
+//           </>
+//         )}
+
+//         {/* Order Note */}
+//         <div className="form-group">
+//           <textarea
+//             id="order_note"
+//             name="order_note"
+//             placeholder={t?.ordernote || "Sifariş qeydi"}
+//             rows="3"
+//           />
+//         </div>
+
+//         {/* Payment Method */}
+//         <div className="form-group">
+//           <label className="priceTitleSegment">{t?.choosepaymethod}</label>
+//           <div className="radio-group">
+//             <div className="checkGroup">
+//               <label htmlFor="pay-cash">{t?.paycash}</label>
+//               <input
+//                 type="radio"
+//                 id="pay-cash"
+//                 name="payment"
+//                 value="0"
+//                 checked={paymentMethod === "0"}
+//                 onChange={handlePaymentMethodChange}
+//               />
+//             </div>
+//             <div className="checkGroup">
+//               <label htmlFor="pay-online">{t?.payonline}</label>
+//               <input
+//                 type="radio"
+//                 id="pay-online"
+//                 name="payment"
+//                 value="1"
+//                 checked={paymentMethod === "1"}
+//                 onChange={handlePaymentMethodChange}
+//               />
+//             </div>
+//           </div>
+//         </div>
+
+//         {/* Terms Agreement */}
+//         <div className="form-group contitionCheck">
+//           <input type="checkbox" id="terms" name="terms" required />
+//           <label htmlFor="terms">{t?.agreeterms} *</label>
+//         </div>
+
+//         {/* Submit Button */}
+//         <button
+//           type="submit"
+//           className="submit-button"
+//           disabled={isSubmitting || (isLoggedIn && !selectedAddress)}
+//         >
+//           {isSubmitting
+//             ? t?.sending || "Göndərilir..."
+//             : t?.completeorder || "Sifarişi tamamla"}
+//         </button>
+//       </form>
+
+//       {/* Success Popup */}
+//       {isPopupOpen && (
+//         <div className="popup-overlay">
+//           <div className="popup-contentCheckout">
+//             <button className="popup-close" onClick={handleClosePopup}>
+//               &times;
+//             </button>
+//             <h2>{t?.orderplaced || "Sifarişi qeyde alindi "}</h2>
+//             <p>{t?.emekdaslar || "Sifarişi qeyde alindi "}</p>
+//             <button className="popup-continue" onClick={handleContinue}>
+//               {t?.continue}
+//             </button>
+//           </div>
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
+// ! GROK ai  not email
 
 
 
@@ -2300,7 +2284,25 @@ export default function CheckoutForm({
 
 
 
-// ! claude sen efsanesen ..... duzgun kod budur
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ! claude s
 // "use client";
 // import Link from "next/link";
 // import { useState, useEffect } from "react";

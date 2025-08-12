@@ -2361,7 +2361,6 @@ ul {
   margin-right: 1rem !important;
 }
 
-
 // ? <><><><><><><><><><><><><><<><><><><><>
 .mobile-sort-select {
   display: none; /* Desktop-da gizli */
@@ -2369,14 +2368,9 @@ ul {
 @media (max-width: 767.9px) {
   .mobile-sort-select {
     display: block !important;
-    
   }
 }
 // ? <><><><><><><><><><><><><><><><><><><><><><><><>
-
-
-
-
 
 //! ProductsDetailPage  start
 #productsDetailPage {
@@ -2411,7 +2405,7 @@ ul {
     }
   }
 }
-.countCampaignButtons{
+.countCampaignButtons {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -3726,7 +3720,6 @@ ul {
   }
 }
 
-
 .circleLine1 {
   position: relative;
   height: 2rem; // hündürlüyü kartın ayıran yerinə uyğun təyin edirik
@@ -3906,9 +3899,8 @@ ul {
     display: flex;
     flex-direction: column;
     gap: 3rem;
-    h4{
+    h4 {
       font-size: 1.8rem;
-
     }
 
     p {
@@ -4052,6 +4044,21 @@ ul {
   margin-right: 2rem;
 }
 
+.form-input-yarim {
+  width: 50% !important;
+}
+@media screen and (max-width: 767.9px) {
+  .form-input-yarim {
+    width: 100% !important;
+  }
+  .form-row {
+    display: block !important;
+  }
+  .form-container {
+    padding-left: 0 !important;
+  }
+}
+
 .form-row .form-group:last-child {
   margin-right: 0;
 }
@@ -4084,7 +4091,6 @@ ul {
 
   &::placeholder {
     opacity: 0.8;
-    // font-family: "Inter Tight", sans-serif !important;
     font-family: "Montserrat", sans-serif !important;
   }
 }
@@ -4105,6 +4111,7 @@ ul {
   // color: gray;
   // opacity: 0.8;
   background-color: #fff;
+  padding: 1.7rem 1.2rem;
   // font-family: "Inter Tight", sans-serif !important;
   font-family: "Montserrat", sans-serif !important;
 }
@@ -4134,7 +4141,6 @@ select {
   background-size: 16px;
   cursor: pointer;
 }
-
 
 .priceTitleSegment {
   font-size: 1.6rem;
@@ -5010,7 +5016,7 @@ form.error.active {
   margin-bottom: 2.4rem;
   position: relative;
 }
-.inputChild ::placeholder{
+.inputChild ::placeholder {
   opacity: 0.5 !important;
 }
 .inputChild {
@@ -6224,18 +6230,18 @@ form .blackButton {
 }
 
 #nprogress .bar {
-  height: 0.7rem !important; // default 2px-dir
-  border-radius: 0.5rem;
+  height: 0.5rem !important; // default 2px-dir
+  border-radius: 0.3rem;
   box-shadow: 0 0 10px #ec1f27, 0 0 5px #ec1f27 !important;
 }
 
 #nprogress .bar {
-  box-shadow: 0 0 10px #ec1f27, 0 0 5px #ec1f27 !important;
+  box-shadow: 0 0 5px #ec1f27, 0 0 5px #ec1f27 !important;
   background: #ec1f27 !important; // Burada istədiyin rəngi yaz (məs: #08316F, red, green)
 }
 
 #nprogress .peg {
-  box-shadow: 0 0 10px #ec1f27, 0 0 5px #ec1f27 !important;
+  box-shadow: 0 0 5px #ec1f27, 0 0 5px #ec1f27 !important;
 }
 
 /* Spinner varsa, onu da dəyişə bilərsən */
@@ -6733,28 +6739,13 @@ p.greenTotal span {
 
 // ? orderHistory Bahar
 
-
-
-
-
-
-
-
-
-
-
-
-
 @media (max-width: 767.9px) {
-  .breadCrumbsHideMobile{
+  .breadCrumbsHideMobile {
     display: none !important;
   }
 }
 
-
-
-
-//? Products Page Filter prices 
+//? Products Page Filter prices
 
 /* FilterPrice styles */
 // .filter-price {
@@ -6764,18 +6755,17 @@ p.greenTotal span {
 /* Inputs wrapper: yan-yana, arada 1.5rem məsafə */
 .filter-price .inputs-wrapper {
   display: flex;
-  gap: 1.5rem; 
+  gap: 1.5rem;
   width: 100%;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem !important;
   padding: 0 1rem !important;
-
 }
 
 /* Input əsas eni */
 .filter-price .fp-input {
-  width: 8rem; 
+  width: 8rem;
   height: 3rem;
   display: flex;
   align-items: center;
@@ -6787,7 +6777,6 @@ p.greenTotal span {
 .filter-price .fp-input .ant-input-number {
   width: 100%;
   display: inline-flex;
-  
 }
 
 /* Input içi (input elementinin özünə təsir) */
@@ -6801,7 +6790,7 @@ p.greenTotal span {
 /* Sol inputun kənarları (birleşmiş görünüş) */
 .filter-price .fp-input-left .ant-input-number {
   border-radius: 4px 0 0 4px;
-  border-right: 1px solid rgba(0,0,0,0.06);
+  border-right: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 /* Sağ inputun kənarları */
@@ -6813,7 +6802,6 @@ p.greenTotal span {
 .filter-price .slider-wrapper {
   margin-top: 8px;
   padding: 0 1rem !important;
-
 }
 
 /* Slider - seçilmiş range rəngi (#ec1f27) */
@@ -6833,12 +6821,12 @@ p.greenTotal span {
   background-color: #f5f5f5 !important;
 }
 
-//? Products Page Filter prices 
+//? Products Page Filter prices
 /* Handle kənar və iç rəngi */
 .filter-price .fp-slider .ant-slider-handle {
-  border-color: #ec1f27 !important;     /* kənar qırmızı */
+  border-color: #ec1f27 !important; /* kənar qırmızı */
   background-color: #ec1f27 !important; /* iç rəng qırmızı */
-  box-shadow: none !important;          /* göy xətləri silinir */
+  box-shadow: none !important; /* göy xətləri silinir */
 }
 
 .filter-price .fp-slider .ant-slider-handle {
@@ -6847,29 +6835,24 @@ p.greenTotal span {
   box-shadow: none !important;
 }
 
-
-
-
-
-
-
-
-:where(.css-dev-only-do-not-override-1a3rktk).ant-slider .ant-slider-handle::after {
-    content: "";
-    position: absolute;
-    inset-block-start: 0;
-    inset-inline-start: 0;
-    width: 10px;
-    height: 10px;
-    background-color: #ffffff;
-    box-shadow: 0 0 0 2px #ec1f27 !important;
-    outline: 0px solid transparent;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: inset-inline-start 0.2s, inset-block-start 0.2s, width 0.2s, height 0.2s, box-shadow 0.2s, outline 0.2s;
+:where(.css-dev-only-do-not-override-1a3rktk).ant-slider
+  .ant-slider-handle::after {
+  content: "";
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  width: 10px;
+  height: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 2px #ec1f27 !important;
+  outline: 0px solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: inset-inline-start 0.2s, inset-block-start 0.2s, width 0.2s,
+    height 0.2s, box-shadow 0.2s, outline 0.2s;
 }
 
-.filterPriceBtn{
+.filterPriceBtn {
   background: #111111;
   font-size: 1.6rem;
   font-weight: 500;
