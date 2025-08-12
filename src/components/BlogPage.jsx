@@ -26,7 +26,7 @@ const BlogPage = ({blogResponseData, t }) => {
         <div className="container">
           <div className="row">
             {blogResponseData.map((blog) => (
-              <div className="xl-4 lg-4 md-6 sm-12" key={blog.id}>
+              <div className="xl-3 lg-3 md-6 sm-12" key={blog.id}>
                 <div className="campaignPageCard">
                   <div className="campaignPageCardItem">
                     <div className="campaignPageCardImage">

@@ -1796,9 +1796,9 @@ ul {
 @media (max-width: 767.9px) {
   .filter-title {
     border: 1.2px solid #ced2e2 !important;
-    border-radius: 10px;
+    border-radius: 7px;
     font-size: 2.2rem !important;
-    padding: 3rem 4.5rem;
+    padding: 2.9rem 4.5rem;
     height: 4rem;
     width: 20rem;
     display: flex;
@@ -6183,7 +6183,7 @@ form .blackButton {
   align-items: center;
   justify-content: center;
   line-height: 1;
-  z-index: 10;
+  z-index: 0;
 
   // Animasiya əlavə etmək üçün
   animation: badgeAppear 0.3s ease-out;
@@ -6864,4 +6864,159 @@ p.greenTotal span {
   align-items: center;
   color: #fff;
   margin-top: 2rem;
+}
+
+// !mobile sort
+
+// !mobile sort
+
+.mobile-react-select-wrapper {
+  position: absolute; /* Ətrafdan müstəqil yerləşmə */
+  right: 0; /* Sağ kənara yapışıq */
+  top: 50%; /* Üfüqi mərkəzləşdir */
+  transform: translateY(-50%); /* Düzgün ortalama üçün */
+  z-index: 60; /* Yuxarı qat səviyyəsi */
+  display: inline-flex; /* Daxili elementləri yan-yana düz */
+  align-items: center; /* Daxili elementləri üfüqi ortala */
+  justify-content: flex-end; /* İçindəkiləri sağa düz */
+  pointer-events: auto; /* Klik və interaktivlik aktiv */
+}
+
+/* Mobil üçün Select əsas konteynerinin dizaynı */
+.mobile-react-select {
+  min-width: 20rem !important; /* Minimum genişlik */
+  max-width: 20rem; /* Minimum en: 14 rem */
+  border-radius: 1rem; /* Kənarları yuvarlaqlaşdır */
+  background: #fff; /* Ağ fon */
+  font-size: 1.5rem;
+  border: 1.2px solid #ced2e2 !important;
+  border-radius: 1rem; /* Yazı ölçüsü */
+}
+
+/* react-select-un prefixli sinifləri - əsas kontroller */
+.rs__control {
+  max-height: 5rem; /* max hündürlük */
+  height: 4.2rem !important; /* Hündürlük */
+  // border-radius: 1rem; /* Kənarları yuvarlaq */
+  // border: 1px solid #e6e6e6; /* Açıq boz kənar */
+  // padding: 0 8px; /* Daxili boşluq sağ-sola */
+  box-shadow: none; /* Kölgə yoxdur */
+  background: #fff; /* Ağ fon */
+  border-radius: 1rem;
+  border: none !important; /* Kənarları sil */
+}
+.rs__value-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-size: 2rem !important;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.034rem;
+}
+.css-hlgwow {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* Select-də seçilmiş dəyərin stili */
+.rs__single-value {
+  color: #111827; /* Tünd boz rəng */
+  margin-left: 0; /* Sol boşluq sıfır */
+  color: black;
+  font-size: 3rem !important;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.034rem;
+}
+
+/* Sağ tərəfdəki göstərici qutusu (ox və s.) */
+.rs__indicators {
+  // padding-right: 6px; /* Sağdan boşluq */
+  display: none !important;
+}
+
+/* Seçicinin oxu və digər ikonların rəngi */
+.rs__indicator {
+  color: rgba(0, 0, 0, 0.6); /* Yarı şəffaf qara */
+  display: none !important;
+}
+
+/* Açılan menyunun əsas konteyneri */
+.rs__menu {
+  border-radius: 1rem; /* Yuvarlaq kənar */
+  overflow: hidden; /* Kənar daşmasını gizlət */
+  // box-shadow: 0 8px 24px rgba(16, 24, 40, 0.12); /* Yumşaq kölgə */
+  // border: 1px solid rgba(0, 0, 0, 0.06); /* Açıq kənar */
+}
+
+/* Menyuda variantların siyahısı */
+.rs__menu-list {
+  padding: 6px; /* Daxili boşluq */
+}
+
+/* Hər bir variantın dizaynı */
+.rs__option {
+  font-size: 1.5rem; /* Yazı ölçüsü */
+  padding: 1rem 1.4rem; /* Daxili boşluq */
+  border-radius: 8px; /* Kənar yuvarlaqdır */
+  margin: 4px 6px; /* Variantlar arasında məsafə */
+  transition: background 0.12s ease; /* Yumşaq rəng dəyişimi */
+}
+
+/* Variant üzərinə gəldikdə fon rəngi dəyişir */
+.rs__option:hover {
+  background: rgba(236, 31, 39, 0.06); /* Açıq qırmızı fon */
+}
+
+/* Seçilmiş variantın görünüşü */
+.rs__option--is-selected {
+  background: rgba(199, 193, 194, 0.08) !important; /* Açıq qırmızı fon */
+  color: #ec1f27 !important; /* Qırmızı mətn */
+}
+
+/* Desktopda mobil üçün select gizlədir */
+@media (min-width: 768px) {
+  .mobile-react-select-wrapper,
+  .mobile-react-select {
+    display: none !important;
+  }
+}
+
+/* Mobil görünüş üçün əlavələr */
+/* Menyu siyahısının sonsuz hündürlüyü, overflow visible */
+@media (max-width: 767.98px) {
+  .rs__menu-list {
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 0.6rem !important;
+  }
+
+  /* Variantların ölçüsünü böyüdür */
+  .rs__option {
+    font-size: 1.6rem !important;
+    padding: 1rem 1.4rem !important;
+  }
+
+  /* Seçilmiş dəyərin ölçüsünü artırır */
+  .rs__single-value {
+    font-size: 1.6rem !important;
+  }
+
+  /* Menyu container-in overflow və hündürlük ayarı */
+  .rs__menu {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+}
+
+@media (max-width: 767.9px) {
+  .productSortButtonsHideMobile {
+    display: none !important;
+  }
 }
