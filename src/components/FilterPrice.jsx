@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Slider, InputNumber } from 'antd';
 
 const FilterPrice = ({
+  t,
   min = 0,
   max = 10000,
   step = 1,
@@ -73,7 +74,7 @@ const FilterPrice = ({
           tooltipVisible={false} // Tooltip-u söndürür
         />
       </div>
-      <button className='filterPriceBtn'>Axtar</button>
+      <button className='filterPriceBtn'>{t?.axtar}</button>
     </div>
   );
 };

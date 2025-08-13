@@ -643,6 +643,14 @@
 
 
 
+
+
+
+
+
+
+
+
 // File: components/ProductsPage.jsx
 "use client";
 import Link from "next/link";
@@ -941,12 +949,14 @@ export default function ProductsPage({
   onPageChange,
   t,
   sortBy,
+  productsTotal
 }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const searchText = searchParams.get("search_text");
   const [isMobileFilterOpen, setMobileFilterOpen] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  
 
   const { data: wishlistData } = useGetFavQuery();
   const [addToFav, { isLoading: genericAddingFav }] = useAddToFavMutation();
@@ -1132,7 +1142,7 @@ export default function ProductsPage({
         <div className="container">
           <div className="breadCrumb breadCrumbsHideMobile">
             {searchText ? (
-              <span>Axtarışın nəticələri: "{searchText}"</span>
+              <span>{t?.searchresult}: "{searchText}" ({productsTotal}) </span>
             ) : (
               productsBreadCrumbs.map((item, index) => {
                 const isFirst = index === 0;
@@ -1197,7 +1207,7 @@ export default function ProductsPage({
                   className="filter-title"
                   onClick={() => setMobileFilterOpen(!isMobileFilterOpen)}
                 >
-                  <span>Filter</span>
+                  <span>{t?.filter}</span>
                   <div className="filter-icon">
                     <Filter className="filIcon" />
                   </div>
@@ -1244,7 +1254,7 @@ export default function ProductsPage({
                 </div>
 
                 <div className={`filter-panel ${isMobileFilterOpen ? "active" : ""}`}>
-                  <button className="filter-titless">Filter</button>
+                  <button className="filter-titless">{t?.filter}</button>
                   <div className="selectedFilter mobile-only">
                     {selectedFilters.map((filter) => (
                       <div className="selectedFilterInner" key={filter}>
@@ -1267,7 +1277,7 @@ export default function ProductsPage({
                   {/* 1. Qiymət filtri */}
                   <FilterAccordion title={t?.price || "Qiymət"} defaultOpen={true}>
                     <div className="priceFilterDesign">
-                      <FilterPrice />
+                      <FilterPrice t={t} />
                     </div>
                   </FilterAccordion>
 

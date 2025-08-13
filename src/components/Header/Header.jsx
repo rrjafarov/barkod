@@ -748,7 +748,7 @@ const Header = ({ categoryData, t, settingData }) => {
                   top: "100%",
                   left: 0,
                   width: "100%",
-                  zIndex: 10,
+                  zIndex: 222222,
                   padding: "1rem 0",
                 }}
               >

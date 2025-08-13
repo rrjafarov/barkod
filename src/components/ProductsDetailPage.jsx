@@ -515,7 +515,7 @@ const ProductsDetailPage = ({ product, t }) => {
                     <div className="spinner-small"></div>
                   ) : isInCart ? (
                     <>
-                      <IoCartOutline /> ✔︎ {t?.added || "Əlavə edildi"}
+                      {t?.added || "Əlavə edildi"}
                     </>
                   ) : (
                     <>
