@@ -4541,13 +4541,14 @@ input[type="radio"] {
 // !Products sort
 
 .profile {
-  // margin: 3rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
+  width: 90%;
+  margin: auto;
 
   span {
     font-size: 2rem;
@@ -4558,22 +4559,28 @@ input[type="radio"] {
 
   .profileContent {
     border: 2px solid #f5f5f5;
-    border-radius: 1rem;
-    width: 100%;
+    border-radius: 3rem;
+    // width: 100%;
+    width: 75%;
     height: 100%;
-    width: 50rem;
-    padding: 5rem 5rem;
-    // margin: 2rem 0 3rem 0;
+    // width: 50rem;
+    padding: 5rem 0rem 3rem;
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     gap: 2rem;
 
     span {
-      font-size: 2.2rem;
-      font-weight: 400;
       color: #323232;
+      font-size: 2.4rem;
+      letter-spacing: 0.072rem;
+      text-transform: uppercase;
+      margin-bottom: 2.2rem;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+      text-align: start;
     }
 
     .profileName {
@@ -4657,6 +4664,14 @@ input[type="radio"] {
           color: #000000;
         }
       }
+    }
+  }
+}
+@media (max-width: 768px) {
+  .profile {
+    width: 100% !important;
+    .profileContent {
+      width: 100% !important;
     }
   }
 }
@@ -4787,6 +4802,107 @@ input[type="radio"] {
     gap: 5rem !important;
   }
 }
+
+// !profile  _____BAK BAKKKKKKKKK --- NEMO
+.account-content {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+  margin: 5rem 0;
+}
+// Sol tərəf - Sidebar (20%)
+.account-sidebar {
+  flex: 0 0 20%;
+  width: 20%;
+}
+// Sağ tərəf - Əsas məzmun (80%)
+.account-main {
+  flex: 0 0 80%;
+  width: 80%;
+}
+// Responsive dizayn
+@media (max-width: 768px) {
+  .account-content {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .account-sidebar {
+    flex: none;
+    width: 100%;
+    .supportLeft {
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: center;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 0 2rem;
+      overflow-x: auto;
+
+      // Scrollbar-ı gizlət
+      -ms-overflow-style: none; // Internet Explorer 10+
+      scrollbar-width: none; // Firefox
+
+      &::-webkit-scrollbar {
+        display: none; // Safari və Chrome
+      }
+
+      // Smooth scroll davranışı
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch; // iOS üçün smooth scrolling
+
+      a,
+      button {
+        flex-shrink: 0; // Elementlərin kiçilməsini qarşısını alır
+        white-space: nowrap; // Mətn sətir kəsilməsini qarşısını alır
+        min-width: max-content; // Minimum genişlik məzmuna görə
+        width: auto; // Avtomatik genişlik
+      }
+    }
+  }
+
+  .account-main {
+    width: 100%;
+  }
+}
+// Navigation linkləri üçün stil
+.supportLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  a,
+  button {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    border: none;
+    background: none;
+    font-size: 2rem;
+    font-weight: 400;
+    color: #323232;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: left;
+
+    &:hover {
+      background-color: #f7f7f7;
+      color: #ec1f27;
+    }
+  }
+  // Aktiv link üçün xüsusi stil
+  a[style*="border-bottom"] {
+    background-color: #fff;
+    color: #ec1f27;
+    font-weight: 500;
+  }
+}
+
+// !profile  _____BAK BAKKKKKKKKK
 
 // !logout popup
 .logout-confirm-overlay {
@@ -5242,11 +5358,6 @@ form .blackButton {
   // margin: auto;
 }
 
-.formParent form {
-  // width: 60%;
-  // margin: auto;
-}
-
 .formParent form p {
   color: var(--black);
   font-size: 2rem;
@@ -5315,17 +5426,24 @@ form .blackButton {
 
 .contactRight {
   border: 2px solid #f5f5f5;
-  border-radius: 1rem;
+  border-radius: 3rem;
+  padding: 5rem 5rem;
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
-  // width: 50rem;
-  padding: 5rem 5rem;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
-  gap: 2rem;
+  width: 100%;
+  margin: auto;
   margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .contactRight {
+    width: 100% !important;
+  }
 }
 
 .formParent {
@@ -5438,18 +5556,15 @@ form .blackButton {
 }
 
 .addressParentCards {
-  // padding-right: 4.2rem;
   overflow: auto;
-  // height: 80vh;
   display: flex;
-  // flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 .addressCardCreate {
-  border-radius: 1rem;
-  border: 0.1rem solid lightgray;
+  border-radius: 3rem;
+  // border: 0.1rem solid lightgray;
   // height: 22.6rem;
   display: flex;
   flex-direction: column;
@@ -5477,14 +5592,14 @@ form .blackButton {
   text-transform: uppercase;
 }
 
-.addressCardCreate:hover span {
-  color: #2d9d3f;
-}
+// .addressCardCreate:hover span {
+//   color: #2d9d3f;
+// }
 
-.addressCardCreate:hover {
-  border: 0.1rem solid #2d9d3f;
-  transition: all 0.3s ease;
-}
+// .addressCardCreate:hover {
+//   // border: 0.1rem solid #2d9d3f;
+//   transition: all 0.3s ease;
+// }
 
 .popupAddress.active,
 .popupAnswer.active,
@@ -5635,10 +5750,33 @@ form .blackButton {
 .addressCard {
   width: 100%;
   position: relative;
-  margin-bottom: 2.2rem;
+  // margin-bottom: 2.2rem;
   height: 22.6rem;
   border: 0.1rem solid lightgray;
-  border-radius: 1.1rem;
+  border-radius: 3rem;
+  width: 49%;
+}
+.addressCardRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+}
+@media (max-width: 768px) {
+  .addressCard {
+    width: 100% !important;
+  }
+}
+.address-list {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+  .addressCard {
+    width: 48.5%;
+  }
+  margin-bottom: 2.2rem;
 }
 
 .addressCardInner {
@@ -5648,7 +5786,7 @@ form .blackButton {
   padding: 5.6rem 4rem 3.4rem 3.6rem;
   width: var(--width) !important;
   border: 0.1rem solid var(--line);
-  border-radius: 1rem;
+  border-radius: 3rem;
   height: 100%;
 }
 
@@ -5744,14 +5882,9 @@ form .blackButton {
   background: #2d9d3f;
 }
 
-// .addressParentCards {
-//   padding-right: 4.2rem;
-//   overflow: auto;
-//   height: 80vh;
-// }
 .addressCardCreate {
   border-radius: 1rem;
-  border: 0.1rem solid var(--line);
+  // border: 0.1rem solid var(--line);
   // height: 22.6rem;
   display: flex;
   flex-direction: column;
@@ -5786,9 +5919,9 @@ form .blackButton {
   color: #2d9d3f;
 }
 
-.addressCardCreate:hover {
-  border: 0.1rem solid #2d9d3f;
-}
+// .addressCardCreate:hover {
+//   border: 0.1rem solid #2d9d3f;
+// }
 
 //! adreess card
 
@@ -6353,6 +6486,8 @@ form .blackButton {
 
 .status.notPaid {
   background: var(--black);
+  background: #ec1f27;
+
 }
 
 .orderHistoryMiniCard {
@@ -6905,7 +7040,7 @@ p.greenTotal span {
   border-radius: 1rem;
   border: none !important; /* Kənarları sil */
 }
-.rs__value-container{
+.rs__value-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6921,7 +7056,6 @@ p.greenTotal span {
   align-items: center;
   justify-content: center;
 }
-
 
 /* Select-də seçilmiş dəyərin stili */
 .rs__single-value {

@@ -1013,7 +1013,7 @@ const CheckoutAddressCard = ({
   };
 
   return (
-    <div className="xl-6 lg-6 md-6 sm-12">
+    // <div className="xl-6 lg-6 md-6 sm-12">
       <div
         className={`addressCard ${
           selectedAddress?.id === address.id ? "selected" : ""
@@ -1068,7 +1068,7 @@ const CheckoutAddressCard = ({
           <FiEdit2 />
         </button>
       </div>
-    </div>
+    // </div>
   );
 };
 

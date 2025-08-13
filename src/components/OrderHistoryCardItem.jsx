@@ -3,12 +3,12 @@ import Image from "next/image";
 // import defaultImg from "@/public/defaultImage.webp";
 import Link from "next/link";
 
-const OrderHistoryCardItem = (props) => {
+const OrderHistoryCardItem = (props ) => {
   // props.product undefined ise güvenli fallback
   const wrapper = props.product || {};
   const data = wrapper.product || {};
   const imgSrc = data.image || defaultImg;  
-  const name = data.name || "Ürün adı yoxdur";
+  const name = data.name || "Mehsul adı yoxdur";
   const slug = data.slug || "";
   const price = data.price ?? "-";
   const qty = wrapper.qty ?? "-";
@@ -27,11 +27,11 @@ const OrderHistoryCardItem = (props) => {
         <strong>{name}</strong>
       </div>
       <div className="orderHistoryPart">
-        <span>Qiymət</span>
+        {/* <span>{t?.price || "Qiymət"}</span> */}
         <p>{price}</p>
       </div>
       <div className="orderHistoryPart">
-        <span>Miqdar</span>
+        {/* <span>{t?.quantity || "Say"}</span> */}
         <p>{qty}</p>
       </div>
     </div>

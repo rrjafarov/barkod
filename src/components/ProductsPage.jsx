@@ -1460,7 +1460,7 @@ export default function ProductsPage({
                                 {isAddingCart ? (
                                   <div className="spinner-small"></div>
                                 ) : isInCart ? (
-                                  t?.added || "✔︎ Əlavə edildi"
+                                  t?.added || " Əlavə edildi"
                                 ) : (
                                   t?.addtocart || "Add to cart"
                                 )}
