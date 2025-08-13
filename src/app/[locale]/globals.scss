@@ -3577,7 +3577,7 @@ ul {
 
     .campaignDetailPageLeft {
       border-radius: 1rem;
-      height: 37rem;
+      height: 39rem;
       width: 100%;
       img {
         width: 100%;
@@ -3589,7 +3589,7 @@ ul {
 
     .campaignDetailPageRight {
       border-radius: 1rem;
-      height: 37rem;
+      height: 39rem;
       width: 100%;
 
       // .blockDPCardLink {
@@ -3655,12 +3655,11 @@ ul {
         }
 
         .campaignDetailPageCardBottom {
-          padding-top: 0.5rem;
+          padding-top: 1.8rem;
           .shareWithWP {
             border-radius: 5.1016rem;
             border: 1.701px solid #46c756;
             background: #46c756;
-            // width: 18rem;
             flex-shrink: 0;
             display: flex;
             justify-content: center;
@@ -3719,7 +3718,16 @@ ul {
     }
   }
 }
-
+@media screen and (max-width: 767.9px) {
+  .campaignDetailPageCardBottom {
+    padding-top: 0.7rem !important;
+  }
+  .shareWithWP {
+    button {
+      padding: 0.5rem !important;
+    }
+  }
+}
 .circleLine1 {
   position: relative;
   height: 2rem; // hündürlüyü kartın ayıran yerinə uyğun təyin edirik
@@ -6487,7 +6495,6 @@ form .blackButton {
 .status.notPaid {
   background: var(--black);
   background: #ec1f27;
-
 }
 
 .orderHistoryMiniCard {
