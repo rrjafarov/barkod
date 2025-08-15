@@ -1800,7 +1800,7 @@ ul {
     font-size: 2.2rem !important;
     padding: 2.9rem 4.5rem;
     height: 4rem;
-    width: 20rem;
+    width: 27rem;
     display: flex;
     justify-content: center;
     // margin-left: 1rem;
@@ -7026,8 +7026,8 @@ p.greenTotal span {
 
 /* Mobil üçün Select əsas konteynerinin dizaynı */
 .mobile-react-select {
-  min-width: 20rem !important; /* Minimum genişlik */
-  max-width: 20rem; /* Minimum en: 14 rem */
+  min-width: 27rem !important; /* Minimum genişlik */
+  max-width: 27rem; /* Minimum en: 14 rem */
   border-radius: 1rem; /* Kənarları yuvarlaqlaşdır */
   background: #fff; /* Ağ fon */
   font-size: 1.5rem;
@@ -7160,4 +7160,10 @@ p.greenTotal span {
   .productSortButtonsHideMobile {
     display: none !important;
   }
+}
+
+
+
+#tofiq{
+  display: none !important;
 }
