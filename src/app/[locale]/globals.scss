@@ -1497,11 +1497,12 @@ ul {
   color: #111;
   border: 1px solid gray;
   cursor: pointer;
-  border-radius: 1rem;
+  border-radius: 1.5rem;
   padding: 1rem;
   font-size: 1.6rem;
   font-weight: 600;
   height: 5rem;
+  width: 50% !important;
 
   &:hover {
     background-color: $MainColor;
@@ -1522,49 +1523,72 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1241;
+  z-index: 12411;
 }
 
 /* Popup penceresi */
 .modal {
   background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 45rem;
-  height: 300px;
+  padding: 2rem 4rem; 
+  border-radius: 1.5rem;
+  max-width: 50rem;
+  height: 35rem;
   width: 100%;
   position: relative;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   flex-direction: column;
 
   span {
     font-size: 1.8rem;
     font-weight: 600;
+    margin-top: 2.2rem;
+  }
+  p {
+    font-size: 1.4rem;
+    font-weight: 500;
+    text-align: center;
   }
 
   .numberModal {
     display: flex;
-    border-bottom: 2px solid black;
+    // border-bottom: 1px solid black;
+    border: 2px solid #f5f5f5;
     width: 100%;
+    border-radius: 1rem;
     gap: 1rem;
 
     label {
       font-size: 1.4rem;
       font-weight: 600;
       width: 150px;
-      padding: 1rem 0;
+      padding: 1.5rem 0;
     }
 
     input {
       border: none;
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       outline: none;
       font-weight: 600;
       width: 100%;
-      padding: 1rem 0;
+      padding: 1.5rem 0;
     }
   }
+  .onuClickInput{
+    width: 100%;
+    border-radius: 1rem;
+    padding: 1.5rem 2rem;
+    border: 2px solid #f5f5f5;
+    font-size: 1.6rem;
+    outline: none;
+    font-weight: 600;
+
+  }
+  input::placeholder {
+  opacity: 0.4; 
+  }
+
 }
 
 /* Popup kapatma butonu */
@@ -1574,9 +1598,16 @@ ul {
   right: 20px;
   background: none;
   border: none;
-  font-size: 20px;
+  font-size: 1.5rem;
   font-weight: 500;
   cursor: pointer;
+  background-color: #323232;
+  display: flex;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  padding: 1rem 1.4rem;
 }
 
 #productDPbreadCrumbs {
