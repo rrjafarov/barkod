@@ -20,12 +20,9 @@ import {
   useRemoveFromFavMutation,
 } from "@/redux/wishlistService";
 import { useGetCartQuery, useAddToCartMutation } from "@/redux/cartService";
+import OneClickPay from "./Header/OneClickPay";
 
-const CategoryBestSeller = ({
-  t,
-  bestSellerProducts = [],
-  categorySlug,
-}) => {
+const CategoryBestSeller = ({ t, bestSellerProducts = [], categorySlug }) => {
   const [showModal, setShowModal] = useState(false);
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
@@ -159,19 +156,11 @@ const CategoryBestSeller = ({
   return (
     <div className="container">
       {showModal && (
-        <div className="modal-overlay" onClick={handleOverlayClick}>
-          <div className="modal">
-            <button className="close-btns" onClick={closeModal}>
-              X
-            </button>
-            <span>{t?.oneclickpay || "on"}</span>
-            <div className="numberModal">
-              <label htmlFor="phone">{t?.num}: +994</label>
-              <input type="text" id="phone" name="phone" />
-            </div>
-            <button className="open-btn">{t?.oneclickpay || "on"}</button>
-          </div>
-        </div>
+        <OneClickPay
+          t={t}
+          closeModal={closeModal}
+          handleOverlayClick={handleOverlayClick}
+        />
       )}
       <div className="secondaryProductsHeadTitle categorySecondaryProductsHeadTitle">
         <div className="secondaryTitleLeft">

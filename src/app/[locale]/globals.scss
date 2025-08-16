@@ -1508,7 +1508,9 @@ ul {
     color: #fff;
   }
 }
-
+.css-hlgwow{
+  display: grid !important;
+}
 /* Overlay (arka plan) */
 .modal-overlay {
   position: fixed;
@@ -1520,7 +1522,7 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 12999999999999999;
+  z-index: 1241;
 }
 
 /* Popup penceresi */
@@ -1528,8 +1530,8 @@ ul {
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
-  max-width: 350px;
-  height: 275px;
+  max-width: 45rem;
+  height: 300px;
   width: 100%;
   position: relative;
   display: flex;
@@ -7166,4 +7168,50 @@ p.greenTotal span {
 
 #tofiq{
   display: none !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Compare !
+.compare-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  h4{
+    font-size: 2rem;
+    font-weight: 500;
+  }
+  ul{
+    padding-top: 1rem;
+    li{
+      font-size: 1.6rem;
+    }
+  }
+  button{
+    font-size: 1.6rem;
+    border-radius: 1rem;
+    padding: 0.8rem 1.2rem;
+    margin-top: 2rem;
+  }
 }

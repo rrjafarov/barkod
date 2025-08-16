@@ -24,6 +24,7 @@ import {
 import { useGetCartQuery, useAddToCartMutation } from "@/redux/cartService";
 import FilterPrice from "./FilterPrice";
 import { BiSort } from "react-icons/bi";
+import OneClickPay from "./Header/OneClickPay";
 
 // RTK Query hooks are used below
 
@@ -594,19 +595,11 @@ export default function ProductsPage({
           )}
 
           {showModal && (
-            <div className="modal-overlay" onClick={handleOverlayClick}>
-              <div className="modal">
-                <button className="close-btns" onClick={closeModal}>
-                  <IoClose />
-                </button>
-                <span>Bir kliklə al</span>
-                <div className="numberModal">
-                  <label htmlFor="phone">Nömrə: +994</label>
-                  <input type="text" id="phone" name="phone" />
-                </div>
-                <button className="open-btn">Bir kliklə al</button>
-              </div>
-            </div>
+            <OneClickPay
+              t={t}
+              closeModal={closeModal}
+              handleOverlayClick={handleOverlayClick}
+            />
           )}
 
           <div className="row">
