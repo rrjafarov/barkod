@@ -445,6 +445,8 @@ export class CompareService {
        result.push(...catProducts);
        const first = catProducts[0];
        const name = (first && first.categories?.[0]?.name) || null;
+
+       
        categories.push({ id: cid, name });
      }
    });
