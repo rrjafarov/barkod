@@ -269,7 +269,7 @@
 // lib/compareService.js
 export class CompareService {
  static STORAGE_KEY = 'compare_list';
- static PRODUCTS_KEY = 'compare_products';
+//  static PRODUCTS_KEY = 'compare_products';
 
  static getCompareList() {
    if (typeof window === 'undefined') return {};
@@ -291,25 +291,25 @@ export class CompareService {
    }
  }
 
- static getProductsStore() {
-   if (typeof window === 'undefined') return {};
-   try {
-     const stored = localStorage.getItem(CompareService.PRODUCTS_KEY);
-     return stored ? JSON.parse(stored) : {};
-   } catch (error) {
-     console.error('Products store oxunarkən xəta:', error);
-     return {};
-   }
- }
+//  static getProductsStore() {
+//    if (typeof window === 'undefined') return {};
+//    try {
+//      const stored = localStorage.getItem(CompareService.PRODUCTS_KEY);
+//      return stored ? JSON.parse(stored) : {};
+//    } catch (error) {
+//      console.error('Products store oxunarkən xəta:', error);
+//      return {};
+//    }
+//  }
 
- static saveProductsStore(productsObj) {
-   if (typeof window === 'undefined') return;
-   try {
-     localStorage.setItem(CompareService.PRODUCTS_KEY, JSON.stringify(productsObj || {}));
-   } catch (error) {
-     console.error('Products store saxlananda xəta:', error);
-   }
- }
+//  static saveProductsStore(productsObj) {
+//    if (typeof window === 'undefined') return;
+//    try {
+//      localStorage.setItem(CompareService.PRODUCTS_KEY, JSON.stringify(productsObj || {}));
+//    } catch (error) {
+//      console.error('Products store saxlananda xəta:', error);
+//    }
+//  }
 
  // Məhsulu compare-a əlavə et
  static addToCompare(productObj) {
@@ -328,7 +328,7 @@ export class CompareService {
    const productId = Number(productObj.id);
 
    const compareList = CompareService.getCompareList();
-   const productsStore = CompareService.getProductsStore();
+  //  const productsStore = CompareService.getProductsStore();
 
    // Məhsul artıq compare-da varmı
    if (CompareService.findProductCategory(productId)) {
@@ -342,10 +342,10 @@ export class CompareService {
    }
 
    compareList[cid].push(productId);
-   productsStore[String(productId)] = productObj;
+  //  productsStore[String(productId)] = productObj;
 
    CompareService.saveCompareList(compareList);
-   CompareService.saveProductsStore(productsStore);
+  //  CompareService.saveProductsStore(productsStore);
 
    try {
      if (typeof window !== 'undefined') {
@@ -426,33 +426,31 @@ export class CompareService {
    return null;
  }
 
- static getAllProducts() {
-   const compareList = CompareService.getCompareList();
-   const productsStore = CompareService.getProductsStore();
-   const result = [];
-   const categories = [];
+ static async getAllProducts() {
+  try {
+    const compareList = CompareService.getCompareList();
+    console.log("Göndərilən compareList:", compareList);
 
-   Object.entries(compareList).forEach(([cid, ids]) => {
-     const catProducts = [];
-     if (Array.isArray(ids)) {
-       ids.forEach(id => {
-         const prod = productsStore[String(id)];
-         if (prod) catProducts.push(prod);
-         else catProducts.push({ id, name: `Məhsul ${id}`, slug: String(id) });
-       });
-     }
-     if (catProducts.length > 0) {
-       result.push(...catProducts);
-       const first = catProducts[0];
-       const name = (first && first.categories?.[0]?.name) || null;
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/compare`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ compare_list: compareList }), // 👈 compare_list key-i ilə göndəririk
+    });
+    if (!response.ok) {
+      throw new Error("Compare API xətası: " + response.status);
+    }
+    
+    const result = await response.json();
+    console.log("Gonderilen liste uygun mehsullar:", result.compare);
+    return result.compare; // 👈 Serverdən gələn nəticəni qaytarırıq
+  } catch (error) {
+    console.error("getAllProducts xətası:", error);
+    return { products: [], categories: [] }; // fallback
+  }
+}
 
-       
-       categories.push({ id: cid, name });
-     }
-   });
-
-   return { products: result, categories };
- }
 
  static getCompareDataForAPI() {
    return {

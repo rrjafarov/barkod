@@ -4489,10 +4489,10 @@ input[type="radio"] {
   padding: 1.5rem;
   border: none;
   border-radius: 0.5rem;
-  background: #777;
+  background: #323232;
   color: #fff;
   font-size: 1.8rem;
-  cursor: not-allowed;
+  // cursor: not-allowed;
   margin-top: 1rem;
 }
 
@@ -5497,7 +5497,8 @@ form .blackButton {
   align-items: center;
   gap: 2rem;
   flex-direction: column;
-  width: 50rem;
+  margin: 3rem 0;
+  // width: 50rem;
 }
 
 .empty-title {
@@ -7229,6 +7230,7 @@ p.greenTotal span {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+      margin: auto;
   h4{
     font-size: 2rem;
     font-weight: 500;
