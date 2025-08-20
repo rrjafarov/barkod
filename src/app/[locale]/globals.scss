@@ -2080,7 +2080,7 @@ ul {
 }
 
 .accordion-content::-webkit-scrollbar {
-  width: 4px;
+  width: 3px;
 }
 
 .accordion-content::-webkit-scrollbar-track {
@@ -2122,7 +2122,7 @@ ul {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  opacity: 0.7;
+  // opacity: 0.7;
 }
 
 .accordion-content li p {

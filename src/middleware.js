@@ -1,4 +1,3 @@
-
 import createMiddleware from "next-intl/middleware";
 import { NextResponse } from "next/server";
 

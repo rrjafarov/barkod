@@ -51,7 +51,7 @@ const CompaignDetailPage = ({ campaign, t }) => {
               <div className="xl-12 lg-12 md-12 sm-12">
                 <div className="campaignDetailPageLeft">
                   <Image
-                    src={campaign.img_url}
+                    src={campaign.banner}
                     alt="campaign"
                     width={1500}
                     height={1500}

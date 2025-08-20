@@ -1486,7 +1486,6 @@ const HomePageProductsCard = ({
           filter: invert(15%) sepia(100%) saturate(7490%) hue-rotate(-10deg)
             brightness(100%) contrast(100%);
           opacity: 1;
-          transform: scale(1.15);
           transform-origin: center;
         }
       `}</style>
