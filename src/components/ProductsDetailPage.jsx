@@ -411,6 +411,11 @@
 
 
 
+
+
+
+
+
 "use client";
 import Link from "next/link";
 import Form from "next/form";
@@ -836,7 +841,6 @@ const ProductsDetailPage = ({ product, t }) => {
                   onClick={() => handleAddToCompare(productDetail)}
                   disabled={isAddingCompare || isProductInCompare}
                   title={isProductInCompare ? "Artıq müqayisədə" : "Müqayisəyə əlavə et"}
-                  style={isProductInCompare ? { opacity: 1 } : undefined}
                 >
                   {isAddingCompare ? (
                     <div className="spinner-small"></div>
@@ -918,13 +922,22 @@ const ProductsDetailPage = ({ product, t }) => {
         <section>
           <div className="productsDPTechnicalSection">
             <div className="productsDPTechnicalSectionTitle">
-              <button onClick={() => setActiveTab("tech")}>
+              <button 
+                onClick={() => setActiveTab("tech")}
+                className={activeTab === "tech" ? "active-tab" : ""}
+              >
                 {t?.spesification || "Texniki Xüsusiyyətlər"}
               </button>
-              <button onClick={() => setActiveTab("desc")}>
+              <button 
+                onClick={() => setActiveTab("desc")}
+                className={activeTab === "desc" ? "active-tab" : ""}
+              >
                 {t?.destcription || "Təsvir"}
               </button>
-              <button onClick={() => setActiveTab("reviews")}>
+              <button 
+                onClick={() => setActiveTab("reviews")}
+                className={activeTab === "reviews" ? "active-tab" : ""}
+              >
                 {t?.comment || "Rəylər"}
               </button>
             </div>
@@ -1044,18 +1057,24 @@ const ProductsDetailPage = ({ product, t }) => {
         .newScaleBtn.in-compare:disabled {
           opacity: 1;
         }
+        /* Compare button - background f5f5f5, iconun özü qırmızı olur */
         .newScaleBtn.in-compare {
-          background-color: #ec1f27;
-          color: white;
+          background-color: #f5f5f5 !important;
+          border: none;
         }
         .newScalePR.active {
-          color: #ec1f27;
           transition: filter 0.3s ease, transform 0.15s ease;
           filter: invert(15%) sepia(100%) saturate(7490%) hue-rotate(-10deg)
             brightness(100%) contrast(100%);
           opacity: 1;
           transform-origin: center;
         }
+        
+        /* Active tab style */
+        .productsDPTechnicalSectionTitle .active-tab {
+          border: 0.15rem solid #ec1f27 !important;
+        }
+        
         .productsDPaddToCart,
         .submitCommentBTN {
           display: flex;
@@ -1102,7 +1121,7 @@ export default ProductsDetailPage;
 
 
 
-// ! compre 1 klikle aldan evvelki kod
+
 // "use client";
 // import Link from "next/link";
 // import Form from "next/form";
@@ -1130,6 +1149,7 @@ export default ProductsDetailPage;
 // } from "@/redux/wishlistService";
 // import { useGetCartQuery, useAddToCartMutation } from "@/redux/cartService";
 // import OneClickPay from "./Header/OneClickPay";
+// import { useCompare } from "@/hooks/useCompare";
 
 // const ProductsDetailPage = ({ product, t }) => {
 //   const productDetail = product?.product_detail || [];
@@ -1152,6 +1172,10 @@ export default ProductsDetailPage;
 //   const [isAddingFav, setIsAddingFav] = useState(false);
 //   const [isAddingCart, setIsAddingCart] = useState(false);
 
+//   // Compare states
+//   const { addToCompare, isInCompare } = useCompare();
+//   const [isAddingCompare, setIsAddingCompare] = useState(false);
+
 //   // Comment form states
 //   const [commentForm, setCommentForm] = useState({
 //     full_name: "",
@@ -1173,9 +1197,18 @@ export default ProductsDetailPage;
 
 //   const productId = productDetail.id;
 
+//   // One Click Pay state
+//   const [selectedProduct, setSelectedProduct] = useState(null);
+
 //   // Modal functions
-//   const openModal = () => setShowModal(true);
-//   const closeModal = () => setShowModal(false);
+//   const openModal = (product) => {
+//     setSelectedProduct(product);
+//     setShowModal(true);
+//   };
+//   const closeModal = () => {
+//     setShowModal(false);
+//     setSelectedProduct(null);
+//   };
 
 //   const handleOverlayClick = (e) => {
 //     if (e.target.className === "modal-overlay") {
@@ -1341,9 +1374,64 @@ export default ProductsDetailPage;
 //     }
 //   };
 
+//   // Helper to extract category id from product object (fallbacks)
+//   const extractCategoryId = (product) => {
+//     if (!product) return null;
+//     if (product.category && typeof product.category === "object") {
+//       return (
+//         product.category.id ?? product.categoryId ?? product.category_id ?? null
+//       );
+//     }
+//     if (product.category_id) return product.category_id;
+//     if (product.categoryId) return product.categoryId;
+//     if (product.parent_category_id) return product.parent_category_id;
+//     // fallback null -> use 'uncategorized' or 1 as before
+//     return null;
+//   };
+
+//   // Compare handler - localStorage ilə
+//   const handleAddToCompare = async (product) => {
+//     if (!product?.id) {
+//       console.error("Product ID boşdur");
+//       return;
+//     }
+
+//     const productId = product.id;
+//     const categoryId =
+//       extractCategoryId(product) ||
+//       product.category_id ||
+//       product.categoryId ||
+//       1; // Fallback categoryId
+
+//     // Loading state
+//     if (isAddingCompare) return;
+
+//     setIsAddingCompare(true);
+
+//     try {
+//       // send full product object so CompareService stores product details locally
+//       const result = await addToCompare(product, categoryId);
+
+//       if (result.success) {
+//         console.log(`Məhsul ${productId} müqayisəyə əlavə edildi`);
+//         // İstəyə bağlı toast notification burada ola bilər
+//       } else {
+//         console.error("Compare əlavə etmə xətası:", result.error);
+//         alert(result.error); // Və ya daha yaxşı notification sistemi
+//       }
+//     } catch (error) {
+//       console.error("Məhsul müqayisəyə əlavə edilərkən xəta:", error);
+//       alert("Xəta baş verdi. Yenidən cəhd edin.");
+//     } finally {
+//       setIsAddingCompare(false);
+//     }
+//   };
+
 //   // find the current installment object
 //   const currentInst =
 //     installments.find((inst) => inst.month === selectedMonth) || {};
+
+//   const isProductInCompare = isInCompare(productId);
 
 //   return (
 //     <div id="productsDetailPage">
@@ -1351,6 +1439,7 @@ export default ProductsDetailPage;
 //         {showModal && (
 //           <OneClickPay
 //             t={t}
+//             product={selectedProduct}
 //             closeModal={closeModal}
 //             handleOverlayClick={handleOverlayClick}
 //           />
@@ -1437,7 +1526,7 @@ export default ProductsDetailPage;
 //                   )}
 //                 </button>
 
-//                 <button onClick={openModal} className="productsDPbuyNow">
+//                 <button onClick={() => openModal(productDetail)} className="productsDPbuyNow">
 //                   {t?.oneclickpay}
 //                 </button>
 
@@ -1453,8 +1542,35 @@ export default ProductsDetailPage;
 //                   )}
 //                 </button>
 
-//                 <button className="productsDPscale">
-//                   <NewScale className="productsDPwishIcon" />
+//                 <button
+//                   className={`productsDPscale newScaleBtn ${isProductInCompare ? "in-compare" : ""}`}
+//                   onClick={() => handleAddToCompare(productDetail)}
+//                   disabled={isAddingCompare || isProductInCompare}
+//                   title={isProductInCompare ? "Artıq müqayisədə" : "Müqayisəyə əlavə et"}
+//                   style={isProductInCompare ? { opacity: 1 } : undefined}
+//                 >
+//                   {isAddingCompare ? (
+//                     <div className="spinner-small"></div>
+//                   ) : (
+//                     <NewScale
+//                       className={`productsDPwishIcon newScalePR ${isProductInCompare ? "active" : ""}`}
+//                       style={
+//                         isProductInCompare
+//                           ? {
+//                               transition: "filter 0.3s ease, transform 0.15s ease",
+//                               filter:
+//                                 "invert(15%) sepia(100%) saturate(7490%) hue-rotate(-10deg) brightness(100%) contrast(100%)",
+//                               opacity: 1,
+//                               transform: "scale(1.2)",
+//                               transformOrigin: "center",
+//                               strokeWidth: 1.6,
+//                               width: "20px",
+//                               height: "20px",
+//                             }
+//                           : undefined
+//                       }
+//                     />
+//                   )}
 //                 </button>
 //               </div>
 
@@ -1630,9 +1746,26 @@ export default ProductsDetailPage;
 //         }
 //         .productsDPaddToCart:disabled,
 //         .wishlist-btn:disabled,
-//         .submitCommentBTN:disabled {
+//         .submitCommentBTN:disabled,
+//         .newScaleBtn:disabled {
 //           cursor: not-allowed;
 //           opacity: 0.6;
+//         }
+//         /* override only for compare state so disabled doesn't cause opacity */
+//         .newScaleBtn.in-compare:disabled {
+//           opacity: 1;
+//         }
+//         .newScaleBtn.in-compare {
+//           background-color: #ec1f27;
+//           color: white;
+//         }
+//         .newScalePR.active {
+//           color: #ec1f27;
+//           transition: filter 0.3s ease, transform 0.15s ease;
+//           filter: invert(15%) sepia(100%) saturate(7490%) hue-rotate(-10deg)
+//             brightness(100%) contrast(100%);
+//           opacity: 1;
+//           transform-origin: center;
 //         }
 //         .productsDPaddToCart,
 //         .submitCommentBTN {
@@ -1659,9 +1792,15 @@ export default ProductsDetailPage;
 //           margin: 10px 0;
 //           width: 18rem;
 //         }
+//         .newScaleBtn {
+//           cursor: pointer;
+//         }
 //       `}</style>
 //     </div>
 //   );
 // };
 
 // export default ProductsDetailPage;
+
+
+
