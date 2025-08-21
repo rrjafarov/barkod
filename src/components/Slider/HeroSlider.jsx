@@ -31,7 +31,7 @@ export default function Home({ homePageDataSlider }) {
               modules={[Pagination, Autoplay]}
               className="mySwiper heroSlider"
             >
-              {homePageDataSlider.map((slider) => (
+              {homePageDataSlider.slice(2).map((slider) => (
                 <SwiperSlide className="sldr"  key={slider.id} >
                   <Link href={slider.redirect_url || "#"} className="heroSliderLink" target="_blank">
                     <div className="heroSliderItem">
@@ -58,7 +58,6 @@ export default function Home({ homePageDataSlider }) {
                 <div className="xl-12 lg-12 md-12 sm-6">
                   <div className="bannerStaticCard">
                     <Image
-                      // src="/images/staticBnnr01.jpg"
                       src={homePageDataSlider[0]?.src || "/images/staticBnnr01.jpg"}
                       alt="banner"
                       width={400}
@@ -69,7 +68,6 @@ export default function Home({ homePageDataSlider }) {
                 <div className="xl-12 lg-12 md-12 sm-6">
                   <div className="bannerStaticCard">
                     <Image
-                      // src="/images/staticBnnr02.jpg"
                       src={homePageDataSlider[1]?.src || "/images/staticBnnr01.jpg"}
                       alt="banner"
                       width={400}

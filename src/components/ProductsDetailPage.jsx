@@ -416,6 +416,47 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 "use client";
 import Link from "next/link";
 import Form from "next/form";
@@ -1109,6 +1150,44 @@ const ProductsDetailPage = ({ product, t }) => {
 };
 
 export default ProductsDetailPage;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

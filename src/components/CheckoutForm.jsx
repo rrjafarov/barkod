@@ -796,7 +796,7 @@
 
 
 
-
+// ? BITTIMI DAYI ? (<><><><>)
 "use client";
 import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
@@ -1078,6 +1078,8 @@ export default function CheckoutForm({
   t,
   totalAmount,
   onDeliveryUpdate,
+  deliveryInfo, // prop passed from parent
+  paymentTotal, // <<< YENI: parent-dən gələn product+delivery yekun məbləği
 }) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isAddressPopupOpen, setIsAddressPopupOpen] = useState(false);
@@ -1276,6 +1278,23 @@ export default function CheckoutForm({
       });
     }
 
+    // <<< ADDED: send delivery_fee and final total_amount to backend so payment_url can be generated correctly
+    const deliveryFeeValue = deliveryInfo?.isFree
+      ? "0"
+      : deliveryInfo?.price
+      ? String(parseFloat(deliveryInfo.price).toFixed(2))
+      : "0";
+    submitData.append("delivery_fee", deliveryFeeValue);
+
+    // paymentTotal prop contains product + delivery; fallback to sum calculation if not provided
+    const computedPaymentTotal =
+      typeof paymentTotal !== "undefined"
+        ? Number(paymentTotal).toFixed(2)
+        : (parseFloat(totalAmount || 0) + (deliveryInfo?.isFree ? 0 : parseFloat(deliveryInfo?.price || 0))).toFixed(2);
+
+    submitData.append("total_amount", String(computedPaymentTotal));
+    // <<< END ADDED
+
     try {
       const response = await axiosInstance.post("/make-payment", submitData, {
         headers: { "Content-Type": "multipart/form-data" },
@@ -1295,7 +1314,7 @@ export default function CheckoutForm({
     } finally {
       setIsSubmitting(false);
     }
-  }, [validateForm, isLoggedIn, selectedAddress, deliveryData, paymentMethod, products]);
+  }, [validateForm, isLoggedIn, selectedAddress, deliveryData, paymentMethod, products, deliveryInfo, paymentTotal, totalAmount]);
 
   if (isLoggedIn && isAddressLoading) {
     return (
@@ -1347,14 +1366,6 @@ export default function CheckoutForm({
                 />
               ))}
             </div>
-            {/* <div className="form-group">
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder={t?.email || "E-mail"}
-              />
-            </div> */}
           </div>
         ) : (
           <>
@@ -1378,37 +1389,9 @@ export default function CheckoutForm({
                   placeholder={t?.phone || "Telefon *"}
                 />
               </div>
-              
-              {/* <div className="form-group">
-                <input
-                  type="text"
-                  id="surname"
-                  name="surname"
-                  placeholder={t?.surname || "Soyad"}
-                />
-              </div> */}
             </div>
 
-
             <div className="form-row ">
-              {/* <div className="form-group form-input-yarim">
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  required
-                  placeholder={t?.phone || "Telefon *"}
-                />
-              </div> */}
-
-              {/* <div className="form-group">
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder={t?.email || "E-mail"}
-                />
-              </div> */}
             </div>
 
             <div className="form-row ">
@@ -1523,6 +1506,7 @@ export default function CheckoutForm({
     </div>
   );
 }
+// ? BITTIMI DAYI ? (<><><><>)
 
 
 
@@ -1542,12 +1526,136 @@ export default function CheckoutForm({
 
 
 
- 
-// ! GROK ai  not email
- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ! 21.08.25
 // "use client";
 // import Link from "next/link";
-// import { useState, useEffect } from "react";
+// import { useState, useEffect, useCallback } from "react";
 // import axiosInstance from "@/lib/axios";
 // import Cookies from "js-cookie";
 // import { FiPlus, FiChevronDown, FiX, FiCheck, FiEdit2 } from "react-icons/fi";
@@ -1761,7 +1869,7 @@ export default function CheckoutForm({
 //   };
 
 //   return (
-//     <div className="xl-6 lg-6 md-6 sm-12">
+//     // <div className="xl-6 lg-6 md-6 sm-12">
 //       <div
 //         className={`addressCard ${
 //           selectedAddress?.id === address.id ? "selected" : ""
@@ -1816,7 +1924,7 @@ export default function CheckoutForm({
 //           <FiEdit2 />
 //         </button>
 //       </div>
-//     </div>
+//     // </div>
 //   );
 // };
 
@@ -1866,6 +1974,9 @@ export default function CheckoutForm({
 //     }
 //   }, [isLoggedIn, addressData]);
 
+//   // deliveryData-nı string-ə çevirib cache edirik
+//   const deliveryDataString = JSON.stringify(deliveryData);
+  
 //   // Update delivery info when address or city changes
 //   useEffect(() => {
 //     if (isLoggedIn && selectedAddress) {
@@ -1894,51 +2005,51 @@ export default function CheckoutForm({
 //       onDeliveryUpdate && onDeliveryUpdate(null);
 //     }
 //   }, [
-//     selectedAddress,
+//     selectedAddress?.id, // Yalnız address id
 //     selectedCityForGuest,
 //     isLoggedIn,
-//     deliveryData,
+//     deliveryDataString, // String format
 //     onDeliveryUpdate,
 //   ]);
 
-//   const handleAddressAdded = () => {
+//   const handleAddressAdded = useCallback(() => {
 //     refetch();
-//   };
+//   }, [refetch]);
 
-//   const handleAddClick = () => {
+//   const handleAddClick = useCallback(() => {
 //     setEditAddress(null);
 //     setIsAddressPopupOpen(true);
-//   };
+//   }, []);
 
-//   const handleEditClick = (addr) => {
+//   const handleEditClick = useCallback((addr) => {
 //     setEditAddress(addr);
 //     setIsAddressPopupOpen(true);
-//   };
+//   }, []);
 
-//   const handlePaymentMethodChange = (e) => {
+//   const handlePaymentMethodChange = useCallback((e) => {
 //     setPaymentMethod(e.target.value);
-//   };
+//   }, []);
 
-//   const handleClosePopup = () => {
+//   const handleClosePopup = useCallback(() => {
 //     setIsPopupOpen(false);
-//   };
+//   }, []);
 
-//   const handleContinue = () => {
+//   const handleContinue = useCallback(() => {
 //     window.location.href = "/";
-//   };
+//   }, []);
 
 //   // Address selection handler with debugging
-//   const handleAddressSelect = (address) => {
+//   const handleAddressSelect = useCallback((address) => {
 //     setSelectedAddress(address);
-//   };
+//   }, []);
 
 //   // Guest city selection handler
-//   const handleGuestCityChange = (e) => {
+//   const handleGuestCityChange = useCallback((e) => {
 //     setSelectedCityForGuest(e.target.value);
-//   };
+//   }, []);
 
 //   // Form validation
-//   const validateForm = (formData) => {
+//   const validateForm = useCallback((formData) => {
 //     const requiredFields = [];
 
 //     if (!isLoggedIn) {
@@ -1953,9 +2064,9 @@ export default function CheckoutForm({
 //     if (!formData.get("terms")) requiredFields.push("Şərtlərlə razılıq");
 
 //     return requiredFields;
-//   };
+//   }, [isLoggedIn, selectedAddress]);
 
-//   const handleSubmit = async (e) => {
+//   const handleSubmit = useCallback(async (e) => {
 //     e.preventDefault();
 //     setFormError("");
 //     setIsSubmitting(true);
@@ -2040,7 +2151,7 @@ export default function CheckoutForm({
 //     } finally {
 //       setIsSubmitting(false);
 //     }
-//   };
+//   }, [validateForm, isLoggedIn, selectedAddress, deliveryData, paymentMethod, products]);
 
 //   if (isLoggedIn && isAddressLoading) {
 //     return (
@@ -2268,7 +2379,14 @@ export default function CheckoutForm({
 //     </div>
 //   );
 // }
-// ! GROK ai  not email
+
+
+
+
+
+
+
+
 
 
 
