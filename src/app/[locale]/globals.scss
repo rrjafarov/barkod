@@ -2677,25 +2677,26 @@ ul {
     .paymentCalculatorButtons {
       padding-top: 2rem;
       display: flex;
-      gap: 2rem;
+      gap: 1.5rem;
 
       .paymentCalculatorButton {
         p {
           text-align: center;
-          font-size: 1.4rem;
+          font-size: 1.3rem;
           color: $MainColor;
+          margin-bottom: 0.2rem;
         }
 
         button {
-          font-size: 1.6rem;
-          font-weight: 600;
+          font-size: 1.4rem;
+          font-weight: 500;
           background-color: #fff;
-          border-radius: 1rem;
+          border-radius: 0.7rem;
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 6rem;
-          height: 6rem;
+          width: 5.2rem;
+          height: 5rem;
           border: 1.5px solid black;
           cursor: pointer;
           background-color: #fff;
@@ -2705,13 +2706,19 @@ ul {
       .monthPayment {
         padding: 0 1rem;
         display: flex;
-        flex-direction: column;
+        flex-direction: column;  
         align-items: center;
         justify-content: center;
-        text-align: start;
+        text-align: center;
         color: $MainColor;
-        font-size: 2rem;
         font-weight: 500;
+        span{
+        font-size: 1.6rem;
+        }
+        strong{
+        font-size: 2rem;
+          
+        }
       }
     }
   }

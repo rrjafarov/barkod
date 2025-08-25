@@ -945,7 +945,7 @@ const ProductsDetailPage = ({ product, t }) => {
                       ))}
                       <div className="monthPayment">
                         <span>
-                          {t?.productdetailmonthpay || "Aylıq Ödəniş"}
+                          {t?.productdetailmonthpay || "Aylıq Ödəniş"}:
                         </span>
                         <strong>
                           {currentInst.monthly_amount?.toFixed(2)}{" "}

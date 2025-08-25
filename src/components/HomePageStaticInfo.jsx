@@ -19,8 +19,8 @@ const HomePageStaticInfo = ({ t }) => {
             <div className="staticInfoCard staticFirstCard">
               <div className="staticInfoImage">
                 <Image
-                  src="/icons/deliveryRed.svg"
-                  // src="/icons/lastDelivery.svg"
+                  // src="/icons/deliveryRed.svg"
+                  src="/icons/tir.svg"
                   alt="delivery"
                   width={800}
                   height={800}
