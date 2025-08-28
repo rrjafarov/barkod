@@ -195,7 +195,7 @@ const Footer = ({ t, settingData }) => {
           <span>
             <AiOutlineCopyright className="copyright" />
           </span>
-          <Link href="#">Barkod 2025</Link>
+          <strong>Barkod 2025</strong>
         </div>
       </div>
     </>
