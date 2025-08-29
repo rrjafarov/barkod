@@ -45,6 +45,8 @@ const BlogPage = ({blogResponseData, t }) => {
                     <span className="leftCircle"></span>
                     <span className="rightCircle"></span>
                   </div>
+
+                  
                   <div className="campaignPageCardBottom">
                     <div className="campaignPageCardDetailButton">
                       <Link href={`/blogs/${blog.slug}`}>

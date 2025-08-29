@@ -3568,23 +3568,19 @@ ul {
         display: flex;
         justify-content: space-between;
         align-items: center;
-
         span {
           font-size: 1.8rem;
           font-weight: 500;
           color: #323232;
         }
       }
-
       .campaignPageCardDetailButton {
         padding: 1rem 2rem;
-
         a {
           width: 100%;
         }
-
         button {
-          height: 6rem;
+          height: 5.2rem;
           width: 100%;
           background-color: $MainColor;
           font-size: 2rem;

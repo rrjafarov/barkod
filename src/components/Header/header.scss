@@ -88,6 +88,7 @@ $MainColor: #ec1f27 !important;
         font-weight: 400;
         font-size: 1.4rem;
         border-radius: 1rem;
+        cursor: pointer !important;
       }
     }
   }
@@ -293,14 +294,9 @@ $MainColor: #ec1f27 !important;
 
 
 
-
-
-
-
-
-
-
-
+.css-180ygmq-control{
+  cursor: pointer !important;
+}
 
 
 
@@ -373,6 +369,8 @@ $MainColor: #ec1f27 !important;
         font-weight: 400;
         font-size: 1.6rem !important;
         border-radius: 1rem;
+        cursor: pointer !important;
+
       }
     }
   }

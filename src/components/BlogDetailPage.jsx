@@ -58,46 +58,6 @@ const CompaignDetailPage = ({ campaign, t }) => {
                   />
                 </div>
               </div>
-              {/* <div className="xl-3 lg-3 md-6 sm-12">
-                <div className="campaignDetailPageRight">
-                    <div className="campaignDetailPageCard">
-                      <div className="campaignDetailPageCardItem">
-                        <div className="campaignDetailPageCardTopText">
-                          <span>
-                            {t?.untildate || "Qədər" }
-                            <strong>{formatDate(campaign.end_date)}</strong>
-                          </span>
-                        </div>
-                        <h6>{t?.lastday || "Son"}</h6>
-                        <div className="campaignDetailPageCardTimeout">
-                          <span>{calculateDaysRemaining(campaign.end_date)}</span>
-                        </div>
-                      </div>
-                      <div className="circleLine1">
-                        <span className="leftCircle1"></span>
-                        <span className="rightCircle1"></span>
-                      </div>
-                      <div className="campaignDetailPageCardBottom">
-                        <strong>{t?.share || "Share"}:</strong>
-                        <div
-                          className="shareWithWP"
-                          style={{ cursor: "pointer" }}
-                          onClick={() => {
-                            const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(
-                              shareUrl
-                            )}`;
-                            window.open(whatsappUrl, "_blank", "noopener,noreferrer");
-                          }}
-                        >
-                          <button>
-                            <WP />
-                          </button>
-                          <span>Whatsapp</span>
-                        </div>
-                      </div>
-                    </div>
-                </div>
-              </div> */}
             </div>
             <div className="campaignDetailPageContent">
               <span>{campaign.title}</span>
