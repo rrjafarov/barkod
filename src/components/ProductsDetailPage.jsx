@@ -1000,7 +1000,7 @@ const ProductsDetailPage = ({ product, t }) => {
 
             {activeTab === "desc" && (
               <div className="descriptionContent">
-                <p>Məhsulun təsviri burada göstəriləcək.</p>
+                <p></p>
               </div>
             )}
 
