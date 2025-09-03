@@ -879,6 +879,9 @@ ul {
   align-items: center;
   gap: 1.5rem;
   span {
+    border: 1px solid lightgray;
+    border-radius: 3rem;
+    padding: 0.6rem 1.5rem;
     font-size: 2rem;
     font-weight: 600;
     transition: all 0.05s ease-in-out;
@@ -1129,39 +1132,39 @@ ul {
   }
 }
 .addToCartClickItem {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.8rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem;
 
-    .cartBtn {
+  .cartBtn {
+    background-color: #ec1f27;
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 500;
+    border-radius: 1rem;
+    width: 12rem;
+    height: 4rem;
+  }
+
+  .clickBtn {
+    background-color: #f3f3f3;
+    color: #111;
+    font-size: 1.6rem;
+    font-weight: 500;
+    border-radius: 1rem;
+    width: 12rem;
+    height: 4rem;
+    transition: all 0.4s ease-in-out;
+
+    &:hover {
       background-color: #ec1f27;
       color: #fff;
-      font-size: 1.6rem;
-      font-weight: 500;
-      border-radius: 1rem;
-      width: 12rem;
-      height: 4rem;
-    }
-
-    .clickBtn {
-      background-color: #f3f3f3;
-      color: #111;
-      font-size: 1.6rem;
-      font-weight: 500;
-      border-radius: 1rem;
-      width: 12rem;
-      height: 4rem;
-      transition: all 0.4s ease-in-out;
-
-      &:hover {
-        background-color: #ec1f27;
-        color: #fff;
-      }
     }
   }
+}
 
 .wishlist-btn .newWishlistPR {
   // fill: none;
@@ -1460,12 +1463,12 @@ ul {
       }
     }
   }
-  #filterTitleNotDesktop{
+  #filterTitleNotDesktop {
     display: flex !important;
   }
 }
-#filterTitleNotDesktop{
-    display: none;
+#filterTitleNotDesktop {
+  display: none;
 }
 // ? ProductsReview.jsx
 
@@ -1548,7 +1551,7 @@ ul {
     color: #fff;
   }
 }
-.css-hlgwow{
+.css-hlgwow {
   display: grid !important;
 }
 /* Overlay (arka plan) */
@@ -1568,7 +1571,7 @@ ul {
 /* Popup penceresi */
 .modal {
   background-color: #fff;
-  padding: 2rem 4rem; 
+  padding: 2rem 4rem;
   border-radius: 1.5rem;
   max-width: 50rem;
   height: 35rem;
@@ -1614,7 +1617,7 @@ ul {
       padding: 1.5rem 0;
     }
   }
-  .onuClickInput{
+  .onuClickInput {
     width: 100%;
     border-radius: 1rem;
     padding: 1.5rem 2rem;
@@ -1622,12 +1625,10 @@ ul {
     font-size: 1.6rem;
     outline: none;
     font-weight: 600;
-
   }
   input::placeholder {
-  opacity: 0.4; 
+    opacity: 0.4;
   }
-
 }
 
 /* Popup kapatma butonu */
@@ -2118,10 +2119,6 @@ ul {
   gap: 1rem;
   overflow-y: auto;
 }
-
-
-
-
 
 .accordion-content li {
   color: var(--Secondary-06, #1c1c1c);
@@ -2706,18 +2703,17 @@ ul {
       .monthPayment {
         padding: 0 1rem;
         display: flex;
-        flex-direction: column;  
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         text-align: center;
         color: $MainColor;
         font-weight: 500;
-        span{
-        font-size: 1.6rem;
+        span {
+          font-size: 1.6rem;
         }
-        strong{
-        font-size: 2rem;
-          
+        strong {
+          font-size: 2rem;
         }
       }
     }
@@ -7251,33 +7247,9 @@ p.greenTotal span {
   }
 }
 
-
-
-#tofiq{
+#tofiq {
   display: none !important;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Compare !
 .compare-left {
@@ -7285,18 +7257,18 @@ p.greenTotal span {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-      margin: auto;
-  h4{
+  margin: auto;
+  h4 {
     font-size: 2rem;
     font-weight: 500;
   }
-  ul{
+  ul {
     padding-top: 1rem;
-    li{
+    li {
       font-size: 1.6rem;
     }
   }
-  button{
+  button {
     font-size: 1.6rem;
     border-radius: 1rem;
     padding: 0.8rem 1.2rem;
