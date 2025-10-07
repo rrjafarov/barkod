@@ -7,6 +7,7 @@ import Filter from "../../public/icons/filter.svg";
 import { TbCurrencyManat } from "react-icons/tb";
 import NewScale from "../../public/icons/newScale.svg";
 import NewWishList from "../../public/icons/newWishlist.svg";
+import { MdOutlineNotificationsActive } from "react-icons/md";
 import {
   MdKeyboardDoubleArrowRight,
   MdKeyboardArrowRight,
@@ -101,7 +102,6 @@ const PriceRangeFilter = ({
 
   return (
     <div style={{ padding: "0", margin: "0" }}>
-      {/* Input sahələri */}
       <div
         style={{
           display: "flex",
@@ -379,7 +379,11 @@ export default function ProductsPage({
   };
   const handleOverlayClick = (e) => {
     // MORE ROBUST: use classList.contains instead of className equality
-    if (e.target && e.target.classList && e.target.classList.contains("modal-overlay")) {
+    if (
+      e.target &&
+      e.target.classList &&
+      e.target.classList.contains("modal-overlay")
+    ) {
       closeModal();
     }
   };
@@ -625,7 +629,7 @@ export default function ProductsPage({
   const minPriceDefault = priceRange?.min || 499;
   const maxPriceDefault = priceRange?.max || 7299.99;
 
-      return (
+  return (
     <>
       <style jsx>{`
         .spinner {
@@ -667,6 +671,18 @@ export default function ProductsPage({
           accent-color: #ec1f27;
           background-color: #ec1f27;
           border-color: #ec1f27;
+        }
+        // 222
+        .wishlist-btn:disabled {
+          border: none;
+        }
+        .cartBtn:disabled {
+          cursor: not-allowed;
+          border: 1px solid #0CED4C;
+          background: #fff;
+          span {
+            color: #000;
+          }
         }
       `}</style>
 
@@ -854,8 +870,8 @@ export default function ProductsPage({
                     defaultOpen={true}
                   >
                     <div className="priceFilterDesign">
-                      <FilterPrice 
-                        t={t} 
+                      <FilterPrice
+                        t={t}
                         priceRange={priceRange}
                         onPriceChange={handlePriceChange}
                       />
@@ -873,14 +889,20 @@ export default function ProductsPage({
                           const valStr = String(childItem.value);
                           const isSelected = selectedFilters.includes(valStr);
                           return (
-                            <li key={childItem.value} className="filterListItem">
+                            <li
+                              key={childItem.value}
+                              className="filterListItem"
+                            >
                               <label
                                 role="button"
                                 tabIndex={0}
                                 onKeyDown={(e) => {
-                                  if (e.key === "Enter") handleFilterClick(childItem.value);
+                                  if (e.key === "Enter")
+                                    handleFilterClick(childItem.value);
                                 }}
-                                onClick={() => handleFilterClick(childItem.value)}
+                                onClick={() =>
+                                  handleFilterClick(childItem.value)
+                                }
                                 className="filter-button-link"
                                 style={{
                                   border: "none",
@@ -899,7 +921,9 @@ export default function ProductsPage({
                                 <input
                                   type="checkbox"
                                   checked={isSelected}
-                                  onChange={() => handleFilterClick(childItem.value)}
+                                  onChange={() =>
+                                    handleFilterClick(childItem.value)
+                                  }
                                   className="filter-checkbox"
                                 />
                                 <span>{childItem.name}</span>
@@ -924,14 +948,20 @@ export default function ProductsPage({
                           const valStr = String(childItem.value);
                           const isSelected = selectedFilters.includes(valStr);
                           return (
-                            <li key={childItem.value} className="filterListItem">
+                            <li
+                              key={childItem.value}
+                              className="filterListItem"
+                            >
                               <label
                                 role="button"
                                 tabIndex={0}
                                 onKeyDown={(e) => {
-                                  if (e.key === "Enter") handleFilterClick(childItem.value);
+                                  if (e.key === "Enter")
+                                    handleFilterClick(childItem.value);
                                 }}
-                                onClick={() => handleFilterClick(childItem.value)}
+                                onClick={() =>
+                                  handleFilterClick(childItem.value)
+                                }
                                 className="filter-button-link"
                                 style={{
                                   border: "none",
@@ -950,7 +980,9 @@ export default function ProductsPage({
                                 <input
                                   type="checkbox"
                                   checked={isSelected}
-                                  onChange={() => handleFilterClick(childItem.value)}
+                                  onChange={() =>
+                                    handleFilterClick(childItem.value)
+                                  }
                                   className="filter-checkbox"
                                 />
                                 <span>{childItem.name}</span>
@@ -1034,7 +1066,9 @@ export default function ProductsPage({
                     const isInCart = !!cartMap[pid];
                     const isAddingCart = !!addingCartMap[pid];
                     const isAddingCompareItem = !!addingCompareMap[pid];
-                    const isProductInCompare = isInCompare ? isInCompare(pid) : false;
+                    const isProductInCompare = isInCompare
+                      ? isInCompare(pid)
+                      : false;
 
                     return (
                       <div className="xl-3 lg-4 md-6 sm-6" key={pid}>
@@ -1079,13 +1113,19 @@ export default function ProductsPage({
                                       isProductInCompare ? "in-compare" : ""
                                     }`}
                                     onClick={() => handleAddToCompare(product)}
-                                    disabled={isAddingCompareItem || isProductInCompare}
+                                    disabled={
+                                      isAddingCompareItem || isProductInCompare
+                                    }
                                     title={
                                       isProductInCompare
                                         ? "Artıq müqayisədə"
                                         : "Müqayisəyə əlavə et"
                                     }
-                                    style={isProductInCompare ? { opacity: 1 } : undefined}
+                                    style={
+                                      isProductInCompare
+                                        ? { opacity: 1 }
+                                        : undefined
+                                    }
                                   >
                                     {isAddingCompareItem ? (
                                       <div className="spinner-small"></div>
@@ -1130,7 +1170,41 @@ export default function ProductsPage({
                           </div>
                           <div className="addToCartClick">
                             <div className="addToCartClickItem">
-                              <button
+                              {Number(product.in_stock) === 0 ? (
+                                <div className="outOfStockMessage">
+                                  <button>
+                                    <MdOutlineNotificationsActive className="comingSoonIcon" />
+                                    <span>
+                                      {t?.comingsoon || "Gələndə bildir"}
+                                    </span>
+                                  </button>
+                                </div>
+                              ) : (
+                                <>
+                                  <button
+                                    className="cartBtn"
+                                    onClick={() => handleAddToCart(pid)}
+                                    disabled={isInCart || isAddingCart}
+                                  >
+                                    {isAddingCart ? (
+                                      <div className="spinner-small spidi"></div>
+                                    ) : isInCart ? (
+                                      // t?.added || " Əlavə edildi"
+                                      <span>{t?.added || "added"}</span>
+                                    ) : (
+                                      t?.addtocart || "Add to cart"
+                                    )}
+                                  </button>
+                                  <button
+                                    onClick={() => openModal(product)}
+                                    className="clickBtn"
+                                  >
+                                    {t?.oneclickpay || "Bir kliklə al"}
+                                  </button>
+                                </>
+                              )}
+
+                              {/* <button
                                 className="cartBtn"
                                 onClick={() => handleAddToCart(pid)}
                                 disabled={isInCart || isAddingCart}
@@ -1145,7 +1219,7 @@ export default function ProductsPage({
                               </button>
                               <button onClick={() => openModal(product)} className="clickBtn">
                                 {t?.oneclickpay || "Bir kliklə al"}
-                              </button>
+                              </button> */}
                             </div>
                           </div>
                         </div>
@@ -1173,36 +1247,6 @@ export default function ProductsPage({
     </>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2039,8 +2083,8 @@ export default function ProductsPage({
 //                     defaultOpen={true}
 //                   >
 //                     <div className="priceFilterDesign">
-//                       <FilterPrice 
-//                         t={t} 
+//                       <FilterPrice
+//                         t={t}
 //                         priceRange={priceRange}
 //                         onPriceChange={handlePriceChange}
 //                       />
@@ -2348,14 +2392,6 @@ export default function ProductsPage({
 // }
 
 // ! filter hover yoxdur
-
-
-
-
-
-
-
-
 
 // !ozlerin hoqqacixardillar
 // File: components/ProductsPage.jsx

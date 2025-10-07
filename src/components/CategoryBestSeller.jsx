@@ -327,28 +327,6 @@
 
 // export default CategoryBestSeller;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // ! 1 klickle al ve compare
 "use client";
 import React, { useState, useEffect } from "react";
@@ -375,6 +353,7 @@ import { useGetCartQuery, useAddToCartMutation } from "@/redux/cartService";
 // Compare hook-u əlavə edildi
 import { useCompare } from "@/hooks/useCompare";
 import OneClickPay from "./Header/OneClickPay";
+import { MdOutlineNotificationsActive } from "react-icons/md";
 
 const CategoryBestSeller = ({ t, bestSellerProducts = [], categorySlug }) => {
   const [showModal, setShowModal] = useState(false);
@@ -694,7 +673,9 @@ const CategoryBestSeller = ({ t, bestSellerProducts = [], categorySlug }) => {
                               : "Müqayisəyə əlavə et"
                           }
                           // Disabled olduğu zaman opacity-ni override et
-                          style={isProductInCompare ? { opacity: 1 } : undefined}
+                          style={
+                            isProductInCompare ? { opacity: 1 } : undefined
+                          }
                         >
                           {isAddingCompareItem ? (
                             <div className="spinner-small"></div>
@@ -707,7 +688,8 @@ const CategoryBestSeller = ({ t, bestSellerProducts = [], categorySlug }) => {
                               style={
                                 isProductInCompare
                                   ? {
-                                      transition: "filter 0.3s ease, transform 0.15s ease",
+                                      transition:
+                                        "filter 0.3s ease, transform 0.15s ease",
                                       filter:
                                         "invert(15%) sepia(100%) saturate(7490%) hue-rotate(-10deg) brightness(100%) contrast(100%)",
                                       opacity: 1,
@@ -740,7 +722,38 @@ const CategoryBestSeller = ({ t, bestSellerProducts = [], categorySlug }) => {
 
                 <div className="addToCartClick">
                   <div className="addToCartClickItem">
-                    <button
+                    {Number(product.in_stock) === 0 ? (
+                      <div className="outOfStockMessage">
+                        <button>
+                          <MdOutlineNotificationsActive className="comingSoonIcon" />
+                          <span>{t?.comingsoon || "Gələndə bildir"}</span>
+                        </button>
+                      </div>
+                    ) : (
+                      <>
+                        <button
+                          className="cartBtn"
+                          onClick={() => handleAddToCart(productId)}
+                          disabled={isAddingCart || isInCart}
+                        >
+                          {isAddingCart ? (
+                            <div className="spinner-small"></div>
+                          ) : isInCart ? (
+                            <span> {t?.added || "added"}</span>
+                          ) : (
+                            t?.addtocart || "Add to cart"
+                          )}
+                        </button>
+                        <button
+                          onClick={() => openModal(product)} // Tam məhsul obyektini göndər
+                          className="clickBtn"
+                        >
+                          {t?.oneclickpay || "Bir kliklə al"}
+                        </button>
+                      </>
+                    )}
+
+                    {/* <button
                       className="cartBtn"
                       onClick={() => handleAddToCart(productId)}
                       disabled={isAddingCart || isInCart}
@@ -748,8 +761,7 @@ const CategoryBestSeller = ({ t, bestSellerProducts = [], categorySlug }) => {
                       {isAddingCart ? (
                         <div className="spinner-small"></div>
                       ) : isInCart ? (
-                        // "✔︎ Əlavə edildi"
-                        <span>✔︎ {t?.added || "added"}</span>
+                        <span> {t?.added || "added"}</span>
                       ) : (
                         t?.addtocart || "Add to cart"
                       )}
@@ -759,7 +771,7 @@ const CategoryBestSeller = ({ t, bestSellerProducts = [], categorySlug }) => {
                       className="clickBtn"
                     >
                       {t?.oneclickpay || "Bir kliklə al"}
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </div>
@@ -771,10 +783,21 @@ const CategoryBestSeller = ({ t, bestSellerProducts = [], categorySlug }) => {
       {/* Styling qalır olduğu kimi */}
       <style jsx>{`
         /* Əvvəlki stil kodlarınız burada qalır */
-        .wishlist-btn:disabled,
+        // .wishlist-btn:disabled,
+        // .cartBtn:disabled {
+        //   cursor: not-allowed;
+        //   opacity: 0.6;
+        // }
+        .wishlist-btn:disabled {
+          border: none;
+        }
         .cartBtn:disabled {
           cursor: not-allowed;
-          opacity: 0.6;
+          border: 1px solid #0CED4C;
+          background: #fff;
+          span {
+            color: #000;
+          }
         }
         .spinner-small {
           width: 16px;

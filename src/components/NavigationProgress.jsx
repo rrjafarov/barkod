@@ -120,7 +120,7 @@ export default function NavigationProgress() {
       clearTimeout(timeout);
       timeout = setTimeout(() => {
         NProgress.done();
-      }, 500);
+      }, 300);
     };
 
     // klikləri dinləyək
