@@ -912,6 +912,10 @@ ul {
   overflow: visible !important;
 }
 
+// .similarContainer{
+//   overflow-y: hidden !important;
+// }
+
 .productCardSlide {
   overflow: visible !important;
   display: flex;
@@ -2571,6 +2575,27 @@ ul {
     align-items: center;
     gap: 1.5rem;
 
+    .productsDPnotify {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      align-items: center;
+      width: 20rem;
+      height: 5.5rem;
+      background-color: #00cc00;
+      color: #fff;
+      font-size: 1.8rem;
+      font-weight: 500;
+      border-radius: 1rem;
+      transition: all 0.4s ease-in-out;
+      cursor: pointer;
+      &:hover {
+        background-color: #fff !important;
+        color: #111;
+        border: 1px solid #00cc00;
+        transition: all 0.4s ease-in-out;
+      }
+    }
     .productsDPaddToCart {
       display: flex;
       justify-content: center;
@@ -7276,7 +7301,9 @@ p.greenTotal span {
     margin-top: 2rem;
   }
 }
-
+.comingSoonIconDP {
+  font-size: 2.5rem;
+}
 .outOfStockMessage {
   width: 100%;
   margin: 0rem 1rem;
@@ -7346,4 +7373,11 @@ p.greenTotal span {
       transition: all 0.3s ease-in-out;
     }
   }
+}
+
+
+
+
+.similarProductsDetailPage{
+  width: 100%;
 }
