@@ -858,6 +858,13 @@ const Header = ({ categoryData, t, settingData }) => {
                 </Link>
               </span>
             </div>
+            <div className="corporateSales">
+              <span>
+                <Link href="/monthly-payment">
+                  {t?.moonpay || "Sales"}
+                </Link>
+              </span>
+            </div>
           </div>
 
           <div className="headerTopRight">
