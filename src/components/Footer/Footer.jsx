@@ -83,8 +83,20 @@ const Footer = ({ t, settingData, supportData }) => {
                   {t?.forcustomers || "for customers"}
                 </span>
                 <ul>
-                  {supportData
+                  {/* {supportData
                     ?.filter((item) => item.show_in_header === 0)
+                    .map((supportItem) => (
+                      <li key={supportItem.id}>
+                        <Link href={`/support/${supportItem.slug}`}>
+                          {supportItem.title}
+                        </Link>
+                      </li>
+                    ))} */}
+
+                  {supportData
+                    ?.filter(
+                      (item) => item.show_in_header === 0 && item.id !== 34 // id 34 olan gəlməsin
+                    )
                     .map((supportItem) => (
                       <li key={supportItem.id}>
                         <Link href={`/support/${supportItem.slug}`}>
@@ -93,15 +105,12 @@ const Footer = ({ t, settingData, supportData }) => {
                       </li>
                     ))}
 
-
-                  {/* <li>
-                    <Link href="#">
-                      {t?.partofpartterms || "Part of part pay terms"}
+                  <li>
+                    <Link href="/security">
+                      {t?.warranty || "Zəmanət"}
                     </Link>
                   </li>
-                  <li>
-                    <Link href="#">{t?.monthpay || "Month payment"}</Link>
-                  </li> */}
+                  
                 </ul>
               </div>
             </div>
