@@ -76,6 +76,7 @@ const Footer = ({ t, settingData }) => {
                 </ul>
               </div>
             </div>
+
             <div className="xl-3 lg-3 md-4 sm-6">
               <div className="footerLinks">
                 <span className="footerHeadLink">
@@ -87,17 +88,20 @@ const Footer = ({ t, settingData }) => {
                       {t?.deliverypayment || "Delivery and payment"}
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link href="#">
                       {t?.partofpartterms || "Part of part pay terms"}
                     </Link>
                   </li>
                   <li>
                     <Link href="#">{t?.monthpay || "Month payment"}</Link>
-                  </li>
+                  </li> */}
                 </ul>
               </div>
             </div>
+
+
+
             <div className="xl-3 lg-3 md-4 sm-6">
               <div className="footerContact">
                 <div className="footerLinks footerSocialLinks">

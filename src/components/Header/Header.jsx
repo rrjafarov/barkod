@@ -561,6 +561,12 @@
 
 
 
+
+
+
+
+
+
 "use client";
 import React, { useRef, useEffect, useState } from "react";
 import "@/components/Header/header.scss";
@@ -586,6 +592,8 @@ import LastBasket from "../../../public/icons/lastBasket.svg";
 import LikeChange from "../../../public/icons/likeChange.svg";
 import LoginChange from "../../../public/icons/loginChange.svg";
 import CategoryIcon from "../../../public/icons/categoryMenuNewIcon.svg";
+import Burger from "../../../public/icons/burger2.svg";
+
 import Select from "react-select";
 import CategoryMenu from "@/components/CategoryMenu";
 
@@ -619,13 +627,13 @@ const Header = ({ categoryData, t, settingData }) => {
     updateCompareCount();
 
     // Event listener əlavə et
-    if (typeof window !== 'undefined') {
-      window.addEventListener('compare_updated', updateCompareCount);
+    if (typeof window !== "undefined") {
+      window.addEventListener("compare_updated", updateCompareCount);
     }
 
     return () => {
-      if (typeof window !== 'undefined') {
-        window.removeEventListener('compare_updated', updateCompareCount);
+      if (typeof window !== "undefined") {
+        window.removeEventListener("compare_updated", updateCompareCount);
       }
     };
   }, []);
@@ -863,7 +871,9 @@ const Header = ({ categoryData, t, settingData }) => {
 
             <div className="changeLang">
               <Select
-                options={languageOptions.filter((opt) => opt.value !== language)}
+                options={languageOptions.filter(
+                  (opt) => opt.value !== language
+                )}
                 value={languageOptions.find((opt) => opt.value === language)}
                 onChange={handleChange}
                 isSearchable={false}
@@ -889,7 +899,9 @@ const Header = ({ categoryData, t, settingData }) => {
                   setMenuAnchor("original");
                 }}
               >
-                <CategoryIcon className="newCategoryIcon" />
+                {/* <CategoryIcon className="newCategoryIcon" /> */}
+                <Burger className="newCategoryIcon" />
+
                 <span>{t?.catalog || "Kataloq"}</span>
               </div>
             </div>
@@ -923,7 +935,10 @@ const Header = ({ categoryData, t, settingData }) => {
                     </button>
                   </Link>
                 </div>
-                <div className="rightPagesIcon" style={{ position: "relative" }}>
+                <div
+                  className="rightPagesIcon"
+                  style={{ position: "relative" }}
+                >
                   <Link href="/compare">
                     <button>
                       <NewScale className="newScale" />
@@ -935,7 +950,10 @@ const Header = ({ categoryData, t, settingData }) => {
                     </button>
                   </Link>
                 </div>
-                <div className="rightPagesIcon" style={{ position: "relative" }}>
+                <div
+                  className="rightPagesIcon"
+                  style={{ position: "relative" }}
+                >
                   <Link href="/wishlist">
                     <button>
                       <LastWishList className="newWishlist" />
@@ -1012,9 +1030,9 @@ const Header = ({ categoryData, t, settingData }) => {
                         setMenuAnchor("fixed");
                       }}
                     >
-                      <CategoryIcon className="newCategoryIcon" />
+                      {/* <CategoryIcon className="newCategoryIcon" /> */}
+                      <Burger className="newCategoryIcon" />
                       <span>{t?.catalog || "Kataloq"}</span>
-                      {/* <img className="fixedHeadLogo" src="favicon.png" alt="" /> */}
                     </div>
                   </div>
 
@@ -1028,7 +1046,10 @@ const Header = ({ categoryData, t, settingData }) => {
                           onChange={(e) => setSearchTerm(e.target.value)}
                           onKeyPress={handleKeyPress}
                         />
-                        <div className="searchButtonIcon" onClick={handleSearch}>
+                        <div
+                          className="searchButtonIcon"
+                          onClick={handleSearch}
+                        >
                           <IoSearch />
                         </div>
                       </div>
@@ -1047,25 +1068,35 @@ const Header = ({ categoryData, t, settingData }) => {
                           </button>
                         </Link>
                       </div>
-                      <div className="rightPagesIcon" style={{ position: "relative" }}>
+                      <div
+                        className="rightPagesIcon"
+                        style={{ position: "relative" }}
+                      >
                         <Link href="/compare">
                           <button>
                             <NewScale className="newScale" />
                             {compareItemCount > 0 && (
                               <span className="cart-badge">
-                                {compareItemCount > 99 ? "99+" : compareItemCount}
+                                {compareItemCount > 99
+                                  ? "99+"
+                                  : compareItemCount}
                               </span>
                             )}
                           </button>
                         </Link>
                       </div>
-                      <div className="rightPagesIcon" style={{ position: "relative" }}>
+                      <div
+                        className="rightPagesIcon"
+                        style={{ position: "relative" }}
+                      >
                         <Link href="/wishlist">
                           <button>
                             <LastWishList className="newWishlist" />
                             {wishlistItemCount > 0 && (
                               <span className="cart-badge">
-                                {wishlistItemCount > 99 ? "99+" : wishlistItemCount}
+                                {wishlistItemCount > 99
+                                  ? "99+"
+                                  : wishlistItemCount}
                               </span>
                             )}
                           </button>
@@ -1162,27 +1193,6 @@ const Header = ({ categoryData, t, settingData }) => {
 };
 
 export default Header;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // "use client";
 // import React, { useRef, useEffect, useState } from "react";
@@ -1746,132 +1756,6 @@ export default Header;
 
 // export default Header;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // ! son versiya budur burda fixed yoxdur
 // "use client";
 // import React, { useRef, useEffect, useState } from "react";
@@ -2211,7 +2095,6 @@ export default Header;
 //           </div>
 //         </div>
 //       </nav>
-
 
 //       <div className="mobileFixedButtons">
 //         <div className="mobileFixedButton">

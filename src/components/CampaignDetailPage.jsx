@@ -114,7 +114,8 @@ const CompaignDetailPage = ({ campaign, t }) => {
     const end = new Date(endDate);
     const diffTime = end.getTime() - now.getTime();
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays > 0 ? `${diffDays} GÜN` : "Bitdi";
+    // return diffDays > 0 ? `${diffDays} GÜN` : "Bitdi";
+    return diffDays > 0 ? `${diffDays} GÜN` : (t?.bitdi || "Bitdi");
   };
 
   const formatDate = (dateStr) => {

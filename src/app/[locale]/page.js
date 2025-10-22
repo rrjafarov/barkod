@@ -21,7 +21,6 @@ async function getHomePageData() {
     });
     return home;
   } catch (error) {
-    console.error("Failed to home page data", error);
     throw error;
   }
 }
@@ -36,7 +35,6 @@ async function getCategoryeData() {
     });
     return home;
   } catch (error) {
-    console.error("Failed to home page data", error);
     throw error;
   }
 }
@@ -51,7 +49,6 @@ async function getBrandsData() {
     });
     return brand;
   } catch (error) {
-    console.error("Failed to home page data", error);
     throw error;
   }
 }
