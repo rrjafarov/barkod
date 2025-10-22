@@ -17,7 +17,6 @@ async function getCampaignBySlug(slug) {
     });
     return data;
   } catch (error) {
-    console.error("Failed to get blog by slug", error);
     throw error;
   }
 }
@@ -34,7 +33,6 @@ async function getCategoryeData() {
     });
     return home;
   } catch (error) {
-    console.error("Failed to home page data", error);
     throw error;
   }
 }
@@ -53,8 +51,21 @@ async function getTranslations() {
       return acc;
     }, {});
   } catch (err) {
-    console.error("Failed to fetch translations:", err);
     return {};
+  }
+}
+
+async function getSupportData() {
+  const cookieStore = await cookies();
+  const lang = cookieStore.get("NEXT_LOCALE");
+  try {
+    const { data: home } = await axiosInstance.get(`/support`, {
+      headers: { Lang: lang?.value || "az" }, // ← DÜZƏLDILDI
+      cache: "no-store",
+    });
+    return home;
+  } catch (error) {
+    throw error;
   }
 }
 
@@ -130,8 +141,11 @@ const CampaignPage = async ({ params }) => {
     const seo = campaignResponse?.seo || [];
     const otherCampaigns = campaignResponse?.other_campaigns || [];
 
+    const supportResponse = await getSupportData();
+    const supportData = supportResponse?.support || [];
+
     if (!campaign) {
-      return <div>Blog tapılmadı.</div>;
+      return <div>Campaign tapılmadı.</div>;
     }
 
     // 4) Digər məlumatları çək
@@ -142,7 +156,7 @@ const CampaignPage = async ({ params }) => {
 
     return (
       <div>
-        <Header settingData={settingData} t={t} categoryData={categoryData} />
+        <Header supportData={supportData} settingData={settingData} t={t} categoryData={categoryData} />
         <BlogDetailPage
           t={t}
           campaign={campaign}
@@ -150,12 +164,10 @@ const CampaignPage = async ({ params }) => {
           otherCampaigns={otherCampaigns}
         />
 
-
-        <Footer settingData={settingData} t={t} />
+        <Footer supportData={supportData} settingData={settingData} t={t} />
       </div>
     );
   } catch (error) {
-    console.error("Campaign page error:", error);
     return <div>Kampaniya yüklənərkən xəta baş verdi.</div>;
   }
 };

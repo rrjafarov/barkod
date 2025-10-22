@@ -19,7 +19,6 @@ async function getTranslations() {
       return acc;
     }, {});
   } catch (err) {
-    console.error("Failed to fetch translations:", err);
     return {};
   }
 }
@@ -36,23 +35,38 @@ async function getCategoryeData() {
     });
     return home;
   } catch (error) {
-    console.error("Failed to home page data", error);
     throw error;
   }
 }
+
+async function getSupportData() {
+  const cookieStore = await cookies();
+  const lang = cookieStore.get("NEXT_LOCALE");
+  try {
+    const { data: home } = await axiosInstance.get(`/support`, {
+      headers: { Lang: lang?.value || "az" }, // ← DÜZƏLDILDI
+      cache: "no-store",
+    });
+    return home;
+  } catch (error) {
+    throw error;
+  }
+}
+
 
 const page = async () => {
   const categoryResponse = await getCategoryeData();
   const categoryData = categoryResponse?.categories || [];
   const settingData = categoryResponse?.setting || [];
-
+  const supportResponse = await getSupportData();
+  const supportData = supportResponse?.support || [];
   const t = await getTranslations();
 
   return (
     <div>
-      <Header settingData={settingData} t={t} categoryData={categoryData} />
+      <Header  supportData={supportData} settingData={settingData} t={t} categoryData={categoryData} />
       <ComparePage t={t} />
-      <Footer settingData={settingData} t={t} />
+      <Footer supportData={supportData} settingData={settingData} t={t} />
     </div>
   );
 };

@@ -538,35 +538,6 @@
 
 // export default Header;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 "use client";
 import React, { useRef, useEffect, useState } from "react";
 import "@/components/Header/header.scss";
@@ -597,7 +568,7 @@ import Burger from "../../../public/icons/burger2.svg";
 import Select from "react-select";
 import CategoryMenu from "@/components/CategoryMenu";
 
-const Header = ({ categoryData, t, settingData }) => {
+const Header = ({ categoryData, t, settingData, supportData }) => {
   const router = useRouter();
   const [placeholder, setPlaceholder] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
@@ -851,20 +822,17 @@ const Header = ({ categoryData, t, settingData }) => {
                 <Link href="/campaign">{t?.campaigns || "campaign"}</Link>
               </span>
             </div>
-            <div className="corporateSales">
-              <span>
-                <Link href="/corporate-sales">
-                  {t?.corporatesale || "Sales"}
-                </Link>
-              </span>
-            </div>
-            <div className="corporateSales">
-              <span>
-                <Link href="/monthly-payment">
-                  {t?.moonpay || "Sales"}
-                </Link>
-              </span>
-            </div>
+            {supportData
+              ?.filter((item) => item.show_in_header === 1)
+              .map((supportItem) => (
+                <div className="corporateSales" key={supportItem.id}>
+                  <span>
+                    <Link href={`/support/${supportItem.slug}`}>
+                      {supportItem.title}
+                    </Link>
+                  </span>
+                </div>
+              ))}
           </div>
 
           <div className="headerTopRight">

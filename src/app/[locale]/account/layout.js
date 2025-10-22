@@ -227,7 +227,6 @@ async function getTranslations() {
       return acc;
     }, {});
   } catch (err) {
-    console.error("Failed to fetch translations:", err);
     return {};
   }
 }
@@ -238,10 +237,27 @@ const AboutPage = ({ children }) => {
   const [settingData, setSettingData] = useState([]);
   const [showLogoutPopup, setShowLogoutPopup] = useState(false);
 
+   // ===== YENI: SUPPORT VERISI UCUN STATE =====
+  const [supportData, setSupportData] = useState([]);
+
   const pathname = usePathname();
   // 4) Client-side dil değeri
   const lang = Cookies.get("NEXT_LOCALE") || "az";
   const isDefaultLocale = lang === "az";
+
+
+  // ===== YENI: SUPPORT VERISINI CEKEN FUNKSIYA (HEADER/FOOTER UCUN) =====
+  const fetchSupportData = async () => {
+    try {
+      const headers = {};
+      if (lang) headers["Lang"] = lang;
+      const { data } = await axiosInstance.get("/support", { headers, cache: "no-store" });
+      setSupportData(data?.support || []);
+    } catch (error) {
+      setSupportData([]);
+    }
+  };
+
 
   useEffect(() => {
     async function init() {
@@ -258,9 +274,10 @@ const AboutPage = ({ children }) => {
         setCategoryData(home.categories || []);
         setSettingData(home.setting || []);
       } catch (error) {
-        console.error("Failed to fetch categories:", error);
         setCategoryData([]);
       }
+      // ===== YENI: INIT ICINDE SUPPORT VERISINI DE YIG =====
+      await fetchSupportData();
     }
     init();
   }, [lang]); // lang değiştiğinde tekrar çalışır
@@ -296,7 +313,7 @@ const AboutPage = ({ children }) => {
 
   return (
     <>
-      <Header settingData={settingData} t={t} categoryData={categoryData} />
+      <Header supportData={supportData} settingData={settingData} t={t} categoryData={categoryData} />
 
       <div className="pagesProfile">
         <div className="account">
@@ -373,7 +390,7 @@ const AboutPage = ({ children }) => {
         </div>
       )}
 
-      <Footer settingData={settingData} t={t} />
+      <Footer supportData={supportData} settingData={settingData} t={t} />
     </>
   );
 };

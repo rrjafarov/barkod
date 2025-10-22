@@ -18,7 +18,6 @@ async function getBlogsPageData() {
     });
     return blog;
   } catch (error) {
-    console.error("Failed to blog page data", error);
     throw error;
   }
 }
@@ -34,7 +33,6 @@ async function getCategoryeData() {
     });
     return home;
   } catch (error) {
-    console.error("Failed to home page data", error);
     throw error;
   }
 }
@@ -53,11 +51,22 @@ async function getTranslations() {
       return acc;
     }, {});
   } catch (err) {
-    console.error("Failed to fetch translations:", err);
     return {};
   }
 }
-
+async function getSupportData() {
+  const cookieStore = await cookies();
+  const lang = cookieStore.get("NEXT_LOCALE");
+  try {
+    const { data: home } = await axiosInstance.get(`/support`, {
+      headers: { Lang: lang?.value || "az" }, // ← DÜZƏLDILDI
+      cache: "no-store",
+    });
+    return home;
+  } catch (error) {
+    throw error;
+  }
+}
 export async function generateMetadata() {
   const blogResponse = await getBlogsPageData();
 
@@ -94,6 +103,8 @@ const page = async () => {
   const blogResponse = await getBlogsPageData();
   const blogResponseData = blogResponse?.data.blogs || [];
 
+  const supportResponse = await getSupportData();
+  const supportData = supportResponse?.support || [];
 
   const categoryResponse = await getCategoryeData();
   const categoryData = categoryResponse?.categories || [];
@@ -101,10 +112,10 @@ const page = async () => {
 
   return (
     <div>
-      <Header settingData={settingData} t={t} categoryData={categoryData} />
+      <Header supportData={supportData} settingData={settingData} t={t} categoryData={categoryData} />
       {/* <CampaignPage t={t} campaignPageDataSlider={campaignPageDataSlider} /> */}
       <BlogPage t={t} blogResponseData={blogResponseData} />
-      <Footer settingData={settingData} t={t} />
+      <Footer supportData={supportData} settingData={settingData} t={t} />
     </div>
   );
 };

@@ -33,7 +33,25 @@
 
 // export default CorporateSales;
 
-// components/CorporateSales.jsx
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import Link from "next/link";
 import React from "react";
 import {
@@ -42,6 +60,13 @@ import {
 } from "react-icons/md";
 
 const CorporateSales = ({ settingData, t, aboutPageDataSlider }) => {
+  // Guard clause - məlumat yoxdursa
+  if (!aboutPageDataSlider || Object.keys(aboutPageDataSlider).length === 0) {
+    return null;
+  }
+
+  const { title, content, slug } = aboutPageDataSlider;
+
   return (
     <div>
       <div className="container">
@@ -53,15 +78,15 @@ const CorporateSales = ({ settingData, t, aboutPageDataSlider }) => {
             <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />
           </strong>
           <Link href="#">
-            <span>{t?.corporatesale || "Sales"}</span>
+            <span>{title || t?.corporatesale || "Sales"}</span>
           </Link>
         </div>
         <div className="aboutPage">
-          <span>{aboutPageDataSlider.title}:</span>
+          <span>{title}:</span>
           <div className="aboutPageContent">
             <div
               dangerouslySetInnerHTML={{
-                __html: aboutPageDataSlider.content,
+                __html: content || "",
               }}
             />
           </div>
@@ -72,3 +97,56 @@ const CorporateSales = ({ settingData, t, aboutPageDataSlider }) => {
 };
 
 export default CorporateSales;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // components/CorporateSales.jsx
+// import Link from "next/link";
+// import React from "react";
+// import {
+//   MdKeyboardDoubleArrowRight,
+//   MdKeyboardArrowRight,
+// } from "react-icons/md";
+
+// const CorporateSales = ({ settingData, t, aboutPageDataSlider }) => {
+//   return (
+//     <div>
+//       <div className="container">
+//         <div className="breadCrumb breadCrumbsHideMobile">
+//           <Link href="/">
+//             <span>{t?.homebreadcrumbs || ""}</span>
+//           </Link>
+//           <strong>
+//             <MdKeyboardDoubleArrowRight className="breadCrumpIcon" />
+//           </strong>
+//           <Link href="#">
+//             <span>{t?.corporatesale || "Sales"}</span>
+//           </Link>
+//         </div>
+//         <div className="aboutPage">
+//           <span>{aboutPageDataSlider.title}:</span>
+//           <div className="aboutPageContent">
+//             <div
+//               dangerouslySetInnerHTML={{
+//                 __html: aboutPageDataSlider.content,
+//               }}
+//             />
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default CorporateSales;

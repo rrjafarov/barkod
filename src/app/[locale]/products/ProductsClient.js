@@ -228,6 +228,9 @@ export default function ProductsClient({ searchParams: initialSearchParams }) {
   const [settingData, setSettingData] = useState({});
   const [totalProducts, setTotalProducts] = useState(0);
 
+    // ===== YENI: SUPPORT VERISI UCUN STATE =====
+  const [supportData, setSupportData] = useState([]);
+
   const filter = searchParams.getAll("filter") || [];
   const lang =
     document.cookie
@@ -246,6 +249,21 @@ export default function ProductsClient({ searchParams: initialSearchParams }) {
     } catch {
       setCategoryData([]);
       setSettingData({});
+    }
+  };
+
+
+
+  // ===== YENI: SUPPORT VERISINI CEKEN FUNKSIYA (HEADER/FOOTER UCUN) =====
+  const fetchSupportData = async () => {
+    try {
+      const res = await axiosInstance.get("/support", {
+        headers: { Lang: lang },
+      });
+      // ===== YENI: API-DEN GELEN STRUCTURE-A UYĞUN OLARAQ SUPPORT MASSIVINI SAXLA =====
+      setSupportData(res.data?.support || []);
+    } catch {
+      setSupportData([]);
     }
   };
 
@@ -305,6 +323,14 @@ export default function ProductsClient({ searchParams: initialSearchParams }) {
   );
   
   // İlk çalıştırma: dil + kategori
+
+  // ===== YENI: ILK YUKLENMEDE SUPPORT VERISINI DE YIG =====
+  useEffect(() => {
+    getTranslations().then(setT);
+    fetchCategoryData();
+    fetchSupportData(); // ===== YENI =====
+  }, []);
+
   useEffect(() => {
     getTranslations().then(setT);
     fetchCategoryData();
@@ -326,7 +352,7 @@ export default function ProductsClient({ searchParams: initialSearchParams }) {
 
   return (
     <div>
-      <Header t={t} categoryData={categoryData} settingData={settingData} />
+      <Header supportData={supportData} t={t} categoryData={categoryData} settingData={settingData} />
       <ProductsPage
         priceRange={priceRange}
         t={t}
@@ -344,7 +370,7 @@ export default function ProductsClient({ searchParams: initialSearchParams }) {
         sortBy={sortBy}
         productsTotal={totalProducts}
       />
-      <Footer t={t} settingData={settingData} />
+      <Footer supportData={supportData} t={t} settingData={settingData} />
     </div>
   );
 }

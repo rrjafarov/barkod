@@ -17,7 +17,6 @@ async function getCategoryeData() {
     });
     return home;
   } catch (error) {
-    console.error("Failed to home page data", error);
     throw error;
   }
 }
@@ -38,8 +37,6 @@ async function getWishlistData(token, guestUUID, lang) {
     });
     return data;
   } catch (error) {
-    console.error("Failed to fetch wishlist data", error);
-    // Backend cavab strukturu: { wishlist: {...} } gözlənirsə, boş struktur qaytaraq
     return { wishlist: { products: [] } };
   }
 }
@@ -58,12 +55,23 @@ async function getTranslations() {
       return acc;
     }, {});
   } catch (err) {
-    console.error("Failed to fetch translations:", err);
     return {};
   }
 }
 
-
+async function getSupportData() {
+  const cookieStore = await cookies();
+  const lang = cookieStore.get("NEXT_LOCALE");
+  try {
+    const { data: home } = await axiosInstance.get(`/support`, {
+      headers: { Lang: lang?.value || "az" }, // ← DÜZƏLDILDI
+      cache: "no-store",
+    });
+    return home;
+  } catch (error) {
+    throw error;
+  }
+}
 
 
 const WishlistPage = async () => {
@@ -81,11 +89,15 @@ const WishlistPage = async () => {
 
   const wishlistData = await getWishlistData(token, guestUUID, lang);
 
+
+  const supportResponse = await getSupportData();
+  const supportData = supportResponse?.support || [];
+
   return (
     <div>
-      <Header settingData={settingData} t={t} categoryData={categoryData} />
+      <Header supportData={supportData}  settingData={settingData} t={t} categoryData={categoryData} />
       <Wishlist t={t} wishlistData={wishlistData} />
-      <Footer settingData={settingData} t={t} />
+      <Footer supportData={supportData}  settingData={settingData} t={t} />
     </div>
   );
 };

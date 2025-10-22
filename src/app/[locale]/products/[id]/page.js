@@ -234,7 +234,6 @@ export default async function Page({ params }) {
       });
       return data.product || data.data || data;
     } catch (err) {
-      console.error("Failed to fetch product detail:", err);
       return null;
     }
   }
@@ -249,10 +248,23 @@ export default async function Page({ params }) {
       });
       return home;
     } catch (error) {
-      console.error("Failed to home page data", error);
       throw error;
     }
   }
+
+  async function getSupportData() {
+  const cookieStore = await cookies();
+  const lang = cookieStore.get("NEXT_LOCALE");
+  try {
+    const { data: home } = await axiosInstance.get(`/support`, {
+      headers: { Lang: lang?.value || "az" }, // ← DÜZƏLDILDI
+      cache: "no-store",
+    });
+    return home;
+  } catch (error) {
+    throw error;
+  }
+}
 
   async function getTranslations() {
     const cookieStore = await cookies();
@@ -289,7 +301,6 @@ export default async function Page({ params }) {
       );
       return data || null;
     } catch (err) {
-      console.error("Failed to fetch similar products:", err);
       return null;
     }
   }
@@ -321,6 +332,10 @@ export default async function Page({ params }) {
   const categoryData = categoryResponse?.categories || [];
   const settingData = categoryResponse?.setting || {};
 
+  const supportResponse = await getSupportData();
+  const supportData = supportResponse?.support || [];
+
+
   const product = await getProductDetail(slugOrId);
 
   // Mehsulun 1-ci kateqoriya slug-u
@@ -337,9 +352,9 @@ export default async function Page({ params }) {
 
   return (
     <>
-      <Header settingData={settingData} t={t} categoryData={categoryData} />
+      <Header supportData={supportData} settingData={settingData} t={t} categoryData={categoryData} />
       <ProductsDetailPage t={t} product={product} similarData={filteredSimilarData} />
-      <Footer settingData={settingData} t={t} />
+      <Footer supportData={supportData} settingData={settingData} t={t} />
     </>
   );
 }

@@ -12,7 +12,7 @@ import Masterkart from "../../../public/icons/masterkart.svg";
 import Visa from "../../../public/icons/visa.svg";
 import Image from "next/image";
 
-const Footer = ({ t, settingData }) => {
+const Footer = ({ t, settingData, supportData }) => {
   return (
     <>
       <div className="footer">
@@ -83,11 +83,17 @@ const Footer = ({ t, settingData }) => {
                   {t?.forcustomers || "for customers"}
                 </span>
                 <ul>
-                  <li>
-                    <Link href="#">
-                      {t?.deliverypayment || "Delivery and payment"}
-                    </Link>
-                  </li>
+                  {supportData
+                    ?.filter((item) => item.show_in_header === 0)
+                    .map((supportItem) => (
+                      <li key={supportItem.id}>
+                        <Link href={`/support/${supportItem.slug}`}>
+                          {supportItem.title}
+                        </Link>
+                      </li>
+                    ))}
+
+
                   {/* <li>
                     <Link href="#">
                       {t?.partofpartterms || "Part of part pay terms"}
@@ -99,8 +105,6 @@ const Footer = ({ t, settingData }) => {
                 </ul>
               </div>
             </div>
-
-
 
             <div className="xl-3 lg-3 md-4 sm-6">
               <div className="footerContact">
