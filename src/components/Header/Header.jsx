@@ -833,6 +833,12 @@ const Header = ({ categoryData, t, settingData, supportData }) => {
                   </span>
                 </div>
               ))}
+              <div className="corporateSales">
+              <span>
+                <Link href="/security">{t?.warranty || "Zəmanət"}</Link>
+              </span>
+            </div>
+
           </div>
 
           <div className="headerTopRight">

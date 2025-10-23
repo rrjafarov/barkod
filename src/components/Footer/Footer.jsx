@@ -105,11 +105,11 @@ const Footer = ({ t, settingData, supportData }) => {
                       </li>
                     ))}
 
-                  <li>
+                  {/* <li>
                     <Link href="/security">
                       {t?.warranty || "Zəmanət"}
                     </Link>
-                  </li>
+                  </li> */}
                   
                 </ul>
               </div>
