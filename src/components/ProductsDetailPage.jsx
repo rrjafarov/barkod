@@ -1,3 +1,4 @@
+// // components/ProductsDetailPage.jsx
 // "use client";
 // import Link from "next/link";
 // import Form from "next/form";
@@ -16,8 +17,8 @@
 // import { FiHeart } from "react-icons/fi";
 // import { FaHeart } from "react-icons/fa";
 // import { TbCurrencyManat } from "react-icons/tb";
+// import { MdOutlineNotificationsActive } from "react-icons/md";
 
-// // RTK Query hook'ları
 // import {
 //   useGetFavQuery,
 //   useAddToFavMutation,
@@ -26,8 +27,10 @@
 // import { useGetCartQuery, useAddToCartMutation } from "@/redux/cartService";
 // import OneClickPay from "./Header/OneClickPay";
 // import { useCompare } from "@/hooks/useCompare";
+// import SimilarProducts from "./Slider/SimilarProducts";
 
-// const ProductsDetailPage = ({ product, t }) => {
+
+// const ProductsDetailPage = ({ product, t , similarData = [] }) => {
 //   const productDetail = product?.product_detail || [];
 //   const productBreadCrumbs = product?.bread_crumbs || [];
 //   const attributes = product?.product_detail?.attributes || [];
@@ -113,17 +116,14 @@
 //   const handleCommentSubmit = async (e) => {
 //     e.preventDefault();
 
-//     // Validate form
 //     if (!commentForm.full_name.trim()) {
 //       setCommentError(t?.errormessageuser);
 //       return;
 //     }
-
 //     if (!commentForm.comment.trim()) {
 //       setCommentError(t?.errormessage);
 //       return;
 //     }
-
 //     if (
 //       !commentForm.rating ||
 //       commentForm.rating < 1 ||
@@ -142,11 +142,7 @@
 //         `${process.env.NEXT_PUBLIC_BASE_URL}/product-comment`,
 //         {
 //           method: "POST",
-//           headers: {
-//             "Content-Type": "application/json",
-//             // Əgər authentication lazımdırsa
-//             // 'Authorization': `Bearer ${token}`,
-//           },
+//           headers: { "Content-Type": "application/json" },
 //           body: JSON.stringify({
 //             product_id: productId,
 //             full_name: commentForm.full_name,
@@ -163,21 +159,12 @@
 //         );
 //       }
 
-//       const result = await response.json();
+//       await response.json();
 
-//       // Success
 //       setCommentSuccess(true);
-//       setCommentForm({
-//         full_name: "",
-//         comment: "",
-//         rating: 5,
-//       });
-//       setValue(5); // Reset rating display
-
-//       // Success mesajını bir müddət sonra gizlət
-//       setTimeout(() => {
-//         setCommentSuccess(false);
-//       }, 5000);
+//       setCommentForm({ full_name: "", comment: "", rating: 5 });
+//       setValue(5);
+//       setTimeout(() => setCommentSuccess(false), 5000);
 //     } catch (error) {
 //       console.error("Comment submission error:", error);
 //       setCommentError(error.message || "Rəy göndərilərkən xəta baş verdi");
@@ -212,7 +199,6 @@
 
 //     const currentlyFav = isWishlisted;
 
-//     // Optimistic update
 //     setIsWishlisted(!currentlyFav);
 //     setIsAddingFav(true);
 
@@ -224,7 +210,6 @@
 //       }
 //     } catch (error) {
 //       console.error("Wishlist toggle error:", error);
-//       // Rollback
 //       setIsWishlisted(currentlyFav);
 //     } finally {
 //       setIsAddingFav(false);
@@ -235,7 +220,6 @@
 //   const handleAddToCart = async () => {
 //     if (isInCart || isAddingCart) return;
 
-//     // Optimistic update
 //     setIsInCart(true);
 //     setIsAddingCart(true);
 
@@ -243,7 +227,6 @@
 //       await addToCart({ productId, quantity: 1 }).unwrap();
 //     } catch (error) {
 //       console.error("Add to cart error:", error);
-//       // Rollback
 //       setIsInCart(false);
 //     } finally {
 //       setIsAddingCart(false);
@@ -261,39 +244,31 @@
 //     if (product.category_id) return product.category_id;
 //     if (product.categoryId) return product.categoryId;
 //     if (product.parent_category_id) return product.parent_category_id;
-//     // fallback null -> use 'uncategorized' or 1 as before
 //     return null;
 //   };
 
-//   // Compare handler - localStorage ilə
+//   // Compare handler
 //   const handleAddToCompare = async (product) => {
-//     if (!product?.id) {
-//       console.error("Product ID boşdur");
-//       return;
-//     }
+//     if (!product?.id) return;
 
 //     const productId = product.id;
 //     const categoryId =
 //       extractCategoryId(product) ||
 //       product.category_id ||
 //       product.categoryId ||
-//       1; // Fallback categoryId
+//       1;
 
-//     // Loading state
 //     if (isAddingCompare) return;
 
 //     setIsAddingCompare(true);
 
 //     try {
-//       // send full product object so CompareService stores product details locally
 //       const result = await addToCompare(product, categoryId);
-
 //       if (result.success) {
 //         console.log(`Məhsul ${productId} müqayisəyə əlavə edildi`);
-//         // İstəyə bağlı toast notification burada ola bilər
 //       } else {
 //         console.error("Compare əlavə etmə xətası:", result.error);
-//         alert(result.error); // Və ya daha yaxşı notification sistemi
+//         alert(result.error);
 //       }
 //     } catch (error) {
 //       console.error("Məhsul müqayisəyə əlavə edilərkən xəta:", error);
@@ -303,11 +278,18 @@
 //     }
 //   };
 
-//   // find the current installment object
 //   const currentInst =
 //     installments.find((inst) => inst.month === selectedMonth) || {};
 
 //   const isProductInCompare = isInCompare(productId);
+//   const isOutOfStock = productDetail.in_stock === 0;
+
+//   const handleNotify = () => {
+//     console.log(`Notify requested for product ${productId}`);
+//     alert(
+//       t?.notifyRequestSent || "Sizə bildiriş göndəriləcək."
+//     );
+//   };
 
 //   return (
 //     <div id="productsDetailPage">
@@ -373,39 +355,67 @@
 //                   <p>({ratingValue})</p>
 //                 </div>
 //               </div>
-//               <span className="depo">
-//                 {t?.aviableproducts || "Məhsul Mövcuddur"}{" "}
+//               {/* Depo - stok yoxlanışı ilə */}
+//               <span className={`depo ${isOutOfStock ? "not-available" : ""}`}>
+//                 {isOutOfStock
+//                   ? t?.notaviableproducts || "Məhsul Mövcud deyil"
+//                   : t?.aviableproducts || "Məhsul Mövcuddur"}{" "}
 //               </span>
 
-//               <div className="productDPPrices">
-//                 <span className="productDPOldPrice">
-//                   {productDetail.old_price} <TbCurrencyManat />
-//                 </span>
-//                 <span className="productDPNewPrice">
-//                   {productDetail.price} <TbCurrencyManat />
-//                 </span>
-//               </div>
+//               {/* productDPPrices yalnız stok varsa göstərilsin */}
+//               {!isOutOfStock && (
+//                 <div className="productDPPrices">
+//                   <span className="productDPOldPrice">
+//                     {productDetail.old_price} <TbCurrencyManat />
+//                   </span>
+//                   <span className="productDPNewPrice">
+//                     {productDetail.price} <TbCurrencyManat />
+//                   </span>
+//                 </div>
+//               )}
+
+
+
 //               <div className="productsDPButtons">
-//                 <button
-//                   className="productsDPaddToCart"
-//                   onClick={handleAddToCart}
-//                   disabled={isAddingCart || isInCart}
-//                 >
-//                   {isAddingCart ? (
-//                     <div className="spinner-small"></div>
-//                   ) : isInCart ? (
-//                     <>{t?.added || "Əlavə edildi"}</>
-//                   ) : (
-//                     <>
-//                       <IoCartOutline /> {t?.addtocart}
-//                     </>
-//                   )}
-//                 </button>
+//                 {/* Əgər stok varsa original düymələri göstər */}
+//                 {!isOutOfStock ? (
+//                   <>
+//                     <button
+//                       className="productsDPaddToCart"
+//                       onClick={handleAddToCart}
+//                       disabled={isAddingCart || isInCart}
+//                     >
+//                       {isAddingCart ? (
+//                         <div className="spinner-small"></div>
+//                       ) : isInCart ? (
+//                         <>{t?.added || "Əlavə edildi"}</>
+//                       ) : (
+//                         <>
+//                           <IoCartOutline /> {t?.addtocart}
+//                         </>
+//                       )}
+//                     </button>
 
-//                 <button onClick={() => openModal(productDetail)} className="productsDPbuyNow">
-//                   {t?.oneclickpay}
-//                 </button>
+//                     <button
+//                       onClick={() => openModal(productDetail)}
+//                       className="productsDPbuyNow"
+//                     >
+//                       {t?.oneclickpay}
+//                     </button>
+//                   </>
+//                 ) : (
+//                   // Stok 0: Gelende xeber et butonu (Add to cart / OneClick yerində)
+//                   <button
+//                     className="productsDPnotify"
+//                     onClick={handleNotify}
+//                     aria-label="Gələndə xəbər et"
+//                   >
+//                     <MdOutlineNotificationsActive className="comingSoonIconDP" />
+//                     {t?.comingsoon || "Gələndə xəbər et"}
+//                   </button>
+//                 )}
 
+//                 {/* Wishlist düyməsi - həmişə göstərilir */}
 //                 <button
 //                   onClick={toggleWishlist}
 //                   className="wishlist-btn productsDPwishlist"
@@ -418,21 +428,31 @@
 //                   )}
 //                 </button>
 
+//                 {/* Compare düyməsi - həmişə göstərilir */}
 //                 <button
-//                   className={`productsDPscale newScaleBtn ${isProductInCompare ? "in-compare" : ""}`}
+//                   className={`productsDPscale newScaleBtn ${
+//                     isProductInCompare ? "in-compare" : ""
+//                   }`}
 //                   onClick={() => handleAddToCompare(productDetail)}
 //                   disabled={isAddingCompare || isProductInCompare}
-//                   title={isProductInCompare ? "Artıq müqayisədə" : "Müqayisəyə əlavə et"}
+//                   title={
+//                     isProductInCompare
+//                       ? "Artıq müqayisədə"
+//                       : "Müqayisəyə əlavə et"
+//                   }
 //                 >
 //                   {isAddingCompare ? (
 //                     <div className="spinner-small"></div>
 //                   ) : (
 //                     <NewScale
-//                       className={`productsDPwishIcon newScalePR ${isProductInCompare ? "active" : ""}`}
+//                       className={`productsDPwishIcon newScalePR ${
+//                         isProductInCompare ? "active" : ""
+//                       }`}
 //                       style={
 //                         isProductInCompare
 //                           ? {
-//                               transition: "filter 0.3s ease, transform 0.15s ease",
+//                               transition:
+//                                 "filter 0.3s ease, transform 0.15s ease",
 //                               filter:
 //                                 "invert(15%) sepia(100%) saturate(7490%) hue-rotate(-10deg) brightness(100%) contrast(100%)",
 //                               opacity: 1,
@@ -449,54 +469,72 @@
 //                 </button>
 //               </div>
 
-//               <div className="paymentCalculator">
-//                 {Array.isArray(installments) && installments.length > 0 && (
-//                   <>
-//                     <div className="paymentCalculatorTitle">
-//                       <span>
-//                         {t?.productdetailparofpart || "Hissə-hissə ödə"}
-//                       </span>
-//                       <strong>
-//                         *{" "}
-//                         {t?.productdetailterms ||
-//                           "Şərtlər endrimsiz qiymətə tətbiq olunur"}
-//                       </strong>
-//                     </div>
+//               {/* --- BURADA SADECE BAŞLIQ VƏ KLASS ƏLAVƏ EDİLDİ --- */}
+//               <div className="similarProductsDetailPage">
+//                 <h3 className="similarTitle">
+//                   {t?.alternativeproducts || "Alternativ məhsullar"}
+//                 </h3>
+//                 {/* COMET: similarProductsDetailPage daxilinə öz slider/card məzmununu sən əlavə edəcəksən */}
+//                 <SimilarProducts similarData={similarData} t={t} />
 
-//                     <div className="paymentCalculatorButtons">
-//                       {installments.map((inst) => (
-//                         <div
-//                           key={inst.month}
-//                           className="paymentCalculatorButton"
-//                         >
-//                           <p>0%</p>
-//                           <button
-//                             onClick={() => setSelectedMonth(inst.month)}
-//                             style={{
-//                               border:
-//                                 selectedMonth === inst.month
-//                                   ? "2px solid black"
-//                                   : "1px solid #ccc",
-//                               padding: 4,
-//                             }}
-//                           >
-//                             {inst.month} {t?.moon}
-//                           </button>
-//                         </div>
-//                       ))}
-//                       <div className="monthPayment">
+
+//               </div>
+//               {/* --- /END --- */}
+
+
+
+
+//               {/* paymentCalculator yalnız stok varsa göstərilsin */}
+//               {!isOutOfStock && (
+//                 <div className="paymentCalculator">
+//                   {Array.isArray(installments) && installments.length > 0 && (
+//                     <>
+//                       <div className="paymentCalculatorTitle">
 //                         <span>
-//                           {t?.productdetailmonthpay || "Aylıq Ödəniş"}:
+//                           {t?.productdetailparofpart || "Hissə-hissə ödə"}
 //                         </span>
 //                         <strong>
-//                           {currentInst.monthly_amount?.toFixed(2)}{" "}
-//                           <TbCurrencyManat />
+//                           *{" "}
+//                           {t?.productdetailterms ||
+//                             "Şərtlər endrimsiz qiymətə tətbiq olunur"}
 //                         </strong>
 //                       </div>
-//                     </div>
-//                   </>
-//                 )}
-//               </div>
+
+//                       <div className="paymentCalculatorButtons">
+//                         {installments.map((inst) => (
+//                           <div
+//                             key={inst.month}
+//                             className="paymentCalculatorButton"
+//                           >
+//                             <p>0%</p>
+//                             <button
+//                               onClick={() => setSelectedMonth(inst.month)}
+//                               style={{
+//                                 border:
+//                                   selectedMonth === inst.month
+//                                     ? "2px solid black"
+//                                     : "1px solid #ccc",
+//                                 padding: 4,
+//                               }}
+//                             >
+//                               {inst.month} {t?.moon}
+//                             </button>
+//                           </div>
+//                         ))}
+//                         <div className="monthPayment">
+//                           <span>
+//                             {t?.productdetailmonthpay || "Aylıq Ödəniş"}:
+//                           </span>
+//                           <strong>
+//                             {currentInst.monthly_amount?.toFixed(2)}{" "}
+//                             <TbCurrencyManat />
+//                           </strong>
+//                         </div>
+//                       </div>
+//                     </>
+//                   )}
+//                 </div>
+//               )}
 //             </div>
 //           </div>
 //         </div>
@@ -636,11 +674,9 @@
 //           opacity: 0.6;
 //         }
 
-//         /* override only for compare state so disabled doesn't cause opacity */
 //         .newScaleBtn.in-compare:disabled {
 //           opacity: 1;
 //         }
-//         /* Compare button - background f5f5f5, iconun özü qırmızı olur */
 //         .newScaleBtn.in-compare {
 //           background-color: #f5f5f5 !important;
 //           border: none;
@@ -653,9 +689,31 @@
 //           transform-origin: center;
 //         }
 
-//         /* Active tab style */
 //         .productsDPTechnicalSectionTitle .active-tab {
 //           border: 0.15rem solid #ec1f27 !important;
+//         }
+
+//         .productsDPaddToCart {
+//           display: flex;
+//           justify-content: center;
+//           gap: 0.5rem;
+//           align-items: center;
+//           width: 16rem;
+//           height: 5.5rem;
+//           background-color: #ec1f27;
+//           color: #fff;
+//           font-size: 2rem;
+//           font-weight: 500;
+//           border-radius: 1rem;
+//           transition: all 0.4s ease-in-out;
+//           cursor: pointer;
+//           border: none;
+//         }
+//         .productsDPaddToCart:hover {
+//           background-color: #fff !important;
+//           color: #111;
+//           border: 1px solid #ec1f27;
+//           transition: all 0.4s ease-in-out;
 //         }
 
 //         .productsDPaddToCart,
@@ -686,15 +744,27 @@
 //         .newScaleBtn {
 //           cursor: pointer;
 //         }
+
+//         .depo.not-available {
+//           color: #ec1f27;
+//           font-weight: 600;
+//         }
+
+//         /* YENİ: Alternativ məhsullar başlığı üçün minimal stil */
+//         .similarProductsDetailPage {
+//           margin-top: 1.5rem;
+//         }
+//         .similarProductsDetailPage .similarTitle {
+//           font-size: 1.6rem;
+//           font-weight: 600;
+//           margin-bottom: 0.75rem;
+//         }
 //       `}</style>
 //     </div>
 //   );
 // };
 
 // export default ProductsDetailPage;
-
-// ! yuxari hisse siktitrib
-
 
 
 
@@ -995,9 +1065,6 @@ const ProductsDetailPage = ({ product, t , similarData = [] }) => {
 
   const handleNotify = () => {
     console.log(`Notify requested for product ${productId}`);
-    alert(
-      t?.notifyRequestSent || "Sizə bildiriş göndəriləcək."
-    );
   };
 
   return (
@@ -1082,8 +1149,6 @@ const ProductsDetailPage = ({ product, t , similarData = [] }) => {
                   </span>
                 </div>
               )}
-
-
 
               <div className="productsDPButtons">
                 {/* Əgər stok varsa original düymələri göstər */}
@@ -1178,20 +1243,15 @@ const ProductsDetailPage = ({ product, t , similarData = [] }) => {
                 </button>
               </div>
 
-              {/* --- BURADA SADECE BAŞLIQ VƏ KLASS ƏLAVƏ EDİLDİ --- */}
-              <div className="similarProductsDetailPage">
-                <h3 className="similarTitle">
-                  {t?.alternativeproducts || "Alternativ məhsullar"}
-                </h3>
-                {/* COMET: similarProductsDetailPage daxilinə öz slider/card məzmununu sən əlavə edəcəksən */}
-                <SimilarProducts similarData={similarData} t={t} />
-
-
-              </div>
-              {/* --- /END --- */}
-
-
-
+              {/* Alternativ məhsullar - YALNIZ stokda OLMAYANDA göstərilir */}
+              {isOutOfStock && (
+                <div className="similarProductsDetailPage">
+                  <h3 className="similarTitle">
+                    {t?.alternativeproducts || "Alternativ məhsullar"}
+                  </h3>
+                  <SimilarProducts similarData={similarData} t={t} />
+                </div>
+              )}
 
               {/* paymentCalculator yalnız stok varsa göstərilsin */}
               {!isOutOfStock && (
@@ -1459,7 +1519,7 @@ const ProductsDetailPage = ({ product, t , similarData = [] }) => {
           font-weight: 600;
         }
 
-        /* YENİ: Alternativ məhsullar başlığı üçün minimal stil */
+        /* Alternativ məhsullar başlığı - yalnız stokda olmayanda */
         .similarProductsDetailPage {
           margin-top: 1.5rem;
         }
@@ -1474,6 +1534,16 @@ const ProductsDetailPage = ({ product, t , similarData = [] }) => {
 };
 
 export default ProductsDetailPage;
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -177,6 +177,7 @@
 
 
 
+
 "use client";
 import Link from "next/link";
 import React, { useState, useMemo } from "react";
@@ -301,10 +302,10 @@ const SecurePage = ({ t, supportData }) => {
                   >
                     <span className="accordionTitle">{item.title}</span>
                     <span
-                      className={`accordionToggle ${open ? "minus" : "plus"}`}
+                      className="accordionToggle"
                       aria-hidden="true"
                     >
-                      {open ? "−" : "+"}
+                      <MdKeyboardArrowRight className="accordionArrow" />
                     </span>
                   </button>
 
@@ -374,17 +375,21 @@ const SecurePage = ({ t, supportData }) => {
         .accordionPanelInner :global(.group) {
           width: 100%;
         }
+
+        /* Ox ikonunun fırlanma animasiyası */
+        .accordionToggle :global(svg) {
+          transition: transform 0.2s ease;
+          display: block;
+        }
+        .accordionItem.isOpen .accordionToggle :global(svg) {
+          transform: rotate(-90deg);
+        }
       `}</style>
     </div>
   );
 };
 
 export default SecurePage;
-
-
-
-
-
 
 
 
@@ -432,51 +437,71 @@ export default SecurePage;
 
 //     const content = targetItem.content;
     
-//     // <span style="color: #ff0000;"> olan h2 tag-larını tap
-//     const redHeaders = [];
-//     const regex = /<h2[^>]*>.*?<span[^>]*style="[^"]*color:\s*#ff0000;[^"]*"[^>]*>.*?<\/span>.*?<\/h2>/gi;
+//     // data-start və data-end atributları olan strong tag-ları tap
+//     const strongPattern = /<strong[^>]*data-start="(\d+)"[^>]*data-end="(\d+)"[^>]*>(.*?)<\/strong>/gi;
+//     const headers = [];
 //     let match;
     
-//     while ((match = regex.exec(content)) !== null) {
-//       const titleMatch = match[0].match(/<strong[^>]*>(.*?)<\/strong>/i);
-//       const title = titleMatch ? titleMatch[1] : match[0].replace(/<[^>]+>/g, '').trim();
+//     while ((match = strongPattern.exec(content)) !== null) {
+//       const dataStart = parseInt(match[1]);
+//       const dataEnd = parseInt(match[2]);
+//       const title = match[3].trim();
       
-//       redHeaders.push({
-//         index: match.index,
-//         title: title
-//       });
+//       // Bu strong tag-ın parent h2-sini tap
+//       const beforeStrong = content.substring(0, match.index);
+//       const lastH2Index = beforeStrong.lastIndexOf('<h2');
+      
+//       if (lastH2Index !== -1) {
+//         const h2EndIndex = content.indexOf('</h2>', lastH2Index);
+//         if (h2EndIndex > match.index) {
+//           headers.push({
+//             index: lastH2Index,
+//             dataStart,
+//             dataEnd,
+//             title
+//           });
+//         }
+//       }
 //     }
 
-//     if (redHeaders.length !== 2) {
+//     // data-start dəyərinə görə sırala
+//     headers.sort((a, b) => a.dataStart - b.dataStart);
+
+//     // Əgər 2 başlıq yoxdursa
+//     if (headers.length < 2) {
 //       return [{
 //         id: 34,
-//         title: 'Zəmanət',
+//         title: t?.warranty || 'Zəmanət',
 //         content: content,
 //         isHtml: true,
 //       }];
 //     }
 
-//     // Birinci: başdan ikinci qırmızı başlığa qədər
-//     const firstContent = content.substring(0, redHeaders[1].index);
+//     // İlk 2 başlığı götür
+//     const firstHeader = headers[0];
+//     const secondHeader = headers[1];
+
+//     // Birinci accordion: birinci başlıqdan ikinciyə qədər
+//     const firstContent = content.substring(firstHeader.index, secondHeader.index);
     
-//     // İkinci: ikinci qırmızı başlıqdan sona qədər
-//     const secondContent = content.substring(redHeaders[1].index);
+//     // İkinci accordion: ikinci başlıqdan sona qədər
+//     const secondContent = content.substring(secondHeader.index);
 
 //     return [
 //       {
-//         id: '34-1',
-//         title: redHeaders[0].title,
+//         id: '34-first',
+//         title: firstHeader.title,
 //         content: firstContent,
 //         isHtml: true,
 //       },
 //       {
-//         id: '34-2',
-//         title: redHeaders[1].title,
+//         id: '34-second',
+//         title: secondHeader.title,
 //         content: secondContent,
 //         isHtml: true,
 //       }
 //     ];
-//   }, [supportData]);
+//   }, [supportData, t]);
 
 //   const toggle = (index) => {
 //     setActiveIndex((prev) => (prev === index ? null : index));
@@ -573,20 +598,22 @@ export default SecurePage;
 //         .accordionPanelInner :global(div),
 //         .accordionPanelInner :global(ul),
 //         .accordionPanelInner :global(ol),
-//         .accordionPanelInner :global(li) {
+//         .accordionPanelInner :global(li),
+//         .accordionPanelInner :global(h2),
+//         .accordionPanelInner :global(h3) {
 //           max-width: 100%;
 //           word-wrap: break-word;
 //           overflow-wrap: break-word;
 //         }
 
-//         .accordionPanelInner :global(._tableContainer_1rjym_1) {
+//         .accordionPanelInner :global(._tableContainer_1rjym_1),
+//         .accordionPanelInner :global(._tableWrapper_1rjym_13) {
 //           width: 100%;
 //           overflow-x: auto;
 //         }
 
-//         .accordionPanelInner :global(._tableWrapper_1rjym_13) {
+//         .accordionPanelInner :global(.group) {
 //           width: 100%;
-//           overflow-x: auto;
 //         }
 //       `}</style>
 //     </div>
@@ -594,3 +621,35 @@ export default SecurePage;
 // };
 
 // export default SecurePage;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
