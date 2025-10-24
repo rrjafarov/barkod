@@ -343,10 +343,8 @@ const SecurePage = ({ t, supportData }) => {
         }
 
         .accordionPanelInner :global(table) {
-          width: 100% !important;
           max-width: 100%;
           overflow-x: auto;
-          display: block;
         }
 
         .accordionPanelInner :global(img) {

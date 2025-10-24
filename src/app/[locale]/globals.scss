@@ -7367,7 +7367,7 @@ p.greenTotal span {
 
     color: #ffff;
     &:hover {
-      background-color: #fff;
+      background-color: #fff !important;
       color: $MainColor;
       border: 1px solid $MainColor;
       transition: all 0.3s ease-in-out;
@@ -7460,7 +7460,7 @@ p.greenTotal span {
     font-size: 1.5rem;
 
     table{
-      width: 100%;
+      width: auto !important;
       height:  auto !important;
     }
   }

@@ -2612,7 +2612,7 @@ export default function LoginForm({ t }) {
                 ? `${otpTimer}s`
                 : otpSentAgain
                 ? "Göndərildi"
-                : "Yenidən göndər"}
+                : t?.trymessage}
             </button>
           </div>
           <button
