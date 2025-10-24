@@ -1,5 +1,6 @@
+"use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "@/components/Footer/footer.scss";
 import { AiOutlineCopyright } from "react-icons/ai";
 import Whatsapp from "../../../public/icons/wp.svg";
@@ -13,6 +14,24 @@ import Visa from "../../../public/icons/visa.svg";
 import Image from "next/image";
 
 const Footer = ({ t, settingData, supportData }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  // Mobile: id 34 gəlməsin
+  // Desktop: show_in_header === 0 && id !== 34
+  const customersList = isMobile
+    ? supportData?.filter((item) => item.id !== 34)
+    : supportData?.filter(
+        (item) => item.show_in_header === 0 && item.id !== 34
+      );
+
   return (
     <>
       <div className="footer">
@@ -35,6 +54,7 @@ const Footer = ({ t, settingData, supportData }) => {
                 </ul>
               </div>
             </div>
+
             <div className="xl-2 lg-2 md-4 sm-4">
               <div className="footerLinks">
                 <span className="footerHeadLink">{t?.about || "About"}</span>
@@ -44,12 +64,10 @@ const Footer = ({ t, settingData, supportData }) => {
                       {t?.aboutcompany || "About Company"}
                     </Link>
                   </li>
-                  {/* <li>
-                    <Link href="#">Karyera</Link>
-                  </li> */}
                 </ul>
               </div>
             </div>
+
             <div className="xl-2 lg-2 md-4 sm-4">
               <div className="footerLinks">
                 <span className="footerHeadLink">
@@ -62,9 +80,6 @@ const Footer = ({ t, settingData, supportData }) => {
                   <li>
                     <Link href="/stores">{t?.stores || "Stores"}</Link>
                   </li>
-                  {/* <li>
-                    <Link href="#">Brendlər</Link>
-                  </li> */}
                   <li>
                     <Link href="/blogs">{t?.blognews || "Blog"}</Link>
                   </li>
@@ -83,34 +98,22 @@ const Footer = ({ t, settingData, supportData }) => {
                   {t?.forcustomers || "for customers"}
                 </span>
                 <ul>
-                  {/* {supportData
-                    ?.filter((item) => item.show_in_header === 0)
-                    .map((supportItem) => (
-                      <li key={supportItem.id}>
-                        <Link href={`/support/${supportItem.slug}`}>
-                          {supportItem.title}
-                        </Link>
-                      </li>
-                    ))} */}
+                  {customersList?.map((supportItem) => (
+                    <li key={supportItem.id}>
+                      <Link href={`/support/${supportItem.slug}`}>
+                        {supportItem.title}
+                      </Link>
+                    </li>
+                  ))}
 
-                  {supportData
-                    ?.filter(
-                      (item) => item.show_in_header === 0 && item.id !== 34 // id 34 olan gəlməsin
-                    )
-                    .map((supportItem) => (
-                      <li key={supportItem.id}>
-                        <Link href={`/support/${supportItem.slug}`}>
-                          {supportItem.title}
-                        </Link>
-                      </li>
-                    ))}
-
-                  {/* <li>
-                    <Link href="/security">
-                      {t?.warranty || "Zəmanət"}
-                    </Link>
-                  </li> */}
-                  
+                  {/* Bu hissə YALNIZ mobil üçün görünür */}
+                  {isMobile && (
+                    <li>
+                      <Link href="/security">
+                        {t?.warranty || "Zəmanət"}
+                      </Link>
+                    </li>
+                  )}
                 </ul>
               </div>
             </div>
@@ -143,13 +146,6 @@ const Footer = ({ t, settingData, supportData }) => {
                         </button>
                       </Link>
                     </li>
-                    {/* <li>
-                      <Link href="#">
-                        <button>
-                          <Telegram className="footSocialIcon" />
-                        </button>
-                      </Link>
-                    </li> */}
                     <li>
                       <Link
                         href={`https://wa.me/${settingData.tel_whatsapp}`}

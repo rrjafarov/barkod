@@ -7481,6 +7481,29 @@ p.greenTotal span {
 
 
 
+/* Desktop-da mobil siyahını gizlət, desktop siyahını göstər */
+.footerList-mobileOnly { display: none; }
+.footerList-desktopOnly { display: block; }
+
+@media (max-width: 768px) {
+  /* Mobile-da yalnız bütün dataların olduğu siyahını göstər */
+  .footerList-mobileOnly { display: block; }
+  .footerList-desktopOnly { display: none; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
