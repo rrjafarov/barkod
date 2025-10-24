@@ -1523,11 +1523,11 @@ const ProductsDetailPage = ({ product, t , similarData = [] }) => {
         .similarProductsDetailPage {
           margin-top: 1.5rem;
         }
-        .similarProductsDetailPage .similarTitle {
-          font-size: 1.6rem;
-          font-weight: 600;
-          margin-bottom: 0.75rem;
-        }
+        // .similarProductsDetailPage .similarTitle {
+        //   font-size: 1.8rem;
+        //   font-weight: 600;
+        //   margin-bottom: 1.75rem;
+        // }
       `}</style>
     </div>
   );

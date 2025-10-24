@@ -736,7 +736,7 @@ ul {
   justify-content: center !important;
   align-items: center !important;
   cursor: pointer;
-  margin-top: 3rem;
+  margin-top: 5rem;
 }
 
 // ? HeroSlider.jsx
@@ -1307,7 +1307,7 @@ ul {
 
 // secondary
 .secondaryProductsHeadTitle {
-  margin-top: 10rem;
+  margin-top: 5rem;
   padding: 2rem 0;
   display: flex;
   align-items: center;
@@ -7459,64 +7459,30 @@ p.greenTotal span {
     line-height: 1.6;
     font-size: 1.5rem;
 
-    table{
+    table {
       width: auto !important;
-      height:  auto !important;
+      height: auto !important;
     }
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Desktop-da mobil siyahını gizlət, desktop siyahını göstər */
-.footerList-mobileOnly { display: none; }
-.footerList-desktopOnly { display: block; }
+.footerList-mobileOnly {
+  display: none;
+}
+.footerList-desktopOnly {
+  display: block;
+}
 
 @media (max-width: 768px) {
   /* Mobile-da yalnız bütün dataların olduğu siyahını göstər */
-  .footerList-mobileOnly { display: block; }
-  .footerList-desktopOnly { display: none; }
+  .footerList-mobileOnly {
+    display: block;
+  }
+  .footerList-desktopOnly {
+    display: none;
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // ! yeter lan yeter
 button,
@@ -7525,3 +7491,9 @@ button:disabled {
   pointer-events: auto !important;
 }
 // ! yeter lan yeter
+
+.similarProductsDetailPage .similarTitle {
+  font-size: 1.8rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 1.75rem !important;
+}

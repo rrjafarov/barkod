@@ -251,7 +251,7 @@ const SimilarProducts = ({
         speed={4000}
         modules={[Pagination, Autoplay]}
         breakpoints={{
-          340: { slidesPerView: 1, spaceBetween: 15 },
+          340: { slidesPerView: 1.5, spaceBetween: 15 },
           640: { slidesPerView: 1.5, spaceBetween: 15 },
           991: { slidesPerView: 2, spaceBetween: 15 },
           1024: { slidesPerView: 2, spaceBetween: 15 },
